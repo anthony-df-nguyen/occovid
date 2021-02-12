@@ -12,7 +12,7 @@ const Cases = (props) => {
       .then((res) => res.json())
       .then((final) => (tempArray = [...final.features]))
       .then(() => {
-        console.log(tempArray);
+        //console.log(tempArray);
         tempArray.forEach((a) => {
           finalArray.push({
             date: new Date(a.attributes.Date).toLocaleDateString(),
@@ -59,29 +59,19 @@ const Cases = (props) => {
   switch (props.type) {
     case "bar":
       return (
-        <Bar
-          data={myData}
-          options={barDefaults}
-          datasetKeyProvider={datasetKeyProvider}
-        />
+        <>
+          <Bar key={datasetKeyProvider} data={myData} options={barDefaults} />
+        </>
       );
       break;
     case "line":
       return (
-        <Line
-          data={myData}
-          options={lineDefaults}
-          datasetKeyProvider={datasetKeyProvider}
-        />
+        <Line key={datasetKeyProvider} data={myData} options={lineDefaults} />
       );
       break;
     default:
       return (
-        <Bar
-          data={myData}
-          options={barDefaults}
-          datasetKeyProvider={datasetKeyProvider}
-        />
+        <Bar key={datasetKeyProvider} data={myData} options={barDefaults} />
       );
       break;
   }
