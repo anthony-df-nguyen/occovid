@@ -1,7 +1,8 @@
 import React from "react";
 import Page from "components/Page";
-
-import Cases, { array } from "components/Datafetch/Cases";
+import Cases from "components/Datafetch/Cases";
+import Deaths from "components/Datafetch/Deaths";
+import color from "components/Colors";
 
 const dataDonut = {
   labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
@@ -35,7 +36,46 @@ const Home = (props) => {
     <div className="page">
       <h1 className="pageTitle">{props.title}</h1>
       <Page />
-      <Cases />
+      <div id="chartgrid">
+        <div className="chartContainer">
+          <div className="chartTitle">Cases by Specimen Collection Date</div>
+          <Cases
+            fill={[color.orange, color.blue]}
+            type="bar"
+            label={["dailyCasesbySpecimen", "7 Day Average"]}
+            data={["dailyCasesbySpecimen", "daily7DayAvg"]}
+          />
+        </div>
+        <div className="chartContainer">
+          <div className="chartTitle">
+            Total Cases by Specimen Collection Date
+          </div>
+          <Cases
+            fill={[color.orange, color.blue]}
+            type="bar"
+            label={["Total Cases by Specimen Collection Date", "Recovered"]}
+            data={["totalCasesbySpecimen", "recovered"]}
+          />
+        </div>
+        <div className="chartContainer">
+          <div className="chartTitle">Death by Date of Death</div>
+          <Deaths
+            fill={[color.red]}
+            type="bar"
+            label={["Death by Date of Death"]}
+            data={["deathDate"]}
+          />
+        </div>
+        <div className="chartContainer">
+          <div className="chartTitle">Total Deaths</div>
+          <Deaths
+            fill={[color.red]}
+            type="bar"
+            label={["Total Deaths by Date of Death"]}
+            data={["totalDeathDate"]}
+          />
+        </div>
+      </div>
     </div>
   );
 };
