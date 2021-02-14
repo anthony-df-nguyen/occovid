@@ -27,6 +27,7 @@
 @radius: 5px;
 @pad: 1rem;
 @padtop: 2rem 1rem;
+@buttonpad: 8px 10px;
 @topm: 2rem;
 * {
   padding: 0;
@@ -134,7 +135,7 @@
   }
 }
 
-#chartgrid {
+#chartGrid {
   margin-top: @topm;
   display: grid;
   grid-gap: 1rem;
@@ -181,5 +182,20 @@
     .chartTypeButton + .chartTypeButton {
       margin-left: 5px;
     }
+  }
+}
+
+.timeButtonContainer {
+  .centerjustify;
+  margin:1rem auto;
+  a {
+    text-align: center;
+    background-color: white;
+    padding: @buttonpad;
+    border-radius: @radius;
+    display:inline-block;
+  }
+  a + a {
+    margin-left:1rem;
   }
 }
