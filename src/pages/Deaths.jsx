@@ -41,6 +41,7 @@ const Deaths = (props) => {
                 fill={[color.red,color.blue]}
                 title={"Total Deaths by Reported"}
                 label={["Deaths"]}
+                switches={['bar','line']}
               />
             <Chart 
                 key="1" 
@@ -50,6 +51,7 @@ const Deaths = (props) => {
                 fill={[color.red]} 
                 title={"Total Deaths by Death Date"}
                 label={["Deaths"]}
+                switches={['bar','line']}
                 />         
             <Chart
                 key="3" 
@@ -59,6 +61,7 @@ const Deaths = (props) => {
                 fill={[color.red]}
                 title={"Daily Deaths"}
                 label={["Deaths"]}
+                switches={['bar','line']}
               />
             <Chart
                 key="4" 
@@ -68,6 +71,7 @@ const Deaths = (props) => {
                 fill={[color.yellow]}
                 title={"SNF Deaths"}
                 label={["Deaths"]}
+                switches={['bar','line']}
               />
             <Chart
                 key="5" 
@@ -77,6 +81,7 @@ const Deaths = (props) => {
                 fill={[color.orange]}
                 title={"Alf Deaths"}
                 label={["Deaths"]}
+                switches={['bar','line']}
             />
             <Chart
                 key="6" 
@@ -86,6 +91,7 @@ const Deaths = (props) => {
                 fill={[color.purple]}
                 title={"Homeless Deaths"}
                 label={["Deaths"]}
+                switches={['bar','line']}
             />
             </div>
        </div>

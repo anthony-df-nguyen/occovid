@@ -34,7 +34,7 @@ const Cases = (props) => {
             <Chart
                 key="2" 
                 id="case2"
-                //type="bar" 
+                switches={['bar','line']}
                 date={array.map(a => a.date)} 
                 data={[array.map(b => b.totalCasesbySpecimen),array.map(b => b.recovered)]} 
                 fill={[color.red,color.blue]}
@@ -44,7 +44,7 @@ const Cases = (props) => {
               <Chart
                 key="3" 
                 id="case3"
-                //type="bar" 
+                switches={['bar','line']}
                 date={array.map(a => a.date)} 
                 data={[array.map(b => b.dailyCasesbySpecimen),array.map(b => b.daily7DayAvg)]} 
                 fill={[color.red,color.blue]}
@@ -54,7 +54,7 @@ const Cases = (props) => {
              <Chart 
                 key="1" 
                 id="case1"
-                //type={()=> findLastSetting("case1")} 
+                switches={['bar','line']}
                 date={array.map(a => a.date)} 
                 data={[array.map(b => b.dailyCasesReported)]} 
                 fill={[color.red]} 
@@ -64,6 +64,7 @@ const Cases = (props) => {
               <Chart 
                 key="4" 
                 id="case4"
+                switches={['bar','line']}
                 date={array.map(a => a.date)} 
                 data={[array.map(b => b.homelessCases)]} 
                 fill={[color.purple]} 
@@ -73,6 +74,7 @@ const Cases = (props) => {
               <Chart 
                 key="5" 
                 id="case5" 
+                switches={['bar','line']}
                 date={array.map(a => a.date)} 
                 data={[array.map(b => b.snfCases)]} 
                 fill={[color.orange]} 
@@ -81,7 +83,8 @@ const Cases = (props) => {
                 /> 
               <Chart 
                 key="6" 
-                id="case5" 
+                id="case6" 
+                switches={['bar','line']}
                 date={array.map(a => a.date)} 
                 data={[array.map(b => b.jailCases)]} 
                 fill={[color.yellow]} 

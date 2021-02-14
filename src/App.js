@@ -9,6 +9,7 @@ import Cases from 'pages/Cases'
 import { timeSelection } from 'components/Timeselect'
 import Deaths from 'pages/Deaths'
 import Hospitalization from 'pages/Hospitalization'
+import Vaccinations from 'pages/Vaccinations'
 
 function App () {
   //localStorage.clear()
@@ -39,6 +40,9 @@ function App () {
             </Route>
             <Route path='/hospitalizations'>
               <Hospitalization title='Hospitalizations' />
+            </Route>
+            <Route path='/vaccinations'>
+              <Vaccinations title='Vaccinations' />
             </Route>
           </TimeContext.Provider>
         </Switch>

@@ -55,6 +55,7 @@ const Hospitalization = (props) => {
                 fill={[color.yellow,color.red,color.blue]} 
                 title={"Hospitalized"}
                 label={["Hospitalized","ICU","7 Day Avg"]}
+                switches={['bar','line']}
                 />         
             <Chart 
                 key="2" 
@@ -64,6 +65,7 @@ const Hospitalization = (props) => {
                 fill={[color.yellow,color.blue]} 
                 title={"Change in Hospitalization"}
                 label={["Hospitalized","7 Day Avg"]}
+                switches={['bar','line']}
                 />   
             <Chart 
                 key="3" 
@@ -73,6 +75,7 @@ const Hospitalization = (props) => {
                 fill={[color.red,color.blue]} 
                 title={"Change in ICU"}
                 label={["ICU","7 Day Avg"]}
+                switches={['bar','line']}
             />   
             <Chart 
                 key="4" 
@@ -82,6 +85,7 @@ const Hospitalization = (props) => {
                 fill={[color.red]} 
                 title={"% Ventilators Available"}
                 label={["Vents Available"]}
+                switches={['bar','line']}
             />   
             <Chart 
                 key="5" 
@@ -91,6 +95,7 @@ const Hospitalization = (props) => {
                 fill={[color.orange]} 
                 title={"Beds Available Adjusted"}
                 label={["Beds"]}
+                switches={['bar','line']}
             />   
             <Chart 
                 key="6" 
@@ -100,6 +105,7 @@ const Hospitalization = (props) => {
                 fill={[color.orange]} 
                 title={"Beds Available Unadjusted"}
                 label={["Beds"]}
+                switches={['bar','line']}
             />    
             </div>
        </div>

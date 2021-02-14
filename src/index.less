@@ -171,6 +171,8 @@
     display: block;
     text-align: center;
     .chartTypeButton {
+      font-size: .75rem;
+      letter-spacing: 1px;
       display: inline-block;
       background-color: @gray;
       padding: 5px 10px;
@@ -197,11 +199,18 @@
 .timeButtonContainer {
   //.centerjustify;
   margin:1rem auto 1rem auto;
+  display:-webkit-box;
+  display:-ms-flexbox;
   display:flex;
-  flex-wrap: wrap;
-  justify-content:space-evenly;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack:space-evenly;
+      -ms-flex-pack:space-evenly;
+          justify-content:space-evenly;
   @media @biggerthanmobile {
-    justify-content: start;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: start;
   }
   a {
     font-size: 12px;

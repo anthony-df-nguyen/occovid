@@ -5,6 +5,13 @@ if (window.screen.width > 500) {
   chartpadding = { top: 16, right: 16, left: 16 }
 }
 
+function responsivePieLegend () {
+  if (window.screen.width > 768) {
+    return 'right'
+  } else {
+    return 'bottom'
+  }
+}
 const dataLabels = {
   anchor: 'end',
   align: 'end',
@@ -200,6 +207,72 @@ class Threeobject7DayAverage {
     ]
   }
 }
+const ageColors = [
+  '#003f5c',
+  '#2f4b7c',
+  '#665191',
+  '#a05195',
+  '#d45087',
+  '#f95d6a',
+  '#FFCC00',
+  '#ff7c43',
+  '#ffa600',
+  '#333333'
+]
+
+const ageLabels = [
+  '0 to 17',
+  '18 to 24',
+  '25 to 34',
+  '35 to 44',
+  '45 to 54',
+  '55 to 64',
+  '65 to 74',
+  '75-84',
+  '85+',
+  'Unknown'
+]
+
+const raceLabels = [
+  'Ntv. American',
+  'Asian',
+  'Black',
+  'Hispanic',
+  'Multiple',
+  'Pac Islander',
+  'Other',
+  'Unknown',
+  'White'
+]
+const raceColors = [
+  '#003f5c',
+  '#2f4b7c',
+  '#665191',
+  '#a05195',
+  '#d45087',
+  '#f95d6a',
+  '#FFCC00',
+  '#333',
+  '#ff7c43',
+  '#ffa600'
+]
+
+const piedefaults = {
+  legend: {
+    display: true,
+    position: responsivePieLegend(),
+    labels: {
+      fontColor: '#999',
+      fontSize: 12,
+      boxWidth: 8
+    }
+  },
+  layout: {
+    padding: 10
+  },
+  responsive: true,
+  maintainAspectRatio: false
+}
 
 export {
   barDefaults,
@@ -207,5 +280,10 @@ export {
   datasetKeyProvider,
   Oneobject,
   Twoobject7DayAverage,
-  Threeobject7DayAverage
+  Threeobject7DayAverage,
+  ageColors,
+  ageLabels,
+  piedefaults,
+  raceColors,
+  raceLabels
 }

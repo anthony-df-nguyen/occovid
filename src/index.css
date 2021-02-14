@@ -140,6 +140,8 @@
   text-align: center;
 }
 #chartGrid .chartButtonContainer .chartTypeButton {
+  font-size: 0.75rem;
+  letter-spacing: 1px;
   display: inline-block;
   background-color: #f3f3f3;
   padding: 5px 10px;
@@ -164,12 +166,19 @@
 }
 .timeButtonContainer {
   margin: 1rem auto 1rem auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
+  -webkit-box-pack: space-evenly;
+  -ms-flex-pack: space-evenly;
   justify-content: space-evenly;
 }
 @media only screen and (min-width:500px) {
   .timeButtonContainer {
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
     justify-content: start;
   }
 }

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import 'chartJSconfig';
-import {Bar, Doughnut, Line} from 'react-chartjs-2';
-import { barDefaults, lineDefaults, Oneobject, Twoobject7DayAverage, Threeobject7DayAverage } from 'chartJSconfig';
+import {Bar, Doughnut, Line, HorizontalBar} from 'react-chartjs-2';
+import { barDefaults, lineDefaults, piedefaults, Oneobject, Twoobject7DayAverage, Threeobject7DayAverage } from 'chartJSconfig';
 import Chartselect from "components/Chartselect"
 
 
@@ -41,7 +41,12 @@ const Chart = (props) => {
             case 'line':
                 return <Line  data={dataObject} options={lineDefaults}/>
                 break;
-            
+            case 'doughnut':
+                return <Doughnut  data={dataObject} options={piedefaults}/>
+                break;
+            case 'horizontalBar':
+                return <HorizontalBar  data={dataObject} options={barDefaults}/>
+                break;            
             default:
                 return <Bar  data={dataObject} options={barDefaults}/>
                 break;
@@ -51,7 +56,7 @@ const Chart = (props) => {
     <div className="chartContainer">
         <div className="chartTitle">{props.title}</div>
         {renderChart(currentType)}
-        <Chartselect type={['bar','line']} passdown={updateType} id={props.id}/>
+        <Chartselect type={props.switches} passdown={updateType} id={props.id}/>
     </div>)
 }
 

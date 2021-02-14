@@ -140,8 +140,7 @@ const ageHistory =
 const schoolDataSource =
   "https://raw.githubusercontent.com/skifreetony/occovidmanualdata/master/schools.csv";
 
-const vaccineDataSource =
-  "https://raw.githubusercontent.com/skifreetony/occovidmanualdata/master/vaccines.csv";
+
 
 const lastUpdate =
   "https://services2.arcgis.com/LORzk2hk9xzHouw9/ArcGIS/rest/services/update_date_csv/FeatureServer/0/query?where=0%3D0&objectIds=&time=&resultType=none&outFields=*&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&sqlFormat=none&f=pjson&token=";
@@ -166,6 +165,5 @@ export {
   YouthTrends,
   ageHistory,
   schoolDataSource,
-  vaccineDataSource,
   lastUpdate,
 };
