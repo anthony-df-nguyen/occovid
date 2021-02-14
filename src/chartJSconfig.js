@@ -41,7 +41,7 @@ const barDefaults = {
     padding: chartpadding
   },
   responsive: true,
-  maintainAspectRatio: true,
+  maintainAspectRatio: false,
   scales: {
     yAxes: [
       {
@@ -67,6 +67,7 @@ const barDefaults = {
   }
 }
 const lineDefaults = {
+  radius: 0,
   plugins: {
     datalabels: dataLabels
   },
@@ -75,7 +76,7 @@ const lineDefaults = {
     padding: chartpadding
   },
   responsive: true,
-  maintainAspectRatio: true,
+  maintainAspectRatio: false,
   scales: {
     yAxes: [
       {
@@ -120,36 +121,91 @@ class Oneobject {
   }
 }
 
-// let oneDataset = {
-//   labels: '',
-//   datasets: [
-//     {
-//       label: '',
-//       data: '',
-//       borderWidth: 1,
-//       order: 2,
-//       backgroundColor: ''
-//     }
-//   ]
-// }
-// let twoDataset = {
-//   labels: '',
-//   datasets: [
-//     {
-//       label: '',
-//       data: '',
-//       borderWidth: 1,
-//       order: 2,
-//       backgroundColor: ''
-//     },
-//     {
-//       label: '',
-//       data: '',
-//       borderWidth: 1,
-//       order: 2,
-//       backgroundColor: ''
-//     }
-//   ]
-// }
+class Twoobject7DayAverage {
+  constructor (
+    labels,
+    data1label,
+    data1,
+    data1color,
+    data2label,
+    data2,
+    data2color
+  ) {
+    this.labels = labels
+    this.datasets = [
+      {
+        label: data1label,
+        data: data1,
+        borderWidth: 1,
+        radius: 1,
+        order: 2,
+        backgroundColor: data1color
+      },
+      {
+        type: 'line',
+        label: data2label,
+        data: data2,
+        borderWidth: 2,
+        radius: 1,
+        order: 1,
+        borderColor: data2color,
+        backgroundColor: 'transparent'
+      }
+    ]
+  }
+}
 
-export { barDefaults, lineDefaults, datasetKeyProvider, Oneobject }
+class Threeobject7DayAverage {
+  constructor (
+    labels,
+    data1label,
+    data1,
+    data1color,
+    data2label,
+    data2,
+    data2color,
+    data3label,
+    data3,
+    data3color
+  ) {
+    this.labels = labels
+    this.datasets = [
+      {
+        label: data1label,
+        data: data1,
+        borderWidth: 1,
+        radius: 1,
+        order: 2,
+        backgroundColor: data1color
+      },
+      {
+        label: data2label,
+        data: data2,
+        borderWidth: 2,
+        radius: 1,
+        order: 1,
+        borderColor: data2color,
+        backgroundColor: data2color
+      },
+      {
+        type: 'line',
+        label: data3label,
+        data: data3,
+        borderWidth: 2,
+        radius: 1,
+        order: 1,
+        borderColor: data3color,
+        backgroundColor: 'transparent'
+      }
+    ]
+  }
+}
+
+export {
+  barDefaults,
+  lineDefaults,
+  datasetKeyProvider,
+  Oneobject,
+  Twoobject7DayAverage,
+  Threeobject7DayAverage
+}

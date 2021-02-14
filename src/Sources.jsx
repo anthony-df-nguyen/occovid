@@ -75,7 +75,7 @@ const HosURL =
 const OCBedsURL = `https://data.ca.gov/api/3/action/datastore_search?resource_id=42d33765-20fd-44b8-a978-b083b7542225&q=orange&limit=1000`;
 
 // CA DPH Data for Case Rate, Testing Positivy, Hosit Change, ICU beds available, vents available
-const CAMetricsURL =
+const HosTriggerURL =
   "https://services2.arcgis.com/LORzk2hk9xzHouw9/ArcGIS/rest/services/occovid_trigger_csv/FeatureServer/0//query?where=date+%3E+timestamp+%2703%2F03%2F2020%27+AND+date+%3C+timestamp+%27" +
   tomorrowsmonth +
   "%2F" +
@@ -84,7 +84,7 @@ const CAMetricsURL =
   todaysyear +
   "%27&objectIds=&time=&resultType=none&outFields=*&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&cacheHint=false&orderByFields=date&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&sqlFormat=none&f=pjson&token=";
 
-const HosAvailabiltiyURL =
+const CAM =
   "https://services2.arcgis.com/LORzk2hk9xzHouw9/ArcGIS/rest/services/occovid_blueprint_csv/FeatureServer/0//query?where=date+%3E+timestamp+%2703%2F03%2F2020%27+AND+date+%3C+timestamp+%27" +
   tomorrowsmonth +
   "%2F" +
@@ -154,8 +154,8 @@ export {
   SeroTestURL,
   HosURL,
   OCBedsURL,
-  CAMetricsURL,
-  HosAvailabiltiyURL,
+  HosTriggerURL,
+  CAM,
   CaseDemographics,
   DeathDemographics,
   CityDataURL,

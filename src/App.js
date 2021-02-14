@@ -7,6 +7,8 @@ import Header from './components/Header'
 import Home from 'pages/Home'
 import Cases from 'pages/Cases'
 import { timeSelection } from 'components/Timeselect'
+import Deaths from 'pages/Deaths'
+import Hospitalization from 'pages/Hospitalization'
 
 function App () {
   //localStorage.clear()
@@ -31,6 +33,12 @@ function App () {
             </Route>
             <Route path='/cases'>
               <Cases title='Cases' />
+            </Route>
+            <Route path='/deaths'>
+              <Deaths title='Deaths' />
+            </Route>
+            <Route path='/hospitalizations'>
+              <Hospitalization title='Hospitalizations' />
             </Route>
           </TimeContext.Provider>
         </Switch>

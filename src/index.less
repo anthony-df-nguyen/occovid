@@ -10,6 +10,7 @@
 @portrait: ~'only screen and (orientation:portrait)';
 @font: ~"'Work Sans',sans-serif;";
 @blue: #009ddb;
+@white:white;
 @gray: #f3f3f3;
 @darkblue: #003f5c;
 @grayblue: #2f4b7c;
@@ -136,7 +137,7 @@
 }
 
 #chartGrid {
-  margin-top: @topm;
+  margin-top: 1rem;
   display: grid;
   grid-gap: 1rem;
   grid-template-columns: 1fr;
@@ -185,17 +186,66 @@
   }
 }
 
+.timeFilterTitle {
+  margin-top:@topm;
+  text-align: center;
+  color:@blue;
+  @media @biggerthanmobile {
+    text-align: left;
+  }
+}
 .timeButtonContainer {
-  .centerjustify;
-  margin:1rem auto;
+  //.centerjustify;
+  margin:1rem auto 1rem auto;
+  display:flex;
+  flex-wrap: wrap;
+  justify-content:space-evenly;
+  @media @biggerthanmobile {
+    justify-content: start;
+  }
   a {
+    font-size: 12px;
     text-align: center;
     background-color: white;
     padding: @buttonpad;
     border-radius: @radius;
+    margin-bottom:10px;
     display:inline-block;
+    &:hover {
+      cursor: pointer;
+      background-color: @blue;
+    }
   }
   a + a {
     margin-left:1rem;
   }
+}
+
+.active {
+  color:@white;
+  background-color: @blue !important;
+}
+
+.widgetGrid {
+  margin-top:1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  grid-gap:1rem;
+  @media @biggerthanmobile {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+  }
+  @media @wide {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .widget {
+    padding:1rem;
+    text-align: center;
+    background-color: @white;
+    .stat {
+      font-weight: 500;
+    }
+  }
+
 }

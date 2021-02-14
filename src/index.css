@@ -98,7 +98,7 @@
   text-align: center;
 }
 #chartGrid {
-  margin-top: 2rem;
+  margin-top: 1rem;
   display: grid;
   grid-gap: 1rem;
   grid-template-columns: 1fr;
@@ -152,24 +152,70 @@
 #chartGrid .chartButtonContainer .chartTypeButton + .chartTypeButton {
   margin-left: 5px;
 }
+.timeFilterTitle {
+  margin-top: 2rem;
+  text-align: center;
+  color: #009ddb;
+}
+@media only screen and (min-width:500px) {
+  .timeFilterTitle {
+    text-align: left;
+  }
+}
 .timeButtonContainer {
-  position: absolute;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-  -ms-transform: translateX(-50%);
-  transform: translateX(-50%);
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  margin: 1rem auto;
+  margin: 1rem auto 1rem auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+@media only screen and (min-width:500px) {
+  .timeButtonContainer {
+    justify-content: start;
+  }
 }
 .timeButtonContainer a {
+  font-size: 12px;
   text-align: center;
   background-color: white;
   padding: 8px 10px;
   border-radius: 5px;
+  margin-bottom: 10px;
   display: inline-block;
+}
+.timeButtonContainer a:hover {
+  cursor: pointer;
+  background-color: #009ddb;
 }
 .timeButtonContainer a + a {
   margin-left: 1rem;
+}
+.active {
+  color: white;
+  background-color: #009ddb !important;
+}
+.widgetGrid {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  grid-gap: 1rem;
+}
+@media only screen and (min-width:500px) {
+  .widgetGrid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+  }
+}
+@media only screen and (min-width:1366px) {
+  .widgetGrid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+.widgetGrid .widget {
+  padding: 1rem;
+  text-align: center;
+  background-color: white;
+}
+.widgetGrid .widget .stat {
+  font-weight: 500;
 }
