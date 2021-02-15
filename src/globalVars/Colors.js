@@ -14,7 +14,7 @@ const color = {
   dark: '#121212',
   lightdark: '#272727',
   darktext: '#999999',
-  green: '#66c2c2'
+  green: '#66c266'
 }
 
 export default color

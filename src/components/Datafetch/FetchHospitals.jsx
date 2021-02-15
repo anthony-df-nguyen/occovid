@@ -5,10 +5,10 @@ import { useContext, useState, useEffect, createContext } from 'react'
 import average7 from 'components/Average7'
 
 
-let fullCaseArray = [];
+let thisDataArray = [];
 const FetchHospitals = (props) => {
   useEffect( async () => {
-      fullCaseArray = [];
+      thisDataArray = [];
       
       await fetch(HosURL).then(response => response.json())
       .then(grab => grab.features)
@@ -42,7 +42,7 @@ const FetchHospitals = (props) => {
 
         temp.forEach((row,i) => {   
         if (row.attributes.hospital) {
-            fullCaseArray.push({
+            thisDataArray.push({
                 date: new Date(row.attributes.date).toLocaleDateString(),
                 hospital: row.attributes.hospital,
                 icu: row.attributes.icu,
@@ -55,7 +55,7 @@ const FetchHospitals = (props) => {
         }
         })
       })
-      .then(() => filtertime(fullCaseArray,props.time))
+      .then(() => filtertime(thisDataArray,props.time))
       .then(final => props.function(final))
   },[props.time])
 

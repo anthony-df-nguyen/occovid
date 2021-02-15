@@ -17,17 +17,17 @@ const Cases = (props) => {
            <h1 className='pageTitle'>{props.title}</h1>
            <div className="widgetGrid">
             <Widget title={"Total Cases"} stat={Math.max(...(array.map(a => a.totalCasesReported))).toLocaleString()}  
-            change={'Yolo'} color={color.red}/>
+             color={color.red}/>
             <Widget title={"Daily Reported"} stat={Math.max(...(array.map(a => a.dailyCasesReported))).toLocaleString()}  
-            change={'Yolo'} color={color.red}/>
+             color={color.red}/>
             <Widget title={"Recovered"} stat={Math.max(...(array.map(a => a.recovered))).toLocaleString()}  
-            change={'Yolo'} color={color.blue}/>
+             color={color.blue}/>
              <Widget title={"Homeless Cases"} stat={Math.max(...(array.map(a => a.homelessCases))).toLocaleString()}  
-            change={'Yolo'} color={color.purple}/>
+             color={color.purple}/>
             <Widget title={"Jail Cases"} stat={Math.max(...(array.map(a => a.jailCases))).toLocaleString()}  
-            change={'Yolo'} color={color.yellow}/>
+             color={color.yellow}/>
             <Widget title={"SNF Cases"} stat={Math.max(...(array.map(a => a.snfCases))).toLocaleString()}  
-            change={'Yolo'} color={color.orange}/>
+             color={color.orange}/>
            </div>
            <Timeselect  />
             <div id="chartGrid">

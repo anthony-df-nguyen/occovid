@@ -4,14 +4,14 @@
 import { useContext, useState, useEffect, createContext } from 'react'
 
 
-let fullCaseArray = [];
+let thisDataArray = [];
 let vaccineDataTable;
 
 const FetchVaccines = (props) => {
     let vaccineData 
   
     useEffect( async () => {
-        fullCaseArray = [];
+        thisDataArray = [];
         await fetch('/manualdatasources/vaccine.csv').then(response => response.text())
         .then(grab => vaccineData = grab)
         .then(()=> {
@@ -20,11 +20,11 @@ const FetchVaccines = (props) => {
         .then(()=> {
         vaccineDataTable.forEach((a) => {
             let col = a.split(",");
-            fullCaseArray = [...col];
+            thisDataArray = [...col];
         });
         })
         .then(() => {
-            props.function(fullCaseArray);
+            props.function(thisDataArray);
         })
     },[props.time])
 

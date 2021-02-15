@@ -8,7 +8,7 @@ import Chartselect from "components/Chartselect"
 const Chart = (props) => {
 
     //Set initial state to saved memory
-    const [currentType,updateType] = useState(    () => {
+    const [currentType,updateType] = useState(() => {
         if (!localStorage.getItem(props.id)) {
             return 'bar'
         } else {
@@ -17,21 +17,22 @@ const Chart = (props) => {
     })
 
     let dataObject
+
     //Create Data Object
-    switch (props.data.length) {
-        case 1:
-            dataObject = new Oneobject(props.date,props.label[0],props.data[0],props.fill[0])
-            break;
-        case 2:
-            dataObject = new Twoobject7DayAverage(props.date,props.label[0],props.data[0],props.fill[0],props.label[1],props.data[1],props.fill[1])
-            break;
-        case 3:
-            dataObject = new Threeobject7DayAverage(props.date,props.label[0],props.data[0],props.fill[0],props.label[1],props.data[1],props.fill[1],props.label[2],props.data[2],props.fill[2])
-            break;
-        default:
-            dataObject = new Oneobject(props.date,props.label,props.data[0],props.fill[0])
-            break;
-    }
+        switch (props.data.length) {
+            case 1:
+                dataObject = new Oneobject(props.date,props.label[0],props.data[0],props.fill[0])
+                break;
+            case 2:
+                dataObject = new Twoobject7DayAverage(props.date,props.label[0],props.data[0],props.fill[0],props.label[1],props.data[1],props.fill[1])
+                break;
+            case 3:
+                dataObject = new Threeobject7DayAverage(props.date,props.label[0],props.data[0],props.fill[0],props.label[1],props.data[1],props.fill[1],props.label[2],props.data[2],props.fill[2])
+                break;
+            default:
+                dataObject = new Oneobject(props.date,props.label,props.data[0],props.fill[0])
+                break;
+        }
     //Render the Type of Chart Based on Type
     function renderChart(currentType) {
         switch (currentType) {
@@ -55,8 +56,9 @@ const Chart = (props) => {
     return(
     <div className="chartContainer">
         <div className="chartTitle">{props.title}</div>
-        {renderChart(currentType)}
         <Chartselect type={props.switches} passdown={updateType} id={props.id}/>
+        {renderChart(currentType)}
+    
     </div>)
 }
 

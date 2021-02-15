@@ -33,15 +33,23 @@
   width: 100% !important;
 }
 #navMenu {
-  background-color: #272727;
+  background-color: #e2e2e2;
   position: fixed;
-  width: 100%;
+  width: 250px;
   height: 100vh;
   width: 0;
   overflow: hidden;
   -webkit-transition: width ease-out 0.1s;
   -o-transition: width ease-out 0.1s;
   transition: width ease-out 0.1s;
+}
+@media only screen and (min-width:1366px) {
+  #navMenu {
+    width: 250px;
+    position: absolute;
+    height: 100vh;
+    padding: 1rem;
+  }
 }
 #navMenu .logo {
   font-size: 2.5rem;
@@ -51,18 +59,22 @@
 }
 #navMenu .selectedLink {
   font-weight: 600;
-  color: #ffa600;
+  color: white;
+  background-color: #009ddb;
+  padding: 8px 10px;
+  border-radius: 5px;
 }
 #navMenu .subSection {
   margin: 1rem;
   margin-top: 2rem;
   margin-bottom: 1rem;
-  color: white;
+  font-weight: 700;
+  color: #333;
 }
 #navMenu a {
   margin: 1rem;
-  font-size: 1.75rem;
-  color: white;
+  font-size: 1.25rem;
+  color: #272727;
   display: block;
   margin-bottom: 1rem;
 }
@@ -71,6 +83,7 @@
   width: 100%;
   padding: 1rem;
   position: relative;
+  height: 4rem;
 }
 .header .siteName {
   display: block;
@@ -85,6 +98,15 @@
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
+@media only screen and (min-width:1366px) {
+  .header .siteName {
+    text-align: left;
+    position: relative;
+    transform: translate(0, 0);
+    left: 1rem;
+    top: -3px;
+  }
+}
 .page {
   display: block;
   padding: 1rem;
@@ -97,6 +119,13 @@
   margin-top: 1rem;
   text-align: center;
 }
+@media only screen and (min-width:1366px) {
+  .page {
+    position: absolute;
+    left: 250px;
+    width: calc(100% - 250px);
+  }
+}
 #chartGrid {
   margin-top: 1rem;
   display: grid;
@@ -104,7 +133,7 @@
   grid-template-columns: 1fr;
   grid-template-rows: auto;
 }
-@media only screen and (min-width:500px) {
+@media only screen and (min-width:520px) {
   #chartGrid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -159,44 +188,32 @@
   text-align: center;
   color: #009ddb;
 }
-@media only screen and (min-width:500px) {
+@media only screen and (min-width:520px) {
   .timeFilterTitle {
     text-align: left;
   }
 }
-.timeButtonContainer {
-  margin: 1rem auto 1rem auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
+.timeParent {
+  margin: 1rem auto;
+  display: block;
+}
+.timeParent .timeButtonContainer {
   display: flex;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -webkit-box-pack: space-evenly;
-  -ms-flex-pack: space-evenly;
-  justify-content: space-evenly;
+  flex-grow: 1;
+  flex-direction: row;
+  flex-wrap: 1rem;
+  gap: 1rem;
 }
-@media only screen and (min-width:500px) {
-  .timeButtonContainer {
-    -webkit-box-pack: start;
-    -ms-flex-pack: start;
-    justify-content: start;
-  }
-}
-.timeButtonContainer a {
+.timeParent .timeButtonContainer a {
   font-size: 12px;
   text-align: center;
   background-color: white;
   padding: 8px 10px;
-  border-radius: 5px;
-  margin-bottom: 10px;
-  display: inline-block;
+  border-radius: 20px;
 }
-.timeButtonContainer a:hover {
+.timeParent .timeButtonContainer a:hover {
   cursor: pointer;
   background-color: #009ddb;
-}
-.timeButtonContainer a + a {
-  margin-left: 1rem;
 }
 .active {
   color: white;
@@ -204,23 +221,14 @@
 }
 .widgetGrid {
   margin-top: 1rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto;
-  grid-gap: 1rem;
-}
-@media only screen and (min-width:500px) {
-  .widgetGrid {
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto;
-  }
-}
-@media only screen and (min-width:1366px) {
-  .widgetGrid {
-    grid-template-columns: repeat(6, 1fr);
-  }
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 1rem;
 }
 .widgetGrid .widget {
+  flex-grow: 1;
   padding: 1rem;
   text-align: center;
   background-color: white;

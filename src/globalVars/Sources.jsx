@@ -84,7 +84,7 @@ const HosTriggerURL =
   todaysyear +
   "%27&objectIds=&time=&resultType=none&outFields=*&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&cacheHint=false&orderByFields=date&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&sqlFormat=none&f=pjson&token=";
 
-const CAM =
+const CAMetrics =
   "https://services2.arcgis.com/LORzk2hk9xzHouw9/ArcGIS/rest/services/occovid_blueprint_csv/FeatureServer/0//query?where=date+%3E+timestamp+%2703%2F03%2F2020%27+AND+date+%3C+timestamp+%27" +
   tomorrowsmonth +
   "%2F" +
@@ -154,7 +154,7 @@ export {
   HosURL,
   OCBedsURL,
   HosTriggerURL,
-  CAM,
+  CAMetrics,
   CaseDemographics,
   DeathDemographics,
   CityDataURL,

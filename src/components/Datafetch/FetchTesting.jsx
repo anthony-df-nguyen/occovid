@@ -1,14 +1,14 @@
-import { DeathsURL } from 'globalVars/Sources'
+import { TestsURL } from 'globalVars/Sources'
 import TimeContext from 'components/TimeContext'
 import filtertime from 'components/Timefilter.js'
 import { useContext, useState, useEffect, createContext } from 'react'
 
 
 let thisDataArray = [];
-const FetchDeaths = (props) => {
+const FetchTesting = (props) => {
   useEffect( async () => {
       thisDataArray = [];
-      await fetch(DeathsURL).then(response => response.json())
+      await fetch(TestsURL).then(response => response.json())
       .then(grab => grab.features)
       .then((a)=> {
         let temp = [...a]
@@ -16,15 +16,15 @@ const FetchDeaths = (props) => {
         temp.forEach(row => {
           thisDataArray.push({
             date: new Date(row.attributes.date).toLocaleDateString(),
-            alf_dth: row.attributes.alf_dth,
-            daily_death: row.attributes.daily_dth,
-            dth_date: row.attributes.daily_death,
-            homeless: row.attributes.homeless_dth,
-            snf: row.attributes.snf_dth,
-            jail: row.attributes.jail_dth,
-            new_daily_dth_date: row.attributes.new_daily_dth_date,
-            total_dth: row.attributes.total_dth,
-            total_dth_date: row.attributes.total_dth_date
+            cdph_tpp: row.attributes.cdph_tpp,
+            daily_7day_avg: row.attributes.daily_7day_avg,
+            daily_neg_spec: row.attributes.daily_neg_spec,
+            daily_pos_spec: row.attributes.daily_pos_spec,
+            daily_spec: row.attributes.daily_spec,
+            daily_test_repo: row.attributes.daily_test_repo,
+            tot_pcr_pos: row.attributes.tot_pcr_pos,
+            tot_spec: row.attributes.tot_spec,
+            cumuTestbySpec: row.attributes.tot_test_repo,
           })
         })
       })
@@ -38,4 +38,4 @@ const FetchDeaths = (props) => {
 }
 
 
-export {FetchDeaths}
+export {FetchTesting}

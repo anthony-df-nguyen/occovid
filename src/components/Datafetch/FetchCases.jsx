@@ -4,16 +4,16 @@ import filtertime from 'components/Timefilter.js'
 import { useContext, useState, useEffect, createContext } from 'react'
 
 
-let fullCaseArray = [];
+let thisDataArray = [];
 const FetchCases = (props) => {
   useEffect( async () => {
-      fullCaseArray = [];
+      thisDataArray = [];
       await fetch(CasesURL).then(response => response.json())
       .then(grab => grab.features)
       .then((a)=> {
         let temp = [...a]
         temp.forEach(row => {
-          fullCaseArray.push({
+          thisDataArray.push({
             date: new Date(row.attributes.Date).toLocaleDateString(),
             daily7DayAvg: row.attributes.daily_7day_avg,
             dailyCasesReported: row.attributes.daily_cases_repo,
@@ -29,7 +29,7 @@ const FetchCases = (props) => {
           })
         })
       })
-      .then(() => filtertime(fullCaseArray,props.time))
+      .then(() => filtertime(thisDataArray,props.time))
       .then(final => props.function(final))
   },[props.time])
 

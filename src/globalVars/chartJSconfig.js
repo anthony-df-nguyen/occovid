@@ -207,6 +207,46 @@ class Threeobject7DayAverage {
     ]
   }
 }
+
+const stackedMultiBar = {
+  legend: {
+    display: true,
+    position: 'bottom',
+    align: 'center',
+
+    labels: { boxWidth: 20, fontColor: '#999' }
+  },
+  layout: {
+    padding: chartpadding
+  },
+  responsive: true,
+  maintainAspectRatio: true,
+  scales: {
+    yAxes: [
+      {
+        stacked: true,
+        ticks: {
+          fontColor: '#999999',
+          min: 0,
+          beginAtZero: true
+        }
+      }
+    ],
+    xAxes: [
+      {
+        stacked: true,
+        ticks: {
+          fontColor: '#999999'
+        }
+      }
+    ]
+  },
+  tooltips: {
+    mode: 'index',
+    axis: 'y'
+  }
+}
+
 const ageColors = [
   '#003f5c',
   '#2f4b7c',
@@ -264,11 +304,11 @@ const piedefaults = {
     labels: {
       fontColor: '#999',
       fontSize: 12,
-      boxWidth: 8
+      boxWidth: 10
     }
   },
   layout: {
-    padding: 10
+    padding: 16
   },
   responsive: true,
   maintainAspectRatio: false
@@ -285,5 +325,6 @@ export {
   ageLabels,
   piedefaults,
   raceColors,
-  raceLabels
+  raceLabels,
+  stackedMultiBar
 }
