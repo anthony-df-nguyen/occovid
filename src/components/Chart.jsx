@@ -13,11 +13,16 @@ import Chartselect from 'components/Chartselect'
 
 const Chart = props => {
   //Set initial state to saved memory
+
   const [currentType, updateType] = useState(() => {
-    if (!localStorage.getItem(props.id)) {
-      return 'bar'
+    if (props.switches.length > 1) {
+      if (!localStorage.getItem(props.id)) {
+        return 'bar'
+      } else {
+        return localStorage.getItem(props.id)
+      }
     } else {
-      return localStorage.getItem(props.id)
+      return props.switches[0]
     }
   })
 

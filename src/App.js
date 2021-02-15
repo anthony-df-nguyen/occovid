@@ -15,6 +15,7 @@ import Schools from 'pages/Schools'
 import Age from 'pages/Age'
 import Race from 'pages/Race'
 import Gender from 'pages/Gender'
+import City from 'pages/City'
 
 function App () {
   //localStorage.clear()
@@ -54,6 +55,9 @@ function App () {
             </Route>
             <Route path='/schools'>
               <Schools title='Schools' />
+            </Route>
+            <Route path='/city'>
+              <City title='City' />
             </Route>
             <Route path='/age'>
               <Age title='Age' />

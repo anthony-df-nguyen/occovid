@@ -31,8 +31,11 @@
 @buttonpad: 6px 8px;
 @topm: 2rem;
 @headerheight: 4rem;
-@gap: 1rem;
-@insetshadow: inset 3px 2px 5px  rgba(0,0,0,.15);
+@gap: 10px;
+@media @wide {
+  @gap: 1rem;
+}
+@insetshadow: inset 2px 2px 4px   rgba(0,0,0,.1);
 * {
   padding: 0;
   margin: 0;
@@ -87,7 +90,11 @@
   -webkit-transition: width ease-out 0.1s;
   -o-transition: width ease-out 0.1s;
   transition: width ease-out 0.1s;
+  padding-bottom:4rem;
   //padding:1rem;
+  .linkContainer {
+    padding-top:1rem;
+  }
   @media @wide {
     width:@navBarWidth;
     position: fixed;
@@ -123,12 +130,12 @@
   }
   a {
     text-align: center;
-    margin: @pad;
+    margin: 0 @pad;
     font-size: 1.25rem;
     color: @lightdark;
     padding:@buttonpad;
     display: block;
-    margin-bottom: 1rem;
+    margin-bottom: @gap;
     // &:hover {
     //   padding:@buttonpad;
     //   border-radius: @radius;
@@ -139,7 +146,7 @@
     // }
   }
   .donate {
-    margin-top:4rem;
+    margin-top:2rem;
     background-color: @blue;
     color:@white;
     border-radius: @radius;
@@ -184,6 +191,7 @@
   min-height: 100vh;
   .pageTitle {
     font-weight: 300;
+    font-size: 1.5rem;
     margin-top: 1rem;
     margin-bottom: 1rem;
     text-align: center;
@@ -209,49 +217,71 @@
   @media @wide {
     grid-template-columns: repeat(3, 1fr);
   }
+
+}
+#chartGridWide {
+  margin-top: @gap;
+  display: grid;
+  grid-gap:@gap;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
   .chartContainer {
-    background-color: white;
-    padding: 1rem;
     canvas {
-      max-width: 100%;
-      height: 100%;
-      max-height: 300px;
-      @media @wide {
-        max-height: 400px;
+      height: 100vh !important;
+      max-height:550px;
+    }
+    @media only screen and (min-width:768px) {
+      canvas {
+        height: 100vh !important;
+        max-height:550px;
       }
     }
   }
-  .chartTitle {
-    font-size: 1.1rem;
-    margin-bottom: 1rem;
-    text-align: center;
-    color: @dark;
+}
+.chartContainer {
+  background-color: white;
+  padding: 1rem;
+  canvas {
+    max-width: 100%;
+    height: 100%;
+    max-height: 300px;
+    @media @wide {
+      max-height: 400px;
+    }
   }
-  .chartButtonContainer {
-    margin-top: 1rem;
-    display: block;
-    text-align: center;
-    .chartTypeButton {
-      font-size: .75rem;
-      letter-spacing: 1px;
-      display: inline-block;
-      background-color: @gray;
-      padding: 5px 10px;
-      border-radius: @radius;
-      text-transform: capitalize;
-      &:hover {
-        cursor: pointer;
-      }
+}
+.chartTitle {
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: @lightdark;
+}
+.chartButtonContainer {
+  margin-top: @gap;
+  margin-bottom:@gap;
+  display: block;
+  text-align: center;
+  .chartTypeButton {
+    font-size: 12px;
+    letter-spacing: 0;
+    display: inline-block;
+    background-color: @gray;
+    padding: 5px 10px;
+    border-radius: @radius;
+    text-transform: capitalize;
+    &:hover {
+      cursor: pointer;
     }
-    .chartTypeButton + .chartTypeButton {
-      margin-left: .5rem;
-    }
+  }
+  .chartTypeButton + .chartTypeButton {
+    margin-left: .5rem;
   }
 }
 
 //Time Filders
 .timeFilterTitle {
-  margin-top:@topm;
+  //margin-top:@topm;
   text-align: center;
   color:@blue;
   @media @biggerthanmobile {
@@ -272,7 +302,7 @@
     a {
       margin: @gap 0 0 @gap;
       flex-grow: 1;
-      font-size: 1rem;
+      font-size: 12px;
       font-weight: 300;
       text-align: center;
       background-color: @white;
@@ -294,7 +324,7 @@
 
 //Widget
 .widgetGrid {
-  margin: 0 0 0 -@gap;
+  margin: 0 0 @topm -@gap;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -309,11 +339,17 @@
     .statName {
       color:@darkgray;
       font-weight: 300;
+      font-size: 12px;
     }
     .stat {
       margin-top:@gap;
       font-weight: 700;
-      font-size: 1.25rem;
+      font-size: 1rem;
+    }
+    @media @wide {
+      .statName {
+        font-size: 1rem;
+      }
     }
   }
 

@@ -47,6 +47,10 @@
   -webkit-transition: width ease-out 0.1s;
   -o-transition: width ease-out 0.1s;
   transition: width ease-out 0.1s;
+  padding-bottom: 4rem;
+}
+#navMenu .linkContainer {
+  padding-top: 1rem;
 }
 @media only screen and (min-width:1366px) {
   #navMenu {
@@ -71,7 +75,7 @@
   background-color: #009ddb;
   padding: 6px 8px;
   border-radius: 5px;
-  box-shadow: inset 3px 2px 5px rgba(0, 0, 0, 0.15);
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 #navMenu .subSection {
   text-align: center;
@@ -83,15 +87,15 @@
 }
 #navMenu a {
   text-align: center;
-  margin: 1rem;
+  margin: 0 1rem;
   font-size: 1.25rem;
   color: #272727;
   padding: 6px 8px;
   display: block;
-  margin-bottom: 1rem;
+  margin-bottom: 10px;
 }
 #navMenu .donate {
-  margin-top: 4rem;
+  margin-top: 2rem;
   background-color: #009ddb;
   color: white;
   border-radius: 5px;
@@ -140,6 +144,7 @@
 }
 .page .pageTitle {
   font-weight: 300;
+  font-size: 1.5rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
   text-align: center;
@@ -153,9 +158,9 @@
   }
 }
 #chartGrid {
-  margin-top: 1rem;
+  margin-top: 10px;
   display: grid;
-  grid-gap: 1rem;
+  grid-gap: 10px;
   grid-template-columns: 1fr;
   grid-template-rows: auto;
 }
@@ -169,48 +174,66 @@
     grid-template-columns: repeat(3, 1fr);
   }
 }
-#chartGrid .chartContainer {
+#chartGridWide {
+  margin-top: 10px;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+}
+#chartGridWide .chartContainer canvas {
+  height: 100vh !important;
+  max-height: 550px;
+}
+@media only screen and (min-width: 768px) {
+  #chartGridWide .chartContainer canvas {
+    height: 100vh !important;
+    max-height: 550px;
+  }
+}
+.chartContainer {
   background-color: white;
   padding: 1rem;
 }
-#chartGrid .chartContainer canvas {
+.chartContainer canvas {
   max-width: 100%;
   height: 100%;
   max-height: 300px;
 }
 @media only screen and (min-width:1366px) {
-  #chartGrid .chartContainer canvas {
+  .chartContainer canvas {
     max-height: 400px;
   }
 }
-#chartGrid .chartTitle {
-  font-size: 1.1rem;
+.chartTitle {
+  font-size: 1rem;
+  font-weight: 400;
   margin-bottom: 1rem;
   text-align: center;
-  color: #121212;
+  color: #272727;
 }
-#chartGrid .chartButtonContainer {
-  margin-top: 1rem;
+.chartButtonContainer {
+  margin-top: 10px;
+  margin-bottom: 10px;
   display: block;
   text-align: center;
 }
-#chartGrid .chartButtonContainer .chartTypeButton {
-  font-size: 0.75rem;
-  letter-spacing: 1px;
+.chartButtonContainer .chartTypeButton {
+  font-size: 12px;
+  letter-spacing: 0;
   display: inline-block;
   background-color: #f3f3f3;
   padding: 5px 10px;
   border-radius: 5px;
   text-transform: capitalize;
 }
-#chartGrid .chartButtonContainer .chartTypeButton:hover {
+.chartButtonContainer .chartTypeButton:hover {
   cursor: pointer;
 }
-#chartGrid .chartButtonContainer .chartTypeButton + .chartTypeButton {
+.chartButtonContainer .chartTypeButton + .chartTypeButton {
   margin-left: 0.5rem;
 }
 .timeFilterTitle {
-  margin-top: 2rem;
   text-align: center;
   color: #009ddb;
 }
@@ -220,19 +243,19 @@
   }
 }
 .timeParent {
-  margin: 1rem auto;
+  margin: 10px auto;
   display: block;
 }
 .timeParent .timeButtonContainer {
-  margin: -1rem 0 0 -1rem;
+  margin: -10px 0 0 -10px;
   display: inline-flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
 .timeParent .timeButtonContainer a {
-  margin: 1rem 0 0 1rem;
+  margin: 10px 0 0 10px;
   flex-grow: 1;
-  font-size: 1rem;
+  font-size: 12px;
   font-weight: 300;
   text-align: center;
   background-color: white;
@@ -246,17 +269,17 @@
 .active {
   color: white;
   background-color: #009ddb !important;
-  box-shadow: inset 3px 2px 5px rgba(0, 0, 0, 0.15);
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 .widgetGrid {
-  margin: 0 0 0 -1rem;
+  margin: 0 0 2rem -10px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
 }
 .widgetGrid .widget {
-  margin: 1rem 0 0 1rem;
+  margin: 10px 0 0 10px;
   flex-grow: 1;
   padding: 1rem;
   text-align: center;
@@ -265,9 +288,15 @@
 .widgetGrid .widget .statName {
   color: #333;
   font-weight: 300;
+  font-size: 12px;
 }
 .widgetGrid .widget .stat {
-  margin-top: 1rem;
+  margin-top: 10px;
   font-weight: 700;
-  font-size: 1.25rem;
+  font-size: 1rem;
+}
+@media only screen and (min-width:1366px) {
+  .widgetGrid .widget .statName {
+    font-size: 1rem;
+  }
 }
