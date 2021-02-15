@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import 'chartJSconfig';
 import {Bar, Doughnut, Line, HorizontalBar} from 'react-chartjs-2';
-import { barDefaults, lineDefaults, piedefaults, Oneobject, Twoobject7DayAverage, Threeobject7DayAverage } from 'chartJSconfig';
+import "globalVars/chartJSconfig.js"
+import { barDefaults, lineDefaults, piedefaults, Oneobject, Twoobject7DayAverage, Threeobject7DayAverage } from "globalVars/chartJSconfig.js";
 import Chartselect from "components/Chartselect"
 
 

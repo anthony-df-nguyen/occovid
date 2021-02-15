@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
-
-import color from 'components/Colors'
+import color from 'globalVars/Colors'
 import Chartselect from 'components/Chartselect'
 import Timeselect from 'components/Timeselect'
 import TimeContext from "components/TimeContext";

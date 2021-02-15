@@ -1,6 +1,6 @@
 import React, {useState, useContext} from 'react';
 import TimeContext from "components/TimeContext";
-import color from 'components/Colors'
+import color from 'globalVars/Colors'
 import Timeselect from 'components/Timeselect';
 import { FetchHospitals } from 'components/Datafetch/FetchHospitals'
 import { FetchHosTriggers } from 'components/Datafetch/FetchHosTriggers'
@@ -11,7 +11,6 @@ const Hospitalization = (props) => {
     const {time,setTime} =  useContext(TimeContext);
     const [array,updateArray] = useState([]);
     const [triggerArray,updateTrigger] = useState([])
-    console.log("file: Hospitalization.jsx ~ line 14 ~ Hospitalization ~ triggerArray", triggerArray)
 
    let hosRateChangeArray = triggerArray.map(a => a.hospitalChange);
    let lastHosRateChange = hosRateChangeArray[hosRateChangeArray.length - 1];

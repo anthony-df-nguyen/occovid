@@ -1,6 +1,6 @@
 import React, {useState, useContext} from 'react';
 import TimeContext from "components/TimeContext";
-import color from 'components/Colors'
+import color from 'globalVars/Colors'
 import Timeselect from 'components/Timeselect';
 import { FetchDeaths } from 'components/Datafetch/FetchDeaths'
 import Chart from 'components/Chart'
