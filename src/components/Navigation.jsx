@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
+import Darktoggle from 'components/Darktoggle'
 import '../index.css'
 
 const Navigation = () => {
   return (
     <div id='navMenu'>
       <div className='linkContainer'>
+        <Darktoggle />
         <NavLink exact to='/' activeClassName='selectedLink'>
           Summary
         </NavLink>

@@ -17,6 +17,8 @@ import Race from 'pages/Race'
 import Gender from 'pages/Gender'
 import City from 'pages/City'
 
+//document.querySelector('body').classList.add('dark')
+
 function App () {
   //localStorage.clear()
   //console.log(localStorage)

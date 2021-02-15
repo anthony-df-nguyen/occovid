@@ -12,6 +12,48 @@
 * button {
   outline: none;
 }
+body {
+  --primary-text: #333;
+  --blue: #009ddb;
+  --white: white;
+  --gray: #f3f3f3;
+  --darkblue: #003f5c;
+  --grayblue: #2f4b7c;
+  --purple: #665191;
+  --lightpurple: #a05195;
+  --pink: #d45087;
+  --red: #f95d6a;
+  --yellow: #ffcc00;
+  --darkgray: #333;
+  --orange: #ff7c43;
+  --gold: #ffa600;
+  --dark: #121212;
+  --lightdark: #272727;
+  --darktext: #999999;
+  --navmenu: #e2e2e2;
+  --header: var(--darkblue);
+}
+body.dark {
+  --primary-text: rgba(255, 255, 255, 0.87);
+  --blue: #009ddb;
+  --white: #242424;
+  --gray: #121212;
+  --darkblue: #003f5c;
+  --grayblue: #2f4b7c;
+  --purple: #665191;
+  --lightpurple: #a05195;
+  --pink: #d45087;
+  --red: #f95d6a;
+  --yellow: #ffcc00;
+  --darkgray: #333;
+  --orange: #ff7c43;
+  --gold: #ffa600;
+  --dark: #121212;
+  --lightdark: #272727;
+  --darktext: #999999;
+  --header: var(--white);
+  --navmenu: var(--dark);
+}
 .centerjustify {
   position: absolute;
   left: 50%;
@@ -37,7 +79,7 @@
   display: none !important;
 }
 #navMenu {
-  background-color: #e2e2e2;
+  background-color: var(--navmenu);
   position: fixed;
   top: 4rem;
   width: 250px;
@@ -71,10 +113,11 @@
   margin-bottom: 2rem;
 }
 #navMenu .selectedLink {
-  color: white;
-  background-color: #009ddb;
+  color: var(--white);
+  background-color: var(--blue);
   padding: 6px 8px;
   border-radius: 5px;
+  -webkit-box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.1);
   box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 #navMenu .subSection {
@@ -83,25 +126,44 @@
   margin-top: 2rem;
   margin-bottom: 1rem;
   font-weight: 700;
-  color: #333;
+  color: var(--darkgray);
 }
 #navMenu a {
   text-align: center;
   margin: 0 1rem;
   font-size: 1.25rem;
-  color: #272727;
+  color: var(--primary-text);
   padding: 6px 8px;
   display: block;
   margin-bottom: 10px;
 }
 #navMenu .donate {
   margin-top: 2rem;
-  background-color: #009ddb;
-  color: white;
+  background-color: var(--blue);
+  color: var(--white);
   border-radius: 5px;
 }
+#themeSelector {
+  margin: 0 auto 1rem auto;
+  position: relative;
+  height: 2rem;
+  padding: 6px 8px;
+}
+#themeSelector .themeText {
+  color: var(--primary-text);
+  font-size: 1rem;
+  position: absolute;
+  left: 3rem;
+}
+#themeSelector button {
+  display: block;
+  margin: 0;
+  position: absolute;
+  top: 4px;
+  left: 50%;
+}
 .header {
-  background-color: #003f5c;
+  background-color: var(--header);
   width: 100%;
   padding: 1rem;
   position: relative;
@@ -125,6 +187,8 @@
   .header .siteName {
     text-align: left;
     position: relative;
+    -webkit-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
     transform: translate(0, 0);
     left: 1rem;
     top: -3px;
@@ -138,11 +202,12 @@
 .page {
   display: block;
   padding: 1rem;
-  background-color: #f3f3f3;
+  background-color: var(--gray);
   width: 100%;
   min-height: 100vh;
 }
 .page .pageTitle {
+  color: var(--primary-text);
   font-weight: 300;
   font-size: 1.5rem;
   margin-top: 1rem;
@@ -192,7 +257,7 @@
   }
 }
 .chartContainer {
-  background-color: white;
+  background-color: var(--white);
   padding: 1rem;
 }
 .chartContainer canvas {
@@ -210,7 +275,7 @@
   font-weight: 400;
   margin-bottom: 1rem;
   text-align: center;
-  color: #272727;
+  color: var(--primary-text);
 }
 .chartButtonContainer {
   margin-top: 10px;
@@ -222,7 +287,8 @@
   font-size: 12px;
   letter-spacing: 0;
   display: inline-block;
-  background-color: #f3f3f3;
+  background-color: var(--gray);
+  color: var(--primary-text);
   padding: 5px 10px;
   border-radius: 5px;
   text-transform: capitalize;
@@ -235,7 +301,7 @@
 }
 .timeFilterTitle {
   text-align: center;
-  color: #009ddb;
+  color: var(--blue);
 }
 @media only screen and (min-width:520px) {
   .timeFilterTitle {
@@ -248,45 +314,64 @@
 }
 .timeParent .timeButtonContainer {
   margin: -10px 0 0 -10px;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
   display: inline-flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
   flex-direction: row;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
 .timeParent .timeButtonContainer a {
   margin: 10px 0 0 10px;
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
   flex-grow: 1;
   font-size: 12px;
   font-weight: 300;
   text-align: center;
-  background-color: white;
+  background-color: var(--white);
   padding: 6px 8px;
   border-radius: 20px;
+  color: var(--primary-text);
 }
 .timeParent .timeButtonContainer a:hover {
   cursor: pointer;
-  background-color: #009ddb;
+  background-color: var(--blue);
 }
 .active {
-  color: white;
-  background-color: #009ddb !important;
+  color: var(--white);
+  background-color: var(--blue) !important;
+  -webkit-box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.1);
   box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 .widgetGrid {
   margin: 0 0 2rem -10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
   flex-direction: row;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
+  -ms-flex-pack: distribute;
   justify-content: space-around;
 }
 .widgetGrid .widget {
   margin: 10px 0 0 10px;
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
   flex-grow: 1;
   padding: 1rem;
   text-align: center;
-  background-color: white;
+  background-color: var(--white);
 }
 .widgetGrid .widget .statName {
-  color: #333;
+  color: var(--primary-text);
   font-weight: 300;
   font-size: 12px;
 }

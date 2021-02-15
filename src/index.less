@@ -9,22 +9,6 @@
 @landscape: ~'only screen and (orientation:landscape)';
 @portrait: ~'only screen and (orientation:portrait)';
 @font: ~"'Open Sans',sans-serif;";
-@blue: #009ddb;
-@white:white;
-@gray: #f3f3f3;
-@darkblue: #003f5c;
-@grayblue: #2f4b7c;
-@purple: #665191;
-@lightpurple: #a05195;
-@pink: #d45087;
-@red: #f95d6a;
-@yellow: #ffcc00;
-@darkgray: #333;
-@orange: #ff7c43;
-@gold: #ffa600;
-@dark: #121212;
-@lightdark: #272727;
-@darktext: #999999;
 @radius: 5px;
 @pad: 1rem;
 @padtop: 2rem 1rem;
@@ -43,12 +27,56 @@
   box-sizing: border-box;
   font-family: 'Lato', sans-serif;
   font-weight: 400;
+
   a {
     text-decoration: none;
   }
   button {
     outline: none;
   }
+}
+
+body {
+  --primary-text: #333;
+  --blue: #009ddb;
+  --white:white;
+  --gray: #f3f3f3;
+  --darkblue: #003f5c;
+  --grayblue: #2f4b7c;
+  --purple: #665191;
+  --lightpurple: #a05195;
+  --pink: #d45087;
+  --red: #f95d6a;
+  --yellow: #ffcc00;
+  --darkgray: #333;
+  --orange: #ff7c43;
+  --gold: #ffa600;
+  --dark: #121212;
+  --lightdark: #272727;
+  --darktext: #999999;
+  --navmenu:#e2e2e2;
+  --header: var(--darkblue);
+}
+body.dark {
+  --primary-text: rgba(255, 255, 255, 0.87);
+  --blue: #009ddb;
+  --white:#242424;
+  --gray: #121212;
+  --darkblue: #003f5c;
+  --grayblue: #2f4b7c;
+  --purple: #665191;
+  --lightpurple: #a05195;
+  --pink: #d45087;
+  --red: #f95d6a;
+  --yellow: #ffcc00;
+  --darkgray: #333;
+  --orange: #ff7c43;
+  --gold: #ffa600;
+  --dark: #121212;
+  --lightdark: #272727;
+  --darktext: #999999;
+  --header: var(--white);
+  --navmenu:var(--dark);
 }
 
 .centerjustify {
@@ -80,7 +108,7 @@
 }
 
 #navMenu {
-  background-color: #e2e2e2;
+  background-color:var(--navmenu);
   position: fixed;
   top:@headerheight;
   width: @navBarWidth;
@@ -114,11 +142,12 @@
   
   .selectedLink {
     //font-weight: 600;
-    color: @white;
-    background-color: @blue;
+    color: var(--white);
+    background-color: var(--blue);
     padding:@buttonpad;
     border-radius: @radius;
-    box-shadow: @insetshadow;
+    -webkit-box-shadow: @insetshadow;
+            box-shadow: @insetshadow;
   }
   .subSection {
     text-align: center;
@@ -126,20 +155,20 @@
     margin-top: 2rem;
     margin-bottom: 1rem;
     font-weight: 700;
-    color: @darkgray;
+    color: var(--darkgray);
   }
   a {
     text-align: center;
     margin: 0 @pad;
     font-size: 1.25rem;
-    color: @lightdark;
+    color: var(--primary-text);
     padding:@buttonpad;
     display: block;
     margin-bottom: @gap;
     // &:hover {
     //   padding:@buttonpad;
     //   border-radius: @radius;
-    //   border:2px solid @white;
+    //   border:2px solid var(--white);
     //   box-shadow: 1px 2px 8px 1px  rgba(0,0,0,.1);
     //   background-color: @gold;
     //   color:white;
@@ -147,15 +176,36 @@
   }
   .donate {
     margin-top:2rem;
-    background-color: @blue;
-    color:@white;
+    background-color: var(--blue);
+    color:var(--white);
     border-radius: @radius;
   }
 }
+#themeSelector {
+    margin: 0 auto 1rem auto;
+    position: relative;
+    height: 2rem;
+    padding:@buttonpad;
+  .themeText {
+    color:var(--primary-text);
+    font-size: 1rem;
+    position: absolute;
+    left:3rem;
+  }
+  button {
+    display:block;
+    margin:0;
+    position: absolute;
+    top:4px;
+    left:50%;
+  }
+}
+
+
 
 //Header
 .header {
-  background-color: @darkblue;
+  background-color: var(--header);
   width: 100%;
   padding: @pad;
   position: relative;
@@ -171,7 +221,9 @@
     @media @wide {
       text-align: left;
       position: relative;
-      transform:translate(0,0);
+      -webkit-transform:translate(0,0);
+          -ms-transform:translate(0,0);
+              transform:translate(0,0);
       left:1rem;
       top:-3px;
     }
@@ -186,10 +238,11 @@
   display: block;
   //=position: absolute;
   padding: @pad;
-  background-color: @gray;
+  background-color: var(--gray);
   width: 100%;
   min-height: 100vh;
   .pageTitle {
+    color: var(--primary-text);
     font-weight: 300;
     font-size: 1.5rem;
     margin-top: 1rem;
@@ -239,7 +292,7 @@
   }
 }
 .chartContainer {
-  background-color: white;
+  background-color: var(--white);
   padding: 1rem;
   canvas {
     max-width: 100%;
@@ -255,7 +308,7 @@
   font-weight: 400;
   margin-bottom: 1rem;
   text-align: center;
-  color: @lightdark;
+  color: var(--primary-text);
 }
 .chartButtonContainer {
   margin-top: @gap;
@@ -266,7 +319,8 @@
     font-size: 12px;
     letter-spacing: 0;
     display: inline-block;
-    background-color: @gray;
+    background-color: var(--gray);
+    color:var(--primary-text);
     padding: 5px 10px;
     border-radius: @radius;
     text-transform: capitalize;
@@ -283,7 +337,7 @@
 .timeFilterTitle {
   //margin-top:@topm;
   text-align: center;
-  color:@blue;
+  color:var(--blue);
   @media @biggerthanmobile {
     text-align: left;
   }
@@ -295,49 +349,68 @@
   .timeButtonContainer {
     //.centerjustify;
     margin: -@gap 0 0 -@gap;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
     display: inline-flex;
-    flex-direction: row;
-    flex-wrap:wrap;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-wrap:wrap;
+        flex-wrap:wrap;
     //gap:1rem;
     a {
       margin: @gap 0 0 @gap;
-      flex-grow: 1;
+      -webkit-box-flex: 1;
+          -ms-flex-positive: 1;
+              flex-grow: 1;
       font-size: 12px;
       font-weight: 300;
       text-align: center;
-      background-color: @white;
+      background-color: var(--white);
       padding: @buttonpad;
       border-radius: 20px;
+      color:var(--primary-text);
       &:hover {
         cursor: pointer;
-        background-color: @blue;
+        background-color: var(--blue);
       }
     }
   }
 }
 
 .active {
-  color:@white;
-  background-color: @blue !important;
-  box-shadow: @insetshadow;
+  color:var(--white);
+  background-color: var(--blue) !important;
+  -webkit-box-shadow: @insetshadow;
+          box-shadow: @insetshadow;
 }
 
 //Widget
 .widgetGrid {
   margin: 0 0 @topm -@gap;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   //gap: 1rem;
   .widget {
     margin:@gap 0 0 @gap;
-    flex-grow: 1;
+    -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
     padding:1rem;
     text-align: center;
-    background-color: @white;
+    background-color: var(--white);
     .statName {
-      color:@darkgray;
+      color:var(--primary-text);
       font-weight: 300;
       font-size: 12px;
     }
