@@ -11,6 +11,13 @@ const Deaths = (props) => {
     const [array,updateArray] = useState([]);
     //console.log("file: Cases.jsx ~ line 12 ~ Cases ~ array", array)
 
+    let deathsReported =[]
+    array.filter(a => {
+      if (a.daily_death) {
+        deathsReported.push(a.daily_death);
+      }
+    })
+    let lastDeathsReported = deathsReported.slice(-1);
   
     return (
       <div>
@@ -20,7 +27,7 @@ const Deaths = (props) => {
            <div className="widgetGrid">
             <Widget title={"Total Deaths"} stat={Math.max(...(array.map(a => a.total_dth))).toLocaleString()}  
             change={'Yolo'} color={color.red}/>
-            <Widget title={"Daily Reported"} stat={Math.max(...(array.map(a => a.daily_death))).toLocaleString()}  
+            <Widget title={"Daily Reported"} stat={parseInt(lastDeathsReported).toLocaleString()}  
             change={'Yolo'} color={color.red}/>
             <Widget title={"SNF"} stat={Math.max(...(array.map(a => a.snf))).toLocaleString()}  
             change={'Yolo'} color={color.yellow}/>

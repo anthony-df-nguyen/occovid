@@ -13,6 +13,8 @@ import Vaccinations from 'pages/Vaccinations'
 import Testing from 'pages/Testing'
 import Schools from 'pages/Schools'
 import Age from 'pages/Age'
+import Race from 'pages/Race'
+import Gender from 'pages/Gender'
 
 function App () {
   //localStorage.clear()
@@ -55,6 +57,12 @@ function App () {
             </Route>
             <Route path='/age'>
               <Age title='Age' />
+            </Route>
+            <Route path='/race'>
+              <Race title='Race' />
+            </Route>
+            <Route path='/gender'>
+              <Gender title='Gender' />
             </Route>
           </TimeContext.Provider>
         </Switch>

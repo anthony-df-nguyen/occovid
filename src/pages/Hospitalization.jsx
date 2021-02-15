@@ -11,18 +11,43 @@ const Hospitalization = (props) => {
     const {time,setTime} =  useContext(TimeContext);
     const [array,updateArray] = useState([]);
     const [triggerArray,updateTrigger] = useState([])
+    let hosRateChangeArray = [];
+    let icuArray = []
+    let ventsArray = [];
+    let bedsAdjArray = [];
+    let bedUnajdArray = [];
+    let hospitalized = [];
 
-   let hosRateChangeArray = triggerArray.map(a => a.hospitalChange);
-   let lastHosRateChange = hosRateChangeArray[hosRateChangeArray.length - 1];
-
-   let ventsArray = triggerArray.map(a => a.ventsAvail);
-   let lastVentsAvailable = ventsArray[ventsArray.length - 1];
-
-   let bedsAdjArray = triggerArray.map(a => a.bedsAvailAdj)
-   let lastBedsAdj = bedsAdjArray[bedsAdjArray.length - 1];
-
-   let bedUnajdArray = triggerArray.map(a => a.bedAvailUnaAdj) 
-   let lastBedsUnadj = bedUnajdArray[bedUnajdArray.length - 1];
+   array.filter(a => {
+       if (a.hospital) {
+           hospitalized.push(a.hospital)
+       }
+       if (a.icu) {
+        icuArray.push(a.icu)
+    }
+   });
+   triggerArray.filter(a => {
+    if (a.ventsAvail) {
+        ventsArray.push(a.ventsAvail)
+    }
+    if (a.bedsAvailAdj) {
+        bedsAdjArray.push(a.bedsAvailAdj)
+    }
+    if (a.bedAvailUnaAdj) {
+        bedUnajdArray.push(a.bedAvailUnaAdj)
+    }
+    if (a.hospitalChange) {
+        hosRateChangeArray.push(a.hospitalChange)
+    }
+});
+   
+   
+   let lastHosRateChange = hosRateChangeArray.slice(-1);
+   let lastVentsAvailable = ventsArray.slice(-1);
+   let lastBedsAdj = bedsAdjArray.slice(-1);
+   let lastBedsUnadj = bedUnajdArray.slice(-1);
+   let lastHospital = hospitalized.slice(-1);
+   let lastICU = icuArray.slice(-1);
 
     return (
       <div>
@@ -31,9 +56,9 @@ const Hospitalization = (props) => {
            <div className='page'>
            <h1 className='pageTitle'>{props.title}</h1>
            <div className="widgetGrid">
-            <Widget title={"Hospitalized"} stat={Math.max(...(array.map(a => a.hospital))).toLocaleString()}  
+            <Widget title={"Hospitalized"} stat={parseInt(lastHospital).toLocaleString()}  
              color={color.yellow}/>
-            <Widget title={"ICU"} stat={Math.max(...(array.map(a => a.icu))).toLocaleString()}  
+            <Widget title={"ICU"} stat={parseInt(lastICU).toLocaleString()}  
              color={color.red}/>
             <Widget title={"Change in 3 Day Avg"} stat={lastHosRateChange}  
              color={color.purple}/>

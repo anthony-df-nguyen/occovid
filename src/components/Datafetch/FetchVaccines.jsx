@@ -1,7 +1,4 @@
-
-//import TimeContext from 'components/TimeContext'
-//import filtertime from 'components/Timefilter.js'
-import { useContext, useState, useEffect, createContext } from 'react'
+import { useEffect } from 'react'
 
 
 let thisDataArray = [];

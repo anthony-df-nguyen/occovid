@@ -1,5 +1,4 @@
-import React, {useEffect} from 'react';
-import TimeContext from 'components/TimeContext'
+import { useEffect } from 'react'
 import filtertime from 'components/Timefilter.js'
 import moment from 'moment'
 import vaccineArray from './vaccineArray.js'

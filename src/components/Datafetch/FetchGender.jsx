@@ -1,11 +1,13 @@
 
+//import TimeContext from 'components/TimeContext'
+//import filtertime from 'components/Timefilter.js'
 import { CaseDemographics } from 'globalVars/Sources'
 import { useEffect } from 'react'
 
 
 let thisDataArray = [];
 
-const FetchCaseDemo = (props) => {
+const FetchGender = (props) => {
 
     useEffect( async () => {
         thisDataArray = [];
@@ -22,4 +24,4 @@ const FetchCaseDemo = (props) => {
 }
 
 
-export { FetchCaseDemo }
+export { FetchGender }

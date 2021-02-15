@@ -3,7 +3,8 @@
   margin: 0;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
 }
 * a {
   text-decoration: none;
@@ -32,13 +33,17 @@
 .open {
   width: 100% !important;
 }
+.hidden {
+  display: none !important;
+}
 #navMenu {
   background-color: #e2e2e2;
   position: fixed;
+  top: 4rem;
   width: 250px;
-  height: 100vh;
+  height: calc(100vh - 4rem);
   width: 0;
-  overflow: hidden;
+  overflow: scroll;
   -webkit-transition: width ease-out 0.1s;
   -o-transition: width ease-out 0.1s;
   transition: width ease-out 0.1s;
@@ -46,9 +51,13 @@
 @media only screen and (min-width:1366px) {
   #navMenu {
     width: 250px;
-    position: absolute;
+    position: fixed;
+    top: 0;
     height: 100vh;
     padding: 1rem;
+  }
+  #navMenu .linkContainer {
+    padding-top: 4rem;
   }
 }
 #navMenu .logo {
@@ -58,13 +67,14 @@
   margin-bottom: 2rem;
 }
 #navMenu .selectedLink {
-  font-weight: 600;
   color: white;
   background-color: #009ddb;
-  padding: 8px 10px;
+  padding: 6px 8px;
   border-radius: 5px;
+  box-shadow: inset 3px 2px 5px rgba(0, 0, 0, 0.15);
 }
 #navMenu .subSection {
+  text-align: center;
   margin: 1rem;
   margin-top: 2rem;
   margin-bottom: 1rem;
@@ -72,11 +82,19 @@
   color: #333;
 }
 #navMenu a {
+  text-align: center;
   margin: 1rem;
   font-size: 1.25rem;
   color: #272727;
+  padding: 6px 8px;
   display: block;
   margin-bottom: 1rem;
+}
+#navMenu .donate {
+  margin-top: 4rem;
+  background-color: #009ddb;
+  color: white;
+  border-radius: 5px;
 }
 .header {
   background-color: #003f5c;
@@ -84,6 +102,7 @@
   padding: 1rem;
   position: relative;
   height: 4rem;
+  z-index: 5;
 }
 .header .siteName {
   display: block;
@@ -107,6 +126,11 @@
     top: -3px;
   }
 }
+@media only screen and (min-width:1366px) {
+  .header {
+    position: fixed;
+  }
+}
 .page {
   display: block;
   padding: 1rem;
@@ -117,11 +141,13 @@
 .page .pageTitle {
   font-weight: 300;
   margin-top: 1rem;
+  margin-bottom: 1rem;
   text-align: center;
 }
 @media only screen and (min-width:1366px) {
   .page {
     position: absolute;
+    top: 4rem;
     left: 250px;
     width: calc(100% - 250px);
   }
@@ -181,7 +207,7 @@
   cursor: pointer;
 }
 #chartGrid .chartButtonContainer .chartTypeButton + .chartTypeButton {
-  margin-left: 5px;
+  margin-left: 0.5rem;
 }
 .timeFilterTitle {
   margin-top: 2rem;
@@ -198,17 +224,19 @@
   display: block;
 }
 .timeParent .timeButtonContainer {
-  display: flex;
-  flex-grow: 1;
+  margin: -1rem 0 0 -1rem;
+  display: inline-flex;
   flex-direction: row;
-  flex-wrap: 1rem;
-  gap: 1rem;
+  flex-wrap: wrap;
 }
 .timeParent .timeButtonContainer a {
-  font-size: 12px;
+  margin: 1rem 0 0 1rem;
+  flex-grow: 1;
+  font-size: 1rem;
+  font-weight: 300;
   text-align: center;
   background-color: white;
-  padding: 8px 10px;
+  padding: 6px 8px;
   border-radius: 20px;
 }
 .timeParent .timeButtonContainer a:hover {
@@ -218,21 +246,28 @@
 .active {
   color: white;
   background-color: #009ddb !important;
+  box-shadow: inset 3px 2px 5px rgba(0, 0, 0, 0.15);
 }
 .widgetGrid {
-  margin-top: 1rem;
+  margin: 0 0 0 -1rem;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
-  gap: 1rem;
 }
 .widgetGrid .widget {
+  margin: 1rem 0 0 1rem;
   flex-grow: 1;
   padding: 1rem;
   text-align: center;
   background-color: white;
 }
+.widgetGrid .widget .statName {
+  color: #333;
+  font-weight: 300;
+}
 .widgetGrid .widget .stat {
-  font-weight: 500;
+  margin-top: 1rem;
+  font-weight: 700;
+  font-size: 1.25rem;
 }

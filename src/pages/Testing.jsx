@@ -40,11 +40,11 @@ const Testing = (props) => {
            <div className='page'>
            <h1 className='pageTitle'>{props.title}</h1>
            <div className="widgetGrid">
-            <Widget title={"Total PCR Tests"} stat={parseInt(totalPCRArray[totalPCRArray.length - 1]).toLocaleString()}  
+            <Widget title={"Total PCR Tests"} stat={parseInt(totalPCRArray.slice(-1)).toLocaleString()}  
                 color={color.blue}/>
-            <Widget title={"Daily Tests Received"} stat={parseInt(dailyRec[dailyRec.length - 1]).toLocaleString()}  
+            <Widget title={"Daily Tests Received"} stat={parseInt(dailyRec.slice(-1)).toLocaleString()}  
                 color={color.green}/>
-            <Widget title={"Test Positivity %"} stat={parseInt(testPosArray[testPosArray.length - 1]).toLocaleString()}  
+            <Widget title={"Test Positivity %"} stat={parseInt(testPosArray.slice(-1)).toLocaleString()}  
             color={color.red}/>
         
            </div>

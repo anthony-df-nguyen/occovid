@@ -6,12 +6,16 @@ const Header = () => {
   useEffect(() => {
     let button = document.querySelector("#menubutton");
     let navMenu = document.querySelector("#navMenu");
+    let page = document.querySelector(".page");
+    console.log("file: Header.jsx ~ line 10 ~ useEffect ~ page", page)
     button.onclick = () => {
       button.classList.toggle("is-active");
       if (button.classList.contains("is-active")) {
         navMenu.classList.add("open");
+        page.classList.add("hidden");
       } else {
         navMenu.classList.remove("open");
+        page.classList.remove("hidden");
       }
     };
   });
