@@ -3,82 +3,84 @@ import { Link, NavLink } from 'react-router-dom'
 import Darktoggle from 'components/Darktoggle'
 import '../index.css'
 
-const Navigation = () => {
+const Navigation = (props) => {
 
-  function closeNav() {
-    const navMenu = document.querySelector('#navMenu')
-    const button = document.querySelector('#menubutton')
+  function closeTheNav() {
+    let button = document.querySelector('#menubutton')
+    let navMenu = document.querySelector('#navMenu')
+    let page = document.querySelector('.page')
     navMenu.classList.remove('open')
-    button.classList.remove('is-active')
+    page.classList.remove('hidden')
+    props.function(false)
   }
 
   return (
     <div id='navMenu'>
       <div className='linkContainer'>
         <Darktoggle />
-        <NavLink exact to='/' onClick={ closeNav } activeClassName='selectedLink'>
+        <NavLink exact to='/' onClick={ closeTheNav } activeClassName='selectedLink'>
           Summary
         </NavLink>
-        <NavLink to='/cases' onClick={ closeNav } activeClassName='selectedLink'>
+        <NavLink to='/cases' onClick={ closeTheNav } activeClassName='selectedLink'>
           Cases
         </NavLink>
-        <NavLink to='/deaths' onClick={ closeNav } activeClassName='selectedLink'>
+        <NavLink to='/deaths' onClick={ closeTheNav } activeClassName='selectedLink'>
           Deaths
         </NavLink>
         <NavLink
           to='/hospitalizations'
-          onClick={ closeNav }
-          activeClassName='selectedLink'
+
+          onClick={ closeTheNav } activeClassName='selectedLink'
         >
           Hospitalizations
         </NavLink>
         <NavLink
           to='/vaccinations'
-          onClick={ closeNav }
-          activeClassName='selectedLink'
+
+          onClick={ closeTheNav } activeClassName='selectedLink'
         >
           Vaccinations
         </NavLink>
         <NavLink
           to='/testing'
-          onClick={ closeNav }
-          activeClassName='selectedLink'
+
+          onClick={ closeTheNav } activeClassName='selectedLink'
         >
           Testing
         </NavLink>
         <NavLink
           to='/schools'
-          onClick={ closeNav }
-          activeClassName='selectedLink'
+
+          onClick={ closeTheNav } activeClassName='selectedLink'
         >
           School Cases
         </NavLink>
         <div>
           <div className='subSection'>by Location</div>
         </div>
-        <NavLink to='/city' onClick={ closeNav } activeClassName='selectedLink'>
+        <NavLink to='/city' onClick={ closeTheNav } activeClassName='selectedLink'>
           City
         </NavLink>
-        <NavLink to='/zip' onClick={ closeNav } activeClassName='selectedLink'>
+        <NavLink to='/zip' onClick={ closeTheNav } activeClassName='selectedLink'>
           Zip Code
         </NavLink>
         <div>
           <div className='subSection'>by Demographic</div>
         </div>
-        <NavLink to='/age' onClick={ closeNav } activeClassName='selectedLink'>
+        <NavLink to='/age' onClick={ closeTheNav } activeClassName='selectedLink'>
           by Age
         </NavLink>
-        <NavLink to='/race' onClick={ closeNav } activeClassName='selectedLink'>
+        <NavLink to='/race' onClick={ closeTheNav } activeClassName='selectedLink'>
           by Race
         </NavLink>
-        <NavLink to='/gender' onClick={ closeNav } activeClassName='selectedLink'>
+        <NavLink to='/gender' onClick={ closeTheNav } activeClassName='selectedLink'>
           by Gender
         </NavLink>
         <NavLink
           to='/donate'
           className='donate'
-          onClick={ closeNav }
-          activeClassName='selectedLink'
+
+          onClick={ closeTheNav } activeClassName='selectedLink'
         >
           Donate
         </NavLink>

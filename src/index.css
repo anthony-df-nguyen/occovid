@@ -14,6 +14,7 @@
 }
 body {
   --primary-text: #333;
+  --staywhite: #f3f3f3;
   --blue: #009ddb;
   --white: white;
   --gray: #f3f3f3;
@@ -34,6 +35,7 @@ body {
   --navmenu: #e2e2e2;
   --header: var(--darkblue);
   --subsection: var(--darktext);
+  --tablehead: var(--blue);
 }
 body.dark {
   --primary-text: rgba(255, 255, 255, 0.87);
@@ -55,6 +57,7 @@ body.dark {
   --darktext: #999999;
   --header: var(--white);
   --navmenu: var(--dark);
+  --tablehead: var(--gray);
 }
 .centerjustify {
   position: absolute;
@@ -83,6 +86,7 @@ body.dark {
 #navMenu {
   background-color: var(--navmenu);
   position: fixed;
+  z-index: 4;
   top: 4rem;
   width: 250px;
   height: calc(100vh - 4rem);
@@ -217,6 +221,11 @@ body.dark {
   text-align: center;
 }
 @media only screen and (min-width:1366px) {
+  .page .pageTitle {
+    display: none;
+  }
+}
+@media only screen and (min-width:1366px) {
   .page {
     position: absolute;
     top: 4rem;
@@ -225,7 +234,6 @@ body.dark {
   }
 }
 #chartGrid {
-  margin-top: 10px;
   display: grid;
   grid-gap: 10px;
   grid-template-columns: 1fr;
@@ -241,21 +249,25 @@ body.dark {
     grid-template-columns: repeat(3, 1fr);
   }
 }
-#chartGridWide {
+#cityGrid {
   margin-top: 10px;
   display: grid;
   grid-gap: 10px;
   grid-template-columns: 1fr;
   grid-template-rows: auto;
 }
-#chartGridWide .chartContainer canvas {
-  height: 100vh !important;
-  max-height: 550px;
+#cityGrid .chartContainer canvas {
+  height: 100% !important;
+  max-height: 100vh;
 }
 @media only screen and (min-width: 768px) {
-  #chartGridWide .chartContainer canvas {
-    height: 100vh !important;
-    max-height: 550px;
+  #cityGrid {
+    grid-template-columns: minmax(auto, 320px) 1fr;
+  }
+}
+@media only screen and (min-width: 1366px) {
+  #cityGrid {
+    grid-template-columns: 400px 1fr;
   }
 }
 .chartContainer {
@@ -312,15 +324,18 @@ body.dark {
     text-align: left;
   }
 }
+@media only screen and (min-width:1366px) {
+  .timeFilterTitle {
+    text-align: center;
+  }
+}
 .timeParent {
   margin: 10px auto;
   display: block;
 }
 .timeParent .timeButtonContainer {
   margin: -10px 0 0 -10px;
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
+  display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
   -ms-flex-direction: row;
@@ -338,15 +353,28 @@ body.dark {
   text-align: center;
   background-color: var(--white);
   padding: 6px 8px;
-  border-radius: 20px;
+  border-radius: 10px;
   color: var(--primary-text);
 }
 .timeParent .timeButtonContainer a:hover {
   cursor: pointer;
   background-color: var(--blue);
 }
+@media only screen and (min-width:1366px) {
+  .timeParent .timeButtonContainer a {
+    font-size: 1rem;
+  }
+}
+@media only screen and (min-width:1366px) {
+  .timeParent .timeButtonContainer {
+    justify-content: center;
+  }
+  .timeParent .timeButtonContainer a {
+    flex-grow: 0;
+  }
+}
 .active {
-  color: var(--white);
+  color: var(--staywhite) !important;
   background-color: var(--blue) !important;
   -webkit-box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.1);
   box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.1);
@@ -372,7 +400,7 @@ body.dark {
   }
 }
 .widgetGrid {
-  margin: 0 0 2rem -10px;
+  margin: -10px 0 2rem -10px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -398,7 +426,7 @@ body.dark {
   flex-wrap: wrap;
   margin: -10px 0 0 -10px;
 }
-.homeWidgetGrid > div {
+.homeWidgetGrid > a {
   border-radius: 5px;
   padding: 1rem;
   background-color: var(--white);
@@ -406,43 +434,43 @@ body.dark {
   margin: 10px 0 0 10px;
   flex-grow: 1;
 }
-.homeWidgetGrid > div:hover {
+.homeWidgetGrid > a:hover {
   cursor: pointer;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
   border: 2px solid var(--blue);
 }
-.homeWidgetGrid > div .innerDiv {
+.homeWidgetGrid > a .innerDiv {
   position: relative;
 }
-.homeWidgetGrid > div .innerDiv .widgetTitle {
+.homeWidgetGrid > a .innerDiv .widgetTitle {
   font-size: 1.5rem;
   display: block;
   text-align: center;
   margin-bottom: 1rem;
 }
-.homeWidgetGrid > div .innerDiv .widgetTitle.t1 {
+.homeWidgetGrid > a .innerDiv .widgetTitle.t1 {
   color: var(--blue);
 }
-.homeWidgetGrid > div .innerDiv .widgetTitle.t2 {
+.homeWidgetGrid > a .innerDiv .widgetTitle.t2 {
   color: var(--red);
 }
-.homeWidgetGrid > div .innerDiv .widgetTitle.t3 {
+.homeWidgetGrid > a .innerDiv .widgetTitle.t3 {
   color: var(--orange);
 }
-.homeWidgetGrid > div .innerDiv .widgetTitle.t4 {
+.homeWidgetGrid > a .innerDiv .widgetTitle.t4 {
   color: var(--green);
 }
-.homeWidgetGrid > div .innerDiv .widgetTitle.t5 {
+.homeWidgetGrid > a .innerDiv .widgetTitle.t5 {
   color: var(--purple);
 }
-.homeWidgetGrid > div .innerDiv .subFlex {
+.homeWidgetGrid > a .innerDiv .subFlex {
   position: relative;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
   margin: -10px 0 0 -10px;
 }
-.homeWidgetGrid > div .innerDiv .subFlex .widget {
+.homeWidgetGrid > a .innerDiv .subFlex .widget {
   margin: 10px 0 0 10px;
   -webkit-box-flex: 1;
   -ms-flex-positive: 1;
@@ -450,4 +478,18 @@ body.dark {
   padding: 1rem;
   flex-direction: row;
   background-color: var(--gray);
+}
+table th {
+  background-color: var(--tablehead);
+  padding: 6px 8px;
+  color: var(--staywhite);
+  text-align: left;
+}
+table td {
+  background-color: var(--white);
+  padding: 6px 8px;
+  text-align: left;
+  color: var(--primary-text);
+  font-weight: 400;
+  font-size: 0.8rem;
 }

@@ -4,7 +4,6 @@ import { FetchCaseDemo } from 'components/Datafetch/FetchCaseDemo'
 import { FetchDeathDemo } from 'components/Datafetch/FetchDeathDemo'
 import { FetchYouthCases } from 'components/Datafetch/FetchYouthCases'
 import Chart from 'components/Chart'
-import Widget from 'components/Widget'
 import { ageLabels, ageColors } from 'globalVars/chartJSconfig'
 import { ocpop } from 'globalVars/populations'
 
@@ -45,56 +44,52 @@ const Age = props => {
 
   return (
     <div>
-      <FetchCaseDemo function={updateAgeCaseArray} />
-      <FetchDeathDemo function={updateAgeDeathArray} />
-      <FetchYouthCases function={updateYouthCaseArray} />
+      <FetchCaseDemo function={ updateAgeCaseArray } />
+      <FetchDeathDemo function={ updateAgeDeathArray } />
+      <FetchYouthCases function={ updateYouthCaseArray } />
       <div className='page'>
-        <h1 className='pageTitle'>{props.title}</h1>
-        <div className='widgetGrid'>
-          {/* <Widget title={"OC Population"} stat={ocpop.toLocaleString()}  
-            color={color.blue}/> */}
-        </div>
+        <h1 className='pageTitle'>{ props.title }</h1>
 
         <div id='chartGrid'>
           <Chart
             key='1'
             id='age1'
-            date={[...ageLabels]}
-            data={[ageCaseArray]}
-            fill={[...[ageColors]]}
-            title={'Total Cases by Age Group'}
-            label={['Cases']}
-            switches={['horizontalBar', 'bar', 'doughnut']}
+            date={ [...ageLabels] }
+            data={ [ageCaseArray] }
+            fill={ [...[ageColors]] }
+            title={ 'Total Cases by Age Group' }
+            label={ ['Cases'] }
+            switches={ ['horizontalBar', 'bar', 'doughnut'] }
           />
           <Chart
             key='2'
             id='age2'
-            date={[...ageLabels]}
-            data={[ageDeathArray]}
-            fill={[...[ageColors]]}
-            title={'Total Deaths by Age Group'}
-            label={['Deaths']}
-            switches={['horizontalBar', 'bar', 'doughnut']}
+            date={ [...ageLabels] }
+            data={ [ageDeathArray] }
+            fill={ [...[ageColors]] }
+            title={ 'Total Deaths by Age Group' }
+            label={ ['Deaths'] }
+            switches={ ['horizontalBar', 'bar', 'doughnut'] }
           />
           <Chart
             key='3'
             id='age3'
-            date={[...ageLabels]}
-            data={[fatalityArray]}
-            fill={[...[ageColors]]}
-            title={'Case Fatality per Age Group'}
-            label={['Fatality Rate']}
-            switches={['horizontalBar', 'bar']}
+            date={ [...ageLabels] }
+            data={ [fatalityArray] }
+            fill={ [...[ageColors]] }
+            title={ 'Case Fatality per Age Group' }
+            label={ ['Fatality Rate'] }
+            switches={ ['horizontalBar', 'bar'] }
           />
           <Chart
             key='4'
             id='age4'
-            date={['0 to 3', '4 to 9', '10 to 12', '13 to 14', '15 to 18']}
-            data={[[age03, age49, age1012, age1314, age1518]]}
-            fill={[...[youngColorAll]]}
-            title={'Cases Among Youth'}
-            label={['Fatality Rate']}
-            switches={['horizontalBar', 'bar', 'doughnut']}
+            date={ ['0 to 3', '4 to 9', '10 to 12', '13 to 14', '15 to 18'] }
+            data={ [[age03, age49, age1012, age1314, age1518]] }
+            fill={ [...[youngColorAll]] }
+            title={ 'Cases Among Youth' }
+            label={ ['Fatality Rate'] }
+            switches={ ['horizontalBar', 'bar', 'doughnut'] }
           />
         </div>
       </div>

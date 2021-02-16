@@ -43,6 +43,7 @@
 
 body {
   --primary-text: #333;
+  --staywhite   : #f3f3f3;
   --blue        : #009ddb;
   --white       : white;
   --gray        : #f3f3f3;
@@ -63,6 +64,7 @@ body {
   --navmenu     : #e2e2e2;
   --header      : var(--darkblue);
   --subsection  : var(--darktext);
+  --tablehead   : var(--blue);
 }
 
 body.dark {
@@ -85,6 +87,7 @@ body.dark {
   --darktext    : #999999;
   --header      : var(--white);
   --navmenu     : var(--dark);
+  --tablehead   : (var(--gray))
 }
 
 .centerjustify {
@@ -121,6 +124,7 @@ body.dark {
 #navMenu {
   background-color  : var(--navmenu);
   position          : fixed;
+  z-index           : 4;
   top               : @headerheight;
   width             : @navBarWidth;
   height            : calc(100vh - @headerheight);
@@ -273,6 +277,10 @@ body.dark {
     margin-top   : 1rem;
     margin-bottom: 1rem;
     text-align   : center;
+
+    @media @wide {
+      display: none;
+    }
   }
 
   @media @wide {
@@ -285,7 +293,6 @@ body.dark {
 
 //Chart grid
 #chartGrid {
-  margin-top           : @gap;
   display              : grid;
   grid-gap             : @gap;
   grid-template-columns: 1fr;
@@ -301,7 +308,7 @@ body.dark {
 
 }
 
-#chartGridWide {
+#cityGrid {
   margin-top           : @gap;
   display              : grid;
   grid-gap             : @gap;
@@ -310,16 +317,19 @@ body.dark {
 
   .chartContainer {
     canvas {
-      height    : 100vh !important;
-      max-height: 550px;
+      height    : 100% !important;
+      max-height: 100vh;
     }
 
-    @media only screen and (min-width:768px) {
-      canvas {
-        height    : 100vh !important;
-        max-height: 550px;
-      }
-    }
+
+  }
+
+  @media only screen and (min-width:768px) {
+    grid-template-columns: minmax(auto, 320px) 1fr;
+  }
+
+  @media only screen and (min-width:1366px) {
+    grid-template-columns: 400px 1fr;
   }
 }
 
@@ -374,7 +384,7 @@ body.dark {
   }
 }
 
-//Time Filders
+//Time Filters
 .timeFilterTitle {
   //margin-top:@topm;
   text-align: center;
@@ -383,19 +393,19 @@ body.dark {
   @media @biggerthanmobile {
     text-align: left;
   }
+
+  @media @wide {
+    text-align: center;
+  }
 }
 
 .timeParent {
   margin : @gap auto;
   display: block;
 
-  //position: relative;
   .timeButtonContainer {
-    //.centerjustify;
     margin               : -@gap 0 0 -@gap;
-    display              : -webkit-inline-box;
-    display              : -ms-inline-flexbox;
-    display              : inline-flex;
+    display              : flex;
     -webkit-box-orient   : horizontal;
     -webkit-box-direction: normal;
     -ms-flex-direction   : row;
@@ -403,7 +413,6 @@ body.dark {
     -ms-flex-wrap        : wrap;
     flex-wrap            : wrap;
 
-    //gap:1rem;
     a {
       margin           : @gap 0 0 @gap;
       -webkit-box-flex : 1;
@@ -414,19 +423,39 @@ body.dark {
       text-align       : center;
       background-color : var(--white);
       padding          : @buttonpad;
-      border-radius    : 20px;
+      border-radius    : 10px;
       color            : var(--primary-text);
 
       &:hover {
         cursor          : pointer;
         background-color: var(--blue);
       }
+
+      @media @wide {
+        font-size: 1rem;
+      }
+    }
+
+    @media @wide {
+      justify-content: center;
+
+      a {
+        flex-grow: 0;
+      }
     }
   }
 }
 
+// #cityZipSortUI {
+//   .timeButtonContainer {
+//     text-align     : center;
+//     justify-content: space-between;
+
+//   }
+// }
+
 .active {
-  color             : var(--white);
+  color             : var(--staywhite) !important;
   background-color  : var(--blue) !important;
   -webkit-box-shadow: @insetshadow;
   box-shadow        : @insetshadow;
@@ -458,7 +487,7 @@ body.dark {
 }
 
 .widgetGrid {
-  margin               : 0 0 @topm -@gap;
+  margin               : -@gap 0 @topm -@gap;
   display              : -webkit-box;
   display              : -ms-flexbox;
   display              : flex;
@@ -488,7 +517,7 @@ body.dark {
   flex-wrap     : wrap;
   margin        : -@gap 0 0 -@gap;
 
-  >div {
+  >a {
     border-radius   : @radius;
     padding         : 1rem;
     background-color: var(--white);
@@ -553,5 +582,23 @@ body.dark {
 
 
     }
+  }
+}
+
+table {
+  th {
+    background-color: var(--tablehead);
+    padding         : @buttonpad;
+    color           : var(--staywhite);
+    text-align      : left;
+  }
+
+  td {
+    background-color: var(--white);
+    padding         : @buttonpad;
+    text-align      : left;
+    color           : var(--primary-text);
+    font-weight     : 400;
+    font-size       : .8rem;
   }
 }

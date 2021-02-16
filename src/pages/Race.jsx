@@ -4,7 +4,6 @@ import color from 'globalVars/Colors'
 import { FetchCaseDemo } from 'components/Datafetch/FetchCaseDemo'
 import { FetchDeathDemo } from 'components/Datafetch/FetchDeathDemo'
 import Chart from 'components/Chart'
-import Widget from 'components/Widget'
 import { raceLabels, raceColors } from 'globalVars/chartJSconfig'
 import { ocpop } from 'globalVars/populations'
 
@@ -42,45 +41,41 @@ const Race = props => {
 
   return (
     <div>
-      <FetchCaseDemo function={updateRaceCaseArray} />
-      <FetchDeathDemo function={updateRaceDeathArray} />
+      <FetchCaseDemo function={ updateRaceCaseArray } />
+      <FetchDeathDemo function={ updateRaceDeathArray } />
       <div className='page'>
-        <h1 className='pageTitle'>{props.title}</h1>
-        <div className='widgetGrid'>
-          {/* <Widget title={"OC Population"} stat={ocpop.toLocaleString()}  
-            color={color.blue}/> */}
-        </div>
+        <h1 className='pageTitle'>{ props.title }</h1>
 
         <div id='chartGrid'>
           <Chart
             key='1'
             id='race1'
-            date={[...raceLabels]}
-            data={[raceCaseArray]}
-            fill={[...[raceColors]]}
-            title={'Total Cases by Race/Ethnicity'}
-            label={['Cases']}
-            switches={['horizontalBar', 'bar', 'doughnut']}
+            date={ [...raceLabels] }
+            data={ [raceCaseArray] }
+            fill={ [...[raceColors]] }
+            title={ 'Total Cases by Race/Ethnicity' }
+            label={ ['Cases'] }
+            switches={ ['horizontalBar', 'bar', 'doughnut'] }
           />
           <Chart
             key='2'
             id='race2'
-            date={[...raceLabels]}
-            data={[raceDeathArray]}
-            fill={[...[raceColors]]}
-            title={'Total Deaths by Race/Ethnicity'}
-            label={['Deaths']}
-            switches={['horizontalBar', 'bar', 'doughnut']}
+            date={ [...raceLabels] }
+            data={ [raceDeathArray] }
+            fill={ [...[raceColors]] }
+            title={ 'Total Deaths by Race/Ethnicity' }
+            label={ ['Deaths'] }
+            switches={ ['horizontalBar', 'bar', 'doughnut'] }
           />
           <Chart
             key='3'
             id='race3'
-            date={[...raceLabels]}
-            data={[fatalityArray]}
-            fill={[...[raceColors]]}
-            title={'Case Fatality per Race/Ethnicity'}
-            label={['Fatality Rate']}
-            switches={['horizontalBar', 'bar']}
+            date={ [...raceLabels] }
+            data={ [fatalityArray] }
+            fill={ [...[raceColors]] }
+            title={ 'Case Fatality per Race/Ethnicity' }
+            label={ ['Fatality Rate'] }
+            switches={ ['horizontalBar', 'bar'] }
           />
         </div>
       </div>

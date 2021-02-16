@@ -1,31 +1,45 @@
 import React, { useState, useEffect } from 'react'
-import Menubutton from './Menubutton'
 import Navigation from './Navigation'
+import "../cssmodular/burger.css";
+import { Link } from "react-router-dom"
 
 const Header = () => {
-  useEffect(() => {
+  const [isOpen, updateIsOpen] = useState(false);
+
+  function checkIfOpen() {
     let button = document.querySelector('#menubutton')
     let navMenu = document.querySelector('#navMenu')
     let page = document.querySelector('.page')
-    button.onclick = () => {
-      button.classList.toggle('is-active')
-      if (button.classList.contains('is-active')) {
-        navMenu.classList.add('open')
-        page.classList.add('hidden')
-      } else {
-        navMenu.classList.remove('open')
-        page.classList.remove('hidden')
-      }
+    if (!isOpen) {
+      navMenu.classList.add('open')
+      page.classList.add('hidden');
+      updateIsOpen(true)
+    } else if (isOpen) {
+      navMenu.classList.remove('open')
+      page.classList.remove('hidden')
+      updateIsOpen(false)
     }
-  })
+  }
+
 
   return (
     <div>
       <div className='header'>
-        <Menubutton />
-        <div className='siteName'>OCCOVID</div>
+        <button onClick={ checkIfOpen }
+          id="menubutton"
+          className="hamburger hamburger--arrow"
+          type="button"
+        >
+          <span className="hamburger-box ">
+            <span className="hamburger-inner"></span>
+          </span>
+        </button>
+        <Link to="/">
+          <div className='siteName'>OCCOVID</div>
+        </Link>
+
       </div>
-      <Navigation />
+      <Navigation function={ updateIsOpen } />
     </div>
   )
 }

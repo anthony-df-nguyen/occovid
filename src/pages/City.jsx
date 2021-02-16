@@ -6,11 +6,11 @@ import CityZipSort from 'components/CityZipSort'
 import { FetchCityData } from 'components/Datafetch/FetchCityData'
 import Chart from 'components/Chart'
 import Widget from 'components/Widget'
+import BuildTable from 'components/BuildTable'
 
 const City = props => {
   const { time, setTime } = useContext(TimeContext)
   const [array, updateArray] = useState([])
-  //console.log('file: City.jsx ~ line 12 ~ array', array)
 
   let unifiedArray = []
   array.forEach(row => {
@@ -34,6 +34,7 @@ const City = props => {
   })
 
   const [whichMetric, updateWhichMetric] = useState('totalCases')
+  const [metricName, updateMetricName] = useState('Total Cases');
   const [whichSort, updateWhichSort] = useState('high')
 
   let finalArraytoUse = []
@@ -69,37 +70,40 @@ const City = props => {
   }
 
   let screenWidth = window.innerWidth
-  //const [theType, updateTheType] = useState()
 
-  let theType
-  if (screenWidth >= 768) {
-    theType = 'bar'
-  } else {
-    theType = 'horizontalBar'
-  }
+
+  // let theType
+  // if (screenWidth >= 1680) {
+  //   theType = 'bar'
+  // } else {
+  //   theType = 'horizontalBar'
+  // }
 
   return (
     <div>
-      <FetchCityData function={updateArray} time={time} />
+      <FetchCityData function={ updateArray } time={ time } />
       <div className='page'>
-        <h1 className='pageTitle'>{props.title}</h1>
+        <h1 className='pageTitle'>{ props.title }</h1>
         <CityZipMetricSelect
-          function={updateWhichMetric}
-          current={whichMetric}
+          function={ [updateWhichMetric, updateMetricName] }
+          current={ whichMetric }
         />
-        <CityZipSort function={updateWhichSort} current={whichSort} />
-        <div id='chartGridWide'>
+        <CityZipSort function={ updateWhichSort } current={ whichSort } />
+        <div id='cityGrid'>
+          <BuildTable colName={ ['City', metricName] } rows={ finalArraytoUse.map(a => a.city) } columns={ [finalArraytoUse.map(a => a.value)] } />
           <Chart
             key='1'
             id='city1'
-            switches={[theType]}
-            date={finalArraytoUse.map(a => a.city)}
-            data={[finalArraytoUse.map(a => a.value)]}
-            fill={[color.red]}
-            title={'Total Cases by Specimen Collection'}
-            label={['Cases', 'Estimated Recovered']}
+            switches={ ['horizontalBar'] }
+            date={ finalArraytoUse.map(a => a.city) }
+            data={ [finalArraytoUse.map(a => a.value)] }
+            fill={ [color.red] }
+            title={ 'Total Cases by Specimen Collection' }
+            label={ ['Cases', 'Estimated Recovered'] }
           />
+
         </div>
+
       </div>
     </div>
   )

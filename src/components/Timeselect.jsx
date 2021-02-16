@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'
 import TimeContext from 'components/TimeContext'
 import moment from 'moment'
 
-function setStorage (value) {
+function setStorage(value) {
   localStorage.setItem('timeSetting', value)
 }
 
@@ -11,19 +11,19 @@ const Timeselect = props => {
 
   const [valueForNoneOption, updateNoneValue] = useState(time)
 
-  function updateAllTime (x) {
+  function updateAllTime(x) {
     setStorage(x)
     setTime(x)
     updateNoneValue(x)
   }
 
-  function monthSwitch (e) {
+  function monthSwitch(e) {
     console.log(e.target)
     let value = e.target.value
     updateAllTime(value)
   }
 
-  function dynamicSelectRender () {
+  function dynamicSelectRender() {
     let startFrom = new Date('03/01/2020')
     let today = new Date(moment().format('L'))
 
@@ -56,22 +56,22 @@ const Timeselect = props => {
 
     //Create React partials for Each Month
     let optionJSX = [
-      <option key={0} value={valueForNoneOption}>
+      <option key={ 0 } value={ valueForNoneOption }>
         No Month Isolated
       </option>
     ]
     //Parse the current save date into a string
     for (let i = 0; i < theMonthArray.length; i++) {
       optionJSX.push(
-        <option key={i + 1} value={new Date(theMonthArray[i].value)}>
-          {theMonthArray[i].display}
+        <option key={ i + 1 } value={ new Date(theMonthArray[i].value) }>
+          { theMonthArray[i].display }
         </option>
       )
     }
 
     return (
-      <select onChange={monthSwitch} defaultValue={time}>
-        {optionJSX}
+      <select onChange={ monthSwitch } defaultValue={ time }>
+        {optionJSX }
       </select>
     )
   }
@@ -82,43 +82,43 @@ const Timeselect = props => {
       <div className='timeParent'>
         <div className='timeButtonContainer'>
           <a
-            className={time == 'All Time' ? 'active' : null}
-            onClick={() => updateAllTime('All Time')}
+            className={ time == 'All Time' ? 'active' : null }
+            onClick={ () => updateAllTime('All Time') }
           >
             All Time
           </a>
           <a
-            className={time == 14 ? 'active' : null}
-            onClick={() => updateAllTime(14)}
+            className={ time == 14 ? 'active' : null }
+            onClick={ () => updateAllTime(14) }
           >
-            Last 14 Days
+            14 Days
           </a>
           <a
-            className={time == 30 ? 'active' : null}
-            onClick={() => updateAllTime(30)}
+            className={ time == 30 ? 'active' : null }
+            onClick={ () => updateAllTime(30) }
           >
-            Last 30 Days
+            30 Days
           </a>
           <a
-            className={time == 60 ? 'active' : null}
-            onClick={() => updateAllTime(60)}
+            className={ time == 60 ? 'active' : null }
+            onClick={ () => updateAllTime(60) }
           >
-            Last 60 Days
+            60 Days
           </a>
           <a
-            className={time == 90 ? 'active' : null}
-            onClick={() => updateAllTime(90)}
+            className={ time == 90 ? 'active' : null }
+            onClick={ () => updateAllTime(90) }
           >
-            Last 90 Days
+            90 Days
           </a>
           <a
-            className={time == 120 ? 'active' : null}
-            onClick={() => updateAllTime(120)}
+            className={ time == 120 ? 'active' : null }
+            onClick={ () => updateAllTime(120) }
           >
-            Last 120 Days
+            120 Days
           </a>
         </div>
-        {dynamicSelectRender()}
+        { dynamicSelectRender() }
       </div>
     </div>
   )
