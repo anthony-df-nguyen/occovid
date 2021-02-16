@@ -6,15 +6,17 @@ let tomorrowsmonth = tomorrow.getMonth() + 1;
 let todaysyear = 2021;
 console.log(
   "The query is looking for dates < than " +
-    tomorrowsmonth +
-    "/" +
-    tomorrowday +
-    "/" +
-    todaysyear
+  tomorrowsmonth +
+  "/" +
+  tomorrowday +
+  "/" +
+  todaysyear
 );
 
+const tier = 4;
+
 // Cumulative Total, SCF, Jail, Homeless Cases, Deaths by Reported and Specimen Collection
-const CasesURL =   "https://services2.arcgis.com/LORzk2hk9xzHouw9/ArcGIS/rest/services/occovid_case_csv/FeatureServer/0//query?where=Date%3Etimestamp+%273%2F3%2F2020%27+AND+Date%3Ctimestamp+%27" +
+const CasesURL = "https://services2.arcgis.com/LORzk2hk9xzHouw9/ArcGIS/rest/services/occovid_case_csv/FeatureServer/0//query?where=Date%3Etimestamp+%273%2F3%2F2020%27+AND+Date%3Ctimestamp+%27" +
   tomorrowsmonth +
   "%2F" +
   tomorrowday +
@@ -152,4 +154,5 @@ export {
   ZipDataWithGeo,
   ZipData,
   lastUpdate,
+  tier
 };

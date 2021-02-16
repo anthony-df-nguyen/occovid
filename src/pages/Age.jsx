@@ -5,7 +5,18 @@ import { FetchDeathDemo } from 'Datafetch/FetchDeathDemo'
 import { FetchYouthCases } from 'Datafetch/FetchYouthCases'
 import Chart from 'components/Chart'
 import { ageLabels, ageColors } from 'globalVars/chartJSconfig'
-import { ocpop } from 'globalVars/populations'
+import {
+  ocpop, age0_17_pop,
+  age18_24_pop,
+  age25_34_pop,
+  age35_44_pop,
+  age45_54_pop,
+  age55_64_pop,
+  age65_74_pop,
+  age75_84_pop,
+  age85_pop,
+} from 'globalVars/populations'
+import BuildTable from 'components/BuildTable'
 
 const Age = props => {
   const [ageCase, updateAgeCaseArray] = useState([])
@@ -42,6 +53,33 @@ const Age = props => {
   })
   const [age03, age49, age1012, age1314, age1518] = youthCases
 
+  let allKnownAgesCases = ageCaseArray[0] + ageCaseArray[1] + ageCaseArray[2] + ageCaseArray[3] + ageCaseArray[4] + ageCaseArray[5] + ageCaseArray[6] + ageCaseArray[7] + ageCaseArray[8]
+
+  let ageHeaders = ['Age', 'Pop (%)', '% of All Cases', '% Group Infected'];
+  let ageTableRows = [...ageLabels]
+  ageTableRows.pop()
+  let agePopArray = [age0_17_pop,
+    age18_24_pop,
+    age25_34_pop,
+    age35_44_pop,
+    age45_54_pop,
+    age55_64_pop,
+    age65_74_pop,
+    age75_84_pop,
+    age85_pop]
+  let ageCol2 = []
+  let ageCol3 = []
+  let ageCol4 = []
+  ageCaseArray.forEach((a, i) => {
+    if (i < ageCaseArray.length - 1) {
+      let population = agePopArray[i].toLocaleString();
+      let popPerc = (parseFloat((a / agePopArray[i]) * 100).toFixed(1)) + '%';
+      ageCol2.push(`${population}<br>${popPerc}`)
+      ageCol3.push((parseFloat((a / allKnownAgesCases) * 100).toFixed(1)) + '%')
+      ageCol4.push((parseFloat((a / agePopArray[i]) * 100).toFixed(1)) + '%')
+    }
+  })
+
   return (
     <div>
       <FetchCaseDemo function={ updateAgeCaseArray } />
@@ -52,6 +90,16 @@ const Age = props => {
 
         <div id='chartGrid'>
           <Chart
+            key='4'
+            id='age4'
+            date={ ['0 to 3', '4 to 9', '10 to 12', '13 to 14', '15 to 18'] }
+            data={ [[age03, age49, age1012, age1314, age1518]] }
+            fill={ [...[youngColorAll]] }
+            title={ 'Cases Among Youth' }
+            label={ ['Fatality Rate'] }
+            switches={ ['horizontalBar', 'bar', 'doughnut'] }
+          />
+          <Chart
             key='1'
             id='age1'
             date={ [...ageLabels] }
@@ -61,6 +109,9 @@ const Age = props => {
             label={ ['Cases'] }
             switches={ ['horizontalBar', 'bar', 'doughnut'] }
           />
+          <div className="chartContainer" style={ { padding: '0', backgroundColor: 'transparent', } }>
+            <BuildTable colName={ ageHeaders } rows={ ageTableRows } columns={ [ageCol2, ageCol3, ageCol4] } />
+          </div>
           <Chart
             key='2'
             id='age2'
@@ -81,17 +132,9 @@ const Age = props => {
             label={ ['Fatality Rate'] }
             switches={ ['horizontalBar', 'bar'] }
           />
-          <Chart
-            key='4'
-            id='age4'
-            date={ ['0 to 3', '4 to 9', '10 to 12', '13 to 14', '15 to 18'] }
-            data={ [[age03, age49, age1012, age1314, age1518]] }
-            fill={ [...[youngColorAll]] }
-            title={ 'Cases Among Youth' }
-            label={ ['Fatality Rate'] }
-            switches={ ['horizontalBar', 'bar', 'doughnut'] }
-          />
+
         </div>
+
       </div>
     </div>
   )

@@ -46,6 +46,16 @@ const City = props => {
       break
   }
 
+  let chartType
+  let width = window.innerWidth;
+  if (width > 1400) {
+    chartType = 'bar';
+  } else {
+    chartType = 'horizontalBar';
+  }
+
+
+
 
   return (
     <div>
@@ -60,12 +70,13 @@ const City = props => {
         <div id='cityGrid'>
           <BuildTable colName={ ['City', metricName] } rows={ finalArraytoUse.map(a => a.city) } columns={ [finalArraytoUse.map(a => a.value)] } />
           <Chart
+            className="overrideBackground"
             key='1'
             id='city1'
-            switches={ ['horizontalBar'] }
+            switches={ [chartType] }
             date={ finalArraytoUse.map(a => a.city) }
             data={ [finalArraytoUse.map(a => a.value)] }
-            fill={ [color.red] }
+            fill={ [color.yellow] }
             title={ 'Total Cases by Specimen Collection' }
             label={ ['Cases', 'Estimated Recovered'] }
           />

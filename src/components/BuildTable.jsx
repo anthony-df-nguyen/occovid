@@ -14,24 +14,21 @@ const BuildTable = (props) => {
         })
     }
     const makeTableRows = () => {
-        return props.rows.map((row, i) => {
-            if (i === props.rows.length - 1) {
-                return (
-                    <tr key={ i }>
-                        <td style={ { borderRadius: `0 0 0 ${borderRad}` } }>{ row }</td>
-                        <td style={ { borderRadius: `0 0 ${borderRad} 0`, } }>{ props.columns[0][i] }</td>
-                    </tr>
-                )
-            } else {
-                return (
-                    <tr key={ i }>
-                        <td>{ row }</td>
-                        <td>{ props.columns[0][i] }</td>
-                    </tr>
-                )
-            }
+        return props.rows.map((rows, i) => {
+            return (
+                <tr>
+                    <td>{ rows }</td>
+                    { props.columns.map((col, num) => {
+                        return (
+                            <td dangerouslySetInnerHTML={ { __html: col[i] } }></td>
+                        )
+                    }) }
+                </tr>)
         })
     }
+
+
+
 
     return (
         <table>

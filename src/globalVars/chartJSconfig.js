@@ -1,7 +1,7 @@
 import { getByTitle } from '@testing-library/dom'
 
 let chartpadding = [{ top: 0, right: 0, left: 0 }]
-if (window.screen.width > 500) {
+if (window.screen.width > 1366) {
   chartpadding = { top: 16, right: 16, left: 16 }
 }
 
@@ -220,7 +220,7 @@ const stackedMultiBar = {
     padding: chartpadding
   },
   responsive: true,
-  maintainAspectRatio: true,
+  maintainAspectRatio: false,
   scales: {
     yAxes: [
       {

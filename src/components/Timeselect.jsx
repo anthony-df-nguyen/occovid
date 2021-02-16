@@ -117,8 +117,9 @@ const Timeselect = props => {
           >
             120 Days
           </a>
+          { dynamicSelectRender() }
         </div>
-        { dynamicSelectRender() }
+
       </div>
     </div>
   )

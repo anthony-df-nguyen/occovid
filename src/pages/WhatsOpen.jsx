@@ -6,10 +6,13 @@ import { FetchCAMetrics, lastCaseRate, lastPositiveRate, lastHealthEquity, lastT
 import Chart from 'components/Chart'
 import Widget from "components/Widget"
 import ReactSpeedometer from "react-d3-speedometer"
-
+import FetchWhatsOpenJson from 'Datafetch/FetchWhatsOpenJson'
+import { tier } from 'globalVars/Sources'
+import BuildTable from 'components/BuildTable'
 const WhatsOpen = (props) => {
     const { time, setTime } = useContext(TimeContext)
     const [array, updateArray] = useState([])
+    const [tableArray, updateTableArray] = useState([])
     const [maxCaseRate, updateCaseMax] = useState(10);
     const [maxPosRate, updatePosMax] = useState(10);
     const [maxEqRate, updateEqMax] = useState(10);
@@ -27,10 +30,9 @@ const WhatsOpen = (props) => {
         updateEqMax(a);
     })
 
-    console.log(lastCaseRate)
-    //let maxCaseRate = lastCaseRate > 12 ? lastCaseRate + 1 : 12;
     return (
         <div>
+            <FetchWhatsOpenJson function={ updateTableArray } tier={ tier } />
             <FetchCAMetrics time={ time } function={ updateArray } />
             <div className='page'>
                 <h1 className='pageTitle'>{ props.title }</h1>
@@ -57,58 +59,9 @@ const WhatsOpen = (props) => {
                     </div>
                 </div>
 
+                <BuildTable colName={ ['Sector', 'Status'] } rows={ tableArray.map(a => a.name) } columns={ [tableArray.map(a => a.desc)] } />
 
-                <Timeselect />
-                <div id='chartGrid'>
-                    <Chart
-                        key='1'
-                        id='whatsOpen1'
-                        date={ array.map(a => a.date) }
-                        data={ [
-                            array.map(b => b.dailyCaseRate),
-                        ] }
-                        fill={ [color.orange] }
-                        title={ 'Daily Case Rate' }
-                        label={ ['Case Rate 7 Day Avg with 7 Day Lag'] }
-                        switches={ ['bar', 'line'] }
-                    />
-                    <Chart
-                        key='2'
-                        id='whatsOpen2'
-                        date={ array.map(a => a.date) }
-                        data={ [
-                            array.map(b => b.positiveRate),
-                        ] }
-                        fill={ [color.red] }
-                        title={ 'Positivity Test Rate' }
-                        label={ ['Test Positive Rate 7 Day Avg with 7 Day Lag'] }
-                        switches={ ['bar', 'line'] }
-                    />
-                    <Chart
-                        key='3'
-                        id='whatsOpen3'
-                        date={ array.map(a => a.date) }
-                        data={ [
-                            array.map(b => b.healthEquity),
-                        ] }
-                        fill={ [color.purple] }
-                        title={ 'Health Equity' }
-                        label={ ['Health Equity Rate 7 Day Avg with 7 Day Lag'] }
-                        switches={ ['bar', 'line'] }
-                    />
-                    <Chart
-                        key='4'
-                        id='whatsOpen4'
-                        date={ array.map(a => a.date) }
-                        data={ [
-                            array.map(b => b.testsPer100k),
-                        ] }
-                        fill={ [color.green] }
-                        title={ 'Test per 100k' }
-                        label={ ['Tests per 100k 7 Day Avg with 7 Day Lag'] }
-                        switches={ ['bar', 'line'] }
-                    />
-                </div>
+
             </div>
         </div>
     )

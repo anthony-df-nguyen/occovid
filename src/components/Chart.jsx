@@ -13,7 +13,6 @@ import Chartselect from 'components/Chartselect'
 
 const Chart = props => {
   //Set initial state to saved memory
-
   const [currentType, updateType] = useState(() => {
     if (props.switches.length > 1) {
       if (!localStorage.getItem(props.id)) {
@@ -74,30 +73,30 @@ const Chart = props => {
   }
 
   //Render the Type of Chart Based on Type
-  function renderChart (currentType) {
+  function renderChart(currentType) {
     switch (currentType) {
       case 'bar':
-        return <Bar data={dataObject} options={barDefaults} />
+        return <Bar data={ dataObject } options={ barDefaults } />
         break
       case 'line':
-        return <Line data={dataObject} options={lineDefaults} />
+        return <Line data={ dataObject } options={ lineDefaults } />
         break
       case 'doughnut':
-        return <Doughnut data={dataObject} options={piedefaults} />
+        return <Doughnut data={ dataObject } options={ piedefaults } />
         break
       case 'horizontalBar':
-        return <HorizontalBar data={dataObject} options={barDefaults} />
+        return <HorizontalBar data={ dataObject } options={ barDefaults } />
         break
       default:
-        return <Bar data={dataObject} options={barDefaults} />
+        return <Bar data={ dataObject } options={ barDefaults } />
         break
     }
   }
   return (
     <div className='chartContainer'>
-      <div className='chartTitle'>{props.title}</div>
-      <Chartselect type={props.switches} passdown={updateType} id={props.id} />
-      {renderChart(currentType)}
+      <div className='chartTitle'>{ props.title }</div>
+      <Chartselect type={ props.switches } passdown={ updateType } id={ props.id } />
+      {renderChart(currentType) }
     </div>
   )
 }

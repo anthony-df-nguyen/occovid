@@ -41,6 +41,18 @@
   }
 }
 
+select {
+  width           : 100%;
+  max-width       : fit-content;
+  border          : 1px solid var(--select-border);
+  border-radius   : @radius;
+  padding         : 0.25em 0.5em;
+  cursor          : pointer;
+  color           : var(--primary-text);
+  line-height     : 0;
+  background-color: var(--white);
+}
+
 body {
   --primary-text : #333;
   --staywhite    : #f3f3f3;
@@ -86,8 +98,9 @@ body.dark {
   --dark        : #121212;
   --lightdark   : #272727;
   --darktext    : #999999;
-  --header      : var(--white);
-  --navmenu     : var(--dark);
+  --black       : #010101;
+  --header      : var(--darkblue);
+  --navmenu     : var(--black);
   --tablehead   : var(--darkblue);
 }
 
@@ -313,7 +326,7 @@ body.dark {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @media @wide {
+  @media @wider1680 {
     grid-template-columns: repeat(3, 1fr);
   }
 
@@ -328,10 +341,13 @@ body.dark {
 
   .chartContainer {
     canvas {
-      height    : 100% !important;
-      max-height: 100vh;
-    }
+      //height    : 100% !important;
+      max-height: 100vh !important;
 
+      @media @wide {
+        max-height: 700px !important;
+      }
+    }
 
   }
 
@@ -351,12 +367,12 @@ body.dark {
 
   canvas {
     max-width : 100%;
-    height    : 300px;
-    max-height: 300px;
+    height    : 100vh !important;
+    max-height: 250px;
 
-    @media @wide {
-      height    : 350px;
-      max-height: 350px;
+    @media @wider1680 {
+      height    : 25vh;
+      max-height: 25vh;
     }
   }
 }
@@ -424,7 +440,9 @@ body.dark {
     -ms-flex-wrap        : wrap;
     flex-wrap            : wrap;
 
-    a {
+
+    a,
+    select {
       margin           : @gap 0 0 @gap;
       -webkit-box-flex : 1;
       -ms-flex-positive: 1;
@@ -441,6 +459,7 @@ body.dark {
         cursor          : pointer;
         background-color: var(--blue);
       }
+
 
       @media @wide {
         font-size: 1rem;
@@ -554,11 +573,11 @@ body.dark {
     flex-grow       : 1;
 
     @media @biggerthanmobile {
-      padding: 2rem;
+      padding: 1rem;
     }
 
     @media @wider1920 {
-      padding: 3rem 2rem;
+      padding: 2rem;
     }
 
     &:hover {
@@ -631,6 +650,9 @@ body.dark {
 }
 
 table {
+  width : 100%;
+  height: 100%;
+
   th {
     background-color: var(--tablehead);
     padding         : @buttonpad;
