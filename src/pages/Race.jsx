@@ -1,8 +1,8 @@
 import React, { useState, useContext } from 'react'
 
 import color from 'globalVars/Colors'
-import { FetchCaseDemo } from 'components/Datafetch/FetchCaseDemo'
-import { FetchDeathDemo } from 'components/Datafetch/FetchDeathDemo'
+import { FetchCaseDemo } from 'Datafetch/FetchCaseDemo'
+import { FetchDeathDemo } from 'Datafetch/FetchDeathDemo'
 import Chart from 'components/Chart'
 import { raceLabels, raceColors } from 'globalVars/chartJSconfig'
 import { ocpop } from 'globalVars/populations'

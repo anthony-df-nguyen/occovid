@@ -42,29 +42,30 @@
 }
 
 body {
-  --primary-text: #333;
-  --staywhite   : #f3f3f3;
-  --blue        : #009ddb;
-  --white       : white;
-  --gray        : #f3f3f3;
-  --darkblue    : #003f5c;
-  --grayblue    : #2f4b7c;
-  --purple      : #665191;
-  --lightpurple : #a05195;
-  --pink        : #d45087;
-  --green       : #66c266;
-  --red         : #f95d6a;
-  --yellow      : #ffcc00;
-  --darkgray    : #333;
-  --orange      : #ff7c43;
-  --gold        : #ffa600;
-  --dark        : #121212;
-  --lightdark   : #272727;
-  --darktext    : #999999;
-  --navmenu     : #e2e2e2;
-  --header      : var(--darkblue);
-  --subsection  : var(--darktext);
-  --tablehead   : var(--blue);
+  --primary-text : #333;
+  --staywhite    : #f3f3f3;
+  --blue         : #009ddb;
+  --white        : white;
+  --gray         : #f3f3f3;
+  --darkblue     : #003f5c;
+  --grayblue     : #2f4b7c;
+  --purple       : #665191;
+  --lightpurple  : #a05195;
+  --pink         : #d45087;
+  --green        : #66c266;
+  --red          : #f95d6a;
+  --yellow       : #ffcc00;
+  --darkgray     : #333;
+  --orange       : #ff7c43;
+  --gold         : #ffa600;
+  --dark         : #121212;
+  --lightdark    : #272727;
+  --darktext     : #999999;
+  --navmenu      : #e2e2e2;
+  --header       : var(--darkblue);
+  --subsection   : var(--darktext);
+  --tablehead    : var(--blue);
+  --borderOnHover: 2px solid var(--blue);
 }
 
 body.dark {
@@ -87,7 +88,7 @@ body.dark {
   --darktext    : #999999;
   --header      : var(--white);
   --navmenu     : var(--dark);
-  --tablehead   : (var(--gray))
+  --tablehead   : var(--darkblue);
 }
 
 .centerjustify {
@@ -285,6 +286,7 @@ body.dark {
 
   @media @wide {
     position: absolute;
+    padding : 1rem;
     top     : @headerheight;
     left    : @navBarWidth;
     width   : calc(100% - @navBarWidth);
@@ -508,6 +510,23 @@ body.dark {
     flex-grow        : 1;
     padding          : 1rem;
   }
+
+  .gaugeContainer {
+    border-radius   : @radius;
+    margin          : @gap 0 0 @gap;
+    background-color: var(--white);
+    flex-grow       : 1;
+    width           : auto;
+    padding         : 1rem;
+
+    svg.speedometer {
+      display   : block;
+      margin    : 0 auto;
+      max-height: 200px;
+      overflow-y: hidden;
+      padding   : 0;
+    }
+  }
 }
 
 //Home WIdget
@@ -519,47 +538,38 @@ body.dark {
 
   >a {
     border-radius   : @radius;
-    padding         : 1rem;
+    padding         : 2rem 1rem;
     background-color: var(--white);
     position        : relative;
     margin          : @gap 0 0 @gap;
     flex-grow       : 1;
 
+    @media @biggerthanmobile {
+      padding: 2rem;
+    }
+
+    @media @wider1920 {
+      padding: 3rem 2rem;
+    }
 
     &:hover {
       cursor    : pointer;
       box-shadow: @shadow;
-      border    : 2px solid var(--blue)
+      border    : var(--borderOnHover);
     }
 
     .innerDiv {
       position: relative;
 
       .widgetTitle {
-        font-size    : 1.5rem;
-        display      : block;
-        text-align   : center;
-        margin-bottom: 1rem;
-
-        &.t1 {
-          color: var(--blue)
-        }
-
-        &.t2 {
-          color: var(--red)
-        }
-
-        &.t3 {
-          color: var(--orange)
-        }
-
-        &.t4 {
-          color: var(--green)
-        }
-
-        &.t5 {
-          color: var(--purple)
-        }
+        font-size     : 1.25rem;
+        font-weight   : 300;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        display       : block;
+        text-align    : center;
+        margin-bottom : 1rem;
+        color         : var(--primary-text)
       }
 
       .subFlex {
@@ -582,6 +592,19 @@ body.dark {
 
 
     }
+  }
+
+
+}
+
+#homeGauges {
+  margin-top  : @gap;
+  //max-width : 500px;
+
+  &:hover {
+    cursor    : pointer;
+    box-shadow: @shadow;
+    border    : var(--borderOnHover);
   }
 }
 

@@ -10,7 +10,7 @@ import {
   lastALFDeath,
   lastHomelessDeath,
   lastJailDeath
-} from 'components/Datafetch/FetchDeaths'
+} from 'Datafetch/FetchDeaths'
 import Chart from 'components/Chart'
 import Widget from 'components/Widget'
 

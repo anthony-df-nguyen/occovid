@@ -2,8 +2,8 @@ import React, { useState, useContext } from 'react';
 import TimeContext from "components/TimeContext";
 import color from 'globalVars/Colors'
 import Timeselect from 'components/Timeselect';
-import { FetchTesting, lastTotalPCR, lastDailyTests } from 'components/Datafetch/FetchTesting'
-import { FetchHosTriggers, lastTPP } from 'components/Datafetch/FetchHosTriggers'
+import { FetchTesting, lastTotalPCR, lastDailyTests } from 'Datafetch/FetchTesting'
+import { FetchHosTriggers, lastTPP } from 'Datafetch/FetchHosTriggers'
 import Chart from 'components/Chart'
 import Widget from "components/Widget"
 

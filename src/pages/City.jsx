@@ -3,7 +3,7 @@ import TimeContext from 'components/TimeContext'
 import color from 'globalVars/Colors'
 import CityZipMetricSelect from 'components/CityZipMetricSelect'
 import CityZipSort from 'components/CityZipSort'
-import { FetchCityData } from 'components/Datafetch/FetchCityData'
+import { FetchCityData } from 'Datafetch/FetchCityData'
 import Chart from 'components/Chart'
 import BuildTable from 'components/BuildTable'
 

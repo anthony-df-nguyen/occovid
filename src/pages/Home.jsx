@@ -1,43 +1,27 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import color from 'globalVars/Colors'
-import Chartselect from 'components/Chartselect'
-import Timeselect from 'components/Timeselect'
 import TimeContext from 'components/TimeContext'
 import Widget from 'components/Widget'
 import { ocpop } from 'globalVars/populations';
 import {
-  FetchCases,
-  lastTotalCases,
-  lastDailyReported,
-  lastRecovered,
-  lastHomeless,
-  lastJail,
-  lastSNF
-} from 'components/Datafetch/FetchCases'
+  FetchCases, lastTotalCases, lastDailyReported, lastRecovered, lastHomeless, lastJail, lastSNF
+} from 'Datafetch/FetchCases'
 import {
-  FetchDeaths,
-  lastTotalDeaths,
-  lastDailyReportedDeath,
-  lastSNFDeath,
-  lastALFDeath,
-  lastHomelessDeath,
-  lastJailDeath
-} from 'components/Datafetch/FetchDeaths'
+  FetchDeaths, lastTotalDeaths, lastDailyReportedDeath,
+  lastSNFDeath, lastALFDeath,
+  lastHomelessDeath, lastJailDeath
+} from 'Datafetch/FetchDeaths'
 import {
-  FetchHospitals,
-  lastHos,
-  lastICU
-} from 'components/Datafetch/FetchHospitals'
+  FetchHospitals, lastHos, lastICU
+} from 'Datafetch/FetchHospitals'
 import {
-  FetchHosTriggers,
-  lastHosRateChange,
-  lastVentsAvailable,
-  lastBedsAdj,
-  lastBedsUnadj
-} from 'components/Datafetch/FetchHosTriggers'
-import { FetchVaccines } from 'components/Datafetch/FetchVaccines';
-import { FetchTesting, lastTotalPCR, lastDailyTests } from 'components/Datafetch/FetchTesting'
+  FetchHosTriggers, lastHosRateChange, lastVentsAvailable, lastBedsAdj, lastBedsUnadj
+} from 'Datafetch/FetchHosTriggers'
+import { FetchVaccines } from 'Datafetch/FetchVaccines';
+import { FetchTesting, lastTotalPCR, lastDailyTests } from 'Datafetch/FetchTesting'
+import { FetchCAMetrics, lastCaseRate, lastPositiveRate, lastHealthEquity, lastTestRate } from 'Datafetch/FetchCAMetrics';
+import ReactSpeedometer from "react-d3-speedometer"
 
 
 const Home = props => {
@@ -48,7 +32,24 @@ const Home = props => {
   const [array4, update4Array] = useState([])
   const [array5, update5Array] = useState([])
   const [array6, update6Array] = useState([])
+  const [array7, update7Array] = useState([])
   const [asof, peopleOneDose, peopleTwoDose, totalPeople, adminOneDose, adminTwoDose, totalAdmin, female, male, otherSex, asianPI, black, hispanic, white, otherRace, age017, age1824, age2534, age3544, age4554, age5564, age6574yrs, age7584, age85, ageUnknown, moderna, pfizer, unknownTrade] = array5;
+  const [maxCaseRate, updateCaseMax] = useState(10);
+  const [maxPosRate, updatePosMax] = useState(10);
+  const [maxEqRate, updateEqMax] = useState(10);
+
+  useEffect(() => {
+    let a = lastCaseRate > 10 ? lastCaseRate + 2 : 10;
+    updateCaseMax(a);
+  })
+  useEffect(() => {
+    let a = lastPositiveRate > 10 ? lastPositiveRate + 2 : 10;
+    updatePosMax(a);
+  })
+  useEffect(() => {
+    let a = lastHealthEquity > 10 ? lastHealthEquity + 2 : 10;
+    updateEqMax(a);
+  })
 
   const totalPPL = parseInt(totalPeople);
   const totallPPLPerc = parseFloat((totalPPL / ocpop) * 100).toFixed(1)
@@ -60,7 +61,8 @@ const Home = props => {
       <FetchHospitals function={ update4Array } time={ time } />
       <FetchVaccines function={ update5Array } time={ time } />
       <FetchTesting function={ update6Array } time={ time } />
-      <div className='homeWidgetGrid'>
+      <FetchCAMetrics time={ time } function={ update7Array } />
+      <div className='homeWidgetGrid'  >
         <Link to='/cases' >  <div id="item1">
           <div className="innerDiv">
             <div className="widgetTitle t1">Cases</div>
@@ -76,13 +78,6 @@ const Home = props => {
                 color={ color.red }
               />
               <Widget title={ 'Recovered' } stat={ lastRecovered } color={ color.blue } />
-              <Widget
-                title={ 'Homeless Cases' }
-                stat={ lastHomeless }
-                color={ color.purple }
-              />
-              <Widget title={ 'Jail Cases' } stat={ lastJail } color={ color.yellow } />
-              <Widget title={ 'SNF Cases' } stat={ lastSNF } color={ color.pink } />
             </div>
           </div>
         </div></Link>
@@ -101,10 +96,7 @@ const Home = props => {
                   stat={ lastDailyReportedDeath }
                   color={ color.red }
                 />
-                <Widget title={ 'SNF' } stat={ lastSNFDeath } color={ color.yellow } />
-                <Widget title={ 'ALF' } stat={ lastALFDeath } color={ color.orange } />
-                <Widget title={ 'Homeless' } stat={ lastHomelessDeath } color={ color.purple } />
-                <Widget title={ 'Jail' } stat={ lastJailDeath } color={ color.orange } />
+
               </div>
             </div>
           </div>
@@ -120,7 +112,7 @@ const Home = props => {
                   <Widget
                     title={ 'Change in 3 Day Avg' }
                     stat={ lastHosRateChange }
-                    color={ color.purple }
+                    color={ color.pink }
                   />
                   <Widget
                     title={ 'Vents Available' }
@@ -158,11 +150,11 @@ const Home = props => {
                   <Widget title={ "People: 1st & 2nd Dose" } stat={ parseInt(peopleTwoDose).toLocaleString() }
                     color={ color.green } />
                   <Widget title={ "Total Administered" } stat={ parseInt(totalAdmin).toLocaleString() }
-                    color={ color.purple } />
+                    color={ color.pink } />
                   <Widget title={ "1st Dose Administered" } stat={ parseInt(adminOneDose).toLocaleString() }
-                    color={ color.purple } />
+                    color={ color.pink } />
                   <Widget title={ "2nd Dose Administered" } stat={ parseInt(adminTwoDose).toLocaleString() }
-                    color={ color.purple } />
+                    color={ color.pink } />
                 </div>
               </div>
             </div>
@@ -185,11 +177,42 @@ const Home = props => {
 
           </div>
         </Link>
+        <Link to="/whatsopen">
+          <div id="item5">
+            <div className="innerDiv">
+              <div id="hosWidget">
+                <div className="widgetTitle t6">State Metrics</div>
+                <div className="subFlex">
+                  <Widget title={ 'Daily Case Rate' } stat={ lastCaseRate } color={ color.yellow } />
+                  <Widget title={ 'Test Positivity Rate' } stat={ lastPositiveRate } color={ color.red } />
+                  <Widget title={ 'Health Equity Quartile %' } stat={ lastHealthEquity } color={ color.pink } />
+                  <Widget title={ 'Tests per 100k' } stat={ lastTestRate } color={ color.blue } />
+                </div>
+              </div>
+            </div>
 
-
+          </div>
+        </Link>
 
       </div>
-
+      <Link to="/whatsopen">
+        <div id="homeGauges">
+          <div className='widgetGrid'  >
+            <div className="gaugeContainer">
+              <div className="chartTitle">Adj. Case Rate per 100k</div>
+              <ReactSpeedometer value={ lastCaseRate } minValue={ 0 } maxValue={ maxCaseRate } segments={ 4 } segmentColors={ [color.gold, color.orange, color.red, color.purple] } customSegmentStops={ [0, 1, 4, 7, maxCaseRate] } forceRender={ true } needleColor={ '#999' } />
+            </div>
+            <div className="gaugeContainer">
+              <div className="chartTitle">Tests per 100K</div>
+              <ReactSpeedometer value={ lastPositiveRate } minValue={ 0 } maxValue={ maxPosRate } segments={ 4 } segmentColors={ [color.gold, color.orange, color.red, color.purple] } customSegmentStops={ [0, 2, 5, 8, maxPosRate] } forceRender={ true } needleColor={ '#999' } />
+            </div>
+            <div className="gaugeContainer">
+              <div className="chartTitle">Healthy Equity Quart %</div>
+              <ReactSpeedometer value={ lastHealthEquity } minValue={ 0 } maxValue={ maxEqRate } segments={ 4 } segmentColors={ [color.gold, color.orange, color.red, color.purple] } customSegmentStops={ [0, 2.2, 5.3, 8, maxEqRate] } forceRender={ true } needleColor={ '#999' } />
+            </div>
+          </div>
+        </div>
+      </Link>
 
     </div>
   )

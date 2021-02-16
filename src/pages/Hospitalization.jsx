@@ -6,14 +6,14 @@ import {
   FetchHospitals,
   lastHos,
   lastICU
-} from 'components/Datafetch/FetchHospitals'
+} from 'Datafetch/FetchHospitals'
 import {
   FetchHosTriggers,
   lastHosRateChange,
   lastVentsAvailable,
   lastBedsAdj,
   lastBedsUnadj
-} from 'components/Datafetch/FetchHosTriggers'
+} from 'Datafetch/FetchHosTriggers'
 import Chart from 'components/Chart'
 import Widget from 'components/Widget'
 
