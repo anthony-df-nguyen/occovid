@@ -22,6 +22,7 @@ body {
   --purple: #665191;
   --lightpurple: #a05195;
   --pink: #d45087;
+  --green: #66c266;
   --red: #f95d6a;
   --yellow: #ffcc00;
   --darkgray: #333;
@@ -32,6 +33,7 @@ body {
   --darktext: #999999;
   --navmenu: #e2e2e2;
   --header: var(--darkblue);
+  --subsection: var(--darktext);
 }
 body.dark {
   --primary-text: rgba(255, 255, 255, 0.87);
@@ -126,7 +128,7 @@ body.dark {
   margin-top: 2rem;
   margin-bottom: 1rem;
   font-weight: 700;
-  color: var(--darkgray);
+  color: var(--subsection);
 }
 #navMenu a {
   text-align: center;
@@ -153,7 +155,7 @@ body.dark {
   color: var(--primary-text);
   font-size: 1rem;
   position: absolute;
-  left: 3rem;
+  left: calc(50% - 4rem);
 }
 #themeSelector button {
   display: block;
@@ -259,15 +261,17 @@ body.dark {
 .chartContainer {
   background-color: var(--white);
   padding: 1rem;
+  border-radius: 5px;
 }
 .chartContainer canvas {
   max-width: 100%;
-  height: 100%;
+  height: 300px;
   max-height: 300px;
 }
 @media only screen and (min-width:1366px) {
   .chartContainer canvas {
-    max-height: 400px;
+    height: 350px;
+    max-height: 350px;
   }
 }
 .chartTitle {
@@ -347,6 +351,26 @@ body.dark {
   -webkit-box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.1);
   box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
+.widget {
+  text-align: center;
+  background-color: var(--white);
+  border-radius: 5px;
+}
+.widget .statName {
+  color: var(--primary-text);
+  font-weight: 300;
+  font-size: 12px;
+}
+.widget .stat {
+  margin-top: 10px;
+  font-weight: 700;
+  font-size: 1rem;
+}
+@media only screen and (min-width:1366px) {
+  .widget .statName {
+    font-size: 1rem;
+  }
+}
 .widgetGrid {
   margin: 0 0 2rem -10px;
   display: -webkit-box;
@@ -367,21 +391,63 @@ body.dark {
   -ms-flex-positive: 1;
   flex-grow: 1;
   padding: 1rem;
-  text-align: center;
+}
+.homeWidgetGrid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: -10px 0 0 -10px;
+}
+.homeWidgetGrid > div {
+  border-radius: 5px;
+  padding: 1rem;
   background-color: var(--white);
+  position: relative;
+  margin: 10px 0 0 10px;
+  flex-grow: 1;
 }
-.widgetGrid .widget .statName {
-  color: var(--primary-text);
-  font-weight: 300;
-  font-size: 12px;
+.homeWidgetGrid > div:hover {
+  cursor: pointer;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  border: 2px solid var(--blue);
 }
-.widgetGrid .widget .stat {
-  margin-top: 10px;
-  font-weight: 700;
-  font-size: 1rem;
+.homeWidgetGrid > div .innerDiv {
+  position: relative;
 }
-@media only screen and (min-width:1366px) {
-  .widgetGrid .widget .statName {
-    font-size: 1rem;
-  }
+.homeWidgetGrid > div .innerDiv .widgetTitle {
+  font-size: 1.5rem;
+  display: block;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.homeWidgetGrid > div .innerDiv .widgetTitle.t1 {
+  color: var(--blue);
+}
+.homeWidgetGrid > div .innerDiv .widgetTitle.t2 {
+  color: var(--red);
+}
+.homeWidgetGrid > div .innerDiv .widgetTitle.t3 {
+  color: var(--orange);
+}
+.homeWidgetGrid > div .innerDiv .widgetTitle.t4 {
+  color: var(--green);
+}
+.homeWidgetGrid > div .innerDiv .widgetTitle.t5 {
+  color: var(--purple);
+}
+.homeWidgetGrid > div .innerDiv .subFlex {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  margin: -10px 0 0 -10px;
+}
+.homeWidgetGrid > div .innerDiv .subFlex .widget {
+  margin: 10px 0 0 10px;
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  padding: 1rem;
+  flex-direction: row;
+  background-color: var(--gray);
 }

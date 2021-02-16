@@ -5,7 +5,7 @@ if (window.screen.width > 500) {
   chartpadding = { top: 16, right: 16, left: 16 }
 }
 
-function responsivePieLegend () {
+function responsivePieLegend() {
   if (window.screen.width > 768) {
     return 'right'
   } else {
@@ -23,7 +23,7 @@ const dataLabels = {
       return '#999'
     }
   },
-  display: function display (context) {
+  display: function display(context) {
     if (context.chart.width > 500) {
       return 'auto'
     } else {
@@ -114,13 +114,13 @@ const datasetKeyProvider = () => {
 }
 
 class Oneobject {
-  constructor (labels, data1label, data1, data1color) {
+  constructor(labels, data1label, data1, data1color) {
     this.labels = labels
     this.datasets = [
       {
         label: data1label,
         data: data1,
-        borderWidth: 1,
+        borderWidth: 0,
         order: 2,
         backgroundColor: data1color
       }
@@ -129,7 +129,7 @@ class Oneobject {
 }
 
 class Twoobject7DayAverage {
-  constructor (
+  constructor(
     labels,
     data1label,
     data1,
@@ -143,7 +143,7 @@ class Twoobject7DayAverage {
       {
         label: data1label,
         data: data1,
-        borderWidth: 1,
+        borderWidth: 0,
         radius: 1,
         order: 2,
         backgroundColor: data1color
@@ -152,7 +152,7 @@ class Twoobject7DayAverage {
         type: 'line',
         label: data2label,
         data: data2,
-        borderWidth: 2,
+        borderWidth: 0,
         radius: 1,
         order: 1,
         borderColor: data2color,
@@ -163,7 +163,7 @@ class Twoobject7DayAverage {
 }
 
 class Threeobject7DayAverage {
-  constructor (
+  constructor(
     labels,
     data1label,
     data1,

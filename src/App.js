@@ -32,7 +32,7 @@ function App () {
   const [time, setTime] = useState(startingTime)
 
   return (
-    <Router forceRefresh={true}>
+    <Router>
       <div className='App'>
         <Header />
         <Switch>

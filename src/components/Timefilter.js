@@ -1,11 +1,10 @@
 import moment from 'moment'
 
 function filtertime (array, timeSetting) {
+  let fullArray = array
   if (timeSetting === 'All Time') {
-    return array
-  } else {
-    let today = new Date()
-    let comparisonEnd
+    return fullArray
+  } else if (!isNaN(timeSetting)) {
     let comparisonStart = new Date(
       moment()
         .subtract(timeSetting, 'days')
@@ -18,6 +17,24 @@ function filtertime (array, timeSetting) {
         return row
       }
     })
+    return shortArray
+  } else {
+    let selectedMonth = new Date(moment(new Date(timeSetting)).format('L'))
+    let lastDayOfMonth = new Date(
+      selectedMonth.getFullYear(),
+      selectedMonth.getMonth() + 1,
+      0
+    )
+    let monthStart = selectedMonth
+    let monthEnd = new Date(moment(lastDayOfMonth).format('L'))
+
+    let shortArray = fullArray.filter(row => {
+      let comparisonDate = new Date(row.date)
+      if (comparisonDate >= monthStart && comparisonDate <= monthEnd) {
+        return row
+      }
+    })
+
     return shortArray
   }
 }

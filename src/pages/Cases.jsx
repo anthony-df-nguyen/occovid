@@ -2,22 +2,21 @@ import React, { useState, useContext } from 'react'
 import TimeContext from 'components/TimeContext'
 import color from 'globalVars/Colors'
 import Timeselect from 'components/Timeselect'
-import { FetchCases } from 'components/Datafetch/FetchCases'
+import {
+  FetchCases,
+  lastTotalCases,
+  lastDailyReported,
+  lastRecovered,
+  lastHomeless,
+  lastJail,
+  lastSNF
+} from 'components/Datafetch/FetchCases'
 import Chart from 'components/Chart'
 import Widget from 'components/Widget'
 
 const Cases = props => {
   const { time, setTime } = useContext(TimeContext)
   const [array, updateArray] = useState([])
-
-  let dailyReported = []
-  array.filter(a => {
-    if (a.dailyCasesReported) {
-      dailyReported.push(a.dailyCasesReported)
-    }
-  })
-  let lastdailyReported = dailyReported.slice(-1)
-
   return (
     <div>
       <FetchCases function={updateArray} time={time} />
@@ -26,36 +25,22 @@ const Cases = props => {
         <div className='widgetGrid'>
           <Widget
             title={'Total Cases'}
-            stat={Math.max(
-              ...array.map(a => a.totalCasesReported)
-            ).toLocaleString()}
+            stat={lastTotalCases}
             color={color.gold}
           />
           <Widget
             title={'Daily Reported'}
-            stat={parseInt(lastdailyReported).toLocaleString()}
+            stat={lastDailyReported}
             color={color.red}
           />
-          <Widget
-            title={'Recovered'}
-            stat={Math.max(...array.map(a => a.recovered)).toLocaleString()}
-            color={color.blue}
-          />
+          <Widget title={'Recovered'} stat={lastRecovered} color={color.blue} />
           <Widget
             title={'Homeless Cases'}
-            stat={Math.max(...array.map(a => a.homelessCases)).toLocaleString()}
+            stat={lastHomeless}
             color={color.purple}
           />
-          <Widget
-            title={'Jail Cases'}
-            stat={Math.max(...array.map(a => a.jailCases)).toLocaleString()}
-            color={color.yellow}
-          />
-          <Widget
-            title={'SNF Cases'}
-            stat={Math.max(...array.map(a => a.snfCases)).toLocaleString()}
-            color={color.pink}
-          />
+          <Widget title={'Jail Cases'} stat={lastJail} color={color.yellow} />
+          <Widget title={'SNF Cases'} stat={lastSNF} color={color.pink} />
         </div>
         <Timeselect />
         <div id='chartGrid'>
