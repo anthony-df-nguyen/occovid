@@ -5,40 +5,17 @@ import CityZipMetricSelect from 'components/CityZipMetricSelect'
 import CityZipSort from 'components/CityZipSort'
 import { FetchCityData } from 'components/Datafetch/FetchCityData'
 import Chart from 'components/Chart'
-import Widget from 'components/Widget'
 import BuildTable from 'components/BuildTable'
 
 const City = props => {
   const { time, setTime } = useContext(TimeContext)
   const [array, updateArray] = useState([])
-
-  let unifiedArray = []
-  array.forEach(row => {
-    unifiedArray.push({
-      city: row.City,
-      caseRate: row.CaseRate,
-      deathRate: row.DeathRate,
-      totalCases: row.Tot_Cases,
-      totalDeaths: row.Tot_Deaths,
-      population: row.Total_Pop,
-      snfCases: row.SNFCase,
-      snfDeaths: row.SNFDth,
-      Cases_0_3: row.Cases_0_3,
-      Cases_0_17: row.Cases_0_17,
-      Cases_0_18: row.Cases_0_18,
-      Cases_4_9: row.Cases_4_9,
-      Cases_10_12: row.Cases_10_12,
-      Cases_13_14: row.Cases_13_14,
-      Cases_15_18: row.Cases_15_18
-    })
-  })
-
   const [whichMetric, updateWhichMetric] = useState('totalCases')
   const [metricName, updateMetricName] = useState('Total Cases');
   const [whichSort, updateWhichSort] = useState('high')
 
   let finalArraytoUse = []
-  unifiedArray.forEach(a => {
+  array.forEach(a => {
     //Figure out which index to get in each
     Object.keys(a).forEach((b, i) => {
       if (b === whichMetric) {
@@ -69,15 +46,6 @@ const City = props => {
       break
   }
 
-  let screenWidth = window.innerWidth
-
-
-  // let theType
-  // if (screenWidth >= 1680) {
-  //   theType = 'bar'
-  // } else {
-  //   theType = 'horizontalBar'
-  // }
 
   return (
     <div>

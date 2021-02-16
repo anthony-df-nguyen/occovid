@@ -12,7 +12,6 @@ const FetchTesting = (props) => {
       .then(grab => grab.features)
       .then((a) => {
         let temp = [...a]
-        console.log(temp)
         temp.forEach(row => {
           thisDataArray.push({
             date: new Date(row.attributes.date).toLocaleDateString(),

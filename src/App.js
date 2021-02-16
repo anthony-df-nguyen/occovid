@@ -4,22 +4,10 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import TimeContext from './components/TimeContext'
 import * as sources from 'globalVars/Sources'
 import Header from './components/Header'
-import Home from 'pages/Home'
-import Cases from 'pages/Cases'
 import { timeSelection } from 'components/Timeselect'
-import Deaths from 'pages/Deaths'
-import Hospitalization from 'pages/Hospitalization'
-import Vaccinations from 'pages/Vaccinations'
-import Testing from 'pages/Testing'
-import Schools from 'pages/Schools'
-import Age from 'pages/Age'
-import Race from 'pages/Race'
-import Gender from 'pages/Gender'
-import City from 'pages/City'
+import { Home, Cases, Deaths, Hospitalization, Vaccinations, Testing, Schools, Age, Race, Gender, City, Zip, WhatsOpen } from 'pages/Master'
 
-//document.querySelector('body').classList.add('dark')
-
-function App () {
+function App() {
   //localStorage.clear()
   //console.log(localStorage)
   let startingTime
@@ -36,7 +24,7 @@ function App () {
       <div className='App'>
         <Header />
         <Switch>
-          <TimeContext.Provider value={{ time, setTime }}>
+          <TimeContext.Provider value={ { time, setTime } }>
             <Route exact path='/'>
               <Home title='Summary' />
             </Route>
@@ -61,6 +49,9 @@ function App () {
             <Route path='/city'>
               <City title='City' />
             </Route>
+            <Route path='/zip'>
+              <Zip title='Zip' />
+            </Route>
             <Route path='/age'>
               <Age title='Age' />
             </Route>
@@ -69,6 +60,9 @@ function App () {
             </Route>
             <Route path='/gender'>
               <Gender title='Gender' />
+            </Route>
+            <Route path='/whatsopen'>
+              <WhatsOpen title='Whats Open' />
             </Route>
           </TimeContext.Provider>
         </Switch>

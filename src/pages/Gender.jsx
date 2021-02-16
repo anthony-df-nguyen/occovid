@@ -10,7 +10,6 @@ const Gender = (props) => {
     //const {time,setTime} =  useContext(TimeContext);
     const [genderCase, updategenderCaseArray] = useState([]);
     const [genderDeath, updategenderDeathArray] = useState([])
-    console.log(genderDeath)
 
     const genderLabels = ['Female', 'Male', 'Other', 'Unknown'];
     const genderColors = [color.pink, color.blue, color.orange, color.gray];

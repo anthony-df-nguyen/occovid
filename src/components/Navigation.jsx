@@ -76,6 +76,12 @@ const Navigation = (props) => {
         <NavLink to='/gender' onClick={ closeTheNav } activeClassName='selectedLink'>
           by Gender
         </NavLink>
+        <div>
+          <div className='subSection'>Other</div>
+        </div>
+        <NavLink to='/whatsopen' onClick={ closeTheNav } activeClassName='selectedLink'>
+          What's Open
+        </NavLink>
         <NavLink
           to='/donate'
           className='donate'

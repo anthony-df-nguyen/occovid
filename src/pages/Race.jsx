@@ -11,7 +11,7 @@ const Race = props => {
   //const {time,setTime} =  useContext(TimeContext);
   const [raceCase, updateRaceCaseArray] = useState([])
   const [raceDeath, updateRaceDeathArray] = useState([])
-  console.log(raceCase)
+
   const raceCaseArray = [
     raceCase.case_ai,
     raceCase.case_asian,

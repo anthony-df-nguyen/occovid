@@ -11,7 +11,7 @@ import { stackedMultiBar, lineDefaults } from "globalVars/chartJSconfig.js";
 const Schools = (props) => {
   const { time, setTime } = useContext(TimeContext);
   const [array, updateArray] = useState([]);
-  console.log(array)
+
 
   const stackedSchoolIndividuals = {
     labels: array.map(a => a.week),
