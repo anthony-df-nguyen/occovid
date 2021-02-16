@@ -97,6 +97,13 @@ body.dark {
   -o-transition: width ease-out 0.1s;
   transition: width ease-out 0.1s;
   padding-bottom: 4rem;
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+#navMenu::-webkit-scrollbar {
+  display: none;
 }
 #navMenu .linkContainer {
   padding-top: 1rem;
@@ -471,7 +478,7 @@ body.dark {
 }
 .homeWidgetGrid > a .innerDiv .widgetTitle {
   font-size: 1.25rem;
-  font-weight: 300;
+  font-weight: 500;
   letter-spacing: 1px;
   text-transform: uppercase;
   display: block;
@@ -497,6 +504,20 @@ body.dark {
 }
 #homeGauges {
   margin-top: 10px;
+  background-color: var(--white);
+}
+#homeGauges #testsper100 {
+  padding: 2rem 0;
+}
+#homeGauges .statName {
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: var(--primary-text);
+}
+#homeGauges .stat {
+  font-size: 2rem;
 }
 #homeGauges:hover {
   cursor: pointer;

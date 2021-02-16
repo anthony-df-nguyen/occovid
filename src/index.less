@@ -136,6 +136,15 @@ body.dark {
   transition        : width ease-out 0.1s;
   padding-bottom    : 4rem;
 
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width   : none;
+  /* Firefox */
+
   //padding:1rem;
   .linkContainer {
     padding-top: 1rem;
@@ -563,7 +572,7 @@ body.dark {
 
       .widgetTitle {
         font-size     : 1.25rem;
-        font-weight   : 300;
+        font-weight   : 500;
         letter-spacing: 1px;
         text-transform: uppercase;
         display       : block;
@@ -598,8 +607,21 @@ body.dark {
 }
 
 #homeGauges {
-  margin-top  : @gap;
+  margin-top      : @gap;
+  background-color: var(--white);
+
   //max-width : 500px;
+  #testsper100 {
+    padding: 2rem 0;
+  }
+
+  .statName {
+    .chartTitle;
+  }
+
+  .stat {
+    font-size: 2rem;
+  }
 
   &:hover {
     cursor    : pointer;
