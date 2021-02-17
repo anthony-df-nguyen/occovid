@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Bar, Doughnut, Line, HorizontalBar } from 'react-chartjs-2'
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 import 'globalVars/chartJSconfig.js'
 import {
   barDefaults,

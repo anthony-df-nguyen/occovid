@@ -43,6 +43,8 @@
 
 select {
   width           : 100%;
+  max-width       : -webkit-fit-content;
+  max-width       : -moz-fit-content;
   max-width       : fit-content;
   border          : 1px solid var(--select-border);
   border-radius   : @radius;
@@ -432,6 +434,8 @@ body.dark {
 
   .timeButtonContainer {
     margin               : -@gap 0 0 -@gap;
+    display              : -webkit-box;
+    display              : -ms-flexbox;
     display              : flex;
     -webkit-box-orient   : horizontal;
     -webkit-box-direction: normal;
@@ -467,10 +471,14 @@ body.dark {
     }
 
     @media @wide {
-      justify-content: center;
+      -webkit-box-pack: center;
+      -ms-flex-pack   : center;
+      justify-content : center;
 
       a {
-        flex-grow: 0;
+        -webkit-box-flex : 0;
+        -ms-flex-positive: 0;
+        flex-grow        : 0;
       }
     }
   }
@@ -540,12 +548,14 @@ body.dark {
   }
 
   .gaugeContainer {
-    border-radius   : @radius;
-    margin          : @gap 0 0 @gap;
-    background-color: var(--white);
-    flex-grow       : 1;
-    width           : auto;
-    padding         : 1rem;
+    border-radius    : @radius;
+    margin           : @gap 0 0 @gap;
+    background-color : var(--white);
+    -webkit-box-flex : 1;
+    -ms-flex-positive: 1;
+    flex-grow        : 1;
+    width            : auto;
+    padding          : 1rem;
 
     svg.speedometer {
       display   : block;
@@ -559,18 +569,26 @@ body.dark {
 
 //Home WIdget
 .homeWidgetGrid {
-  display       : flex;
-  flex-direction: row;
-  flex-wrap     : wrap;
-  margin        : -@gap 0 0 -@gap;
+  display              : -webkit-box;
+  display              : -ms-flexbox;
+  display              : flex;
+  -webkit-box-orient   : horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction   : row;
+  flex-direction       : row;
+  -ms-flex-wrap        : wrap;
+  flex-wrap            : wrap;
+  margin               : -@gap 0 0 -@gap;
 
   >a {
-    border-radius   : @radius;
-    padding         : 2rem 1rem;
-    background-color: var(--white);
-    position        : relative;
-    margin          : @gap 0 0 @gap;
-    flex-grow       : 1;
+    border-radius    : @radius;
+    padding          : 2rem 1rem;
+    background-color : var(--white);
+    position         : relative;
+    margin           : @gap 0 0 @gap;
+    -webkit-box-flex : 1;
+    -ms-flex-positive: 1;
+    flex-grow        : 1;
 
     @media @biggerthanmobile {
       padding: 1rem;
@@ -581,9 +599,10 @@ body.dark {
     }
 
     &:hover {
-      cursor    : pointer;
-      box-shadow: @shadow;
-      border    : var(--borderOnHover);
+      cursor            : pointer;
+      -webkit-box-shadow: @shadow;
+      box-shadow        : @shadow;
+      border            : var(--borderOnHover);
     }
 
     .innerDiv {
@@ -601,20 +620,29 @@ body.dark {
       }
 
       .subFlex {
-        position      : relative;
-        display       : flex;
-        flex-wrap     : wrap;
-        flex-direction: row;
-        margin        : -@gap 0 0 -@gap;
+        position             : relative;
+        display              : -webkit-box;
+        display              : -ms-flexbox;
+        display              : flex;
+        -ms-flex-wrap        : wrap;
+        flex-wrap            : wrap;
+        -webkit-box-orient   : horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-direction   : row;
+        flex-direction       : row;
+        margin               : -@gap 0 0 -@gap;
 
         .widget {
-          margin           : @gap 0 0 @gap;
-          -webkit-box-flex : 1;
-          -ms-flex-positive: 1;
-          flex-grow        : 1;
-          padding          : 1rem;
-          flex-direction   : row;
-          background-color : var(--gray);
+          margin               : @gap 0 0 @gap;
+          -webkit-box-flex     : 1;
+          -ms-flex-positive    : 1;
+          flex-grow            : 1;
+          padding              : 1rem;
+          -webkit-box-orient   : horizontal;
+          -webkit-box-direction: normal;
+          -ms-flex-direction   : row;
+          flex-direction       : row;
+          background-color     : var(--gray);
         }
       }
 
@@ -643,9 +671,10 @@ body.dark {
   }
 
   &:hover {
-    cursor    : pointer;
-    box-shadow: @shadow;
-    border    : var(--borderOnHover);
+    cursor            : pointer;
+    -webkit-box-shadow: @shadow;
+    box-shadow        : @shadow;
+    border            : var(--borderOnHover);
   }
 }
 
@@ -668,4 +697,39 @@ table {
     font-weight     : 400;
     font-size       : .8rem;
   }
+}
+
+
+.title404, .donate {
+  .center;
+  //margin-top: 2rem;
+  text-align: center;
+
+  h1 {
+    font-size: 2rem;
+    color    : var(--primary-text)
+  }
+
+  p {
+    display:block;
+    max-width: 800px;
+    margin   : 2rem auto;
+    font-size: 1.5rem;
+    color    : var(--primary-text)
+  }
+}
+
+
+a.globButton {
+  background-color: var(--blue);
+  border-radius   : @radius;
+  padding         : @buttonpad;
+  display         : block;
+  margin          : 1rem auto !important;
+
+  font-size: 1.25rem;
+  width    : -webkit-fit-content;
+  width    : -moz-fit-content;
+  width    : fit-content;
+  color    : var(--staywhite)
 }

@@ -11,5 +11,7 @@ import Gender from 'pages/Gender'
 import City from 'pages/City'
 import Zip from 'pages/Zip'
 import WhatsOpen from 'pages/WhatsOpen'
+import NoPage from 'pages/NoPage'
+import Donate from 'pages/Donate'
 
-export { Home, Cases, Deaths, Hospitalization, Vaccinations, Testing, Schools, Age, Race, Gender, City, Zip, WhatsOpen }
+export { Home, Cases, Deaths, Hospitalization, Vaccinations, Testing, Schools, Age, Race, Gender, City, Zip, WhatsOpen, NoPage, Donate}

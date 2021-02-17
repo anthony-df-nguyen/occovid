@@ -15,16 +15,10 @@ function responsivePieLegend() {
 const dataLabels = {
   anchor: 'end',
   align: 'end',
-  offset: 2,
-  color: function () {
-    if (localStorage.getItem('theme') == 'Dark') {
-      return '#d9d9d9'
-    } else {
-      return '#999'
-    }
-  },
+  offset: 0,
+  color:'#999999',
   display: function display(context) {
-    if (context.chart.width > 500) {
+    if (context.chart.width > 600) {
       return 'auto'
     } else {
       return false
@@ -146,17 +140,20 @@ class Twoobject7DayAverage {
         borderWidth: 0,
         radius: 1,
         order: 2,
-        backgroundColor: data1color
+        backgroundColor: data1color,
       },
       {
         type: 'line',
         label: data2label,
         data: data2,
-        borderWidth: 0,
+        borderWidth: 2,
         radius: 1,
         order: 1,
         borderColor: data2color,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
+        datalabels: {
+            display:false,
+        },
       }
     ]
   }
@@ -192,7 +189,10 @@ class Threeobject7DayAverage {
         radius: 1,
         order: 1,
         borderColor: data2color,
-        backgroundColor: data2color
+        backgroundColor: data2color,
+        datalabels: {
+            display:false,
+        },
       },
       {
         type: 'line',
@@ -202,7 +202,10 @@ class Threeobject7DayAverage {
         radius: 1,
         order: 1,
         borderColor: data3color,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
+        datalabels: {
+            display:false,
+        },
       }
     ]
   }
@@ -309,6 +312,26 @@ const piedefaults = {
   },
   layout: {
     padding: 16
+  },
+  plugins: {
+    datalabels: {
+      display: false,
+    },
+  },
+   tooltips: {
+    callbacks: {
+      label: function(tooltipItem, data) {
+        var dataset = data.datasets[tooltipItem.datasetIndex];
+        var meta = dataset._meta[Object.keys(dataset._meta)[0]];
+        var total = meta.total;
+        var currentValue = dataset.data[tooltipItem.index];
+        var percentage = parseFloat((currentValue/total*100).toFixed(1));
+        return currentValue + ' (' + percentage + '%)';
+      },
+      title: function(tooltipItem, data) {
+        return data.labels[tooltipItem[0].index];
+      }
+    }
   },
   responsive: true,
   maintainAspectRatio: false

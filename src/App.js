@@ -1,15 +1,21 @@
 import logo from './logo.svg'
+
+import ReactGA from 'react-ga';
 import React, { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom'
 import TimeContext from './components/TimeContext'
 import * as sources from 'globalVars/Sources'
 import Header from './components/Header'
 import { timeSelection } from 'components/Timeselect'
-import { Home, Cases, Deaths, Hospitalization, Vaccinations, Testing, Schools, Age, Race, Gender, City, Zip, WhatsOpen } from 'pages/Master'
+import { Home, Cases, Deaths, Hospitalization, Vaccinations, Testing, Schools, Age, Race, Gender, City, Zip, WhatsOpen, NoPage, Donate } from 'pages/Master'
+
+
+
 
 function App() {
-  //localStorage.clear()
-  //console.log(localStorage)
+  const trackingId = "UA-164595635-1";
+  ReactGA.initialize(trackingId);
+  ReactGA.pageview(window.location.pathname + window.location.search) 
   let startingTime
   if (!localStorage.getItem('timeSetting')) {
     localStorage.setItem('timeSetting', 30)
@@ -18,13 +24,13 @@ function App() {
     startingTime = localStorage.getItem('timeSetting')
   }
   const [time, setTime] = useState(startingTime)
-
+ 
   return (
     <Router>
       <div className='App'>
         <Header />
+        <TimeContext.Provider value={ { time, setTime } }>
         <Switch>
-          <TimeContext.Provider value={ { time, setTime } }>
             <Route exact path='/'>
               <Home title='Summary' />
             </Route>
@@ -64,8 +70,16 @@ function App() {
             <Route path='/whatsopen'>
               <WhatsOpen title='Whats Open' />
             </Route>
-          </TimeContext.Provider>
+            <Route path='/donate'>
+              <Donate title='Donate' />
+            </Route>
+            <Route >
+              <NoPage title="404" />
+            </Route>
+            
+        
         </Switch>
+            </TimeContext.Provider>
       </div>
     </Router>
   )
