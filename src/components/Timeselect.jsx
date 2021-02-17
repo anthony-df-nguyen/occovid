@@ -8,6 +8,7 @@ function setStorage(value) {
 
 const Timeselect = props => {
   const { time, setTime } = useContext(TimeContext)
+  //console.log("file: Timeselect.jsx ~ line 11 ~ time", time)
 
   const [valueForNoneOption, updateNoneValue] = useState(time)
 
@@ -56,21 +57,34 @@ const Timeselect = props => {
 
     //Create React partials for Each Month
     let optionJSX = [
-      <option key={ 0 } value={ valueForNoneOption }>
+      // <option key={ 0 } value={ valueForNoneOption }>
+      //   No Month Isolated
+      // </option>
+      <option key={ 0 } value={'All Time'}>
         No Month Isolated
       </option>
     ]
     //Parse the current save date into a string
     for (let i = 0; i < theMonthArray.length; i++) {
-      optionJSX.push(
-        <option key={ i + 1 } value={ new Date(theMonthArray[i].value) }>
-          { theMonthArray[i].display }
-        </option>
-      )
+      if (new Date(theMonthArray[i].value) == time) {
+        let adasd = new Date(theMonthArray[i].value);
+        optionJSX.push(
+          <option key={ i + 1 } value={ time } selected >
+            { theMonthArray[i].display }
+          </option>
+        )
+      } else {
+        optionJSX.push(
+          <option key={ i + 1 } value={ new Date(theMonthArray[i].value) }>
+            { theMonthArray[i].display }
+          </option>
+        )
+      }
+
     }
 
     return (
-      <select onChange={ monthSwitch } defaultValue={ time }>
+      <select onChange={ monthSwitch } >
         {optionJSX }
       </select>
     )

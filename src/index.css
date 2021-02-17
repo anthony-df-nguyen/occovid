@@ -456,7 +456,6 @@ body.dark {
 .timeParent .timeButtonContainer a:hover,
 .timeParent .timeButtonContainer select:hover {
   cursor: pointer;
-  background-color: var(--blue);
 }
 @media only screen and (min-width:1366px) {
   .timeParent .timeButtonContainer a,

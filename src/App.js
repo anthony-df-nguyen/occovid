@@ -7,7 +7,7 @@ import TimeContext from './components/TimeContext'
 import * as sources from 'globalVars/Sources'
 import Header from './components/Header'
 import { timeSelection } from 'components/Timeselect'
-import { Home, Cases, Deaths, Hospitalization, Vaccinations, Testing, Schools, Age, Race, Gender, City, Zip, Cityhistory, WhatsOpen, NoPage, Donate } from 'pages/Master'
+import { Home, Cases, Deaths, Hospitalization, Vaccinations, Testing, Schools, Age, Race, Gender, City, Zip, Cityhistory, WhatsOpen, ComingSoon, NoPage, Donate } from 'pages/Master'
 
 
 
@@ -72,6 +72,9 @@ function App() {
             </Route>
             <Route path='/whatsopen'>
               <WhatsOpen title='Whats Open' />
+            </Route>
+              <Route path='/comingsoon'>
+              <ComingSoon title='Coming Soon' />
             </Route>
             <Route path='/donate'>
               <Donate title='Donate' />

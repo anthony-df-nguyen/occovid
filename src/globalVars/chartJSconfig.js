@@ -216,8 +216,10 @@ const stackedMultiBar = {
     display: true,
     position: 'bottom',
     align: 'center',
-
     labels: { boxWidth: 20, fontColor: '#999' }
+  },
+  plugins: {
+    datalabels: false,
   },
   layout: {
     padding: chartpadding
