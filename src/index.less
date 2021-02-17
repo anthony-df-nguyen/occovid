@@ -317,51 +317,6 @@ body.dark {
   }
 }
 
-//Chart grid
-#chartGrid {
-  display              : grid;
-  grid-gap             : @gap;
-  grid-template-columns: 1fr;
-  grid-template-rows   : auto;
-
-  @media @biggerthanmobile {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media @wider1680 {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-}
-
-#cityGrid {
-  margin-top           : @gap;
-  display              : grid;
-  grid-gap             : @gap;
-  grid-template-columns: 1fr;
-  grid-template-rows   : auto;
-
-  .chartContainer {
-    canvas {
-      //height    : 100% !important;
-      max-height: 100vh !important;
-
-      @media @wide {
-        max-height: 700px !important;
-      }
-    }
-
-  }
-
-  @media only screen and (min-width:768px) {
-    grid-template-columns: minmax(auto, 320px) 1fr;
-  }
-
-  @media only screen and (min-width:1366px) {
-    grid-template-columns: 400px 1fr;
-  }
-}
-
 .chartContainer {
   background-color: var(--white);
   padding         : 1rem;
@@ -375,6 +330,14 @@ body.dark {
     @media @wider1680 {
       height    : 25vh;
       max-height: 25vh;
+    }
+  }
+
+  table {
+    height: auto;
+
+    td {
+      background-color: var(--gray);
     }
   }
 }
@@ -412,6 +375,84 @@ body.dark {
     margin-left: .5rem;
   }
 }
+
+//Chart grid
+#chartGrid {
+  display              : grid;
+  grid-gap             : @gap;
+  grid-template-columns: 1fr;
+  grid-template-rows   : auto;
+
+  @media only screen and (min-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media @wider1680 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+}
+
+//Specifically for Age/Race Page
+#chartGridAge {
+  #chartGrid;
+
+  @media only screen and (min-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media @wider1680 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+#chartGridRace {
+  #chartGrid;
+
+  @media only screen and (min-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+    :nth-child(3) {
+      grid-row:2;
+      grid-column: 1 / span 2;
+      canvas {
+        height:450px;
+      }
+    }
+  }
+}
+
+
+
+
+
+#cityGrid {
+  margin-top           : @gap;
+  display              : grid;
+  grid-gap             : @gap;
+  grid-template-columns: 1fr;
+  grid-template-rows   : auto;
+
+  .chartContainer {
+    canvas {
+      //height    : 100% !important;
+      max-height: 100vh !important;
+
+      @media @wide {
+        max-height: 700px !important;
+      }
+    }
+
+  }
+
+  @media only screen and (min-width:768px) {
+    grid-template-columns: minmax(auto, 320px) 1fr;
+  }
+
+  @media only screen and (min-width:1366px) {
+    grid-template-columns: 400px 1fr;
+  }
+}
+
 
 //Time Filters
 .timeFilterTitle {
@@ -483,14 +524,6 @@ body.dark {
     }
   }
 }
-
-// #cityZipSortUI {
-//   .timeButtonContainer {
-//     text-align     : center;
-//     justify-content: space-between;
-
-//   }
-// }
 
 .active {
   color             : var(--staywhite) !important;
@@ -700,7 +733,8 @@ table {
 }
 
 
-.title404, .donate {
+.title404,
+.donate {
   .center;
   //margin-top: 2rem;
   text-align: center;
@@ -711,7 +745,7 @@ table {
   }
 
   p {
-    display:block;
+    display  : block;
     max-width: 800px;
     margin   : 2rem auto;
     font-size: 1.5rem;
@@ -732,4 +766,10 @@ a.globButton {
   width    : -moz-fit-content;
   width    : fit-content;
   color    : var(--staywhite)
+}
+
+.forceTableSep {
+  color:var(--primary-text);
+  font-weight: bold;
+  font-family: 'Arial',sans-serif;
 }

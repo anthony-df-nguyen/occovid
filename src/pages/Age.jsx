@@ -53,9 +53,10 @@ const Age = props => {
   })
   const [age03, age49, age1012, age1314, age1518] = youthCases
 
-  let allKnownAgesCases = ageCaseArray[0] + ageCaseArray[1] + ageCaseArray[2] + ageCaseArray[3] + ageCaseArray[4] + ageCaseArray[5] + ageCaseArray[6] + ageCaseArray[7] + ageCaseArray[8]
+  const allKnownAgesCases = ageCaseArray[0] + ageCaseArray[1] + ageCaseArray[2] + ageCaseArray[3] + ageCaseArray[4] + ageCaseArray[5] + ageCaseArray[6] + ageCaseArray[7] + ageCaseArray[8]
 
-  let ageHeaders = ['Age', 'Pop (%)', '% of All Cases', '% Group Infected'];
+  const allKnownAgeDeaths = ageDeathArray[1] + ageDeathArray[2] + ageDeathArray[3] + ageDeathArray[4] + ageDeathArray[5] + ageDeathArray[6] + ageDeathArray[7] + ageDeathArray[8];
+
   let ageTableRows = [...ageLabels]
   ageTableRows.pop()
   let agePopArray = [age0_17_pop,
@@ -73,10 +74,23 @@ const Age = props => {
   ageCaseArray.forEach((a, i) => {
     if (i < ageCaseArray.length - 1) {
       let population = agePopArray[i].toLocaleString();
-      let popPerc = (parseFloat((a / agePopArray[i]) * 100).toFixed(1)) + '%';
+      let popPerc = (parseFloat((agePopArray[i]/ocpop) * 100).toFixed(1)) + '%';
       ageCol2.push(`${population}<br>${popPerc}`)
       ageCol3.push((parseFloat((a / allKnownAgesCases) * 100).toFixed(1)) + '%')
       ageCol4.push((parseFloat((a / agePopArray[i]) * 100).toFixed(1)) + '%')
+    }
+  })
+
+  let ageDeathCol2 = []
+  let ageDeathCol3 = []
+  let ageDeathCol4 = []
+  ageDeathArray.forEach((a, i) => {
+    if (i < ageDeathArray.length - 1) {
+      let population = agePopArray[i].toLocaleString();
+      let popPerc = (parseFloat((agePopArray[i] / ocpop) * 100).toFixed(1)) + '%';
+      ageDeathCol2.push(`${population}<br>${popPerc}`)
+      ageDeathCol3.push((parseFloat((a / allKnownAgeDeaths) * 100).toFixed(1)) + '%')
+      ageDeathCol4.push((parseFloat((a / agePopArray[i]) * 100).toFixed(1)) + '%')
     }
   })
 
@@ -88,7 +102,7 @@ const Age = props => {
       <div className='page'>
         <h1 className='pageTitle'>{ props.title }</h1>
 
-        <div id='chartGrid'>
+        <div id='chartGridAge'>
           <Chart
             key='4'
             id='age4'
@@ -97,31 +111,10 @@ const Age = props => {
             fill={ [...[youngColorAll]] }
             title={ 'Cases Among Youth' }
             label={ ['Fatality Rate'] }
-            switches={ ['horizontalBar', 'bar', 'doughnut'] }
-          />
-          <Chart
-            key='1'
-            id='age1'
-            date={ [...ageLabels] }
-            data={ [ageCaseArray] }
-            fill={ [...[ageColors]] }
-            title={ 'Total Cases by Age Group' }
-            label={ ['Cases'] }
-            switches={ ['horizontalBar', 'bar', 'doughnut'] }
-          />
-          <div className="chartContainer" style={ { padding: '0', backgroundColor: 'transparent', } }>
-            <BuildTable colName={ ageHeaders } rows={ ageTableRows } columns={ [ageCol2, ageCol3, ageCol4] } />
-          </div>
-          <Chart
-            key='2'
-            id='age2'
-            date={ [...ageLabels] }
-            data={ [ageDeathArray] }
-            fill={ [...[ageColors]] }
-            title={ 'Total Deaths by Age Group' }
-            label={ ['Deaths'] }
-            switches={ ['horizontalBar', 'bar', 'doughnut'] }
-          />
+            switches={ ['horizontalBar', 'bar', 'doughnut'] }>
+           
+          </Chart>
+
           <Chart
             key='3'
             id='age3'
@@ -132,6 +125,33 @@ const Age = props => {
             label={ ['Fatality Rate'] }
             switches={ ['horizontalBar', 'bar'] }
           />
+
+
+          <Chart
+            key='1'
+            id='ageCaseCombo'
+            date={ [...ageLabels] }
+            data={ [ageCaseArray] }
+            fill={ [...[ageColors]] }
+            title={ 'Total Cases by Age Group' }
+            label={ ['Cases'] }
+            switches={ ['horizontalBar', 'bar', 'doughnut'] }>
+            <BuildTable colName={ ['Age', 'Population)', '% of All Cases', '% Group Infected'] } rows={ ageTableRows } columns={ [ageCol2, ageCol3, ageCol4] } />
+
+          </Chart>
+
+
+          <Chart
+            key='2'
+            id='ageDeathCombo'
+            date={ [...ageLabels] }
+            data={ [ageDeathArray] }
+            fill={ [...[ageColors]] }
+            title={ 'Total Deaths by Age Group' }
+            label={ ['Deaths'] }
+            switches={ ['horizontalBar', 'bar', 'doughnut'] }>
+            <BuildTable colName={ ['Age', 'Population', '% of All Deaths', '% Group Passed'] } rows={ ageTableRows } columns={ [ageDeathCol2, ageDeathCol3, ageDeathCol4] } />
+          </Chart>
 
         </div>
 

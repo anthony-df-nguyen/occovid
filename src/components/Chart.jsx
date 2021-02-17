@@ -94,10 +94,11 @@ const Chart = props => {
     }
   }
   return (
-    <div className='chartContainer'>
+    <div className='chartContainer' id={ props.id } >
       <div className='chartTitle'>{ props.title }</div>
       <Chartselect type={ props.switches } passdown={ updateType } id={ props.id } />
       {renderChart(currentType) }
+      {props.children}
     </div>
   )
 }

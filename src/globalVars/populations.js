@@ -208,6 +208,8 @@ const asian_pop = 691596
 const black_pop = 60125
 const hispanic_pop = 1115740
 const white_pop = 1776369
+const native_pop = 19142
+const pi_pop = 9983
 
 export {
   countyPopulation,
@@ -227,5 +229,7 @@ export {
   asian_pop,
   black_pop,
   hispanic_pop,
-  white_pop
+  white_pop,
+  native_pop,
+  pi_pop
 }

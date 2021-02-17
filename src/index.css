@@ -256,47 +256,6 @@ body.dark {
     width: calc(100% - 250px);
   }
 }
-#chartGrid {
-  display: grid;
-  grid-gap: 10px;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto;
-}
-@media only screen and (min-width:520px) {
-  #chartGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-@media only screen and (min-width:1680px) {
-  #chartGrid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-#cityGrid {
-  margin-top: 10px;
-  display: grid;
-  grid-gap: 10px;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto;
-}
-#cityGrid .chartContainer canvas {
-  max-height: 100vh !important;
-}
-@media only screen and (min-width:1366px) {
-  #cityGrid .chartContainer canvas {
-    max-height: 700px !important;
-  }
-}
-@media only screen and (min-width: 768px) {
-  #cityGrid {
-    grid-template-columns: minmax(auto, 320px) 1fr;
-  }
-}
-@media only screen and (min-width: 1366px) {
-  #cityGrid {
-    grid-template-columns: 400px 1fr;
-  }
-}
 .chartContainer {
   background-color: var(--white);
   padding: 1rem;
@@ -312,6 +271,12 @@ body.dark {
     height: 25vh;
     max-height: 25vh;
   }
+}
+.chartContainer table {
+  height: auto;
+}
+.chartContainer table td {
+  background-color: var(--gray);
 }
 .chartTitle {
   font-size: 1rem;
@@ -341,6 +306,101 @@ body.dark {
 }
 .chartButtonContainer .chartTypeButton + .chartTypeButton {
   margin-left: 0.5rem;
+}
+#chartGrid {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+}
+@media only screen and (min-width: 1024px) {
+  #chartGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media only screen and (min-width:1680px) {
+  #chartGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+#chartGridAge {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+}
+@media only screen and (min-width: 1024px) {
+  #chartGridAge {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media only screen and (min-width:1680px) {
+  #chartGridAge {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media only screen and (min-width: 1024px) {
+  #chartGridAge {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media only screen and (min-width:1680px) {
+  #chartGridAge {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+#chartGridRace {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+}
+@media only screen and (min-width: 1024px) {
+  #chartGridRace {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media only screen and (min-width:1680px) {
+  #chartGridRace {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media only screen and (min-width: 1024px) {
+  #chartGridRace {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  #chartGridRace :nth-child(3) {
+    grid-row: 2;
+    grid-column: 1 / span 2;
+  }
+  #chartGridRace :nth-child(3) canvas {
+    height: 450px;
+  }
+}
+#cityGrid {
+  margin-top: 10px;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+}
+#cityGrid .chartContainer canvas {
+  max-height: 100vh !important;
+}
+@media only screen and (min-width:1366px) {
+  #cityGrid .chartContainer canvas {
+    max-height: 700px !important;
+  }
+}
+@media only screen and (min-width: 768px) {
+  #cityGrid {
+    grid-template-columns: minmax(auto, 320px) 1fr;
+  }
+}
+@media only screen and (min-width: 1366px) {
+  #cityGrid {
+    grid-template-columns: 400px 1fr;
+  }
 }
 .timeFilterTitle {
   text-align: center;
@@ -624,4 +684,9 @@ a.globButton {
   width: -moz-fit-content;
   width: fit-content;
   color: var(--staywhite);
+}
+.forceTableSep {
+  color: var(--primary-text);
+  font-weight: bold;
+  font-family: 'Arial', sans-serif;
 }
