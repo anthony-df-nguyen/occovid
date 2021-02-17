@@ -349,5 +349,6 @@ export {
   piedefaults,
   raceColors,
   raceLabels,
-  stackedMultiBar
+  stackedMultiBar,
+  chartpadding
 }

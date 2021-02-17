@@ -7,7 +7,7 @@ import TimeContext from './components/TimeContext'
 import * as sources from 'globalVars/Sources'
 import Header from './components/Header'
 import { timeSelection } from 'components/Timeselect'
-import { Home, Cases, Deaths, Hospitalization, Vaccinations, Testing, Schools, Age, Race, Gender, City, Zip, WhatsOpen, NoPage, Donate } from 'pages/Master'
+import { Home, Cases, Deaths, Hospitalization, Vaccinations, Testing, Schools, Age, Race, Gender, City, Zip, Cityhistory, WhatsOpen, NoPage, Donate } from 'pages/Master'
 
 
 
@@ -51,6 +51,9 @@ function App() {
             </Route>
             <Route path='/schools'>
               <Schools title='Schools' />
+            </Route>
+            <Route path='/cityhistory'>
+              <Cityhistory title='City History' />
             </Route>
             <Route path='/city'>
               <City title='City' />

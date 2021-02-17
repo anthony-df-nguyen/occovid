@@ -44,8 +44,7 @@ const Race = props => {
   ]
 
   const knownCases = raceCase.case_ai + raceCase.case_asian + raceCase.case_aa + raceCase.case_latinx + raceCase.case_mult_race + raceCase.case_pi + raceCase.case_oth_race + raceCase.case_white
-  console.log("file: Race.jsx ~ line 47 ~ knownCases", knownCases)
-  
+ 
   const knownDeaths = raceDeath.dth_ai + raceDeath.dth_asian + raceDeath.dth_aa + raceDeath.dth_latinx + raceDeath.dth_mult_race + raceDeath.dth_pi + raceDeath.dth_oth_race + raceDeath.dth_white
 
   const subRaceCaseArray = [raceCase.case_asian, raceCase.case_aa, raceCase.case_latinx, raceCase.case_white, raceCase.case_ai, raceCase.case_pi]

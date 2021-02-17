@@ -80,7 +80,7 @@ const Vaccinations = (props) => {
                         id="vaccine3"
                         date={ ["Moderna", "Pfizer", "Unknown"] }
                         data={ [[moderna, pfizer, unknownTrade]] }
-                        fill={ [[color.green, color.blue, color.lightgray]] }
+                        fill={ [[color.green, color.blue, color.lightergray]] }
                         title={ "Persons w/ at Least 1 Dose: by Trade" }
                         label={ ["People"] }
                         switches={ ['horizontalBar', 'bar', 'doughnut'] }

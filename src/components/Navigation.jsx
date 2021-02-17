@@ -24,13 +24,13 @@ const Navigation = (props) => {
     <div id='navMenu'>
       <div className='linkContainer'>
         <Darktoggle />
-        <NavLink exact to='/' onClick={ () => { closeTheNav('/') }} activeClassName='selectedLink'>
+        <NavLink exact to='/' onClick={ () => { closeTheNav('/') } } activeClassName='selectedLink'>
           Summary
         </NavLink>
         <NavLink to='/cases' onClick={ () => { closeTheNav('/cases') } } activeClassName='selectedLink'>
           Cases
         </NavLink>
-        <NavLink to='/deaths' onClick={ () => { closeTheNav('/deaths') }} activeClassName='selectedLink'>
+        <NavLink to='/deaths' onClick={ () => { closeTheNav('/deaths') } } activeClassName='selectedLink'>
           Deaths
         </NavLink>
         <NavLink
@@ -43,27 +43,30 @@ const Navigation = (props) => {
         <NavLink
           to='/vaccinations'
 
-          onClick={ () => { closeTheNav('/vaccinations') }} activeClassName='selectedLink'
+          onClick={ () => { closeTheNav('/vaccinations') } } activeClassName='selectedLink'
         >
           Vaccinations
         </NavLink>
         <NavLink
           to='/testing'
 
-          onClick={ () => { closeTheNav('/testing') }} activeClassName='selectedLink'
+          onClick={ () => { closeTheNav('/testing') } } activeClassName='selectedLink'
         >
           Testing
         </NavLink>
         <NavLink
           to='/schools'
 
-          onClick={ () => { closeTheNav('/schools') }} activeClassName='selectedLink'
+          onClick={ () => { closeTheNav('/schools') } } activeClassName='selectedLink'
         >
           School Cases
         </NavLink>
         <div>
           <div className='subSection'>by Location</div>
         </div>
+        <NavLink to='/cityhistory' onClick={ () => { closeTheNav('/cityhistory') } } activeClassName='selectedLink'>
+          City History
+        </NavLink>
         <NavLink to='/city' onClick={ () => { closeTheNav('/city') } } activeClassName='selectedLink'>
           City
         </NavLink>
@@ -73,13 +76,13 @@ const Navigation = (props) => {
         <div>
           <div className='subSection'>by Demographic</div>
         </div>
-        <NavLink to='/age' onClick={ () => { closeTheNav('/age') }} activeClassName='selectedLink'>
+        <NavLink to='/age' onClick={ () => { closeTheNav('/age') } } activeClassName='selectedLink'>
           by Age
         </NavLink>
-        <NavLink to='/race' onClick={ () => { closeTheNav('/race') }} activeClassName='selectedLink'>
+        <NavLink to='/race' onClick={ () => { closeTheNav('/race') } } activeClassName='selectedLink'>
           by Race
         </NavLink>
-        <NavLink to='/gender' onClick={ () => { closeTheNav('/gender') }} activeClassName='selectedLink'>
+        <NavLink to='/gender' onClick={ () => { closeTheNav('/gender') } } activeClassName='selectedLink'>
           by Gender
         </NavLink>
         <div>
@@ -88,11 +91,11 @@ const Navigation = (props) => {
         <NavLink to='/whatsopen' onClick={ () => { closeTheNav('/whatsopen') } } activeClassName='selectedLink'>
           What's Open
         </NavLink>
- 
-        <div onClick={ () => { closeTheNav('/donate') }}>
-          <Button onClick={ () => { closeTheNav() }} url={ '/donate' } text="Donate" />
+
+        <div style={ { paddingBottom: "8rem", } } onClick={ () => { closeTheNav('/donate') } }>
+          <Button onClick={ () => { closeTheNav() } } url={ '/donate' } text="Donate" />
         </div>
-       
+
 
       </div>
     </div>

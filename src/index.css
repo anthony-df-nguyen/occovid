@@ -110,7 +110,7 @@ body.dark {
   -webkit-transition: width ease-out 0.1s;
   -o-transition: width ease-out 0.1s;
   transition: width ease-out 0.1s;
-  padding-bottom: 4rem;
+  padding-bottom: 0;
   -ms-overflow-style: none;
   /* IE and Edge */
   scrollbar-width: none;
@@ -376,6 +376,13 @@ body.dark {
   #chartGridRace :nth-child(3) canvas {
     height: 450px;
   }
+}
+#fullPageChart {
+  display: block;
+}
+#fullPageChart canvas {
+  height: 100%;
+  max-height: 60vh;
 }
 #cityGrid {
   margin-top: 10px;
@@ -659,6 +666,16 @@ table td {
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   text-align: center;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  max-width: calc(100% - 2rem);
+}
+@media only screen and (min-width:520px) {
+  .title404,
+  .donate {
+    max-width: 500px;
+  }
 }
 .title404 h1,
 .donate h1 {
@@ -668,25 +685,120 @@ table td {
 .title404 p,
 .donate p {
   display: block;
-  max-width: 800px;
   margin: 2rem auto;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   color: var(--primary-text);
+}
+@media only screen and (min-width:1366px) {
+  .title404 p,
+  .donate p {
+    font-size: 2rem;
+    max-width: 800px;
+  }
 }
 a.globButton {
   background-color: var(--blue);
   border-radius: 5px;
-  padding: 6px 8px;
+  padding: 8px 16px !important;
   display: block;
   margin: 1rem auto !important;
   font-size: 1.25rem;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  color: var(--staywhite);
+  color: var(--staywhite) !important;
 }
 .forceTableSep {
   color: var(--primary-text);
   font-weight: bold;
   font-family: 'Arial', sans-serif;
+}
+#multiCitySelect {
+  background-color: var(--white);
+  margin: 1em auto 1rem auto;
+  border-radius: 5px;
+}
+#multiCitySelect:hover {
+  cursor: pointer;
+  -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  border: var(--borderOnHover);
+}
+#multiCitySelect .cityselecttitle {
+  padding: 1rem;
+  text-align: center;
+  color: var(--blue);
+  display: block;
+  font-weight: 500;
+}
+@media only screen and (min-width:520px) {
+  #multiCitySelect .cityselecttitle {
+    font-size: 1.5rem;
+  }
+}
+#multiCitySelect .citySelectorContainer {
+  overflow-y: hidden;
+  height: 100%;
+  -webkit-transition: max-height 0.2s ease-in-out;
+  -o-transition: max-height 0.2s ease-in-out;
+  transition: max-height 0.2s ease-in-out;
+}
+#multiCitySelect ul {
+  padding: 0 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  max-height: 500px;
+}
+#multiCitySelect ul li {
+  list-style: none;
+  font-size: 12px;
+  margin-top: 5px;
+}
+#multiCitySelect ul li input[type=checkbox] {
+  display: block;
+  float: left;
+  margin-right: 5px;
+}
+@media only screen and (min-width:520px) {
+  #multiCitySelect ul {
+    max-height: 300px;
+  }
+  #multiCitySelect ul li {
+    font-size: 14px;
+  }
+}
+@media only screen and (min-width:1366px) {
+  #multiCitySelect ul {
+    max-height: 300px;
+  }
+  #multiCitySelect ul li {
+    font-size: 16px;
+  }
+}
+@media only screen and (min-width:1920px) {
+  #multiCitySelect ul {
+    max-height: 150px;
+  }
+  #multiCitySelect ul li {
+    font-size: 1rem;
+  }
+}
+.loadDataButton {
+  background-color: var(--blue);
+  border-radius: 5px;
+  padding: 8px 16px !important;
+  display: block;
+  margin: 1rem auto !important;
+  font-size: 1.25rem;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  color: var(--staywhite) !important;
 }
