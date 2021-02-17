@@ -28,9 +28,10 @@ const FetchTesting = (props) => {
         })
       })
       .then(() => {
+
         thisDataArray.forEach(a => {
-          if (a.tot_pcr_pos) {
-            lastTotalPCR = a.tot_pcr_pos.toLocaleString()
+          if (a.tot_spec) {
+            lastTotalPCR = a.tot_spec.toLocaleString()
           }
           if (a.daily_test_repo) {
             lastDailyTests = a.daily_test_repo.toLocaleString()
@@ -38,7 +39,8 @@ const FetchTesting = (props) => {
         })
       })
       .then(() => filtertime(thisDataArray, props.time))
-      .then(final => props.function(final))
+      .then(final => {
+        props.function(final)})
   }, [props.time])
 
   return (<>

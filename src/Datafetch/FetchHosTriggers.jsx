@@ -19,12 +19,12 @@ const FetchHosTriggers = props => {
         temp.forEach((row, i) => {
           thisDataArray.push({
             date: new Date(row.attributes.date).toLocaleDateString(),
-            hospitalChange: parseInt(row.attributes.hosp_chnge_cdph),
-            bedsAvailAdj: parseInt(row.attributes.icu_avail_adj),
-            bedAvailUnaAdj: parseInt(row.attributes.icu_avail_unadj),
-            testPos: parseInt(row.attributes.test_pos_cdph),
+            hospitalChange: parseFloat(row.attributes.hosp_chnge_cdph),
+            bedsAvailAdj: parseFloat(row.attributes.icu_avail_adj),
+            bedAvailUnaAdj: parseFloat(row.attributes.icu_avail_unadj),
+            testPos: parseFloat(row.attributes.test_pos_cdph),
             pos7Avg: pos7Avg[i],
-            ventsAvail: parseInt(row.attributes.vent_avail_cdph)
+            ventsAvail: parseFloat(row.attributes.vent_avail_cdph)
           })
         })
       })

@@ -39,14 +39,14 @@ const FetchCases = props => {
       })
       .then(() => {
         thisDataArray.forEach(a => {
-          if (a.totalCasesbySpecimen) {
-            lastTotalCases = a.totalCasesbySpecimen.toLocaleString()
+          if (a.totalCasesReported) {
+            lastTotalCases = a.totalCasesReported.toLocaleString()
           }
           if (a.dailyCasesReported) {
             lastDailyReported = a.dailyCasesReported.toLocaleString()
           }
           if (a.recovered) {
-            lastRecovered = a.dailyCasesReported.toLocaleString()
+            lastRecovered = a.recovered.toLocaleString()
           }
           if (a.homelessCases) {
             lastHomeless = a.homelessCases.toLocaleString()
@@ -60,7 +60,10 @@ const FetchCases = props => {
         })
       })
       .then(() => filtertime(thisDataArray, props.time))
-      .then(final => props.function(final))
+      .then(final => {
+        //console.log(final)
+        props.function(final)
+      })
   }, [props.time])
 
   return <></>
