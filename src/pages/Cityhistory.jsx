@@ -6,6 +6,8 @@ import color from 'globalVars/Colors'
 import _ from "lodash";
 import CityCompareChart from 'components/CityCompare/CityCompareChart';
 import CitySelector from 'components/CityCompare/CitySelector';
+import Page from 'components/Page'
+
 
 const Cityhistory = (props) => {
 
@@ -34,10 +36,9 @@ const Cityhistory = (props) => {
     return (
         <div>
             <FetchCityHistory time={ time } cities={ [city1, city2, city3] } arrayUpdate={ [updateCity1Array, updateCity2Array, updateCity3Array]} />
-            <div className='page'>
-                <h1 className='pageTitle'>{ props.title } </h1>
-               
-                <Timeselect />
+            <Page title = 'City History'
+>
+                  <Timeselect />
                 <CitySelector updater={ [updateCity1, updateCity2, updateCity3] } cities={ [city1, city2, city3] } />
                 <div id="fullPageChart">
                     <CityCompareChart
@@ -53,8 +54,9 @@ const Cityhistory = (props) => {
                         switches={ ['line'] }
                     />
                 </div>
-           
-            </div>
+         
+            </Page>
+              
         </div>
     );
 }

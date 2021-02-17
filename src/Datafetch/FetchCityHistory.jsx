@@ -31,13 +31,12 @@ const FetchCityHistory = (props) => {
             })
             .then(() => {
                 return filtertime(cityData, props.time);
-            })
-            .then((final) => {
+            }).then((final) => {
                 props.arrayUpdate[i](final)
             })
     }
 
-    useEffect(async () => {
+    useEffect( () => {
         if (city1) {
             fetchArray(city1, 0);
         }
@@ -51,13 +50,13 @@ const FetchCityHistory = (props) => {
         }
     }, [props.time])
 
-    useEffect(async () => {
+    useEffect( () => {
         fetchArray(city1, 0);
     }, [city1])
-    useEffect(async () => {
+    useEffect( () => {
         fetchArray(city2, 1);
     }, [city2])
-    useEffect(async () => {
+    useEffect( () => {
         fetchArray(city3, 2);
     }, [city3])
 

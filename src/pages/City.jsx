@@ -6,12 +6,13 @@ import CityZipSort from 'components/CityZipSort'
 import { FetchCityData } from 'Datafetch/FetchCityData'
 import Chart from 'components/Chart'
 import BuildTable from 'components/BuildTable'
+import Page from 'components/Page'
 
 const City = props => {
   const { time, setTime } = useContext(TimeContext)
   const [array, updateArray] = useState([])
   const [whichMetric, updateWhichMetric] = useState('totalCases')
-  const [metricName, updateMetricName] = useState('Total Cases');
+  const [metricName, updateMetricName] = useState('Total Cases')
   const [whichSort, updateWhichSort] = useState('high')
 
   let finalArraytoUse = []
@@ -47,43 +48,43 @@ const City = props => {
   }
 
   let chartType
-  let width = window.innerWidth;
+  let width = window.innerWidth
   if (width > 1400) {
-    chartType = 'bar';
+    chartType = 'bar'
   } else {
-    chartType = 'horizontalBar';
+    chartType = 'horizontalBar'
   }
-
-
-
 
   return (
     <div>
-      <FetchCityData function={ updateArray } time={ time } />
-      <div className='page'>
-        <h1 className='pageTitle'>{ props.title }</h1>
+      <FetchCityData function={updateArray} time={time} />
+
+      <Page title = 'City Detail'
+>
         <CityZipMetricSelect
-          function={ [updateWhichMetric, updateMetricName] }
-          current={ whichMetric }
+          function={[updateWhichMetric, updateMetricName]}
+          current={whichMetric}
         />
-        <CityZipSort function={ updateWhichSort } current={ whichSort } />
+        <CityZipSort function={updateWhichSort} current={whichSort} />
         <div id='cityGrid'>
-          <BuildTable colName={ ['City', metricName] } rows={ finalArraytoUse.map(a => a.city) } columns={ [finalArraytoUse.map(a => a.value)] } />
+          <BuildTable
+            colName={['City', metricName]}
+            rows={finalArraytoUse.map(a => a.city)}
+            columns={[finalArraytoUse.map(a => a.value)]}
+          />
           <Chart
-            className="overrideBackground"
+            className='overrideBackground'
             key='1'
             id='city1'
-            switches={ [chartType] }
-            date={ finalArraytoUse.map(a => a.city) }
-            data={ [finalArraytoUse.map(a => a.value)] }
-            fill={ [color.yellow] }
-            title={ 'Total Cases by Specimen Collection' }
-            label={ ['Cases', 'Estimated Recovered'] }
+            switches={[chartType]}
+            date={finalArraytoUse.map(a => a.city)}
+            data={[finalArraytoUse.map(a => a.value)]}
+            fill={[color.yellow]}
+            title={'Total Cases by Specimen Collection'}
+            label={['Cases', 'Estimated Recovered']}
           />
-
         </div>
-
-      </div>
+      </Page>
     </div>
   )
 }

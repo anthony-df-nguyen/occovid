@@ -17,6 +17,7 @@ import {
   age85_pop,
 } from 'globalVars/populations'
 import BuildTable from 'components/BuildTable'
+import Page from 'components/Page'
 
 const Age = props => {
   const [ageCase, updateAgeCaseArray] = useState([])
@@ -99,10 +100,8 @@ const Age = props => {
       <FetchCaseDemo function={ updateAgeCaseArray } />
       <FetchDeathDemo function={ updateAgeDeathArray } />
       <FetchYouthCases function={ updateYouthCaseArray } />
-      <div className='page'>
-        <h1 className='pageTitle'>{ props.title }</h1>
-
-        <div id='chartGridAge'>
+      <Page title="By Age">
+               <div id='chartGridAge'>
           <Chart
             key='4'
             id='age4'
@@ -155,7 +154,8 @@ const Age = props => {
 
         </div>
 
-      </div>
+   
+      </Page>
     </div>
   )
 }

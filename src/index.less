@@ -286,6 +286,26 @@ body.dark {
   }
 }
 
+//Footer
+.footer {
+  display   : block;
+  padding   : @pad;
+  text-align: center;
+  color     : var(--darktext);
+  position  : relative;
+  width     : 100%;
+  font-size : 12px;
+  margin-top: 1rem;
+
+  p {
+
+    font-size: 12px;
+  }
+  a {
+    color: var(--blue)
+  }
+}
+
 //Page
 .page {
   display         : block;
@@ -293,7 +313,7 @@ body.dark {
   padding         : @pad;
   background-color: var(--gray);
   width           : 100%;
-  min-height      : 100vh;
+  min-height      : calc(100vh - @headerheight);
 
   .pageTitle {
     color        : var(--primary-text);
@@ -406,25 +426,31 @@ body.dark {
   }
 
 }
+
 #chartGridRace {
   #chartGrid;
 
   @media only screen and (min-width: 1024px) {
     grid-template-columns: repeat(2, 1fr);
+
     :nth-child(3) {
-      grid-row:2;
+      grid-row   : 2;
       grid-column: 1 / span 2;
+
       canvas {
-        height:450px;
+        height: 450px;
       }
     }
   }
 }
+
 #fullPageChart {
-  display:block;
+  display: block;
+
   canvas {
-    height: 100%;
-    max-height:  60vh;;
+    height    : 100%;
+    max-height: 60vh;
+    ;
   }
 }
 
@@ -508,7 +534,7 @@ body.dark {
       color            : var(--primary-text);
 
       &:hover {
-        cursor          : pointer;
+        cursor            : pointer;
         //background-color: var(--blue);
       }
 
@@ -745,27 +771,30 @@ table {
   .center;
   //margin-top: 2rem;
   text-align: center;
-  width:-webkit-fit-content;
-  width:-moz-fit-content;
-  width:fit-content;
-  max-width: calc(100% - 2rem);
+  width     : -webkit-fit-content;
+  width     : -moz-fit-content;
+  width     : fit-content;
+  max-width : calc(100% - 2rem);
+
   @media @biggerthanmobile {
     max-width: 500px;
   }
+
   h1 {
     font-size: 2rem;
     color    : var(--primary-text)
   }
 
   p {
-    display  : block;
+    display: block;
 
     margin   : 2rem auto;
     font-size: 1.25rem;
     color    : var(--primary-text);
+
     @media @wide {
       font-size: 2rem;
-       max-width: 800px;
+      max-width: 800px;
     }
   }
 }
@@ -786,15 +815,16 @@ a.globButton {
 }
 
 .forceTableSep {
-  color:var(--primary-text);
+  color      : var(--primary-text);
   font-weight: bold;
-  font-family: 'Arial',sans-serif;
+  font-family: 'Arial', sans-serif;
 }
 
 #multiCitySelect {
   background-color: var(--white);
-  margin: 1em auto 1rem auto;
-  border-radius: @radius;
+  margin          : 1em auto 1rem auto;
+  border-radius   : @radius;
+
   &:hover {
     cursor            : pointer;
     -webkit-box-shadow: @shadow;
@@ -804,7 +834,7 @@ a.globButton {
 
 
   .cityselecttitle {
-      padding:1rem;
+    padding    : 1rem;
     text-align : center;
     color      : var(--blue);
     display    : block;
@@ -814,9 +844,10 @@ a.globButton {
       font-size: 1.5rem;
     }
   }
+
   .citySelectorContainer {
     overflow-y: hidden;
-    height: 100%;
+    height    : 100%;
 
     -webkit-transition: max-height .2s ease-in-out;
 
@@ -827,7 +858,7 @@ a.globButton {
 
 
   ul {
-    padding:0 1rem;
+    padding              : 0 1rem;
     display              : -webkit-box;
     display              : -ms-flexbox;
     display              : flex;
@@ -875,18 +906,19 @@ a.globButton {
       }
     }
   }
-  
-}
-.loadDataButton {
-   background-color: var(--blue);
- border-radius   : @radius;
- padding         : 8px 16px !important;
- display         : block;
- margin          : 1rem auto !important;
 
- font-size: 1.25rem;
- width    : -webkit-fit-content;
- width    : -moz-fit-content;
- width    : fit-content;
- color    : var(--staywhite) !important;
+}
+
+.loadDataButton {
+  background-color: var(--blue);
+  border-radius   : @radius;
+  padding         : 8px 16px !important;
+  display         : block;
+  margin          : 1rem auto !important;
+
+  font-size: 1.25rem;
+  width    : -webkit-fit-content;
+  width    : -moz-fit-content;
+  width    : fit-content;
+  color    : var(--staywhite) !important;
 }

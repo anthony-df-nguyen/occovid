@@ -16,6 +16,8 @@ import {
 } from 'Datafetch/FetchHosTriggers'
 import Chart from 'components/Chart'
 import Widget from 'components/Widget'
+import Page from 'components/Page'
+
 
 const Hospitalization = props => {
   const { time, setTime } = useContext(TimeContext)
@@ -27,9 +29,9 @@ const Hospitalization = props => {
     <div>
       <FetchHosTriggers function={ updateTrigger } time={ time } />
       <FetchHospitals function={ updateArray } time={ time } />
-      <div className='page'>
-        <h1 className='pageTitle'>{ props.title }</h1>
-        <div className='widgetGrid'>
+      <Page title = 'Hospitalizations'
+>
+             <div className='widgetGrid'>
           <Widget title={ 'Hospitalized' } stat={ lastHos } color={ color.yellow } />
           <Widget title={ 'ICU' } stat={ lastICU } color={ color.red } />
           <Widget
@@ -120,7 +122,9 @@ const Hospitalization = props => {
             switches={ ['bar', 'line'] }
           />
         </div>
-      </div>
+      
+      </Page>
+   
     </div>
   )
 }

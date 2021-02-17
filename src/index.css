@@ -227,12 +227,28 @@ body.dark {
     position: fixed;
   }
 }
+.footer {
+  display: block;
+  padding: 1rem;
+  text-align: center;
+  color: var(--darktext);
+  position: relative;
+  width: 100%;
+  font-size: 12px;
+  margin-top: 1rem;
+}
+.footer p {
+  font-size: 12px;
+}
+.footer a {
+  color: var(--blue);
+}
 .page {
   display: block;
   padding: 1rem;
   background-color: var(--gray);
   width: 100%;
-  min-height: 100vh;
+  min-height: calc(100vh - 4rem);
 }
 .page .pageTitle {
   color: var(--primary-text);

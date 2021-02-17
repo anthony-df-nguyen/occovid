@@ -6,6 +6,7 @@ import { FetchTesting, lastTotalPCR, lastDailyTests } from 'Datafetch/FetchTesti
 import { FetchHosTriggers, lastTPP } from 'Datafetch/FetchHosTriggers'
 import Chart from 'components/Chart'
 import Widget from "components/Widget"
+import Page from 'components/Page'
 
 const Testing = (props) => {
     const { time, setTime } = useContext(TimeContext);
@@ -25,8 +26,9 @@ const Testing = (props) => {
         <div>
             <FetchTesting function={ updateArray } time={ time } />
             <FetchHosTriggers function={ updateHosArray } time={ time } />
-            <div className='page'>
-                <h1 className='pageTitle'>{ props.title }</h1>
+            <Page title = 'Test Detail'
+>
+
                 <div className="widgetGrid">
                     <Widget title={ "Total PCR Tests" } stat={ lastTotalPCR }
                         color={ color.blue } />
@@ -91,7 +93,8 @@ const Testing = (props) => {
                     />
 
                 </div>
-            </div>
+        
+            </Page>
         </div>
     );
 }

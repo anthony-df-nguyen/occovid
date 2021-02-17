@@ -9,6 +9,7 @@ import Widget from "components/Widget"
 import { ageLabels, ageColors, raceColors, raceLabels } from "globalVars/chartJSconfig";
 import { Pie } from 'react-chartjs-2';
 import { ocpop } from 'globalVars/populations';
+import Page from 'components/Page'
 
 const Vaccinations = (props) => {
     const { time, setTime } = useContext(TimeContext);
@@ -23,9 +24,9 @@ const Vaccinations = (props) => {
         <div>
             <VaccineHistory function={ updateVaxArray } time={ time } />
             <FetchVaccines function={ updateArray } time={ time } />
-            <div className='page'>
-                <h1 className='pageTitle'>{ props.title }</h1>
-                <div className="widgetGrid">
+            <Page title = 'Vaccinations'
+>
+                     <div className="widgetGrid">
                     <Widget title={ "OC Population" } stat={ ocpop.toLocaleString() }
                         color={ color.green } />
                     <Widget title={ "Total People Vaccinated" } stat={ `${totalPPL.toLocaleString()} | ${totallPPLPerc}%` }
@@ -96,7 +97,9 @@ const Vaccinations = (props) => {
                         switches={ ['horizontalBar', 'bar', 'doughnut'] }
                     />
                 </div>
-            </div>
+            
+            </Page>
+           
         </div>
     );
 }

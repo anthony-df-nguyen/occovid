@@ -6,8 +6,11 @@ import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-ro
 import TimeContext from './components/TimeContext'
 import * as sources from 'globalVars/Sources'
 import Header from './components/Header'
+
+import Page from 'components/Page'
 import { timeSelection } from 'components/Timeselect'
 import { Home, Cases, Deaths, Hospitalization, Vaccinations, Testing, Schools, Age, Race, Gender, City, Zip, Cityhistory, WhatsOpen, ComingSoon, NoPage, Donate } from 'pages/Master'
+
 
 
 
@@ -29,64 +32,70 @@ function App() {
     <Router>
       <div className='App'>
         <Header />
-        <TimeContext.Provider value={ { time, setTime } }>
-        <Switch>
-            <Route exact path='/'>
-              <Home title='Summary' />
-            </Route>
-            <Route path='/cases'>
-              <Cases title='Cases' />
-            </Route>
-            <Route path='/deaths'>
-              <Deaths title='Deaths' />
-            </Route>
-            <Route path='/hospitalizations'>
-              <Hospitalization title='Hospitalizations' />
-            </Route>
-            <Route path='/vaccinations'>
-              <Vaccinations title='Vaccinations' />
-            </Route>
-            <Route path='/testing'>
-              <Testing title='Testing' />
-            </Route>
-            <Route path='/schools'>
-              <Schools title='Schools' />
-            </Route>
-            <Route path='/cityhistory'>
-              <Cityhistory title='City History' />
-            </Route>
-            <Route path='/city'>
-              <City title='City' />
-            </Route>
-            <Route path='/zip'>
-              <Zip title='Zip' />
-            </Route>
-            <Route path='/age'>
-              <Age title='Age' />
-            </Route>
-            <Route path='/race'>
-              <Race title='Race' />
-            </Route>
-            <Route path='/gender'>
-              <Gender title='Gender' />
-            </Route>
-            <Route path='/whatsopen'>
-              <WhatsOpen title='Whats Open' />
-            </Route>
-              <Route path='/comingsoon'>
-              <ComingSoon title='Coming Soon' />
-            </Route>
-            <Route path='/donate'>
-              <Donate title='Donate' />
-            </Route>
-            <Route >
-              <NoPage title="404" />
-            </Route>
-            
         
-        </Switch>
-            </TimeContext.Provider>
+          <TimeContext.Provider value={ { time, setTime } }>
+          <Switch>
+              <Route exact path='/'>
+                <Home title='Summary' />
+              </Route>
+              <Route path='/cases'>
+                <Cases title='Cases' />
+              </Route>
+              <Route path='/deaths'>
+                <Deaths title='Deaths' />
+              </Route>
+              <Route path='/hospitalizations'>
+                <Hospitalization title='Hospitalizations' />
+              </Route>
+              <Route path='/vaccinations'>
+                <Vaccinations title='Vaccinations' />
+              </Route>
+              <Route path='/testing'>
+                <Testing title='Testing' />
+              </Route>
+              <Route path='/schools'>
+                <Schools title='Schools' />
+              </Route>
+              <Route path='/cityhistory'>
+                <Cityhistory title='City History' />
+              </Route>
+              <Route path='/city'>
+                <City title='City' />
+              </Route>
+              <Route path='/zip'>
+                <Zip title='Zip' />
+              </Route>
+              <Route path='/age'>
+                <Age title='Age' />
+              </Route>
+              <Route path='/race'>
+                <Race title='Race' />
+              </Route>
+              <Route path='/gender'>
+                <Gender title='Gender' />
+              </Route>
+              <Route path='/whatsopen'>
+                <WhatsOpen title='Whats Open' />
+              </Route>
+                <Route path='/comingsoon'>
+                <ComingSoon title='Coming Soon' />
+              </Route>
+              <Route path='/donate'>
+                <Donate title='Donate' />
+              </Route>
+              <Route >
+                <NoPage title="404" />
+              </Route>
+              
+          
+          </Switch>
+           
+        </TimeContext.Provider>
+          
+     
+     
       </div>
+
     </Router>
   )
 }
