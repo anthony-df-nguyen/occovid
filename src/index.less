@@ -470,22 +470,25 @@ body.dark {
   }
 
   @media @wider1920 {
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(4, 1fr);
 
     //Target the daily dose admin chart
     :nth-child(1) {
       grid-row   : 1;
       grid-column: 1 / span 2;
     }
+
     //Move the Last two Charts to the Top
     :nth-child(4) {
       grid-row   : 1;
       grid-column: 3;
     }
+
     :nth-child(5) {
       grid-row   : 1;
       grid-column: 4;
     }
+
     //Move the combotables to the bottom
     :nth-child(2) {
       grid-row   : 2;
@@ -919,7 +922,7 @@ a.globButton {
       list-style: none;
       font-size : 12px;
       margin-top: 5px;
-      color:var(--primary-text);
+      color     : var(--primary-text);
 
       input[type=checkbox] {
         display     : block;
@@ -985,8 +988,31 @@ a.globButton {
   text-align: center;
   display   : block;
   margin    : 1rem auto;
+
   p {
-    display: inline;
-    margin-right:@gap;
+    display     : inline;
+    margin-right: @gap;
+  }
+}
+
+
+.formTitle {
+  text-align   : center;
+  margin-bottom: 1rem;
+  font-size    : 1.25rem;
+  color        : var(--primary-text);
+
+  a {
+    color: var(--blue)
+  }
+}
+
+#googleForm {
+  width  : 100%;
+  height : 100%;
+  display: block;
+
+  iframe {
+    min-height: 100vh;
   }
 }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, Redirect } from 'react-router-dom'
 import Darktoggle from 'components/Darktoggle'
 import '../index.css'
 import Button from 'components/Button'
@@ -90,8 +90,8 @@ const Navigation = (props) => {
         <NavLink to='/whatsopen' onClick={ () => { closeTheNav('/whatsopen') } } activeClassName='selectedLink'>
           What's Open
         </NavLink>
-        <NavLink to='/comingsoon' onClick={ () => { closeTheNav('/comingsoon') } } activeClassName='selectedLink'>
-          Coming Soon
+        <NavLink to='/reportbugs' onClick={ () => { closeTheNav('/reportbugs') } } activeClassName='selectedLink'>
+          Bugs, Ideas, and Updates
         </NavLink>
         {/* <NavLink to='/compare' onClick={ () => { closeTheNav('/comppare') } } activeClassName='selectedLink'>
           Compare

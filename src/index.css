@@ -882,3 +882,20 @@ a.globButton {
   display: inline;
   margin-right: 10px;
 }
+.formTitle {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  color: var(--primary-text);
+}
+.formTitle a {
+  color: var(--blue);
+}
+#googleForm {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+#googleForm iframe {
+  min-height: 100vh;
+}

@@ -6,7 +6,7 @@ import TimeContext from './components/context/TimeContext'
 import LastUpdateDate from 'components/context/LastupdateContext'
 import Header from './components/Header'
 import { lastUpdate } from 'globalVars/Sources'
-import { Home, Cases, Deaths, Hospitalization, Vaccinations, Testing, Schools, Age, Race, Gender, City, Zip, Cityhistory, WhatsOpen, ComingSoon, NoPage, Donate, Compare } from 'pages/Master'
+import { Home, Cases, Deaths, Hospitalization, Vaccinations, Testing, Schools, Age, Race, Gender, City, Zip, Cityhistory, WhatsOpen, Reportbug, NoPage, Donate, Compare } from 'pages/Master'
 
 function App() {
   const trackingId = "UA-164595635-1";
@@ -35,14 +35,14 @@ function App() {
           <LastUpdateDate.Provider value= {{lastDate,setDate}}>
           <TimeContext.Provider value={ { time, setTime } }>
           <Switch>
-              <Route exact path='/'>
-                <Home title='Summary' />
+              <Route exact path='/' component={ Home }>
+                {/* <Home title='Summary' /> */}
               </Route>
-              <Route path='/cases'>
-                <Cases title='Cases' />
+              <Route path='/cases' component={ Cases }>
+               
               </Route>
-              <Route path='/deaths'>
-                <Deaths title='Deaths' />
+              <Route path='/deaths' component={ Deaths }>
+               
               </Route>
               <Route path='/hospitalizations'>
                 <Hospitalization title='Hospitalizations' />
@@ -74,15 +74,10 @@ function App() {
               <Route path='/gender'>
                 <Gender title='Gender' />
               </Route>
-              <Route path='/whatsopen'>
-                <WhatsOpen title='Whats Open' />
-              </Route>
-              <Route path='/comingsoon'>
-                <ComingSoon title='Coming Soon' />
-              </Route>
-              <Route path='/donate'>
-                <Donate title='Donate' />
-              </Route>
+              <Route path='/whatsopen' component={ WhatsOpen} />
+              <Route path='/reportbugs' component={ Reportbug } />
+              <Route path='/donate' component={ Donate } />
+
               {/* <Route >
                 <Compare title="Compare" />
               </Route> */}
