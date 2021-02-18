@@ -18,6 +18,7 @@ import Page from 'components/Page'
 const Deaths = props => {
   const { time, setTime } = useContext(TimeContext)
   const [array, updateArray] = useState([])
+  //console.log("file: Deaths.jsx ~ line 21 ~ array", array)
 
   return (
     <div>
@@ -47,16 +48,6 @@ const Deaths = props => {
         <Timeselect />
         <div id='chartGrid'>
           <Chart
-            key='2'
-            id='death2'
-            date={array.map(a => a.date)}
-            data={[array.map(b => b.total_dth)]}
-            fill={[color.red, color.blue]}
-            title={'Total Deaths by Reported'}
-            label={['Deaths']}
-            switches={['bar', 'line']}
-          />
-          <Chart
             key='1'
             id='death1'
             date={array.map(a => a.date)}
@@ -67,21 +58,46 @@ const Deaths = props => {
             switches={['bar', 'line']}
           />
           <Chart
+            key='8'
+            id='death8'
+            date={array.map(a => a.date)}
+            data={[array.map(b => b.dailyDeathbyDate),array.map(b=>b.deathsByDate7Avg)]}
+            fill={[color.red,color.blue]}
+            title={'Daily Deaths by Date of Death'}
+            label={['Deaths','7 Day Avg (Assuming 2 Week Data Lag)']}
+            switches={['bar', 'line']}
+          />
+          <Chart
+            key='2'
+            id='death2'
+            date={ array.map(a => a.date) }
+            data={ [array.map(b => b.total_dth_repo)] }
+            fill={ [color.yellow]}
+            title={'Total Deaths by Reported'}
+            label={['Deaths']}
+            switches={['bar', 'line']}
+          />
+
+
+          <Chart
             key='3'
             id='death3'
             date={array.map(a => a.date)}
-            data={[array.map(b => b.daily_death),array.map(b => b.dailyDeath7DayAvg)]}
-            fill={[color.red,color.blue]}
+            data={[array.map(b => b.daily_death_repo),array.map(b => b.dailyDeath7DayAvg)]}
+            fill={[color.yellow,color.blue]}
             title={'Daily Deaths Reported'}
             label={['Deaths','7 Day Avg']}
             switches={['bar', 'line']}
           />
+
+
+
           <Chart
             key='4'
             id='death4'
             date={array.map(a => a.date)}
             data={[array.map(b => b.snf)]}
-            fill={[color.yellow]}
+            fill={[color.pink]}
             title={'Skilled Nursing Facility Deaths'}
             label={['Deaths']}
             switches={['bar', 'line']}

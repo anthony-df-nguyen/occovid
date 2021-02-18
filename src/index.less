@@ -455,6 +455,50 @@ body.dark {
   }
 }
 
+#chartVaccineGrid {
+  #chartGrid;
+
+  @media only screen and (min-width: 1024px) {
+    grid-template-columns: 1fr 1fr;
+
+    //Target the daily dose admin chart
+    :nth-child(1) {
+      grid-row   : 1;
+      grid-column: 1 / span 2;
+
+    }
+  }
+
+  @media @wider1920 {
+    grid-template-columns: repeat(4,1fr);
+
+    //Target the daily dose admin chart
+    :nth-child(1) {
+      grid-row   : 1;
+      grid-column: 1 / span 2;
+    }
+    //Move the Last two Charts to the Top
+    :nth-child(4) {
+      grid-row   : 1;
+      grid-column: 3;
+    }
+    :nth-child(5) {
+      grid-row   : 1;
+      grid-column: 4;
+    }
+    //Move the combotables to the bottom
+    :nth-child(2) {
+      grid-row   : 2;
+      grid-column: 1 /span 2;
+    }
+
+    :nth-child(3) {
+      grid-row   : 2;
+      grid-column: 3 / span 2;
+    }
+  }
+}
+
 
 
 
@@ -930,7 +974,7 @@ a.globButton {
   margin    : -10px auto 1rem auto;
 
   p {
-    color: var(--primary-text);
+    color      : var(--primary-text);
     font-size  : 10px;
     font-weight: 300;
   }

@@ -75,7 +75,7 @@ const Age = props => {
   ageCaseArray.forEach((a, i) => {
     if (i < ageCaseArray.length - 1) {
       let population = agePopArray[i].toLocaleString();
-      let popPerc = (parseFloat((agePopArray[i]/ocpop) * 100).toFixed(1)) + '%';
+      let popPerc = (parseFloat((agePopArray[i] / ocpop) * 100).toFixed(1)) + '%';
       ageCol2.push(`${population}<br>${popPerc}`)
       ageCol3.push((parseFloat((a / allKnownAgesCases) * 100).toFixed(1)) + '%')
       ageCol4.push((parseFloat((a / agePopArray[i]) * 100).toFixed(1)) + '%')
@@ -101,7 +101,7 @@ const Age = props => {
       <FetchDeathDemo function={ updateAgeDeathArray } />
       <FetchYouthCases function={ updateYouthCaseArray } />
       <Page title="By Age">
-               <div id='chartGridAge'>
+        <div id='chartGridAge'>
           <Chart
             key='4'
             id='age4'
@@ -111,7 +111,7 @@ const Age = props => {
             title={ 'Cases Among Youth' }
             label={ ['Fatality Rate'] }
             switches={ ['horizontalBar', 'bar', 'doughnut'] }>
-           
+
           </Chart>
 
           <Chart
@@ -124,8 +124,6 @@ const Age = props => {
             label={ ['Fatality Rate'] }
             switches={ ['horizontalBar', 'bar'] }
           />
-
-
           <Chart
             key='1'
             id='ageCaseCombo'
@@ -154,7 +152,7 @@ const Age = props => {
 
         </div>
 
-   
+
       </Page>
     </div>
   )

@@ -5,7 +5,7 @@ const BuildTable = (props) => {
     const makeTableHeader = () => {
         return props.colName.map((a, i) => {
             if (i === 0) {
-                return <th key={ i } style={ { borderRadius: `${borderRad} 0 0 0`, } } >  { a }</th>
+                return <th key={ i } style={ { borderRadius: `${borderRad} 0 0 0`, width: props.col1forcedwidth,} } >  { a }</th>
             } else if (i == props.colName.length - 1) {
                 return <th key={ i } style={ { borderRadius: `0 ${borderRad} 0 0`, } }>  { a }</th>
             } else {
