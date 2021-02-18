@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import FetchCityHistory from 'Datafetch/FetchCityHistory'
 import Timeselect from 'components/Timeselect';
-import TimeContext from "components/TimeContext";
+import TimeContext from "components/context/TimeContext";
 import color from 'globalVars/Colors'
 import _ from "lodash";
 import CityCompareChart from 'components/CityCompare/CityCompareChart';
@@ -37,7 +37,10 @@ const Cityhistory = (props) => {
         <div>
             <FetchCityHistory time={ time } cities={ [city1, city2, city3] } arrayUpdate={ [updateCity1Array, updateCity2Array, updateCity3Array]} />
             <Page title = 'City History'
->
+            >
+                    <div id="lastUpdateDate">
+            <p>Last Updated {  dateArray.slice(-1) }</p>
+        </div>
                   <Timeselect />
                 <CitySelector updater={ [updateCity1, updateCity2, updateCity3] } cities={ [city1, city2, city3] } />
                 <div id="fullPageChart">

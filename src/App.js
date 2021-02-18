@@ -1,19 +1,12 @@
 import logo from './logo.svg'
-
 import ReactGA from 'react-ga';
 import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom'
-import TimeContext from './components/TimeContext'
-import * as sources from 'globalVars/Sources'
+import TimeContext from './components/context/TimeContext'
+import LastUpdateDate from 'components/context/LastupdateContext'
 import Header from './components/Header'
-
-import Page from 'components/Page'
-import { timeSelection } from 'components/Timeselect'
+import { lastUpdate } from 'globalVars/Sources'
 import { Home, Cases, Deaths, Hospitalization, Vaccinations, Testing, Schools, Age, Race, Gender, City, Zip, Cityhistory, WhatsOpen, ComingSoon, NoPage, Donate } from 'pages/Master'
-
-
-
-
 
 function App() {
   const trackingId = "UA-164595635-1";
@@ -27,12 +20,19 @@ function App() {
     startingTime = localStorage.getItem('timeSetting')
   }
   const [time, setTime] = useState(startingTime)
- 
+  const [lastDate, setDate] = useState('')
+  const getUpdateDate = async () => {
+    await fetch(lastUpdate).then(res => res.json()).then(date => date.features[0].attributes.update_date).then(final => {
+      //console.log(final);
+      setDate(final)
+    })
+  }
+  getUpdateDate()
   return (
     <Router>
       <div className='App'>
-        <Header />
-        
+        <Header />   
+          <LastUpdateDate.Provider value= {{lastDate,setDate}}>
           <TimeContext.Provider value={ { time, setTime } }>
           <Switch>
               <Route exact path='/'>
@@ -77,7 +77,7 @@ function App() {
               <Route path='/whatsopen'>
                 <WhatsOpen title='Whats Open' />
               </Route>
-                <Route path='/comingsoon'>
+              <Route path='/comingsoon'>
                 <ComingSoon title='Coming Soon' />
               </Route>
               <Route path='/donate'>
@@ -90,14 +90,11 @@ function App() {
           
           </Switch>
            
-        </TimeContext.Provider>
-          
-     
-     
+          </TimeContext.Provider>
+          </LastUpdateDate.Provider>   
       </div>
 
     </Router>
   )
 }
-
 export default App

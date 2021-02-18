@@ -1,9 +1,10 @@
-import React, { useState, useContext } from 'react'
-import TimeContext from 'components/TimeContext'
+import React, { useState, useContext, useEffect } from 'react'
+import TimeContext from 'components/context/TimeContext'
 import color from 'globalVars/Colors'
 import Timeselect from 'components/Timeselect'
 import FetchSchool from 'Datafetch/FetchSchool'
 import Chart from 'components/Chart'
+import moment from 'moment'
 import Widget from 'components/Widget'
 import { Bar, Line } from 'react-chartjs-2'
 import { stackedMultiBar, lineDefaults } from 'globalVars/chartJSconfig.js'
@@ -12,6 +13,8 @@ import Page from 'components/Page'
 const Schools = props => {
   const { time, setTime } = useContext(TimeContext)
   const [array, updateArray] = useState([])
+  const [lastDate,updateDate] = useState()
+
 
   const stackedSchoolIndividuals = {
     labels: array.map(a => a.week),
@@ -109,12 +112,26 @@ const Schools = props => {
 
   let indArray = [totalStudent, totalTeacher, totalOtherStaff]
   let schoolTotalArray = [eleTotal, highSchoolTotal, comboTotal, collegeTotal]
+  
+  
+  useEffect(() => {
+    if (array.length > 1) {
+      let lastArray = array.slice(-1);
+      let lastWeek = lastArray[0].week.slice(-5);
+      let thisYear = '/' + moment(new Date()).format('yyyy')
+      let dateString = lastWeek + thisYear;
+      let parseDate = moment(new Date(dateString)).format('l')
+      updateDate(parseDate)
+    }
+  },[array])
 
   return (
     <div>
-      <FetchSchool function={updateArray} time={time} />
-      <Page title = 'School Cases'
->
+      <FetchSchool function={[updateArray,updateDate]} time={time} />
+      <Page title='School Cases'>
+          <div id="lastUpdateDate">
+            <p>Last Updated {  lastDate }</p>
+        </div>
         
         <div id='chartGrid'>
           <Chart

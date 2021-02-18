@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import TimeContext from 'components/TimeContext'
+import TimeContext from 'components/context/TimeContext'
 import moment from 'moment'
 
 function setStorage(value) {

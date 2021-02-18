@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import color from 'globalVars/Colors'
-import TimeContext from 'components/TimeContext'
+import TimeContext from 'components/context/TimeContext'
 import Widget from 'components/Widget'
 import { ocpop } from 'globalVars/populations'
 import {
@@ -9,18 +9,11 @@ import {
   lastTotalCases,
   lastDailyReported,
   lastRecovered,
-  lastHomeless,
-  lastJail,
-  lastSNF
 } from 'Datafetch/FetchCases'
 import {
   FetchDeaths,
   lastTotalDeaths,
   lastDailyReportedDeath,
-  lastSNFDeath,
-  lastALFDeath,
-  lastHomelessDeath,
-  lastJailDeath
 } from 'Datafetch/FetchDeaths'
 import { FetchHospitals, lastHos, lastICU } from 'Datafetch/FetchHospitals'
 import {
@@ -56,34 +49,9 @@ const Home = props => {
   const [array6, update6Array] = useState([])
   const [array7, update7Array] = useState([])
   const [
-    asof,
     peopleOneDose,
     peopleTwoDose,
     totalPeople,
-    adminOneDose,
-    adminTwoDose,
-    totalAdmin,
-    female,
-    male,
-    otherSex,
-    asianPI,
-    black,
-    hispanic,
-    white,
-    otherRace,
-    age017,
-    age1824,
-    age2534,
-    age3544,
-    age4554,
-    age5564,
-    age6574yrs,
-    age7584,
-    age85,
-    ageUnknown,
-    moderna,
-    pfizer,
-    unknownTrade
   ] = array5
   const [maxCaseRate, updateCaseMax] = useState(10)
   const [maxPosRate, updatePosMax] = useState(10)
@@ -104,8 +72,9 @@ const Home = props => {
 
   const totalPPL = parseInt(totalPeople)
   const totallPPLPerc = parseFloat((totalPPL / ocpop) * 100).toFixed(1)
+
   return (
-    <Page>
+    <Page title="OCCOVID19 Summary">
       <FetchCases function={updateArray} time={time} />
       <FetchDeaths function={update2Array} time={time} />
       <FetchHosTriggers function={update3Array} time={time} />
@@ -248,7 +217,7 @@ const Home = props => {
           </div>
         </Link>
       </div>
-      <Link to='/whatsopen'>
+      <Link to='/whatsopen' >
         <div id='homeGauges'>
           <div id='testsper100'>
             <Widget

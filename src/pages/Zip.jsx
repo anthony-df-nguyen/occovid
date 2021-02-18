@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react'
-import TimeContext from 'components/TimeContext'
+import TimeContext from 'components/context/TimeContext'
 import color from 'globalVars/Colors'
 import CityZipMetricSelect from 'components/CityZipMetricSelect'
 import CityZipSort from 'components/CityZipSort'

@@ -1,13 +1,12 @@
 import React, { useState, useContext } from 'react';
-import TimeContext from "components/TimeContext";
+import TimeContext from "components/context/TimeContext";
 import color from 'globalVars/Colors'
 import Timeselect from 'components/Timeselect';
 import { FetchVaccines } from 'Datafetch/FetchVaccines';
 import VaccineHistory from 'Datafetch/VaccineHistory.jsx';
 import Chart from 'components/Chart'
 import Widget from "components/Widget"
-import { ageLabels, ageColors, raceColors, raceLabels } from "globalVars/chartJSconfig";
-import { Pie } from 'react-chartjs-2';
+import { ageLabels, ageColors, raceColors } from "globalVars/chartJSconfig";
 import { ocpop } from 'globalVars/populations';
 import Page from 'components/Page'
 
@@ -19,14 +18,16 @@ const Vaccinations = (props) => {
 
     const totalPPL = parseInt(totalPeople);
     const totallPPLPerc = parseFloat((totalPPL / ocpop) * 100).toFixed(1)
-
+    
     return (
         <div>
             <VaccineHistory function={ updateVaxArray } time={ time } />
             <FetchVaccines function={ updateArray } time={ time } />
-            <Page title = 'Vaccinations'
->
-                     <div className="widgetGrid">
+            <Page title='Vaccinations'>
+                <div id="lastUpdateDate">
+                    <p>Last Updated {  asof }</p>
+                </div>
+                <div className="widgetGrid">
                     <Widget title={ "OC Population" } stat={ ocpop.toLocaleString() }
                         color={ color.green } />
                     <Widget title={ "Total People Vaccinated" } stat={ `${totalPPL.toLocaleString()} | ${totallPPLPerc}%` }

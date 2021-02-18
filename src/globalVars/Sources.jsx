@@ -4,14 +4,14 @@ tomorrow.setDate(tomorrow.getDate() + 1);
 let tomorrowday = tomorrow.getDate();
 let tomorrowsmonth = tomorrow.getMonth() + 1;
 let todaysyear = 2021;
-console.log(
-  "The query is looking for dates < than " +
-  tomorrowsmonth +
-  "/" +
-  tomorrowday +
-  "/" +
-  todaysyear
-);
+// console.log(
+//   "The query is looking for dates < than " +
+//   tomorrowsmonth +
+//   "/" +
+//   tomorrowday +
+//   "/" +
+//   todaysyear
+// );
 
 const tier = 4;
 

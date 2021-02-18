@@ -817,3 +817,13 @@ a.globButton {
   width: fit-content;
   color: var(--staywhite) !important;
 }
+#lastUpdateDate {
+  display: block;
+  text-align: center;
+  margin: -10px auto 1rem auto;
+}
+#lastUpdateDate p {
+  color: var(--primary-text);
+  font-size: 10px;
+  font-weight: 300;
+}

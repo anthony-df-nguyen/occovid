@@ -19,8 +19,6 @@ const Navigation = (props) => {
 
   }
 
-
-
   return (
     <div id='navMenu'>
       <div className='linkContainer'>

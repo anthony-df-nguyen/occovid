@@ -30,7 +30,7 @@ const FetchSchool = (props) => {
         })
         .then(() => {
             //console.log(thisDataArray)
-            props.function(thisDataArray);
+            props.function[0](thisDataArray);
         })
     },[props.time])
 
