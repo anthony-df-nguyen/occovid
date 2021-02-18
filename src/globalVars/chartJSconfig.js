@@ -12,11 +12,14 @@ function responsivePieLegend() {
     return 'bottom'
   }
 }
+
+
+
 const dataLabels = {
   anchor: 'end',
   align: 'end',
   offset: 0,
-  color:'#999999',
+  color: '#999999',
   display: function display(context) {
     if (context.chart.width > 600) {
       return 'auto'
@@ -44,13 +47,14 @@ const barDefaults = {
   responsive: true,
   maintainAspectRatio: false,
   scales: {
+
     yAxes: [
       {
         ticks: {
           fontColor: '#999999',
           suggestedmin: 0,
           beginAtZero: true
-        }
+        },
       }
     ],
     xAxes: [
@@ -58,7 +62,8 @@ const barDefaults = {
         stacked: true,
         ticks: {
           fontColor: '#999999'
-        }
+        },
+
       }
     ]
   },
@@ -152,7 +157,7 @@ class Twoobject7DayAverage {
         borderColor: data2color,
         backgroundColor: 'transparent',
         datalabels: {
-            display:false,
+          display: false,
         },
       }
     ]
@@ -191,7 +196,7 @@ class Threeobject7DayAverage {
         borderColor: data2color,
         backgroundColor: data2color,
         datalabels: {
-            display:false,
+          display: false,
         },
       },
       {
@@ -204,7 +209,7 @@ class Threeobject7DayAverage {
         borderColor: data3color,
         backgroundColor: 'transparent',
         datalabels: {
-            display:false,
+          display: false,
         },
       }
     ]
@@ -320,17 +325,17 @@ const piedefaults = {
       display: false,
     },
   },
-   tooltips: {
+  tooltips: {
     callbacks: {
-      label: function(tooltipItem, data) {
+      label: function (tooltipItem, data) {
         var dataset = data.datasets[tooltipItem.datasetIndex];
         var meta = dataset._meta[Object.keys(dataset._meta)[0]];
         var total = meta.total;
         var currentValue = dataset.data[tooltipItem.index];
-        var percentage = parseFloat((currentValue/total*100).toFixed(1));
+        var percentage = parseFloat((currentValue / total * 100).toFixed(1));
         return currentValue + ' (' + percentage + '%)';
       },
-      title: function(tooltipItem, data) {
+      title: function (tooltipItem, data) {
         return data.labels[tooltipItem[0].index];
       }
     }

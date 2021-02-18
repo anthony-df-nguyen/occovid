@@ -820,11 +820,12 @@ a.globButton {
   list-style: none;
   font-size: 12px;
   margin-top: 5px;
+  color: var(--primary-text);
 }
 #multiCitySelect ul li input[type=checkbox] {
   display: block;
   float: left;
-  margin-right: 5px;
+  margin-right: 10px;
 }
 @media only screen and (min-width:520px) {
   #multiCitySelect ul {
