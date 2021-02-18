@@ -46,7 +46,6 @@ const Home = props => {
   const [array3, update3Array] = useState([])
   const [array4, update4Array] = useState([])
   const [array5, update5Array] = useState([])
-  console.log("file: Home.jsx ~ line 49 ~ array5", array5)
   const [array6, update6Array] = useState([])
   const [array7, update7Array] = useState([])
   const [,peopleOneDose,    peopleTwoDose,    totalPeople,  ] = array5

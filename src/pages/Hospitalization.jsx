@@ -29,9 +29,9 @@ const Hospitalization = props => {
     <div>
       <FetchHosTriggers function={ updateTrigger } time={ time } />
       <FetchHospitals function={ updateArray } time={ time } />
-      <Page title = 'Hospitalizations'
->
-             <div className='widgetGrid'>
+      <Page title='Hospitalizations'
+      >
+        <div className='widgetGrid'>
           <Widget title={ 'Hospitalized' } stat={ lastHos } color={ color.yellow } />
           <Widget title={ 'ICU' } stat={ lastICU } color={ color.red } />
           <Widget
@@ -94,7 +94,7 @@ const Hospitalization = props => {
           <Chart
             key='4'
             id='hospital4'
-            date={ array.map(a => a.date) }
+            date={ triggerArray.map(a => a.date) }
             data={ [triggerArray.map(b => b.ventsAvail)] }
             fill={ [color.red] }
             title={ '% Ventilators Available' }
@@ -122,9 +122,9 @@ const Hospitalization = props => {
             switches={ ['bar', 'line'] }
           />
         </div>
-      
+
       </Page>
-   
+
     </div>
   )
 }
