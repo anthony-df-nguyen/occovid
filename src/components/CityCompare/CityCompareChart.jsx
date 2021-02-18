@@ -11,7 +11,7 @@ const CityCompareChart = props => {
                 label: props.label[i] ? props.label[i] : `No City ${i + 1} Picked`,
                 data: props.data[i],
                 borderWidth: 1,
-                radius: 0,
+                radius: 1,
                 order: [i + 1],
                 backgroundColor: props.fill[i] + '15',
                 borderColor: props.fill[i],

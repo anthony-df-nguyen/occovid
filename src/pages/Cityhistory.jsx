@@ -41,7 +41,7 @@ const Cityhistory = (props) => {
                     <div id="lastUpdateDate">
             <p>Last Updated {  dateArray.slice(-1) }</p>
         </div>
-                  <Timeselect />
+                <Timeselect />
                 <CitySelector updater={ [updateCity1, updateCity2, updateCity3] } cities={ [city1, city2, city3] } />
                 <div id="fullPageChart">
                     <CityCompareChart

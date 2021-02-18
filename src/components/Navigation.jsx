@@ -93,6 +93,9 @@ const Navigation = (props) => {
         <NavLink to='/comingsoon' onClick={ () => { closeTheNav('/comingsoon') } } activeClassName='selectedLink'>
           Coming Soon
         </NavLink>
+        {/* <NavLink to='/compare' onClick={ () => { closeTheNav('/comppare') } } activeClassName='selectedLink'>
+          Compare
+        </NavLink> */}
 
         <div style={ { paddingBottom: "8rem", } } onClick={ () => { closeTheNav('/donate') } }>
           <Button onClick={ () => { closeTheNav() } } url={ '/donate' } text="Donate" />

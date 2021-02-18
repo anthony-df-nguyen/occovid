@@ -873,3 +873,12 @@ a.globButton {
   font-size: 10px;
   font-weight: 300;
 }
+#countySelect {
+  text-align: center;
+  display: block;
+  margin: 1rem auto;
+}
+#countySelect p {
+  display: inline;
+  margin-right: 10px;
+}

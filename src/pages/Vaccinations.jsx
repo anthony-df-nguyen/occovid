@@ -26,7 +26,7 @@ const Vaccinations = (props) => {
     //Age Vaccine Reports
     const agePopArray = [age0_17_pop, age18_24_pop, age25_34_pop, age35_44_pop, age45_54_pop, age55_64_pop, age65_74_pop, age75_84_pop, age85_pop]
     const ageVaxArray = [age017, age1824, age2534, age3544, age4554, age5564, age6574yrs, age7584, age85]
-    const ageVaxArrayAll = [age017, age1824, age2534, age3544, age4554, age5564, age6574yrs, age7584, age85, age85]
+    const ageVaxArrayAll = [age017, age1824, age2534, age3544, age4554, age5564, age6574yrs, age7584, age85, ageUnknown]
     const agePercent1Dose = ageVaxArray.map((a, i) => {
         return (parseFloat((a / agePopArray[i]) * 100).toFixed(1) + '%')
     })
@@ -111,7 +111,7 @@ const Vaccinations = (props) => {
                         date={ ["Moderna", "Pfizer", "Unknown"] }
                         data={ [[moderna, pfizer, unknownTrade]] }
                         fill={ [[color.green, color.blue, color.lightergray]] }
-                        title={ "Persons w/ at Least 1 Dose: by Trade" }
+                        title={ "All Doses Administered by Trade" }
                         label={ ["People"] }
                         switches={ ['horizontalBar', 'bar', 'doughnut'] }
                     />

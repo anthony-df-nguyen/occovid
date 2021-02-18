@@ -32,7 +32,6 @@ const FetchCases = props => {
             newDailyCasesbySpecimen: parseInt(
               row.attributes.new_daily_cases_spec
             ),
-            
             recovered: parseInt(row.attributes.recovered),
             snfCases: parseInt(row.attributes.snf_cases),
             totalCasesReported: parseInt(row.attributes.total_cases_repo),

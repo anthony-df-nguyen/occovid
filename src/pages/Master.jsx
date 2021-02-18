@@ -15,5 +15,6 @@ import NoPage from 'pages/NoPage'
 import Donate from 'pages/Donate'
 import Cityhistory from 'pages/Cityhistory'
 import ComingSoon from 'pages/ComingSoon'
+import Compare from 'pages/Compare';
 
-export { Home, Cases, Deaths, Hospitalization, Vaccinations, Testing, Schools, Age, Race, Gender, City, Zip, WhatsOpen, NoPage, Donate, Cityhistory, ComingSoon}
+export { Home, Cases, Deaths, Hospitalization, Vaccinations, Testing, Schools, Age, Race, Gender, City, Zip, WhatsOpen, NoPage, Donate, Cityhistory, ComingSoon, Compare}
