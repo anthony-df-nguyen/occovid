@@ -259,11 +259,6 @@ body.dark {
   text-align: center;
 }
 @media only screen and (min-width:1366px) {
-  .page .pageTitle {
-    display: none;
-  }
-}
-@media only screen and (min-width:1366px) {
   .page {
     position: absolute;
     padding: 1rem;
