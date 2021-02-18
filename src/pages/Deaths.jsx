@@ -70,10 +70,10 @@ const Deaths = props => {
             key='3'
             id='death3'
             date={array.map(a => a.date)}
-            data={[array.map(b => b.daily_death)]}
-            fill={[color.red]}
-            title={'Daily Deaths'}
-            label={['Deaths']}
+            data={[array.map(b => b.daily_death),array.map(b => b.dailyDeath7DayAvg)]}
+            fill={[color.red,color.blue]}
+            title={'Daily Deaths Reported'}
+            label={['Deaths','7 Day Avg']}
             switches={['bar', 'line']}
           />
           <Chart
@@ -82,7 +82,7 @@ const Deaths = props => {
             date={array.map(a => a.date)}
             data={[array.map(b => b.snf)]}
             fill={[color.yellow]}
-            title={'SNF Deaths'}
+            title={'Skilled Nursing Facility Deaths'}
             label={['Deaths']}
             switches={['bar', 'line']}
           />
@@ -92,7 +92,7 @@ const Deaths = props => {
             date={array.map(a => a.date)}
             data={[array.map(b => b.alf_dth)]}
             fill={[color.orange]}
-            title={'Alf Deaths'}
+            title={'Assisted Living Facility Deaths'}
             label={['Deaths']}
             switches={['bar', 'line']}
           />

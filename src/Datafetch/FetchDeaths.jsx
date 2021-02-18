@@ -1,6 +1,7 @@
 import { DeathsURL } from 'globalVars/Sources'
 import filtertime from 'components/Timefilter.js'
 import { useEffect } from 'react'
+import average7 from 'components/Average7'
 
 let thisDataArray = []
 let lastTotalDeaths, lastDailyReportedDeath, lastSNFDeath, lastALFDeath, lastHomelessDeath, lastJailDeath
@@ -13,11 +14,13 @@ const FetchDeaths = props => {
       .then(grab => grab.features)
       .then(a => {
         let temp = [...a]
-        temp.forEach(row => {
+        let deathsReported7DayAvg = average7(temp.map(a => a.attributes.daily_dth))
+        temp.forEach((row,i) => {
           thisDataArray.push({
             date: new Date(row.attributes.date).toLocaleDateString(),
             alf_dth: parseInt(row.attributes.alf_dth),
             daily_death: parseInt(row.attributes.daily_dth),
+            dailyDeath7DayAvg: deathsReported7DayAvg[i],
             dth_date: parseInt(row.attributes.daily_death),
             homeless: parseInt(row.attributes.homeless_dth),
             snf: parseInt(row.attributes.snf_dth),

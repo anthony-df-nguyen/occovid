@@ -15,6 +15,7 @@ const Navigation = (props) => {
     navMenu.classList.remove('open')
     page.classList.remove('hidden')
     props.function(false)
+    button.classList.remove('is-active')
 
   }
 

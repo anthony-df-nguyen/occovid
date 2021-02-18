@@ -7,14 +7,18 @@ const Header = () => {
   const [isOpen, updateIsOpen] = useState(false);
 
   function checkIfOpen() {
+    console.log('you clicked it')
     let button = document.querySelector('#menubutton')
+    //console.log("file: Header.jsx ~ line 12 ~ checkIfOpen ~ button", button)
     let navMenu = document.querySelector('#navMenu')
     let page = document.querySelector('.page')
     if (!isOpen) {
+      button.classList.add('is-active')
       navMenu.classList.add('open')
       page.classList.add('hidden');
       updateIsOpen(true)
     } else if (isOpen) {
+      button.classList.remove('is-active')
       navMenu.classList.remove('open')
       page.classList.remove('hidden')
       updateIsOpen(false)

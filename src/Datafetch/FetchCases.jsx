@@ -1,6 +1,7 @@
 import { CasesURL } from 'globalVars/Sources'
 import filtertime from 'components/Timefilter.js'
 import { useEffect } from 'react'
+import average7 from 'components/Average7'
 
 let thisDataArray = []
 let lastTotalCases,
@@ -18,17 +19,20 @@ const FetchCases = props => {
       .then(grab => grab.features)
       .then(a => {
         let temp = [...a]
-        temp.forEach(row => {
+        let dailyReportedAvg7 = average7(temp.map(a => a.attributes.daily_cases_repo))
+        temp.forEach((row,i) => {
           thisDataArray.push({
             date: new Date(row.attributes.Date).toLocaleDateString(),
             daily7DayAvg: parseInt(row.attributes.daily_7day_avg),
             dailyCasesReported: parseInt(row.attributes.daily_cases_repo),
+            dailyCasesReported7DayAvg: dailyReportedAvg7[i],
             dailyCasesbySpecimen: parseInt(row.attributes.daily_cases_spec),
             homelessCases: parseInt(row.attributes.homeless_cases),
             jailCases: parseInt(row.attributes.jail_cases),
             newDailyCasesbySpecimen: parseInt(
               row.attributes.new_daily_cases_spec
             ),
+            
             recovered: parseInt(row.attributes.recovered),
             snfCases: parseInt(row.attributes.snf_cases),
             totalCasesReported: parseInt(row.attributes.total_cases_repo),
