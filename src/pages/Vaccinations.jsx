@@ -88,7 +88,7 @@ const Vaccinations = (props) => {
                         title={ "Persons w/ at Least 1 Dose: by Age" }
                         label={ ['People'] }
                         switches={ ['horizontalBar', 'bar', 'doughnut'] }>
-                        <BuildTable colName={ ['Age', 'OC Population', '% w/ at Least 1 Dose'] } rows={ [...(ageLabels.slice(0, -1))] } columns={ [ageOCPop, agePercent1Dose] } col1forcedwidth='33%' />
+                        <BuildTable colName={ ['Age', 'OC Population', '% w/ at Least 1 Dose',] } rows={ [...(ageLabels.slice(0, -1))] } columns={ [ageOCPop, agePercent1Dose, ] }  />
 
                     </Chart>
 
@@ -102,7 +102,7 @@ const Vaccinations = (props) => {
                         title={ "Persons w/ at Least 1 Dose: by Race" }
                         label={ ["People"] }
                         switches={ ['horizontalBar', 'bar', 'doughnut'] }>
-                        <BuildTable colName={ ['Age', 'OC Population', '% w/ at Least 1 Dose'] } rows={ ["Asian/PI", "Black", "Hispanic", "White"] } columns={ [raceOCPop, racePercent1Dose] } col1forcedwidth='33%'/>
+                        <BuildTable colName={ ['Age', 'OC Population', '% w/ at Least 1 Dose'] } rows={ ["Asian/PI", "Black", "Hispanic", "White"] } columns={ [raceOCPop, racePercent1Dose, ] } />
                     </Chart>
 
                     <Chart

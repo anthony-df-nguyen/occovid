@@ -346,6 +346,7 @@ body.dark {
   background-color: var(--white);
   padding         : 1rem;
   border-radius   : @radius;
+  overflow-x      : hidden;
 
   canvas {
     max-width : 100%;
@@ -516,8 +517,11 @@ body.dark {
   grid-gap             : @gap;
   grid-template-columns: 1fr;
   grid-template-rows   : auto;
+  overflow-x           : scroll;
 
   .chartContainer {
+    overflow-x: hidden;
+
     canvas {
       //height    : 100% !important;
       max-height: 100vh !important;
@@ -964,8 +968,8 @@ a.globButton {
 
   select {
     background-color: var(--gray);
-    display: block;
-    margin:1rem auto;
+    display         : block;
+    margin          : 1rem auto;
   }
 
   .uiButtonInstruction {
@@ -1049,6 +1053,24 @@ a.globButton {
           font-size: 1rem;
         }
       }
+    }
+  }
+}
+
+
+//Sticky Table
+.tscroll {
+  width        : 100%;
+  overflow-x   : scroll;
+  margin-bottom: 10px;
+
+  table {
+    td:first-child, th:first-child {
+      position : -webkit-sticky;
+      position : sticky;
+      left     : 0;
+      min-width: 5rem;
+      //border-right: 1px solid var(--white);
     }
   }
 }

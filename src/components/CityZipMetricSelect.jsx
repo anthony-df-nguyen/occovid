@@ -64,7 +64,7 @@ const CityZipMetricSelect = props => {
           </a>
           <a
             className={ selectedMetric == 'Cases_15_18' ? 'active' : null }
-            onClick={ () => runMetricUpdate('Cases_15_18') }
+            onClick={ () => runMetricUpdate('Cases_15_18', 'Cases 15 to 18') }
           >
             Cases 15-18
           </a>

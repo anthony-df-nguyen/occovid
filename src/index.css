@@ -294,6 +294,7 @@ body.dark {
   background-color: var(--white);
   padding: 1rem;
   border-radius: 5px;
+  overflow-x: hidden;
 }
 .chartContainer canvas {
   max-width: 100%;
@@ -474,6 +475,10 @@ body.dark {
   grid-gap: 10px;
   grid-template-columns: 1fr;
   grid-template-rows: auto;
+  overflow-x: scroll;
+}
+#cityGrid .chartContainer {
+  overflow-x: hidden;
 }
 #cityGrid .chartContainer canvas {
   max-height: 100vh !important;
@@ -936,4 +941,16 @@ a.globButton {
   .expander #countySelect ul li {
     font-size: 1rem;
   }
+}
+.tscroll {
+  width: 100%;
+  overflow-x: scroll;
+  margin-bottom: 10px;
+}
+.tscroll table td:first-child,
+.tscroll table th:first-child {
+  position: -webkit-sticky;
+  position: sticky;
+  left: 0;
+  min-width: 5rem;
 }
