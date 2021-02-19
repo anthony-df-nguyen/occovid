@@ -7,6 +7,7 @@ import { FetchDeaths } from 'Datafetch/FetchDeaths';
 import { FetchHospitals } from 'Datafetch/FetchHospitals';
 import CityCompareChart from 'components/CityCompare/CityCompareChart';
 import GetCountyCasesAndDeaths from 'Datafetch/GetCountyCasesAndDeaths'
+import GetCountyHospitalized from 'Datafetch/GetCountyHospitalized';
 import Page from 'components/Page'
 import CompareCountyMode from 'components/CompareCountyMode'
 import { countyPopulation, ocpop } from 'globalVars/populations.js'
@@ -54,6 +55,15 @@ const Compare = props => {
                     return getper100ks(compareArray, 'totalDeaths')
                 })
                 break;
+            case 'Hospitalized per 100k':
+                //console.log("calculating for hospitalized per 100k")
+                updateOCFinalArray(() => {
+                    return getper100ks(ocArray, 'hospital', 'oc')
+                })
+                updateCompareFinalArray(() => {
+                    return getper100ks(compareArray, 'hospitalized')
+                })
+                break;
             case 'Cases':
                 updateOCFinalArray(() => {
                     return ocArray.map(a => a.totalCasesbySpecimen);
@@ -68,6 +78,15 @@ const Compare = props => {
                 })
                 updateCompareFinalArray(() => {
                     return compareArray.map(a => a.totalDeaths);
+                })
+                break;
+            case 'Hospitalized':
+                //console.log("calculating for hospitalized")
+                updateOCFinalArray(() => {
+                    return ocArray.map(a => a.hospital);
+                })
+                updateCompareFinalArray(() => {
+                    return compareArray.map(a => a.hospitalized);
                 })
                 break;
             default:
@@ -122,6 +141,24 @@ const Compare = props => {
 
     const returnFetchComponents = () => {
         switch (currentMode) {
+            case 'Cases per 100K':
+                //console.log('Fetching cases per 100k')
+                return <>
+                    <FetchCases function={ updateOCArray } time={ time } />
+                    <GetCountyCasesAndDeaths function={ updateCompareArray } county={ comparisonCounty } time={ time } /></>
+                break;
+            case 'Deaths per 100k':
+                //console.log('Fetching deaths per 100k')
+                return <>
+                    <FetchDeaths function={ updateOCArray } time={ time } />
+                    <GetCountyCasesAndDeaths function={ updateCompareArray } county={ comparisonCounty } time={ time } /></>
+                break;
+            case 'Hospitalized per 100k':
+                //console.log('Fetching Hospitalized per 100k')
+                return <>
+                    <FetchHospitals function={ updateOCArray } time={ time } />
+                    <GetCountyHospitalized function={ updateCompareArray } county={ comparisonCounty } time={ time } /></>
+                break;
             case 'Cases':
                 //console.log('Fetching cases')
                 return (<>
@@ -134,17 +171,12 @@ const Compare = props => {
                     <FetchDeaths function={ updateOCArray } time={ time } />
                     <GetCountyCasesAndDeaths function={ updateCompareArray } county={ comparisonCounty } time={ time } /></>
                 break;
-            case 'Cases per 100K':
-                //console.log('Fetching cases per 100k')
+            case 'Hospitalized':
+                //console.log('Hospitalized')
                 return <>
-                    <FetchCases function={ updateOCArray } time={ time } />
-                    <GetCountyCasesAndDeaths function={ updateCompareArray } county={ comparisonCounty } time={ time } /></>
-                break;
-            case 'Deaths per 100k':
-                //console.log('Fetching deaths per 100k')
-                return <>
-                    <FetchDeaths function={ updateOCArray } time={ time } />
-                    <GetCountyCasesAndDeaths function={ updateCompareArray } county={ comparisonCounty } time={ time } /></>
+                    <FetchHospitals function={ updateOCArray } time={ time } />
+                    <GetCountyHospitalized function={ updateCompareArray } county={ comparisonCounty } time={ time } />
+                    </>
                 break;
             default:
                 //console.log('defualt')
@@ -168,7 +200,7 @@ const Compare = props => {
 
     //Recalculate when the county Changes
     useEffect(() => {
-        <GetCountyCasesAndDeaths function={ updateCompareArray } county={ comparisonCounty } time={ time } rerun={'Rerun'} />
+        returnFetchComponents();
     }, [comparisonCounty]);
 
     //Recalculate when the Mode Changes

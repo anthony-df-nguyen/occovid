@@ -6,7 +6,7 @@ const CompareCountyMode = props => {
     function runMetricUpdate(metric) {
         localStorage.setItem('countyCompareLastMode', metric)
         updateMetric(metric)
-        console.log('The mode has changed to ', metric)
+        //console.log('The mode has changed to ', metric)
         props.function(metric)
     }
 
@@ -28,6 +28,12 @@ const CompareCountyMode = props => {
                         Deaths/100k
                     </a>
                     <a
+                        className={ selectedMetric == 'Hospitalized per 100k' ? 'active' : null }
+                        onClick={ () => runMetricUpdate('Hospitalized per 100k') }
+                    >
+                        Hospitalized per 100k
+                    </a>
+                    <a
                         className={ selectedMetric == 'Cases' ? 'active' : null }
                         onClick={ () => runMetricUpdate('Cases') }
                     >
@@ -39,21 +45,14 @@ const CompareCountyMode = props => {
                     >
                         Deaths
                     </a>
-                
-                    {/* <a
+                    <a
                         className={ selectedMetric == 'Hospitalized' ? 'active' : null }
                         onClick={ () => runMetricUpdate('Hospitalized') }
                     >
                         Hospitalized
                     </a>
-                
-                  
-                    <a
-                        className={ selectedMetric == 'Hospitalized per 100k' ? 'active' : null }
-                        onClick={ () => runMetricUpdate('Hospitalized per 100k') }
-                    >
-                        Hospitalized per 100k
-                    </a> */}
+
+
  
                    
 
