@@ -35,58 +35,24 @@ function App() {
           <LastUpdateDate.Provider value= {{lastDate,setDate}}>
           <TimeContext.Provider value={ { time, setTime } }>
           <Switch>
-              <Route exact path='/' component={ Home }>
-                {/* <Home title='Summary' /> */}
-              </Route>
-              <Route path='/cases' component={ Cases }>
-               
-              </Route>
-              <Route path='/deaths' component={ Deaths }>
-               
-              </Route>
-              <Route path='/hospitalizations'>
-                <Hospitalization title='Hospitalizations' />
-              </Route>
-              <Route path='/vaccinations'>
-                <Vaccinations title='Vaccinations' />
-              </Route>
-              <Route path='/testing'>
-                <Testing title='Testing' />
-              </Route>
-              <Route path='/schools'>
-                <Schools title='Schools' />
-              </Route>
-              <Route path='/cityhistory'>
-                <Cityhistory title='City History' />
-              </Route>
-              <Route path='/city'>
-                <City title='City' />
-              </Route>
-              <Route path='/zip'>
-                <Zip title='Zip' />
-              </Route>
-              <Route path='/age'>
-                <Age title='Age' />
-              </Route>
-              <Route path='/race'>
-                <Race title='Race' />
-              </Route>
-              <Route path='/gender'>
-                <Gender title='Gender' />
-              </Route>
+              <Route exact path='/' component={ Home } />
+              <Route path='/cases' component={ Cases } />
+              <Route path='/deaths' component={ Deaths } />
+              <Route path='/hospitalizations' component={ Hospitalization }  />
+              <Route path='/vaccinations' component={ Vaccinations } />
+              <Route path='/testing' component={Testing} />
+              <Route path='/schools' component={Schools}/>
+              <Route path='/cityhistory' component={Cityhistory }/>
+              <Route path='/city' component={ City} />
+              <Route path='/zip' component={ Zip } />
+              <Route path='/age' component={Age } />
+              <Route path='/race' component={Race} />
+              <Route path='/gender' component={ Gender }/>
               <Route path='/whatsopen' component={ WhatsOpen} />
               <Route path='/reportbugs' component={ Reportbug } />
               <Route path='/donate' component={ Donate } />
-
-              {/* <Route >
-                <Compare title="Compare" />
-              </Route> */}
-
-              <Route >
-                <NoPage title="404" />
-              </Route>
-   
-          
+              <Route path='/compare' component={ Compare} />
+              <Route component={ NoPage} />
           </Switch>
            
           </TimeContext.Provider>

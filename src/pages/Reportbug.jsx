@@ -3,9 +3,6 @@ import Page from 'components/Page'
 
 
 const Reportbug = (props) => {
-
-
-
     return (
         <div className='page'>
             <h1 className='pageTitle'>{ props.title }</h1>
@@ -16,9 +13,7 @@ const Reportbug = (props) => {
             <div id="googleForm">
                 <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScOtQjpnqcxaXju6gnSghVyLi4BRIj74u-5Un3_H3vki5y_Cw/viewform?embedded=true" width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
             </div>
-        </div>
-
-     
+        </div>     
     );
 }
 
