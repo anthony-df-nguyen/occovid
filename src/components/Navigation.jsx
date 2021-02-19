@@ -16,7 +16,7 @@ const Navigation = (props) => {
     page.classList.remove('hidden')
     props.function(false)
     button.classList.remove('is-active')
-
+    
   }
 
   return (
@@ -33,9 +33,7 @@ const Navigation = (props) => {
           Deaths
         </NavLink>
         <NavLink
-          to='/hospitalizations'
-
-          onClick={ () => { closeTheNav('/hospitalizations') } } activeClassName='selectedLink'
+          to='/hospitalizations' onClick={ () => { closeTheNav('/hospitalizations') } } activeClassName='selectedLink'
         >
           Hospitalizations
         </NavLink>

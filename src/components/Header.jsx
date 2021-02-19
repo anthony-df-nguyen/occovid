@@ -5,24 +5,27 @@ import { Link } from "react-router-dom"
 
 const Header = () => {
   const [isOpen, updateIsOpen] = useState(false);
+  let button = document.querySelector('#menubutton')
+  let navMenu = document.querySelector('#navMenu')
+  let page = document.querySelector('.page')
 
+  function closeNav() {
+    button.classList.remove('is-active')
+    navMenu.classList.remove('open')
+    page.classList.remove('hidden')
+    updateIsOpen(false)
+  }
   function checkIfOpen() {
-    let button = document.querySelector('#menubutton')
-    //console.log("file: Header.jsx ~ line 12 ~ checkIfOpen ~ button", button)
-    let navMenu = document.querySelector('#navMenu')
-    let page = document.querySelector('.page')
     if (!isOpen) {
       button.classList.add('is-active')
       navMenu.classList.add('open')
       page.classList.add('hidden');
       updateIsOpen(true)
-    } else if (isOpen) {
-      button.classList.remove('is-active')
-      navMenu.classList.remove('open')
-      page.classList.remove('hidden')
-      updateIsOpen(false)
+    } else {
+      closeNav()
     }
   }
+ 
 
 
   return (
@@ -38,7 +41,7 @@ const Header = () => {
           </span>
         </button>
         <Link to="/">
-          <div className='siteName'>OCCOVID</div>
+          <div className='siteName' onClick={closeNav}>OCCOVID</div>
         </Link>
 
       </div>
