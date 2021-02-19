@@ -22,7 +22,8 @@ const Zip = props => {
       if (b === whichMetric) {
         finalArraytoUse.push({
           city: Object.values(a)[0],
-          value: Object.values(a)[i]
+          value: parseFloat(Object.values(a)[i]),
+          pop: a.population.toLocaleString(),
         })
       }
     })
@@ -56,12 +57,13 @@ const Zip = props => {
           function={[updateWhichMetric, updateMetricName]}
           current={whichMetric}
         />
-        <CityZipSort function={updateWhichSort} current={whichSort} />
+        <CityZipSort function={ updateWhichSort } current={ whichSort } />
+ 
         <div id='cityGrid'>
           <BuildTable
-            colName={['Zip Code', metricName]}
+            colName={['Zip Code', metricName,'Population']}
             rows={finalArraytoUse.map(a => a.city)}
-            columns={[finalArraytoUse.map(a => a.value)]}
+            columns={[finalArraytoUse.map(a => a.value.toLocaleString()),finalArraytoUse.map(b => b.pop)]}
           />
           <Chart
             key='1'
