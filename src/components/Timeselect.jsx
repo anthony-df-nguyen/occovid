@@ -19,7 +19,7 @@ const Timeselect = props => {
   }
 
   function monthSwitch(e) {
-    console.log(e.target)
+    //console.log(e.target)
     let value = e.target.value
     updateAllTime(value)
   }
@@ -92,9 +92,9 @@ const Timeselect = props => {
 
   return (
     <div>
-      <div className='timeFilterTitle'>Isolate Time Periods</div>
-      <div className='timeParent'>
-        <div className='timeButtonContainer'>
+      <div className='uiButtonInstruction'>Isolate Time Periods</div>
+      <div className='uiParent'>
+        <div className='uiButtonContainer'>
           <a
             className={ time == 'All Time' ? 'active' : null }
             onClick={ () => updateAllTime('All Time') }

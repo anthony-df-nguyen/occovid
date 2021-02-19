@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Button from 'components/Button';
+import ExpandCollapse from 'components/ExpandCollapse';
 
 const CitySelector = (props) => {
     const [numSelected, updateNumSelected] = useState(0)
@@ -72,31 +72,12 @@ const CitySelector = (props) => {
         })
     },[])
 
-    const [openedorclosed, updateopenclose] = useState('0px')
-    function toggledOpenOrClosed(e) {
-
-        let itemHeight = e.target.nextSibling.scrollHeight;
-     
-
-        switch (openedorclosed) {
-            case '0px':
-                return updateopenclose(itemHeight+'px')
-                break;
-            case itemHeight+'px':
-                return updateopenclose('0px')
-                break;
-            default:
-                return updateopenclose(itemHeight + 'px')
-                break;
-        }
-    }
 
     return (
         <div>
-            <div id="multiCitySelect">
-                <div className="cityselecttitle" onClick={ toggledOpenOrClosed }>Select the Cities</div>
-                <div className="citySelectorContainer" style={ { maxHeight: openedorclosed, } }>
-                    <p style={{textAlign: 'center', marginBottom: '1rem'}}>Select up to 3 cities</p>
+            <ExpandCollapse title="Select County and Metric" buttontext={ 'Close' } buttonFunction={ updateCities }>
+                <div id="countySelect">
+                    <p className="expandContentInstruction"> Select up to 3 cities: </p>
                     <form onChange={ (e) => checkWhatsClicked(e) }>
                         <ul>
                             <li><label><input type="checkbox" value="Aliso_Viejo" label="Aliso Viejo"></input >Aliso Viejo</label></li>
@@ -142,9 +123,10 @@ const CitySelector = (props) => {
                             <li><label><input type="checkbox" value="Yorba_Linda" label="Yorba Linda"></input>Yorba Linda</label></li>
                         </ul>
                     </form>
-                    <div className="loadDataButton" onClick={ updateCities } >Load Data</div>
                 </div>
-            </div>
+  
+
+            </ExpandCollapse>
         </div>
     );
 }

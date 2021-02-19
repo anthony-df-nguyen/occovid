@@ -41,6 +41,21 @@ const CityCompareChart = props => {
         plugins: {
             datalabels: false,
         },
+        scales: {
+            yAxes: [
+                {
+                    ticks: {
+                        fontColor: '#999999',
+                        suggestedmin: 0,
+                        beginAtZero: true
+                    },
+                }
+            ],
+        },
+        tooltips: {
+            mode: 'index',
+            axis: 'y'
+        },
     }
 
 

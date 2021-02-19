@@ -64,7 +64,6 @@ const FetchCases = props => {
       })
       .then(() => filtertime(thisDataArray, props.time))
       .then(final => {
-        //console.log(final)
         props.function(final)
       })
   }, [props.time])

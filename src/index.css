@@ -12,6 +12,19 @@
 * button {
   outline: none;
 }
+.selectStyling {
+  width: 100%;
+  max-width: -webkit-fit-content;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+  border: 1px solid var(--select-border);
+  border-radius: 5px;
+  padding: 0.25em 0.5em;
+  cursor: pointer;
+  color: var(--primary-text);
+  line-height: 0;
+  background-color: var(--white);
+}
 select {
   width: 100%;
   max-width: -webkit-fit-content;
@@ -26,7 +39,7 @@ select {
   background-color: var(--white);
 }
 body {
-  --primary-text: #333;
+  --primary-text: #3b3b3b;
   --staywhite: #f3f3f3;
   --blue: #009ddb;
   --white: white;
@@ -52,7 +65,7 @@ body {
   --borderOnHover: 2px solid var(--blue);
 }
 body.dark {
-  --primary-text: rgba(255, 255, 255, 0.87);
+  --primary-text: rgba(255, 255, 255, 0.7);
   --blue: #009ddb;
   --white: #242424;
   --gray: #121212;
@@ -151,7 +164,7 @@ body.dark {
 #navMenu .subSection {
   text-align: center;
   margin: 1rem;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   margin-bottom: 1rem;
   font-weight: 700;
   color: var(--subsection);
@@ -164,6 +177,16 @@ body.dark {
   padding: 6px 8px;
   display: block;
   margin-bottom: 10px;
+}
+@media only screen and (min-height: 100px) and (min-width: 1366px) {
+  #navMenu a {
+    margin-bottom: 4px;
+  }
+}
+@media only screen and (min-height: 1200px) and (min-width: 1366px) {
+  #navMenu a {
+    margin-bottom: 10px;
+  }
 }
 #navMenu .donate {
   margin-top: 2rem;
@@ -470,25 +493,25 @@ body.dark {
     grid-template-columns: 400px 1fr;
   }
 }
-.timeFilterTitle {
+.uiButtonInstruction {
   text-align: center;
   color: var(--blue);
 }
 @media only screen and (min-width:520px) {
-  .timeFilterTitle {
+  .uiButtonInstruction {
     text-align: left;
   }
 }
 @media only screen and (min-width:1366px) {
-  .timeFilterTitle {
+  .uiButtonInstruction {
     text-align: center;
   }
 }
-.timeParent {
+.uiParent {
   margin: 10px auto;
   display: block;
 }
-.timeParent .timeButtonContainer {
+.uiParent .uiButtonContainer {
   margin: -10px 0 0 -10px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -500,8 +523,8 @@ body.dark {
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
-.timeParent .timeButtonContainer a,
-.timeParent .timeButtonContainer select {
+.uiParent .uiButtonContainer a,
+.uiParent .uiButtonContainer select {
   margin: 10px 0 0 10px;
   -webkit-box-flex: 1;
   -ms-flex-positive: 1;
@@ -514,23 +537,23 @@ body.dark {
   border-radius: 10px;
   color: var(--primary-text);
 }
-.timeParent .timeButtonContainer a:hover,
-.timeParent .timeButtonContainer select:hover {
+.uiParent .uiButtonContainer a:hover,
+.uiParent .uiButtonContainer select:hover {
   cursor: pointer;
 }
 @media only screen and (min-width:1366px) {
-  .timeParent .timeButtonContainer a,
-  .timeParent .timeButtonContainer select {
+  .uiParent .uiButtonContainer a,
+  .uiParent .uiButtonContainer select {
     font-size: 1rem;
   }
 }
 @media only screen and (min-width:1366px) {
-  .timeParent .timeButtonContainer {
+  .uiParent .uiButtonContainer {
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
   }
-  .timeParent .timeButtonContainer a {
+  .uiParent .uiButtonContainer a {
     -webkit-box-flex: 0;
     -ms-flex-positive: 0;
     flex-grow: 0;
@@ -773,91 +796,13 @@ a.globButton {
   font-weight: bold;
   font-family: 'Arial', sans-serif;
 }
-#multiCitySelect {
-  background-color: var(--white);
-  margin: 1em auto 1rem auto;
+.standardButton {
+  background-color: var(--darkblue);
   border-radius: 5px;
-}
-#multiCitySelect:hover {
-  cursor: pointer;
-  -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-  border: var(--borderOnHover);
-}
-#multiCitySelect .cityselecttitle {
-  padding: 1rem;
-  text-align: center;
-  color: var(--blue);
-  display: block;
-  font-weight: 500;
-}
-@media only screen and (min-width:520px) {
-  #multiCitySelect .cityselecttitle {
-    font-size: 1.5rem;
-  }
-}
-#multiCitySelect .citySelectorContainer {
-  overflow-y: hidden;
-  height: 100%;
-  -webkit-transition: max-height 0.2s ease-in-out;
-  -o-transition: max-height 0.2s ease-in-out;
-  transition: max-height 0.2s ease-in-out;
-}
-#multiCitySelect ul {
-  padding: 0 1rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  max-height: 500px;
-}
-#multiCitySelect ul li {
-  list-style: none;
-  font-size: 12px;
-  margin-top: 5px;
-  color: var(--primary-text);
-}
-#multiCitySelect ul li input[type=checkbox] {
-  display: block;
-  float: left;
-  margin-right: 10px;
-}
-@media only screen and (min-width:520px) {
-  #multiCitySelect ul {
-    max-height: 300px;
-  }
-  #multiCitySelect ul li {
-    font-size: 14px;
-  }
-}
-@media only screen and (min-width:1366px) {
-  #multiCitySelect ul {
-    max-height: 300px;
-  }
-  #multiCitySelect ul li {
-    font-size: 16px;
-  }
-}
-@media only screen and (min-width:1920px) {
-  #multiCitySelect ul {
-    max-height: 150px;
-  }
-  #multiCitySelect ul li {
-    font-size: 1rem;
-  }
-}
-.loadDataButton {
-  background-color: var(--blue);
-  border-radius: 5px;
-  padding: 8px 16px !important;
+  padding: 6px 8px !important;
   display: block;
   margin: 1rem auto !important;
-  font-size: 1.25rem;
+  font-size: 1rem;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -872,15 +817,6 @@ a.globButton {
   color: var(--primary-text);
   font-size: 10px;
   font-weight: 300;
-}
-#countySelect {
-  text-align: center;
-  display: block;
-  margin: 1rem auto;
-}
-#countySelect p {
-  display: inline;
-  margin-right: 10px;
 }
 .formTitle {
   text-align: center;
@@ -898,4 +834,106 @@ a.globButton {
 }
 #googleForm iframe {
   min-height: 100vh;
+}
+.expander {
+  background-color: var(--white);
+  margin-bottom: 1rem;
+  border-radius: 5px;
+}
+.expander:hover {
+  cursor: pointer;
+  -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  border: var(--borderOnHover);
+}
+.expander .expanderTitle {
+  padding: 1rem;
+  text-align: center;
+  color: var(--blue);
+  display: block;
+  font-weight: 500;
+}
+@media only screen and (min-width:520px) {
+  .expander .expanderTitle {
+    font-size: 1.5rem;
+  }
+}
+.expander .expandContentInstruction {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: var(--blue);
+}
+.expander select {
+  background-color: var(--gray);
+  display: block;
+  margin: 1rem auto;
+}
+.expander .uiButtonInstruction {
+  text-align: center;
+}
+.expander .uiButtonContainer {
+  padding: 0 10px;
+  text-align: center;
+}
+.expander .uiButtonContainer a {
+  background-color: var(--gray);
+}
+.expander .expanderContent {
+  overflow-y: hidden;
+  height: 100%;
+  -webkit-transition: max-height 0.2s ease-in-out;
+  -o-transition: max-height 0.2s ease-in-out;
+  transition: max-height 0.2s ease-in-out;
+}
+.expander #countySelect ul {
+  padding: 0 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  max-height: 500px;
+}
+.expander #countySelect ul label {
+  text-align: left !important;
+  display: block;
+}
+.expander #countySelect ul li {
+  list-style: none;
+  font-size: 12px;
+  margin-top: 5px;
+  color: var(--primary-text);
+}
+.expander #countySelect ul li input[type=checkbox] {
+  display: block;
+  float: left;
+  margin-right: 10px;
+}
+@media only screen and (min-width:520px) {
+  .expander #countySelect ul {
+    max-height: 300px;
+  }
+  .expander #countySelect ul li {
+    font-size: 14px;
+  }
+}
+@media only screen and (min-width:1366px) {
+  .expander #countySelect ul {
+    max-height: 300px;
+  }
+  .expander #countySelect ul li {
+    font-size: 16px;
+  }
+}
+@media only screen and (min-width:1920px) {
+  .expander #countySelect ul {
+    max-height: 150px;
+  }
+  .expander #countySelect ul li {
+    font-size: 1rem;
+  }
 }

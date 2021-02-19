@@ -10,9 +10,9 @@ const CityZipSort = props => {
 
   return (
     <div id="cityZipSortUI">
-      <div className='timeFilterTitle'>Sort Data by:</div>
-      <div className='timeParent'>
-        <div className='timeButtonContainer'>
+      <div className='uiButtonInstruction'>Sort Data by:</div>
+      <div className='uiParent'>
+        <div className='uiButtonContainer'>
           <a
             className={ selectedSort == 'high' ? 'active' : null }
             onClick={ () => runSortUpdate('high') }

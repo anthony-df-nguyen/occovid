@@ -41,7 +41,7 @@
   }
 }
 
-select {
+.selectStyling {
   width           : 100%;
   max-width       : -webkit-fit-content;
   max-width       : -moz-fit-content;
@@ -55,8 +55,12 @@ select {
   background-color: var(--white);
 }
 
+select {
+  .selectStyling;
+}
+
 body {
-  --primary-text : #333;
+  --primary-text : #3b3b3b;
   --staywhite    : #f3f3f3;
   --blue         : #009ddb;
   --white        : white;
@@ -83,7 +87,7 @@ body {
 }
 
 body.dark {
-  --primary-text: rgba(255, 255, 255, 0.87);
+  --primary-text: rgba(255, 255, 255, 0.70);
   --blue        : #009ddb;
   --white       : #242424;
   --gray        : #121212;
@@ -197,28 +201,28 @@ body.dark {
   .subSection {
     text-align   : center;
     margin       : @pad;
-    margin-top   : 2rem;
+    margin-top   : 1.5rem;
     margin-bottom: 1rem;
     font-weight  : 700;
     color        : var(--subsection);
   }
 
   a {
-    text-align           : center;
-    margin               : 0 @pad;
-    font-size            : 1.25rem;
-    color                : var(--primary-text);
-    padding              : @buttonpad;
-    display              : block;
-    margin-bottom        : @gap;
-    // &:hover {
-    //   padding:@buttonpad;
-    //   border-radius: @radius;
-    //   border:2px solid var(--white);
-    //   box-shadow: 1px 2px 8px 1px  rgba(0,0,0,.1);
-    //   background-color: @gold;
-    //   color:white;
-    // }
+    text-align   : center;
+    margin       : 0 @pad;
+    font-size    : 1.25rem;
+    color        : var(--primary-text);
+    padding      : @buttonpad;
+    display      : block;
+    margin-bottom: @gap;
+
+    @media only screen and (min-height: 100px) and (min-width: 1366px) {
+      margin-bottom: 4px;
+    }
+
+    @media only screen and (min-height: 1200px) and (min-width: 1366px) {
+      margin-bottom: @gap;
+    }
   }
 
   .donate {
@@ -536,7 +540,7 @@ body.dark {
 
 
 //Time Filters
-.timeFilterTitle {
+.uiButtonInstruction {
   //margin-top:@topm;
   text-align: center;
   color     : var(--blue);
@@ -550,11 +554,11 @@ body.dark {
   }
 }
 
-.timeParent {
+.uiParent {
   margin : @gap auto;
   display: block;
 
-  .timeButtonContainer {
+  .uiButtonContainer {
     margin               : -@gap 0 0 -@gap;
     display              : -webkit-box;
     display              : -ms-flexbox;
@@ -868,104 +872,15 @@ a.globButton {
   font-family: 'Arial', sans-serif;
 }
 
-#multiCitySelect {
-  background-color: var(--white);
-  margin          : 1em auto 1rem auto;
+
+.standardButton {
+  background-color: var(--darkblue);
   border-radius   : @radius;
-
-  &:hover {
-    cursor            : pointer;
-    -webkit-box-shadow: @shadow;
-    box-shadow        : @shadow;
-    border            : var(--borderOnHover);
-  }
-
-
-  .cityselecttitle {
-    padding    : 1rem;
-    text-align : center;
-    color      : var(--blue);
-    display    : block;
-    font-weight: 500;
-
-    @media @biggerthanmobile {
-      font-size: 1.5rem;
-    }
-  }
-
-  .citySelectorContainer {
-    overflow-y: hidden;
-    height    : 100%;
-
-    -webkit-transition: max-height .2s ease-in-out;
-
-    -o-transition: max-height .2s ease-in-out;
-
-    transition: max-height .2s ease-in-out;
-  }
-
-
-  ul {
-    padding              : 0 1rem;
-    display              : -webkit-box;
-    display              : -ms-flexbox;
-    display              : flex;
-    -webkit-box-orient   : vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction   : column;
-    flex-direction       : column;
-    -ms-flex-wrap        : wrap;
-    flex-wrap            : wrap;
-    max-height           : 500px;
-
-    li {
-      list-style: none;
-      font-size : 12px;
-      margin-top: 5px;
-      color     : var(--primary-text);
-
-      input[type=checkbox] {
-        display     : block;
-        float       : left;
-        margin-right: @gap;
-      }
-    }
-
-    @media @biggerthanmobile {
-      max-height: 300px;
-
-      li {
-        font-size: 14px;
-      }
-    }
-
-    @media @wider1366 {
-      max-height: 300px;
-
-      li {
-        font-size: 16px;
-      }
-    }
-
-    @media @wider1920 {
-      max-height: 150px;
-
-      li {
-        font-size: 1rem;
-      }
-    }
-  }
-
-}
-
-.loadDataButton {
-  background-color: var(--blue);
-  border-radius   : @radius;
-  padding         : 8px 16px !important;
+  padding         : @buttonpad  !important;
   display         : block;
   margin          : 1rem auto !important;
 
-  font-size: 1.25rem;
+  font-size: 1rem;
   width    : -webkit-fit-content;
   width    : -moz-fit-content;
   width    : fit-content;
@@ -984,16 +899,16 @@ a.globButton {
   }
 }
 
-#countySelect {
-  text-align: center;
-  display   : block;
-  margin    : 1rem auto;
+// #countySelect {
+//   text-align: center;
+//   display   : block;
+//   margin    : 1rem auto;
 
-  p {
-    display     : inline;
-    margin-right: @gap;
-  }
-}
+//   p {
+//     display     : inline;
+//     margin-right: @gap;
+//   }
+// }
 
 
 .formTitle {
@@ -1014,5 +929,126 @@ a.globButton {
 
   iframe {
     min-height: 100vh;
+  }
+}
+
+.expander {
+  background-color: var(--white);
+  margin-bottom   : 1rem;
+  border-radius   : @radius;
+
+  &:hover {
+    cursor            : pointer;
+    -webkit-box-shadow: @shadow;
+    box-shadow        : @shadow;
+    border            : var(--borderOnHover);
+  }
+
+  .expanderTitle {
+    padding    : 1rem;
+    text-align : center;
+    color      : var(--blue);
+    display    : block;
+    font-weight: 500;
+
+    @media @biggerthanmobile {
+      font-size: 1.5rem;
+    }
+  }
+
+  .expandContentInstruction {
+    text-align   : center;
+    margin-bottom: 1rem;
+    color        : var(--blue);
+  }
+
+  select {
+    background-color: var(--gray);
+    display: block;
+    margin:1rem auto;
+  }
+
+  .uiButtonInstruction {
+    text-align: center;
+
+  }
+
+  .uiButtonContainer {
+    padding   : 0 @gap;
+    text-align: center;
+
+    a {
+      background-color: var(--gray);
+    }
+  }
+
+  .expanderContent {
+    overflow-y: hidden;
+    height    : 100%;
+
+    -webkit-transition: max-height .2s ease-in-out;
+
+    -o-transition: max-height .2s ease-in-out;
+
+    transition: max-height .2s ease-in-out;
+
+  }
+
+  #countySelect {
+    ul {
+      padding              : 0 1rem;
+      display              : -webkit-box;
+      display              : -ms-flexbox;
+      display              : flex;
+      -webkit-box-orient   : vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction   : column;
+      flex-direction       : column;
+      -ms-flex-wrap        : wrap;
+      flex-wrap            : wrap;
+      max-height           : 500px;
+
+      label {
+        text-align: left !important;
+        display   : block;
+      }
+
+      li {
+        list-style: none;
+        font-size : 12px;
+        margin-top: 5px;
+        color     : var(--primary-text);
+
+        input[type=checkbox] {
+          display     : block;
+          float       : left;
+          margin-right: @gap;
+        }
+      }
+
+      @media @biggerthanmobile {
+        max-height: 300px;
+
+        li {
+          font-size: 14px;
+        }
+      }
+
+      @media @wider1366 {
+        max-height: 300px;
+
+        li {
+          font-size: 16px;
+        }
+      }
+
+      @media @wider1920 {
+        max-height: 150px;
+
+        li {
+          font-size: 1rem;
+        }
+      }
+    }
   }
 }

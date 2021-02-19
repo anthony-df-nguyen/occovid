@@ -7,6 +7,7 @@ const GetCountyCasesAndDeaths = props => {
     let thisDataArray = [];
     useEffect(async () => {
         let selectedCounty = props.county;
+        //console.log('The county has changed to ', selectedCounty);
         let url = `https://data.ca.gov/api/3/action/datastore_search?resource_id=926fd08f-cc91-4828-af38-bd45de97f8c3&q=${selectedCounty}&limit=10000`
         thisDataArray = []
         await fetch(url)
@@ -27,10 +28,9 @@ const GetCountyCasesAndDeaths = props => {
             })
             .then(() => filtertime(thisDataArray, props.time))
             .then(final => {
-                // console.log(final)
                 props.function(final)
             })
-    }, [props.time])
+    }, [props.county, props.time])
 
     return <></>
 }

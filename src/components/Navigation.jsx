@@ -85,15 +85,16 @@ const Navigation = (props) => {
         <div>
           <div className='subSection'>Other</div>
         </div>
+        <NavLink to='/compare' onClick={ () => { closeTheNav('/comppare') } } activeClassName='selectedLink'>
+          Compare Counties
+        </NavLink>
         <NavLink to='/whatsopen' onClick={ () => { closeTheNav('/whatsopen') } } activeClassName='selectedLink'>
           What's Open
         </NavLink>
         <NavLink to='/reportbugs' onClick={ () => { closeTheNav('/reportbugs') } } activeClassName='selectedLink'>
           Bugs, Ideas, and Updates
         </NavLink>
-        {/* <NavLink to='/compare' onClick={ () => { closeTheNav('/comppare') } } activeClassName='selectedLink'>
-          Compare
-        </NavLink> */}
+
 
         <div style={ { paddingBottom: "8rem", } } onClick={ () => { closeTheNav('/donate') } }>
           <Button onClick={ () => { closeTheNav() } } url={ '/donate' } text="Donate" />

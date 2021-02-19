@@ -6,14 +6,15 @@ const CompareCountyMode = props => {
     function runMetricUpdate(metric) {
         localStorage.setItem('countyCompareLastMode', metric)
         updateMetric(metric)
+        console.log('The mode has changed to ', metric)
         props.function(metric)
     }
 
     return (
         <div id="cityZipMetricUI">
-            <div className='timeFilterTitle'>Select a Metric to View</div>
-            <div className='timeParent'>
-                <div className='timeButtonContainer'>
+            <div className='uiButtonInstruction'>Select a Metric to View</div>
+            <div className='uiParent'>
+                <div className='uiButtonContainer'>
                     <a
                         className={ selectedMetric == 'Cases per 100K' ? 'active' : null }
                         onClick={ () => runMetricUpdate('Cases per 100K') }

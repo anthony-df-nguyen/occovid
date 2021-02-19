@@ -14,8 +14,6 @@ const FetchDeaths = props => {
       .then(grab => grab.features)
       .then(a => {
         let temp = [...a]
-
-
         let deathsReported7DayAvg = average7(temp.map(a => a.attributes.daily_dth))
 
         //Average 7 Day Deaths by Date of Death but remove last 14 days because of reporting lag
@@ -65,7 +63,10 @@ const FetchDeaths = props => {
         })
       })
       .then(() => filtertime(thisDataArray, props.time))
-      .then(final => props.function(final))
+      .then(final => {
+
+        props.function(final)
+      })
   }, [props.time])
 
   return <></>
