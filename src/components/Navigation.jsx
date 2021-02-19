@@ -16,84 +16,39 @@ const Navigation = (props) => {
     page.classList.remove('hidden')
     props.function(false)
     button.classList.remove('is-active')
-    
+
   }
 
   return (
     <div id='navMenu'>
       <div className='linkContainer'>
         <Darktoggle />
-        <NavLink exact to='/' onClick={ () => { closeTheNav('/') } } activeClassName='selectedLink'>
-          Summary
-        </NavLink>
-        <NavLink to='/cases' onClick={ () => { closeTheNav('/cases') } } activeClassName='selectedLink'>
-          Cases
-        </NavLink>
-        <NavLink to='/deaths' onClick={ () => { closeTheNav('/deaths') } } activeClassName='selectedLink'>
-          Deaths
-        </NavLink>
-        <NavLink
-          to='/hospitalizations' onClick={ () => { closeTheNav('/hospitalizations') } } activeClassName='selectedLink'
-        >
-          Hospitalizations
-        </NavLink>
-        <NavLink
-          to='/vaccinations'
-
-          onClick={ () => { closeTheNav('/vaccinations') } } activeClassName='selectedLink'
-        >
-          Vaccinations
-        </NavLink>
-        <NavLink
-          to='/testing'
-
-          onClick={ () => { closeTheNav('/testing') } } activeClassName='selectedLink'
-        >
-          Testing
-        </NavLink>
-        <NavLink
-          to='/schools'
-
-          onClick={ () => { closeTheNav('/schools') } } activeClassName='selectedLink'
-        >
-          School Cases
-        </NavLink>
+        <NavLink exact to='/' onClick={ () => { closeTheNav('/') } } activeClassName='selectedLink'>Summary</NavLink>
+        <NavLink to='/cases' onClick={ () => { closeTheNav('/cases') } } activeClassName='selectedLink'>Cases</NavLink>
+        <NavLink to='/deaths' onClick={ () => { closeTheNav('/deaths') } } activeClassName='selectedLink'>Deaths</NavLink>
+        <NavLink to='/hospitalizations' onClick={ () => { closeTheNav('/hospitalizations') } } activeClassName='selectedLink'>Hospitalizations</NavLink>
+        <NavLink to='/vaccinations' onClick={ () => { closeTheNav('/vaccinations') } } activeClassName='selectedLink'>Vaccinations</NavLink>
+        <NavLink to='/testing' onClick={ () => { closeTheNav('/testing') } } activeClassName='selectedLink'>PCR Tests</NavLink>
+        <NavLink to='/serology' onClick={ () => { closeTheNav('/serology') } } activeClassName='selectedLink'>Serology Tests</NavLink>
+        <NavLink to='/schools' onClick={ () => { closeTheNav('/schools') } } activeClassName='selectedLink'>School Cases        </NavLink>
         <div>
           <div className='subSection'>by Location</div>
         </div>
-        <NavLink to='/cityhistory' onClick={ () => { closeTheNav('/cityhistory') } } activeClassName='selectedLink'>
-          City History
-        </NavLink>
-        <NavLink to='/city' onClick={ () => { closeTheNav('/city') } } activeClassName='selectedLink'>
-          City
-        </NavLink>
-        <NavLink to='/zip' onClick={ () => { closeTheNav('/zip') } } activeClassName='selectedLink'>
-          Zip Code
-        </NavLink>
+        <NavLink to='/cityhistory' onClick={ () => { closeTheNav('/cityhistory') } } activeClassName='selectedLink'>City History</NavLink>
+        <NavLink to='/city' onClick={ () => { closeTheNav('/city') } } activeClassName='selectedLink'>City</NavLink>
+        <NavLink to='/zip' onClick={ () => { closeTheNav('/zip') } } activeClassName='selectedLink'>Zip Code</NavLink>
         <div>
           <div className='subSection'>by Demographic</div>
         </div>
-        <NavLink to='/age' onClick={ () => { closeTheNav('/age') } } activeClassName='selectedLink'>
-          by Age
-        </NavLink>
-        <NavLink to='/race' onClick={ () => { closeTheNav('/race') } } activeClassName='selectedLink'>
-          by Race
-        </NavLink>
-        <NavLink to='/gender' onClick={ () => { closeTheNav('/gender') } } activeClassName='selectedLink'>
-          by Gender
-        </NavLink>
+        <NavLink to='/age' onClick={ () => { closeTheNav('/age') } } activeClassName='selectedLink'>by Age</NavLink>
+        <NavLink to='/race' onClick={ () => { closeTheNav('/race') } } activeClassName='selectedLink'>by Race</NavLink>
+        <NavLink to='/gender' onClick={ () => { closeTheNav('/gender') } } activeClassName='selectedLink'>by Gender</NavLink>
         <div>
           <div className='subSection'>Other</div>
         </div>
-        <NavLink to='/compare' onClick={ () => { closeTheNav('/comppare') } } activeClassName='selectedLink'>
-          Compare Counties
-        </NavLink>
-        <NavLink to='/whatsopen' onClick={ () => { closeTheNav('/whatsopen') } } activeClassName='selectedLink'>
-          What's Open
-        </NavLink>
-        <NavLink to='/reportbugs' onClick={ () => { closeTheNav('/reportbugs') } } activeClassName='selectedLink'>
-          Bugs, Ideas, and Updates
-        </NavLink>
+        <NavLink to='/compare' onClick={ () => { closeTheNav('/comppare') } } activeClassName='selectedLink'>Compare Counties</NavLink>
+        <NavLink to='/whatsopen' onClick={ () => { closeTheNav('/whatsopen') } } activeClassName='selectedLink'>What's Open</NavLink>
+        <NavLink to='/reportbugs' onClick={ () => { closeTheNav('/reportbugs') } } activeClassName='selectedLink'>Bugs, Ideas, and Updates</NavLink>
 
 
         <div style={ { paddingBottom: "8rem", } } onClick={ () => { closeTheNav('/donate') } }>

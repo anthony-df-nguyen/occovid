@@ -12,6 +12,7 @@ const Page = (props) => {
             return <Lastupdate />
         }
     }
+    document.title = props.title;
 
     return (
         <div>

@@ -24,12 +24,12 @@ const Cases = props => {
       <Page title="Case Detail">
         <div className='widgetGrid'>
           <Widget
-            title={'Total Cases'}
+            title={'Total Cases (PCR)'}
             stat={lastTotalCases}
             color={color.gold}
           />
           <Widget
-            title={'Daily Reported'}
+            title={'Daily PCR Reported'}
             stat={lastDailyReported}
             color={color.red}
           />

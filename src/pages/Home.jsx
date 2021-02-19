@@ -86,12 +86,12 @@ const Home = props => {
               <div className='widgetTitle t1'>Cases</div>
               <div className='subFlex'>
                 <Widget
-                  title={'Total Cases'}
+                  title={'Total Cases (PCR)'}
                   stat={lastTotalCases}
                   color={color.gold}
                 />
                 <Widget
-                  title={'Daily Reported'}
+                  title={'Daily PCR Reported'}
                   stat={lastDailyReported}
                   color={color.red}
                 />

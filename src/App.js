@@ -6,7 +6,7 @@ import TimeContext from './components/context/TimeContext'
 import LastUpdateDate from 'components/context/LastupdateContext'
 import Header from './components/Header'
 import { lastUpdate } from 'globalVars/Sources'
-import { Home, Cases, Deaths, Hospitalization, Vaccinations, Testing, Schools, Age, Race, Gender, City, Zip, Cityhistory, WhatsOpen, Reportbug, NoPage, Donate, Compare } from 'pages/Master'
+import { Home, Cases, Deaths, Hospitalization, Vaccinations, Testing, Schools, Age, Race, Gender, City, Zip, Cityhistory, WhatsOpen, Reportbug, NoPage, Donate, Compare, Serology} from 'pages/Master'
 
 function App() {
   const trackingId = "UA-164595635-1";
@@ -40,7 +40,8 @@ function App() {
               <Route path='/deaths' component={ Deaths } />
               <Route path='/hospitalizations' component={ Hospitalization }  />
               <Route path='/vaccinations' component={ Vaccinations } />
-              <Route path='/testing' component={Testing} />
+              <Route path='/testing' component={ Testing } />
+              <Route path='/serology' component={ Serology } />
               <Route path='/schools' component={Schools}/>
               <Route path='/cityhistory' component={Cityhistory }/>
               <Route path='/city' component={ City} />
