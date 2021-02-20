@@ -27,8 +27,11 @@ const FetchCityHistory = (props) => {
                                     let preDate = Object.values(d)[0]
                                     let dateYear = preDate.slice(-2);
                                     let dateMonth = preDate.slice(0, -3).slice(-3)
+                                    let dateMonthParse = moment().month(dateMonth).format('M')
+                                    //console.log("file: FetchCityHistory.jsx ~ line 31 ~ getData ~ dateMonthParse", dateMonthParse)
                                     let dateDay = preDate.slice(0, -7);
-                                    date = new Date(`${dateMonth}/${dateDay}/${dateYear}`)
+                                    date = new Date(`${dateMonthParse}/${dateDay}/${dateYear}`);
+                                    
                                 } else {
                                     date = null
                                 }
