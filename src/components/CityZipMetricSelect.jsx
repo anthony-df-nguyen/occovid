@@ -5,6 +5,8 @@ const CityZipMetricSelect = props => {
 
   function runMetricUpdate(metric, nameofmetric) {
     updateMetric(metric)
+    localStorage.setItem('cityZipLastMode', metric)
+    localStorage.setItem('cityZipLastModeText', nameofmetric)
     props.function[0](metric)
     props.function[1](nameofmetric)
   }

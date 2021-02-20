@@ -11,8 +11,20 @@ import Page from 'components/Page'
 const Zip = props => {
   const { time, setTime } = useContext(TimeContext)
   const [array, updateArray] = useState([])
-  const [whichMetric, updateWhichMetric] = useState('totalCases')
-  const [metricName, updateMetricName] = useState('Total Cases')
+  const [whichMetric, updateWhichMetric] = useState(() => {
+    if (!localStorage.getItem('cityZipLastMode')) {
+      return 'totalCases'
+    } else {
+      return localStorage.getItem('cityZipLastMode')
+    }
+  })
+  const [metricName, updateMetricName] = useState(() => {
+    if (!localStorage.getItem('cityZipLastModeText')) {
+      return 'Total Cases'
+    } else {
+      return localStorage.getItem('cityZipLastModeText')
+    }
+  })
   const [whichSort, updateWhichSort] = useState('high')
 
   let finalArraytoUse = []
