@@ -66,65 +66,65 @@ const WhatsOpen = props => {
             color={color.blue}
           />
         </div>
-
-        <div className='widgetGrid' style={{ marginTop: '-2rem' }}>
+        <div className='widgetGrid' style={ { marginTop: '-2rem' } }>
           <div className='gaugeContainer'>
             <div className='chartTitle'>Adj. Case Rate per 100k</div>
             <ReactSpeedometer
-              value={lastCaseRate}
-              minValue={0}
-              maxValue={maxCaseRate}
-              segments={4}
-              segmentColors={[
+              value={ lastCaseRate }
+              minValue={ 0 }
+              maxValue={ maxCaseRate }
+              segments={ 4 }
+              segmentColors={ [
                 color.gold,
                 color.orange,
                 color.red,
                 color.purple
-              ]}
-              customSegmentStops={[0, 1, 4, 7, maxCaseRate]}
-              forceRender={true}
-              needleColor={'#999'}
+              ] }
+              customSegmentStops={ [0, 1, 4, 7, maxCaseRate] }
+              forceRender={ true }
+              needleColor={ '#999' }
             />
           </div>
           <div className='gaugeContainer'>
             <div className='chartTitle'>Tests per 100K</div>
             <ReactSpeedometer
-              value={lastPositiveRate}
-              minValue={0}
-              maxValue={maxPosRate}
-              segments={4}
-              segmentColors={[
+              value={ lastPositiveRate }
+              minValue={ 0 }
+              maxValue={ maxPosRate }
+              segments={ 4 }
+              segmentColors={ [
                 color.gold,
                 color.orange,
                 color.red,
                 color.purple
-              ]}
-              customSegmentStops={[0, 2, 5, 8, maxPosRate]}
-              forceRender={true}
-              needleColor={'#999'}
+              ] }
+              customSegmentStops={ [0, 2, 5, 8, maxPosRate] }
+              forceRender={ true }
+              needleColor={ '#999' }
             />
           </div>
           <div className='gaugeContainer'>
             <div className='chartTitle'>Healthy Equity Quart %</div>
             <ReactSpeedometer
-              value={lastHealthEquity}
-              minValue={0}
-              maxValue={maxEqRate}
-              segments={4}
-              segmentColors={[
+              value={ lastHealthEquity }
+              minValue={ 0 }
+              maxValue={ maxEqRate }
+              segments={ 4 }
+              segmentColors={ [
                 color.gold,
                 color.orange,
                 color.red,
                 color.purple
-              ]}
-              customSegmentStops={[0, 2.2, 5.3, 8, maxEqRate]}
-              forceRender={true}
-              needleColor={'#999'}
+              ] }
+              customSegmentStops={ [0, 2.2, 5.3, 8, maxEqRate] }
+              forceRender={ true }
+              needleColor={ '#999' }
             />
           </div>
         </div>
+    
 
-        <BuildTable
+        <BuildTable 
           colName={['Sector', 'Status']}
           rows={tableArray.map(a => a.name)}
           columns={[tableArray.map(a => a.desc)]}

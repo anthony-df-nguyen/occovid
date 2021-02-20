@@ -34,9 +34,7 @@ function App() {
         <Header />   
           <LastUpdateDate.Provider value= {{lastDate,setDate}}>
           <TimeContext.Provider value={ { time, setTime } }>
-            <React.StrictMode>
           <Switch>
-         
                 <Route exact path='/' component={ Home } />
                 <Route path='/cases' component={ Cases } />
                 <Route path='/deaths' component={ Deaths } />
@@ -56,9 +54,7 @@ function App() {
                 <Route path='/donate' component={ Donate } />
                 <Route path='/compare' component={ Compare } />
                 <Route component={ NoPage } />
-            
           </Switch>
-             </React.StrictMode>
           </TimeContext.Provider>
           </LastUpdateDate.Provider>   
       </div>
