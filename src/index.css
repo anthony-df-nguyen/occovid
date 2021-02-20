@@ -318,6 +318,11 @@ body.dark {
   border-radius: 5px;
   overflow-x: hidden;
 }
+.chartContainer .chartNote {
+  font-size: 0.75rem;
+  color: var(--darktext);
+  text-align: center;
+}
 .chartContainer canvas {
   max-width: 100%;
   height: 100vh !important;

@@ -31,10 +31,12 @@ const Vaccinations = (props) => {
         return (parseFloat((a / agePopArray[i]) * 100).toFixed(1) + '%')
     })
     const ageOCPop = agePopArray.map(a => a.toLocaleString())
+    const agePercOfPop = agePopArray.map(a => parseFloat((a / ocpop * 100).toFixed(1)) + "%");
 
     //Race Vaccine Reports
     const racePopArray = [asian_pop, black_pop, hispanic_pop, white_pop]
-    const raceOCPop = racePopArray.map( a=> a.toLocaleString())
+    const raceOCPop = racePopArray.map(a => a.toLocaleString())
+    const racePercOfPop = racePopArray.map(a => parseFloat((a / ocpop * 100).toFixed(1)) + "%");
     const raceVaxArray = [asianPI, black, hispanic, white, otherRace];
     const raceVaxArrayAll = [asianPI, black, hispanic, white, otherRace];
     const racePercent1Dose = raceVaxArray.map((a, i) => {
@@ -88,8 +90,8 @@ const Vaccinations = (props) => {
                         title={ "Persons w/ at Least 1 Dose: by Age" }
                         label={ ['People'] }
                         switches={ ['horizontalBar', 'bar', 'doughnut'] }>
-                        <BuildTable colName={ ['Age', 'OC Population', '% w/ at Least 1 Dose',] } rows={ [...(ageLabels.slice(0, -1))] } columns={ [ageOCPop, agePercent1Dose, ] }  />
-
+                        <BuildTable colName={ ['Age', 'Pop', '% of Pop', '% w/ at Least 1 Dose',] } rows={ [...(ageLabels.slice(0, -1))] } columns={ [ageOCPop, agePercOfPop, agePercent1Dose, ] }  />
+                        <p className="chartNote">OC Population: {ocpop.toLocaleString()}</p>
                     </Chart>
 
 
@@ -102,7 +104,9 @@ const Vaccinations = (props) => {
                         title={ "Persons w/ at Least 1 Dose: by Race" }
                         label={ ["People"] }
                         switches={ ['horizontalBar', 'bar', 'doughnut'] }>
-                        <BuildTable colName={ ['Age', 'OC Population', '% w/ at Least 1 Dose'] } rows={ ["Asian/PI", "Black", "Hispanic", "White"] } columns={ [raceOCPop, racePercent1Dose, ] } />
+                        <BuildTable colName={ ['Age', 'Pop', '% of Pop', '% w/ at Least 1 Dose'] } rows={ ["Asian/PI", "Black", "Hispanic", "White"] } columns={ [raceOCPop, racePercOfPop, racePercent1Dose, ] } />
+                        <p className="chartNote">OC Population: { ocpop.toLocaleString() }<br>
+                        </br> Note: Sum of % of pop != 100 because hispanic ethncity includes overlap of some races</p>
                     </Chart>
 
                     <Chart
