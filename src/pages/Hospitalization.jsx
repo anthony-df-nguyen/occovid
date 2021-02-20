@@ -27,7 +27,7 @@ const Hospitalization = props => {
 
   return (
     <div>
-      <FetchHosTriggers function={ updateTrigger } time={ time } />
+      <FetchHosTriggers function={ updateTrigger } time={ time } /> 
       <FetchHospitals function={ updateArray } time={ time } />
       <Page title='Hospitalizations'
       >

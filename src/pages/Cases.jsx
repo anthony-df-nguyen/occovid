@@ -1,7 +1,8 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import TimeContext from 'components/context/TimeContext'
 import color from 'globalVars/Colors'
 import Timeselect from 'components/Timeselect'
+
 import {
   FetchCases,
   lastTotalCases,
@@ -18,9 +19,10 @@ import Page from 'components/Page'
 const Cases = props => {
   const { time, setTime } = useContext(TimeContext)
   const [array, updateArray] = useState([])
+
   return (
     <div>
-      <FetchCases function={updateArray} time={time} />
+      { <FetchCases function={ updateArray } time={ time } /> }
       <Page title="Case Detail">
         <div className='widgetGrid'>
           <Widget

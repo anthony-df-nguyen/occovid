@@ -18,12 +18,10 @@ import Page from 'components/Page'
 const Deaths = props => {
   const { time, setTime } = useContext(TimeContext)
   const [array, updateArray] = useState([])
-  //console.log("file: Deaths.jsx ~ line 21 ~ array", array)
-
+  
   return (
     <div>
-      <FetchDeaths function={updateArray} time={time} />
-
+      {<FetchDeaths function={ updateArray } time={ time } /> }
       <Page title='Death Detail'>
         <div className='widgetGrid'>
           <Widget
