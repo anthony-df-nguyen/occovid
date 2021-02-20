@@ -3,6 +3,7 @@ import filtertime from 'components/Timefilter.js'
 import { useEffect } from 'react'
 import average7 from 'components/Average7'
 
+
 let thisDataArray = []
 let lastTotalCases,
   lastDailyReported,

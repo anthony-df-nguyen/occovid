@@ -14,22 +14,36 @@ const FetchCityHistory = (props) => {
                 const getData = async (cityName, i) => {
                     let cityData = [];
                     let fetchURL = `https://opendata.arcgis.com/datasets/772f5cdbb99c4f6689ed1460c26f4b05_0/FeatureServer/0/query?where=1%3D1&outFields=DateSpecCollect,${cityName},&returnGeometry=false&orderByFields=OBJECTID ASC&outSR=&f=json`;
+                    //console.log(fetchURL)
                     await fetch(fetchURL)
                         .then(a => a.json())
                         .then(b => b.features.map(c => c.attributes))
                         .then(d => {
+                            //console.log(d)
                             d.forEach(d => {
-                                let date = new Date((Object.values(d)[0]));
+                                let date;
+                                //Manually Parsing Date String since the data is not parseable by firefox
+                                if (Object.values(d)[0] !== 'Total') {
+                                    let preDate = Object.values(d)[0]
+                                    let dateYear = preDate.slice(-2);
+                                    let dateMonth = preDate.slice(0, -3).slice(-3)
+                                    let dateDay = preDate.slice(0, -7);
+                                    date = new Date(`${dateMonth}/${dateDay}/${dateYear}`)
+                                } else {
+                                    date = null
+                                }
+                                //console.log("file: FetchCityHistory.jsx ~ line 26 ~ getData ~ date", date)
                                 let shortDate = moment(date).format('l')
-                                if (shortDate !== 'Invalid date') {
+                                if (date) {
                                     cityData.push({
                                         date: shortDate,
                                         cases: Object.values(d)[1]
                                     })
-                                }
+                                    }
                             })
                         })
                         .then(() => {
+                            //console.log(cityData)
                             return filtertime(cityData, props.time);
                         }).then((final) => {
                             if (mounted) {
