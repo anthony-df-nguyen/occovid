@@ -28,13 +28,23 @@ const Zip = props => {
   const [whichSort, updateWhichSort] = useState('high')
 
   let finalArraytoUse = []
+  
   array.forEach(a => {
     //Figure out which index to get in each
+
     Object.keys(a).forEach((b, i) => {
+      const parseValue = () => {
+        if (parseFloat(Object.values(a)[i])) {
+          return parseFloat(Object.values(a)[i])
+        } else {
+          return 0
+        }
+      }
       if (b === whichMetric) {
+
         finalArraytoUse.push({
           city: Object.values(a)[0],
-          value: parseFloat(Object.values(a)[i]),
+          value: parseValue(),
           pop: a.population.toLocaleString(),
         })
       }
