@@ -71,7 +71,7 @@ const FetchHospitals = props => {
             .then(() => filtertime(thisDataArray, props.time))
             .then(final => {
               if (mounted) {
-                console.log('Updating the state')
+                //console.log('Updating the state')
                 props.function(final)
               }
             })
@@ -84,7 +84,7 @@ const FetchHospitals = props => {
           }
         }
         return () => {
-          console.log('unmounting component')
+         // console.log('unmounting component')
           mounted = false;
         }
       }, [props.time])

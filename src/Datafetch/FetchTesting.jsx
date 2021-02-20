@@ -48,7 +48,7 @@ const FetchTesting = (props) => {
               .then(() => filtertime(thisDataArray, props.time))
               .then(final => {
                if (mounted) {
-                  console.log('Updating the state')
+                  //console.log('Updating the state')
                   props.function(final)
                 }
               })
@@ -61,7 +61,7 @@ const FetchTesting = (props) => {
           }
         }
         return () => {
-          console.log('Unmounting')
+          //console.log('Unmounting')
           mounted = false;
         }
       }, [props.time])
