@@ -26,7 +26,7 @@ const Compare = props => {
     })
     const [ocFinalArray, updateOCFinalArray] = useState([])
     const [compareFinalArray, updateCompareFinalArray] = useState([])
-
+    const [comparisonCountyPop, updateComparisonPop] = useState(0);
     // Cases, Case per 100k, Deaths, Deaths per 100k, Hositalized, Hospitalize per 100k
     const [currentMode, updateMode] = useState(() => {
         if (!localStorage.getItem('countyCompareLastMode')) {
@@ -106,6 +106,7 @@ const Compare = props => {
     function findMatchingCountyPopulation() {
         let findPop = countyPopulation.filter(row => row.a === comparisonCounty ? row.b : null)
         let comparisonCountyPopulation = findPop[0].b;
+        updateComparisonPop(comparisonCountyPopulation);
         return comparisonCountyPopulation
     }
 
@@ -217,11 +218,10 @@ const Compare = props => {
                 <ExpandCollapse title="Select County and Metric"  buttontext={'Close'} >
                     <div id="countySelect">
                         <p className="expandContentInstruction"> County: </p>
-                        <select onChange={ (e) => {
+                        <select defaultValue={ comparisonCounty } onChange={ (e) => {
                             localStorage.setItem('countyCompareLastCounty', e.target.value)
                             updateComparisonCounty(e.target.value)
                         } }>
-                            <option value={ comparisonCounty }></option>
                             <option value="Alameda">Alameda</option>
                             <option value="Alpine">Alpine</option>
                             <option value="Amador">Amador</option>
@@ -288,12 +288,13 @@ const Compare = props => {
                     <CityCompareChart
                         key='1'
                         id='comparecounties'
-                        date={ compareArray.map(a => a.date) }
+                        date={ ocArray.map(a => a.date) }
                         data={ [compareFinalArray, ocFinalArray] }
                         fill={ [color.blue, color.red] }
-                        title={ `Comparing ${currentMode} for OC and ${comparisonCounty}` }
+                        title={ `Comparing ${currentMode} for OC and ${comparisonCounty}`  }
                         label={ [comparisonCounty, 'Orange County'] }
                         switches={ ['line'] }
+                        subTitle={ `${comparisonCounty} Pop:  ${comparisonCountyPop.toLocaleString()}  |  OC Pop: ${ocpop.toLocaleString()} `}
                     />
                 </div>
             </Page>
