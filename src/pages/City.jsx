@@ -1,12 +1,12 @@
 import React, { useState, useContext, useEffect } from "react";
 import TimeContext from "components/context/TimeContext";
-import color from "globalVars/Colors";
 import ModeSelector from "components/ModeSelector";
 import { FetchCityData } from "Datafetch/FetchCityData";
 import Chart from "components/Chart";
 import BuildTable from "components/BuildTable";
 import Page from "components/Page";
 import ExpandCollapse from "components/ExpandCollapse";
+import {ContextColors} from 'components/ContextColors'
 
 const City = (props) => {
   const { time, setTime } = useContext(TimeContext);
@@ -27,10 +27,11 @@ const City = (props) => {
   });
   const [whichSort, updateWhichSort] = useState("high");
 
-  let finalArraytoUse = [];
+ let preSortColorArray = [];
   array.forEach((a) => {
     //Figure out which index to get in each
 
+   
     Object.keys(a).forEach((b, i) => {
       const parseValue = () => {
         if (parseFloat(Object.values(a)[i])) {
@@ -40,7 +41,7 @@ const City = (props) => {
         }
       };
       if (b === whichMetric) {
-        finalArraytoUse.push({
+        preSortColorArray.push({
           city: Object.values(a)[0],
           value: parseValue(),
           pop: a.population.toLocaleString(),
@@ -48,6 +49,16 @@ const City = (props) => {
       }
     });
   });
+
+  //console.log(finalArraytoUse)
+  const max = Math.max(...preSortColorArray.map(row => row.value))
+  const min = Math.min(...preSortColorArray.map(row => row.value))
+  let finalArraytoUse = preSortColorArray.map(row => {
+    return {
+      ...row,
+      color: ContextColors(row.value,'highisbad',max,min),
+    }
+  })
 
   //Sort the Array
   switch (whichSort) {
@@ -170,7 +181,7 @@ const City = (props) => {
             switches={[chartType]}
             date={finalArraytoUse.map((a) => a.city)}
             data={[finalArraytoUse.map((a) => a.value)]}
-            fill={[color.yellow]}
+            fill={[finalArraytoUse.map((a) => a.color)]}
             title={"Total Cases by Specimen Collection"}
             label={["Cases", "Estimated Recovered"]}
           />

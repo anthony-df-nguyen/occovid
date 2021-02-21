@@ -1,12 +1,12 @@
 import React, { useState, useContext, useEffect } from "react";
 import TimeContext from "components/context/TimeContext";
-import color from "globalVars/Colors";
 import ModeSelector from "components/ModeSelector";
 import { FetchZipData } from "Datafetch/FetchZipData";
 import Chart from "components/Chart";
 import BuildTable from "components/BuildTable";
 import Page from "components/Page";
 import ExpandCollapse from "components/ExpandCollapse";
+import {ContextColors} from 'components/ContextColors'
 
 const Zip = (props) => {
   const { time, setTime } = useContext(TimeContext);
@@ -27,8 +27,8 @@ const Zip = (props) => {
   });
   const [whichSort, updateWhichSort] = useState("high");
 
-  let finalArraytoUse = [];
 
+ let preSortColorArray = [];
   array.forEach((a) => {
     //Figure out which index to get in each
 
@@ -41,7 +41,7 @@ const Zip = (props) => {
         }
       };
       if (b === whichMetric) {
-        finalArraytoUse.push({
+        preSortColorArray.push({
           city: Object.values(a)[0],
           value: parseValue(),
           pop: a.population.toLocaleString(),
@@ -49,6 +49,16 @@ const Zip = (props) => {
       }
     });
   });
+
+
+  const max = Math.max(...preSortColorArray.map(row => row.value))
+  const min = Math.min(...preSortColorArray.map(row => row.value))
+  let finalArraytoUse = preSortColorArray.map(row => {
+    return {
+      ...row,
+      color: ContextColors(row.value,'highisbad',max,min),
+    }
+  })
 
   //Sort the Array
   switch (whichSort) {
@@ -159,7 +169,7 @@ const Zip = (props) => {
             switches={["horizontalBar"]}
             date={finalArraytoUse.map((a) => a.city)}
             data={[finalArraytoUse.map((a) => a.value)]}
-            fill={[color.red]}
+            fill={[finalArraytoUse.map((a) => a.color)]}
             title={"Total Cases by Specimen Collection"}
             label={["Cases", "Estimated Recovered"]}
           />
