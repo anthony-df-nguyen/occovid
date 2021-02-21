@@ -981,9 +981,50 @@ a.globButton {
   left: 0;
   min-width: 5rem;
 }
+#mapLegend {
+  margin-bottom: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+#mapLegend > div {
+  color: var(--primary-text);
+  padding: 6px 8px;
+  font-size: 12px;
+  text-align: center;
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+#mapLegend > div:nth-child(1) {
+  background-color: #009ddb66;
+}
+#mapLegend > div:nth-child(2) {
+  background-color: #66c26666;
+}
+#mapLegend > div:nth-child(3) {
+  background-color: #ffcc0066;
+}
+#mapLegend > div:nth-child(4) {
+  background-color: #ff7c4366;
+}
+#mapLegend > div:nth-child(5) {
+  background-color: #f95d6a66;
+}
+#mapLegend > div:nth-child(6) {
+  background-color: #ff000066;
+}
 #mapid {
-  z-index: 10;
-  height: 80vh;
+  height: 70vh;
   width: 100%;
 }
 #mapid .leaflet-container {
@@ -995,11 +1036,21 @@ a.globButton {
   font-weight: bold;
   color: var(--blue);
 }
-#mapid .metricName {
+#mapid ul {
+  margin-top: 1rem;
+  -webkit-columns: 2;
+  -moz-columns: 2;
+  columns: 2;
+}
+#mapid ul li {
+  list-style-type: none;
+}
+#mapid .metricBlock {
   display: block;
   color: var(--primary-text);
 }
-#mapid span {
+#mapid .metricName {
+  display: inline;
   color: var(--darkblue);
   font-weight: 600;
   font-family: Arial, sans-serif;
