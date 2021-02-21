@@ -1,12 +1,13 @@
-import React, { useState } from 'react'
+import React, {  useState } from 'react'
 import { Link, NavLink, Redirect } from 'react-router-dom'
 import Darktoggle from 'components/Darktoggle'
 import '../index.css'
 import Button from 'components/Button'
 import ReactGA from 'react-ga';
 
-const Navigation = (props) => {
 
+
+const Navigation = (props) => {
   function closeTheNav(path) {
     ReactGA.pageview(path)
     let button = document.querySelector('#menubutton')
@@ -16,13 +17,17 @@ const Navigation = (props) => {
     page.classList.remove('hidden')
     props.function(false)
     button.classList.remove('is-active')
-
   }
+
+
+  const [theme, updateTheme] = useState(false);
 
   return (
     <div id='navMenu'>
       <div className='linkContainer'>
-        <Darktoggle />
+  
+          <Darktoggle />
+      
         <NavLink exact to='/' onClick={ () => { closeTheNav('/') } } activeClassName='selectedLink'>Summary</NavLink>
         <NavLink to='/cases' onClick={ () => { closeTheNav('/cases') } } activeClassName='selectedLink'>Cases</NavLink>
         <NavLink to='/deaths' onClick={ () => { closeTheNav('/deaths') } } activeClassName='selectedLink'>Deaths</NavLink>
@@ -61,5 +66,4 @@ const Navigation = (props) => {
     </div>
   )
 }
-
 export default Navigation

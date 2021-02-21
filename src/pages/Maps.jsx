@@ -1,6 +1,6 @@
-import React, { createElement, useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Page from "components/Page";
-import { MapContainer, TileLayer, Marker, Popup, GeoJSON } from "react-leaflet";
+import { MapContainer, TileLayer, Popup, GeoJSON } from "react-leaflet";
 import { CityDataWithGeo } from "globalVars/Sources";
 import {
   ContextColors,
@@ -11,8 +11,12 @@ import {
   band5,
 } from "components/ContextColors";
 import MapMetricSelect from "components/MapModeSelect";
+import ThemeContext from "components/context/ThemeContext";
 
 const Maps = () => {
+ 
+  const { theme, updateTheme } = useContext(ThemeContext);
+
   const [leaflet, updateleafLet] = useState();
   const [modeDisplay, updateModeDisplay] = useState();
   const [mode, updateMode] = useState(() => {
@@ -25,9 +29,21 @@ const Maps = () => {
     }
   });
 
+  //Set a starting state so we can recognize when the theme changes since leaflet will not re-render
+  const [startingTheme,updateStartingTheme] = useState(theme)
   let geoArray;
   let mounted = true;
-
+  let tileURL;
+  
+  if (theme) {
+        console.log("Going to dark mode map");
+        tileURL =
+          "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png";
+      } else {
+        console.log("Going to light mode map");
+        tileURL =
+          "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png";
+     }
   async function getGEO() {
     // console.log("Running");
     await fetch(CityDataWithGeo)
@@ -54,7 +70,7 @@ const Maps = () => {
             return (
               <MapContainer center={[33.68, -117.8]} zoom={10}>
                 <TileLayer
-                  url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+                  url={tileURL}
                   attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
                   maxZoom={19}
                 />
@@ -295,6 +311,7 @@ const Maps = () => {
         }
       });
   }
+ 
 
   useEffect(() => {
     if (mounted) {
@@ -305,6 +322,13 @@ const Maps = () => {
     };
   }, [mode]);
 
+  //Only reload the page if the starting theme is diffrent than the change
+  useEffect(() => {
+    if (mounted && theme != startingTheme) {
+      console.log('The page should now reload because the theme has changed')
+      window.location.reload();
+    }
+  }, [theme]);
   return (
     <div>
       <Page title="Map">
@@ -316,12 +340,25 @@ const Maps = () => {
           Current Mode: {modeDisplay}{" "}
         </div>
         <div id="mapLegend">
-          <div>{`<`} {parseInt(band1)}</div>
-          <div>{parseInt(band1)}-{parseInt(band2)}</div>
-          <div>{parseInt(band2)}- {parseInt(band3)}</div>
-          <div>{parseInt(band3)} - {parseInt(band4)} </div>
-          <div>{parseInt(band4)} - {parseInt(band5)} </div>
-          <div> {`>`} {parseInt(band5)} </div>
+          <div>
+            {`<`} {parseInt(band1)}
+          </div>
+          <div>
+            {parseInt(band1)}-{parseInt(band2)}
+          </div>
+          <div>
+            {parseInt(band2)}- {parseInt(band3)}
+          </div>
+          <div>
+            {parseInt(band3)} - {parseInt(band4)}{" "}
+          </div>
+          <div>
+            {parseInt(band4)} - {parseInt(band5)}{" "}
+          </div>
+          <div>
+            {" "}
+            {`>`} {parseInt(band5)}{" "}
+          </div>
         </div>
 
         <div id="mapid">{leaflet}</div>

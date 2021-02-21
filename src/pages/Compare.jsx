@@ -210,6 +210,8 @@ const Compare = props => {
         calculateAlltheArrays();
     }, [currentMode]);
 
+    console.log(compareArray)
+  
     return (
         <div>
             { returnFetchComponents() }
@@ -288,7 +290,7 @@ const Compare = props => {
                     <CityCompareChart
                         key='1'
                         id='comparecounties'
-                        date={ ocArray.map(a => a.date) }
+                        date={ compareArray.map(a => a.date) }
                         data={ [compareFinalArray, ocFinalArray] }
                         fill={ [color.blue, color.red] }
                         title={ `Comparing ${currentMode} for OC and ${comparisonCounty}`  }
