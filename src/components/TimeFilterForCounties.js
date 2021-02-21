@@ -3,7 +3,6 @@ import moment from "moment";
 function TimeFilterForCounties(array, timeSetting, mode) {
   
   array.sort((a, b) => (new Date(a.date) > new Date(b.date) ? 1 : -1));
-
   let ocStart;
   switch (mode) {
     case "Cases":
@@ -28,7 +27,7 @@ function TimeFilterForCounties(array, timeSetting, mode) {
       ocStart = new Date("2020-03-03T00:00:00");
       break;
   }
-  console.log(array[0].date)
+  //console.log(array[0].date)
   let countyStart = new Date(array[0].date);
 
   //Normalize the county array

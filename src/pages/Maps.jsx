@@ -10,7 +10,6 @@ import {
   band4,
   band5,
 } from "components/ContextColors";
-//import MapMetricSelect from "components/MapModeSelect";
 import ModeSelector from "components/ModeSelector";
 import ThemeContext from "components/context/ThemeContext";
 

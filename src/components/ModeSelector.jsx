@@ -16,15 +16,21 @@ const ModeSelector = (props) => {
 
     //Save the mode and the displayed mode name into localstorage using specified keys
     localStorage.setItem(props.storageKey[0], metricvalue);
-    localStorage.setItem(props.storageKey[1], nameofmetric);
+    if (props.storageKey[1]) {
+        localStorage.setItem(props.storageKey[1], nameofmetric);
+    }
+
 
     //When a button is clicked, update the parent state metric and displayname
     props.function[0](metricvalue);
-    props.function[1](nameofmetric);
+    if (props.function[1]) {
+         props.function[1](nameofmetric);
+    }
+ 
   }
   return (
     <div>
-      <div className="uiButtonInstruction">Select a Metric to View</div>
+      <div className="uiButtonInstruction">{props.text}</div>
       <div className="uiParent">
         <div className="uiButtonContainer">
           {
