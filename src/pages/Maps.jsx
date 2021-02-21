@@ -12,6 +12,7 @@ import {
 } from "components/ContextColors";
 import ModeSelector from "components/ModeSelector";
 import ThemeContext from "components/context/ThemeContext";
+import ExpandCollapse from "components/ExpandCollapse";
 
 const Maps = () => {
   const { theme, updateTheme } = useContext(ThemeContext);
@@ -28,11 +29,11 @@ const Maps = () => {
   });
   const [cityOrZip, updateCityOrZip] = useState(() => {
     if (!localStorage.getItem("mapCityorZip")) {
-      return 'city'
+      return "city";
     } else {
       return localStorage.getItem("mapCityorZip");
     }
-  })
+  });
   const [cityOrZipURL, updateCityOrZipURL] = useState(() => {
     if (cityOrZip === "city") {
       return CityDataWithGeo;
@@ -45,13 +46,11 @@ const Maps = () => {
 
   //Set a starting state for theme or city/zip mode so later we only reload page if theme or city/zip mode changes
   const [startingTheme, updateStartingTheme] = useState(theme);
-  const [startingCityOrZip, updateStartingCityOrZip] = useState(cityOrZip)
-  
+  const [startingCityOrZip, updateStartingCityOrZip] = useState(cityOrZip);
+
   let geoArray = [];
   let mounted = true;
   let tileURL;
-
-
 
   if (theme) {
     console.log("Going to dark mode map");
@@ -335,8 +334,6 @@ const Maps = () => {
     };
   }, [mode]);
 
-
-
   //Only reload the page if the starting theme is diffrent than the change
   useEffect(() => {
     if (mounted && theme != startingTheme) {
@@ -344,12 +341,14 @@ const Maps = () => {
       window.location.reload();
     }
   }, [theme]);
-    //Only reload the page if the starting cityOrZip is diffrent than the change
+  //Only reload the page if the starting cityOrZip is diffrent than the change
   useEffect(() => {
     if (mounted && cityOrZip != startingCityOrZip) {
-        console.log("The page should now reload because the city/zip mode has changed");
-        window.location.reload();
-      }
+      console.log(
+        "The page should now reload because the city/zip mode has changed"
+      );
+      window.location.reload();
+    }
     return () => {
       mounted = false;
     };
@@ -358,70 +357,76 @@ const Maps = () => {
   return (
     <div>
       <Page title="Map">
-        <ModeSelector
-          text="City or Zip"
-          current={ cityOrZip }
-          function={[updateCityOrZip]}
-          storageKey={ ['mapCityorZip'] }
-          options={[
-            {
-              display: 'City',
-              value: 'city'
-            },
-            {
-              display: 'Zip',
-              value: 'zip'
-            }
-          ]}
-        />
-        <ModeSelector
-           text="Select a Metric"
-          function={[updateMode, updateModeDisplay]}
-          current={mode}
-          options={[
-            {
-              display: "Case Rate",
-              value: "CaseRate",
-            },
-            {
-              display: "Death Rate",
-              value: "DeathRate",
-            },
-            {
-              display: "Cases",
-              value: "Tot_Cases",
-            },
-            {
-              display: "Deaths",
-              value: "Tot_Deaths",
-            },
-            {
-              display: "Cases 0-3",
-              value: "Cases_0_3",
-            },
-            {
-              display: "Cases 4-9",
-              value: "Cases_4_9",
-            },
-            {
-              display: "Cases 10-12",
-              value: "Cases_10_12",
-            },
-            {
-              display: "Cases 13-14",
-              value: "Cases_13_14",
-            },
-            {
-              display: "Cases 15-18",
-              value: "Cases_15_18",
-            },
-            {
-              display: "Cases 0-18",
-              value: "Cases_0_18",
-            },
-          ]}
-          storageKey={["mapLastMode", "mapLastModeText"]}
-        />
+        <ExpandCollapse
+          title="Change Map Mode"
+          buttontext="Close"
+        >
+          <ModeSelector
+            text="City or Zip"
+            current={cityOrZip}
+            function={[updateCityOrZip]}
+            storageKey={["mapCityorZip"]}
+            options={[
+              {
+                display: "City",
+                value: "city",
+              },
+              {
+                display: "Zip",
+                value: "zip",
+              },
+            ]}
+          />
+          <ModeSelector
+            text="Select a Metric"
+            function={[updateMode, updateModeDisplay]}
+            current={mode}
+            options={[
+              {
+                display: "Case Rate",
+                value: "CaseRate",
+              },
+              {
+                display: "Death Rate",
+                value: "DeathRate",
+              },
+              {
+                display: "Cases",
+                value: "Tot_Cases",
+              },
+              {
+                display: "Deaths",
+                value: "Tot_Deaths",
+              },
+              {
+                display: "Cases 0-3",
+                value: "Cases_0_3",
+              },
+              {
+                display: "Cases 4-9",
+                value: "Cases_4_9",
+              },
+              {
+                display: "Cases 10-12",
+                value: "Cases_10_12",
+              },
+              {
+                display: "Cases 13-14",
+                value: "Cases_13_14",
+              },
+              {
+                display: "Cases 15-18",
+                value: "Cases_15_18",
+              },
+              {
+                display: "Cases 0-18",
+                value: "Cases_0_18",
+              },
+            ]}
+            storageKey={["mapLastMode", "mapLastModeText"]}
+          />
+        </ExpandCollapse>
+
         <div style={{ marginTop: "1rem" }} className="chartTitle">
           Current Mode: {modeDisplay}{" "}
         </div>

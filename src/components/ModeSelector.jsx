@@ -29,7 +29,7 @@ const ModeSelector = (props) => {
  
   }
   return (
-    <div>
+    <div className="modeSelector">
       <div className="uiButtonInstruction">{props.text}</div>
       <div className="uiParent">
         <div className="uiButtonContainer">

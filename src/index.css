@@ -892,6 +892,8 @@ a.globButton {
   background-color: var(--white);
   margin-bottom: 1rem;
   border-radius: 5px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
 }
 .expander:hover {
   cursor: pointer;
@@ -913,13 +915,17 @@ a.globButton {
 }
 .expander .expandContentInstruction {
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 0;
   color: var(--blue);
 }
 .expander select {
   background-color: var(--gray);
   display: block;
   margin: 1rem auto;
+}
+.expander .modeSelector {
+  display: block;
+  margin: 0 auto;
 }
 .expander .uiButtonInstruction {
   text-align: center;
@@ -939,6 +945,7 @@ a.globButton {
   transition: max-height 0.2s ease-in-out;
 }
 .expander #countySelect ul {
+  width: 100%;
   padding: 0 1rem;
   display: -webkit-box;
   display: -ms-flexbox;

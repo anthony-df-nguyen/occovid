@@ -6,6 +6,7 @@ import { FetchZipData } from "Datafetch/FetchZipData";
 import Chart from "components/Chart";
 import BuildTable from "components/BuildTable";
 import Page from "components/Page";
+import ExpandCollapse from "components/ExpandCollapse";
 
 const Zip = (props) => {
   const { time, setTime } = useContext(TimeContext);
@@ -72,74 +73,77 @@ const Zip = (props) => {
     <div>
       <FetchZipData function={updateArray} time={time} />
       <Page title="Zip Detail">
-        <ModeSelector
-          text="Select a Metric"
-          function={[updateWhichMetric, updateMetricName]}
-          current={whichMetric}
-          storageKey={["cityZipLastMode", "cityZipLastModeText"]}
-          options={[
-            {
-              display: "Case Rate",
-              value: "caseRate",
-            },
-            {
-              display: "Death Rate",
-              value: "deathRate",
-            },
-            {
-              display: "Cases",
-              value: "totalCases",
-            },
-            {
-              display: "Deaths",
-              value: "totalDeaths",
-            },
-            {
-              display: "Cases 0-3",
-              value: "Cases_0_3",
-            },
-            {
-              display: "Cases 4-9",
-              value: "Cases_4_9",
-            },
-            {
-              display: "Cases 10-12",
-              value: "Cases_10_12",
-            },
-            {
-              display: "Cases 13-14",
-              value: "Cases_13_14",
-            },
-            {
-              display: "Cases 15-18",
-              value: "Cases_15_18",
-            },
-            {
-              display: "Cases 0-18",
-              value: "Cases_0_18",
-            },
-          ]}
-        />
-        <ModeSelector
-          text="Sort Data by:"
-          function={[updateWhichSort]}
-          current={whichSort}
-          storageKey={["cityZipLastSort"]}
-          options={[
-            {
-              display: "High to Low",
-              value: "high",
-            },
-            {
-              display: "Low to High",
-              value: "low",
-            },
-            {
-              display: "Name",
-              value: "name",
-            },
-          ]}
-        />
+        <ExpandCollapse title="Change View Mode/Options" buttontext="Close">
+          <ModeSelector
+            text="Select a Metric"
+            function={[updateWhichMetric, updateMetricName]}
+            current={whichMetric}
+            storageKey={["cityZipLastMode", "cityZipLastModeText"]}
+            options={[
+              {
+                display: "Case Rate",
+                value: "caseRate",
+              },
+              {
+                display: "Death Rate",
+                value: "deathRate",
+              },
+              {
+                display: "Cases",
+                value: "totalCases",
+              },
+              {
+                display: "Deaths",
+                value: "totalDeaths",
+              },
+              {
+                display: "Cases 0-3",
+                value: "Cases_0_3",
+              },
+              {
+                display: "Cases 4-9",
+                value: "Cases_4_9",
+              },
+              {
+                display: "Cases 10-12",
+                value: "Cases_10_12",
+              },
+              {
+                display: "Cases 13-14",
+                value: "Cases_13_14",
+              },
+              {
+                display: "Cases 15-18",
+                value: "Cases_15_18",
+              },
+              {
+                display: "Cases 0-18",
+                value: "Cases_0_18",
+              },
+            ]}
+          />
+          <ModeSelector
+            text="Sort Data by:"
+            function={[updateWhichSort]}
+            current={whichSort}
+            storageKey={["cityZipLastSort"]}
+            options={[
+              {
+                display: "High to Low",
+                value: "high",
+              },
+              {
+                display: "Low to High",
+                value: "low",
+              },
+              {
+                display: "Name",
+                value: "name",
+              },
+            ]}
+          />
+        </ExpandCollapse>
+
         <div id="cityGrid">
           <BuildTable
             colName={["Zip Code", metricName, "Population"]}

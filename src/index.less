@@ -87,23 +87,29 @@ body {
 }
 
 .orange {
-  color: var( --orange);
+  color: var(--orange);
 }
+
 .pink {
   color: var(--pink);
 }
+
 .grayblue {
   color: var(--grayblue);
 }
+
 .red {
   color: var(--red);
 }
+
 .yellow {
   color: var(--yellow);
 }
+
 .darkblue {
   color: var(--darkblue);
 }
+
 .purple {
   color: var(--purple);
 }
@@ -958,6 +964,9 @@ a.globButton {
 }
 
 // #countySelect {
+//   width: -webkit-fit-content;
+//   width: -moz-fit-content;
+//   width: fit-content;
 //   text-align: center;
 //   display   : block;
 //   margin    : 1rem auto;
@@ -994,6 +1003,8 @@ a.globButton {
   background-color: var(--white);
   margin-bottom   : 1rem;
   border-radius   : @radius;
+  width           : -webkit-fit-content;
+  width           : -moz-fit-content;
 
   &:hover {
     cursor            : pointer;
@@ -1016,7 +1027,7 @@ a.globButton {
 
   .expandContentInstruction {
     text-align   : center;
-    margin-bottom: 1rem;
+    margin-bottom: 0;
     color        : var(--blue);
   }
 
@@ -1025,6 +1036,14 @@ a.globButton {
     display         : block;
     margin          : 1rem auto;
   }
+
+   .modeSelector {
+     display         : block;
+     margin          : 0 auto;
+    //  width           : -webkit-fit-content;
+    //  width           : -moz-fit-content;
+    //  width           : fit-content;
+   }
 
   .uiButtonInstruction {
     text-align: center;
@@ -1054,6 +1073,7 @@ a.globButton {
 
   #countySelect {
     ul {
+      width: 100%;
       padding              : 0 1rem;
       display              : -webkit-box;
       display              : -ms-flexbox;
@@ -1132,7 +1152,7 @@ a.globButton {
 }
 
 #mapLegend {
-  margin-bottom:@gap;
+  margin-bottom        : @gap;
   display              : -webkit-box;
   display              : -ms-flexbox;
   display              : flex;
@@ -1147,13 +1167,13 @@ a.globButton {
   justify-content      : space-between;
 
   >div {
-    color:var(--primary-text);
-    padding: @buttonpad;
-    font-size: 12px;
-    text-align: center;
-    -webkit-box-flex: 1;
-        -ms-flex-positive: 1;
-            flex-grow: 1;
+    color            : var(--primary-text);
+    padding          : @buttonpad;
+    font-size        : 12px;
+    text-align       : center;
+    -webkit-box-flex : 1;
+    -ms-flex-positive: 1;
+    flex-grow        : 1;
 
     &:nth-child(1) {
       background-color: #009ddb66;
@@ -1174,6 +1194,7 @@ a.globButton {
     &:nth-child(5) {
       background-color: #f95d6a66;
     }
+
     &:nth-child(6) {
       background-color: #ff000066;
     }
@@ -1183,13 +1204,14 @@ a.globButton {
 }
 
 #mapid {
-  height : 70vh;
-  width  : 100%;
+  height: 70vh;
+  width : 100%;
 
   .leaflet-container {
     width : 100%;
     height: 100%;
   }
+
   .leaflet-popup-content-wrapper {
     background-color: var(--white);
   }
