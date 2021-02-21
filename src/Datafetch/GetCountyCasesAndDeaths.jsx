@@ -1,5 +1,5 @@
 import { CasesURL } from 'globalVars/Sources'
-import filtertime from 'components/Timefilter.js'
+import TimeFilterForCounties from 'components/TimeFilterForCounties.js'
 import { useEffect } from 'react'
 import average7 from 'components/Average7'
 
@@ -30,7 +30,7 @@ const GetCountyCasesAndDeaths = props => {
                                 })
                             })
                         })
-                        .then(() => filtertime(thisDataArray, props.time))
+                        .then(() => TimeFilterForCounties(thisDataArray, props.time,props.mode))
                         .then(final => {
                             if (mounted) {
                                 props.function(final)
@@ -48,7 +48,7 @@ const GetCountyCasesAndDeaths = props => {
                     mounted = false;
                 }
 
-            }, [props.county, props.time])
+            }, [props.county, props.time,props.mode])
     }</>
 }
 

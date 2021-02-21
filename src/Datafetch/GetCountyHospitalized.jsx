@@ -1,5 +1,5 @@
 import { CasesURL } from 'globalVars/Sources'
-import filtertime from 'components/Timefilter.js'
+import TimeFilterForCounties from 'components/TimeFilterForCounties.js'
 import { useEffect } from 'react'
 import average7 from 'components/Average7'
 import { getDefaultNormalizer } from '@testing-library/dom'
@@ -20,15 +20,15 @@ const GetCountyHospitalized = props => {
                         .then(grab => grab.result.records)
                         .then(a => {
                             let temp = [...a]
-                            temp.forEach((row, i) => {
+                          temp.forEach((row, i) => {
                                 thisDataArray.push({
                                     date: new Date(row.todays_date).toLocaleDateString(),
                                     hospitalized: row.hospitalized_covid_confirmed_patients,
                                     icu: row.icu_covid_confirmed_patients,
                                 })
-                            })
+                          })
                         })
-                        .then(() => filtertime(thisDataArray, props.time))
+                        .then(() => TimeFilterForCounties(thisDataArray, props.time,props.mode))
                         .then(final => {
                             if (mounted) {
                                 props.function(final)
@@ -47,7 +47,7 @@ const GetCountyHospitalized = props => {
                     mounted = false;
                 }
 
-            }, [props.county, props.time])
+            }, [props.county, props.time,props.mode])
         }</>
 }
 

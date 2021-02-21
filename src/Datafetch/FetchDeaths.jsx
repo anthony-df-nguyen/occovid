@@ -42,7 +42,6 @@ const FetchDeaths = props => {
             })
           })
           .then(() => {
-            //console.log(thisDataArray)
             thisDataArray.forEach(a => {
               if (a.total_dth_repo) {
                 lastTotalDeaths = a.total_dth_repo.toLocaleString()

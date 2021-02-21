@@ -146,44 +146,44 @@ const Compare = props => {
                 //console.log('Fetching cases per 100k')
                 return <>
                     <FetchCases function={ updateOCArray } time={ time } />
-                    <GetCountyCasesAndDeaths function={ updateCompareArray } county={ comparisonCounty } time={ time } /></>
+                  <GetCountyCasesAndDeaths function={ updateCompareArray } county={ comparisonCounty } time={ time } mode={currentMode } /></>
                 break;
             case 'Deaths per 100k':
                 //console.log('Fetching deaths per 100k')
                 return <>
                     <FetchDeaths function={ updateOCArray } time={ time } />
-                    <GetCountyCasesAndDeaths function={ updateCompareArray } county={ comparisonCounty } time={ time } /></>
+                    <GetCountyCasesAndDeaths function={ updateCompareArray } county={ comparisonCounty } time={ time } mode={currentMode }/></>
                 break;
             case 'Hospitalized per 100k':
                 //console.log('Fetching Hospitalized per 100k')
                 return <>
                     <FetchHospitals function={ updateOCArray } time={ time } />
-                    <GetCountyHospitalized function={ updateCompareArray } county={ comparisonCounty } time={ time } /></>
+                    <GetCountyHospitalized function={ updateCompareArray } county={ comparisonCounty } time={ time } mode={currentMode }/></>
                 break;
             case 'Cases':
                 //console.log('Fetching cases')
                 return (<>
                     <FetchCases function={ updateOCArray } time={ time } />
-                    <GetCountyCasesAndDeaths function={ updateCompareArray } county={ comparisonCounty } time={ time } /></>)
+                    <GetCountyCasesAndDeaths function={ updateCompareArray } county={ comparisonCounty } time={ time } mode={currentMode }/></>)
                 break;
             case 'Deaths':
                 //console.log('Fetching deaths')
                 return <>
                     <FetchDeaths function={ updateOCArray } time={ time } />
-                    <GetCountyCasesAndDeaths function={ updateCompareArray } county={ comparisonCounty } time={ time } /></>
+                    <GetCountyCasesAndDeaths function={ updateCompareArray } county={ comparisonCounty } time={ time } mode={currentMode }/></>
                 break;
             case 'Hospitalized':
                 //console.log('Hospitalized')
                 return <>
                     <FetchHospitals function={ updateOCArray } time={ time } />
-                    <GetCountyHospitalized function={ updateCompareArray } county={ comparisonCounty } time={ time } />
+                    <GetCountyHospitalized function={ updateCompareArray } county={ comparisonCounty } time={ time } mode={currentMode }/>
                     </>
                 break;
             default:
                 //console.log('defualt')
                 return <>
                     <FetchCases function={ updateOCArray } time={ time } />
-                    <GetCountyCasesAndDeaths function={ updateCompareArray } county={ comparisonCounty } time={ time } /></>
+                    <GetCountyCasesAndDeaths function={ updateCompareArray } county={ comparisonCounty } time={ time } mode={currentMode }/></>
                 break;
         };
     }
@@ -209,8 +209,8 @@ const Compare = props => {
         returnFetchComponents();
         calculateAlltheArrays();
     }, [currentMode]);
-
-    console.log(compareArray)
+  //  console.log('OC array is ',ocArray[0])
+  //   console.log('compare array is ',compareArray[0])
   
     return (
         <div>
@@ -290,7 +290,7 @@ const Compare = props => {
                     <CityCompareChart
                         key='1'
                         id='comparecounties'
-                        date={ compareArray.map(a => a.date) }
+                        date={ ocArray.map(a => a.date) }
                         data={ [compareFinalArray, ocFinalArray] }
                         fill={ [color.blue, color.red] }
                         title={ `Comparing ${currentMode} for OC and ${comparisonCounty}`  }
@@ -298,9 +298,6 @@ const Compare = props => {
                         switches={ ['line'] }
                         chartNote={ `${comparisonCounty} Pop:  ${comparisonCountyPop.toLocaleString()}  |  OC Pop: ${ocpop.toLocaleString()}`}
                     />
-
-                    
-                
                 </div>
             </Page>
         </div>
