@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import Page from "components/Page";
 import { MapContainer, TileLayer, Popup, GeoJSON } from "react-leaflet";
-import { CityDataWithGeo,ZipDataWithGeo } from "globalVars/Sources";
+import { CityDataWithGeo, ZipDataWithGeo } from "globalVars/Sources";
 import {
   ContextColors,
   band1,
@@ -10,13 +10,12 @@ import {
   band4,
   band5,
 } from "components/ContextColors";
-import MapMetricSelect from "components/MapModeSelect";
+//import MapMetricSelect from "components/MapModeSelect";
+import ModeSelector from "components/ModeSelector";
 import ThemeContext from "components/context/ThemeContext";
 
 const Maps = () => {
- 
   const { theme, updateTheme } = useContext(ThemeContext);
-
   const [leaflet, updateleafLet] = useState();
   const [modeDisplay, updateModeDisplay] = useState();
   const [mode, updateMode] = useState(() => {
@@ -29,65 +28,62 @@ const Maps = () => {
     }
   });
 
-  const whatMode = "city"
+  const whatMode = "city";
   const [cityOrZip, updateCityOrZip] = useState(() => {
-    if (whatMode === 'city') {
-      return CityDataWithGeo
-    } else if (whatMode === 'zip') {
-      return ZipDataWithGeo
+    if (whatMode === "city") {
+      return CityDataWithGeo;
+    } else if (whatMode === "zip") {
+      return ZipDataWithGeo;
     } else {
-      return CityDataWithGeo
+      return CityDataWithGeo;
     }
   });
 
   //Set a starting state so we can recognize when the theme changes since leaflet will not re-render
-  const [startingTheme,updateStartingTheme] = useState(theme)
+  const [startingTheme, updateStartingTheme] = useState(theme);
   let geoArray = [];
   let mounted = true;
   let tileURL;
-  
+
   if (theme) {
-        console.log("Going to dark mode map");
-        tileURL =
-          "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png";
-      } else {
-        tileURL =
-          "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png";
-     }
+    console.log("Going to dark mode map");
+    tileURL = "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png";
+  } else {
+    tileURL = "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png";
+  }
   async function getGEO() {
     await fetch(cityOrZip)
       .then((a) => a.json())
       .then((b) => b.features)
       .then((c) => {
-        if (whatMode == 'city') {
+        if (whatMode == "city") {
           geoArray = c;
         }
         //Transform Zip array property names to be consistent with cities
-        else if (whatMode == 'zip') {
-          c.forEach(row => {
+        else if (whatMode == "zip") {
+          c.forEach((row) => {
             let d = row.properties;
-            geoArray.push(
-              {
-                geometry: { ...row.geometry },
-                id: row.id,
-                type: "Feature",
-                properties: {
-                    //Using City as object key for Zip for consistency
-                    City: d.ZIP_NUM,
-                    Cases_0_3: d.Cases_0_3,
-                    Cases_0_18: d.Cases_0_18,
-                    Cases_4_9: d.Cases_4_9,
-                    Cases_10_12: d.Cases_10_12,
-                    Cases_13_14: d.Cases_13_14,
-                    Cases_15_18: d.Cases_15_18,
-                    Tot_Cases: d.tot_cas,
-                    Tot_Deaths: d.tot_dth,
-                    CaseRate: d.tot_casrate,
-                    DeathRate: d.tot_dthrate,
-                    Total_Pop: d.pop
-                }
-            })
-          })
+            geoArray.push({
+              geometry: { ...row.geometry },
+              id: row.id,
+              type: "Feature",
+              properties: {
+                //Using City as object key for Zip for consistency
+                City: d.ZIP_NUM,
+                Cases_0_3: d.Cases_0_3,
+                Cases_0_18: d.Cases_0_18,
+                Cases_4_9: d.Cases_4_9,
+                Cases_10_12: d.Cases_10_12,
+                Cases_13_14: d.Cases_13_14,
+                Cases_15_18: d.Cases_15_18,
+                Tot_Cases: d.tot_cas,
+                Tot_Deaths: d.tot_dth,
+                CaseRate: d.tot_casrate,
+                DeathRate: d.tot_dthrate,
+                Total_Pop: d.pop,
+              },
+            });
+          });
         }
       })
       .then(() => {
@@ -114,18 +110,18 @@ const Maps = () => {
                 />
                 {geoArray.map((row, i) => {
                   let a = row.properties;
-                  const CityOrZipName = a.City 
-                  const Total_Pop = a.Total_Pop
-                  const CaseRate = a.CaseRate
-                  const Cases_0_3 = a.Cases_0_3 
-                  const Cases_4_9 = a.Cases_4_9 
-                  const Cases_10_12 = a.Cases_10_12 
-                  const Cases_13_14 = a.Cases_13_14 
-                  const Cases_15_18 = a.Cases_15_18
-                  const Cases_0_18 = a.Cases_0_18
-                  const DeathRate = a.DeathRate
-                  const Tot_Deaths = a.Tot_Deaths 
-                  const Tot_Cases = a.Tot_Cases
+                  const CityOrZipName = a.City;
+                  const Total_Pop = a.Total_Pop;
+                  const CaseRate = a.CaseRate;
+                  const Cases_0_3 = a.Cases_0_3;
+                  const Cases_4_9 = a.Cases_4_9;
+                  const Cases_10_12 = a.Cases_10_12;
+                  const Cases_13_14 = a.Cases_13_14;
+                  const Cases_15_18 = a.Cases_15_18;
+                  const Cases_0_18 = a.Cases_0_18;
+                  const DeathRate = a.DeathRate;
+                  const Tot_Deaths = a.Tot_Deaths;
+                  const Tot_Cases = a.Tot_Cases;
                   let color;
                   switch (mode) {
                     case "CaseRate":
@@ -251,13 +247,15 @@ const Maps = () => {
                           </li>
                           <li>
                             <div className="metricBlock">
-                              <div className="metricName orange">Case Rate: </div>
+                              <div className="metricName orange">
+                                Case Rate:{" "}
+                              </div>
                               {parseFloat(CaseRate).toFixed(1)}
                             </div>
                           </li>
                           <li>
                             <div className="metricBlock">
-                              <div className="metricName red" >Death Rate: </div>
+                              <div className="metricName red">Death Rate: </div>
                               {parseFloat(DeathRate).toFixed(1)}
                             </div>
                           </li>
@@ -272,25 +270,33 @@ const Maps = () => {
                           </li>
                           <li>
                             <div className="metricBlock">
-                              <div className="metricName yellow">Cases 4-9: </div>
+                              <div className="metricName yellow">
+                                Cases 4-9:{" "}
+                              </div>
                               {parseInt(Cases_4_9).toLocaleString()}
                             </div>
                           </li>
                           <li>
                             <div className="metricBlock">
-                              <div className="metricName orange">Cases 10-12: </div>
+                              <div className="metricName orange">
+                                Cases 10-12:{" "}
+                              </div>
                               {parseInt(Cases_10_12).toLocaleString()}
                             </div>
                           </li>
                           <li>
                             <div className="metricBlock">
-                              <div className="metricName purple">Cases 13-14: </div>
+                              <div className="metricName purple">
+                                Cases 13-14:{" "}
+                              </div>
                               {parseInt(Cases_13_14).toLocaleString()}
                             </div>
                           </li>
                           <li>
                             <div className="metricBlock">
-                              <div className="metricName grayblue ">Cases 15-18: </div>
+                              <div className="metricName grayblue ">
+                                Cases 15-18:{" "}
+                              </div>
                               {parseInt(Cases_15_18).toLocaleString()}
                             </div>
                           </li>
@@ -311,7 +317,7 @@ const Maps = () => {
         }
       });
   }
- 
+
   useEffect(() => {
     if (mounted) {
       getGEO();
@@ -324,16 +330,59 @@ const Maps = () => {
   //Only reload the page if the starting theme is diffrent than the change
   useEffect(() => {
     if (mounted && theme != startingTheme) {
-      console.log('The page should now reload because the theme has changed')
+      console.log("The page should now reload because the theme has changed");
       window.location.reload();
     }
   }, [theme]);
   return (
     <div>
       <Page title="Map">
-        <MapMetricSelect
+        <ModeSelector
           function={[updateMode, updateModeDisplay]}
           current={mode}
+          options={[
+            {
+              display: "Case Rate",
+              value: "CaseRate",
+            },
+            {
+              display: "Death Rate",
+              value: "DeathRate",
+            },
+            {
+              display: "Cases",
+              value: "Tot_Cases",
+            },
+            {
+              display: "Deaths",
+              value: "Tot_Deaths",
+            },
+            {
+              display: "Cases 0-3",
+              value: "Cases_0_3",
+            },
+            {
+              display: "Cases 4-9",
+              value: "Cases_4_9",
+            },
+            {
+              display: "Cases 10-12",
+              value: "Cases_10_12",
+            },
+            {
+              display: "Cases 13-14",
+              value: "Cases_13_14",
+            },
+            {
+              display: "Cases 15-18",
+              value: "Cases_15_18",
+            },
+            {
+              display: "Cases 0-18",
+              value: "Cases_0_18",
+            },
+          ]}
+          storageKey={["mapLastMode", "mapLastModeText"]}
         />
         <div style={{ marginTop: "1rem" }} className="chartTitle">
           Current Mode: {modeDisplay}{" "}
