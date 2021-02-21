@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import Page from "components/Page";
 import { MapContainer, TileLayer, Popup, GeoJSON } from "react-leaflet";
-import { CityDataWithGeo } from "globalVars/Sources";
+import { CityDataWithGeo,ZipDataWithGeo } from "globalVars/Sources";
 import {
   ContextColors,
   band1,
@@ -29,9 +29,20 @@ const Maps = () => {
     }
   });
 
+  const whatMode = "city"
+  const [cityOrZip, updateCityOrZip] = useState(() => {
+    if (whatMode === 'city') {
+      return CityDataWithGeo
+    } else if (whatMode === 'zip') {
+      return ZipDataWithGeo
+    } else {
+      return CityDataWithGeo
+    }
+  });
+
   //Set a starting state so we can recognize when the theme changes since leaflet will not re-render
   const [startingTheme,updateStartingTheme] = useState(theme)
-  let geoArray;
+  let geoArray = [];
   let mounted = true;
   let tileURL;
   
@@ -40,17 +51,44 @@ const Maps = () => {
         tileURL =
           "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png";
       } else {
-        console.log("Going to light mode map");
         tileURL =
           "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png";
      }
   async function getGEO() {
-    // console.log("Running");
-    await fetch(CityDataWithGeo)
+    await fetch(cityOrZip)
       .then((a) => a.json())
       .then((b) => b.features)
       .then((c) => {
-        geoArray = c;
+        if (whatMode == 'city') {
+          geoArray = c;
+        }
+        //Transform Zip array property names to be consistent with cities
+        else if (whatMode == 'zip') {
+          c.forEach(row => {
+            let d = row.properties;
+            geoArray.push(
+              {
+                geometry: { ...row.geometry },
+                id: row.id,
+                type: "Feature",
+                properties: {
+                    //Using City as object key for Zip for consistency
+                    City: d.ZIP_NUM,
+                    Cases_0_3: d.Cases_0_3,
+                    Cases_0_18: d.Cases_0_18,
+                    Cases_4_9: d.Cases_4_9,
+                    Cases_10_12: d.Cases_10_12,
+                    Cases_13_14: d.Cases_13_14,
+                    Cases_15_18: d.Cases_15_18,
+                    Tot_Cases: d.tot_cas,
+                    Tot_Deaths: d.tot_dth,
+                    CaseRate: d.tot_casrate,
+                    DeathRate: d.tot_dthrate,
+                    Total_Pop: d.pop
+                }
+            })
+          })
+        }
       })
       .then(() => {
         if (mounted) {
@@ -75,57 +113,19 @@ const Maps = () => {
                   maxZoom={19}
                 />
                 {geoArray.map((row, i) => {
-                  //console.log(row.properties);
-                  const {
-                    CaseRate,
-                    Cases_0_3,
-                    Cases_0_17,
-                    Cases_0_18,
-                    Cases_4_9,
-                    Cases_10_12,
-                    Cases_13_14,
-                    Cases_15_18,
-                    City,
-                    City_Match,
-                    DeathRate,
-                    OBJECTID,
-                    OBJECTID_1,
-                    OBJECTID_2,
-                    OBJECTID_12_13,
-                    ORIG_FID,
-                    ObjectID_12,
-                    PLACE_NM,
-                    Pop0_17,
-                    SNFCase,
-                    SNFDth,
-                    SUM_Acres,
-                    SUM_Area,
-                    SUM_Hectar,
-                    SUM_Perime,
-                    SUM_Shap_1,
-                    SUM_Shap_2,
-                    SUM_Shape1,
-                    SUM_Shape_,
-                    Shape_Le_1,
-                    Shape_Le_2,
-                    Shape_Leng,
-                    Shape__Area,
-                    Shape__Length,
-                    Sup03Cases,
-                    Sup018Cases,
-                    Sup49Cases,
-                    Sup1012Cases,
-                    Sup1314Cases,
-                    Sup1518Cases,
-                    SupDthRte,
-                    Sup_Cas017,
-                    Sup_Dths,
-                    Sup_TCaseRte,
-                    Sup_TotCas,
-                    Tot_Cases,
-                    Tot_Deaths,
-                    Total_Pop,
-                  } = row.properties;
+                  let a = row.properties;
+                  const CityOrZipName = a.City 
+                  const Total_Pop = a.Total_Pop
+                  const CaseRate = a.CaseRate
+                  const Cases_0_3 = a.Cases_0_3 
+                  const Cases_4_9 = a.Cases_4_9 
+                  const Cases_10_12 = a.Cases_10_12 
+                  const Cases_13_14 = a.Cases_13_14 
+                  const Cases_15_18 = a.Cases_15_18
+                  const Cases_0_18 = a.Cases_0_18
+                  const DeathRate = a.DeathRate
+                  const Tot_Deaths = a.Tot_Deaths 
+                  const Tot_Cases = a.Tot_Cases
                   let color;
                   switch (mode) {
                     case "CaseRate":
@@ -230,7 +230,7 @@ const Maps = () => {
                       }}
                     >
                       <Popup key={i}>
-                        <div className="cityName"> {City} </div>
+                        <div className="cityName"> {CityOrZipName} </div>
                         <div className="metricBlock">
                           <div className="metricName">Population</div>:
                           {parseInt(Total_Pop).toLocaleString()}
@@ -312,7 +312,6 @@ const Maps = () => {
       });
   }
  
-
   useEffect(() => {
     if (mounted) {
       getGEO();
