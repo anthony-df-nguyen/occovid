@@ -86,6 +86,28 @@ body {
   --borderOnHover: 2px solid var(--blue);
 }
 
+.orange {
+  color: var( --orange);
+}
+.pink {
+  color: var(--pink);
+}
+.grayblue {
+  color: var(--grayblue);
+}
+.red {
+  color: var(--red);
+}
+.yellow {
+  color: var(--yellow);
+}
+.darkblue {
+  color: var(--darkblue);
+}
+.purple {
+  color: var(--purple);
+}
+
 body.dark {
   --primary-text: rgba(255, 255, 255, 0.70);
   --blue        : #009ddb;
@@ -1168,6 +1190,9 @@ a.globButton {
     width : 100%;
     height: 100%;
   }
+  .leaflet-popup-content-wrapper {
+    background-color: var(--white);
+  }
 
   .cityName {
     font-size  : 1rem;
@@ -1193,7 +1218,6 @@ a.globButton {
 
   .metricName {
     display    : inline;
-    color      : var(--darkblue);
     font-weight: 600;
     font-family: Arial, sans-serif;
   }

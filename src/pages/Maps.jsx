@@ -239,25 +239,25 @@ const Maps = () => {
                         <ul>
                           <li>
                             <div className="metricBlock">
-                              <div className="metricName">Cases</div>:
+                              <div className="metricName orange">Cases: </div>
                               {parseInt(Tot_Cases).toLocaleString()}
                             </div>
                           </li>
                           <li>
                             <div className="metricBlock">
-                              <div className="metricName">Death:</div>
+                              <div className="metricName red">Death: </div>
                               {parseInt(Tot_Deaths).toLocaleString()}
                             </div>
                           </li>
                           <li>
                             <div className="metricBlock">
-                              <div className="metricName">Case Rate: </div>
+                              <div className="metricName orange">Case Rate: </div>
                               {parseFloat(CaseRate).toFixed(1)}
                             </div>
                           </li>
                           <li>
                             <div className="metricBlock">
-                              <div className="metricName">Death Rate:</div>
+                              <div className="metricName red" >Death Rate: </div>
                               {parseFloat(DeathRate).toFixed(1)}
                             </div>
                           </li>
@@ -266,37 +266,37 @@ const Maps = () => {
                         <ul>
                           <li>
                             <div className="metricBlock">
-                              <div className="metricName">Cases 0-3</div>:
+                              <div className="metricName red">Cases 0-3: </div>
                               {parseInt(Cases_0_3).toLocaleString()}
                             </div>
                           </li>
                           <li>
                             <div className="metricBlock">
-                              <div className="metricName">Cases 4-9</div>:{" "}
+                              <div className="metricName yellow">Cases 4-9: </div>
                               {parseInt(Cases_4_9).toLocaleString()}
                             </div>
                           </li>
                           <li>
                             <div className="metricBlock">
-                              <div className="metricName">Cases 10-12</div>:{" "}
+                              <div className="metricName orange">Cases 10-12: </div>
                               {parseInt(Cases_10_12).toLocaleString()}
                             </div>
                           </li>
                           <li>
                             <div className="metricBlock">
-                              <div className="metricName">Cases 13-14</div>:{" "}
+                              <div className="metricName purple">Cases 13-14: </div>
                               {parseInt(Cases_13_14).toLocaleString()}
                             </div>
                           </li>
                           <li>
                             <div className="metricBlock">
-                              <div className="metricName">Cases 15-18</div>:{" "}
+                              <div className="metricName grayblue ">Cases 15-18: </div>
                               {parseInt(Cases_15_18).toLocaleString()}
                             </div>
                           </li>
                           <li>
                             <div className="metricBlock">
-                              <div className="metricName">Under 18</div>:{" "}
+                              <div className="metricName pink">Under 18: </div>
                               {parseInt(Cases_0_18).toLocaleString()}
                             </div>
                           </li>
