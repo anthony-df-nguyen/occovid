@@ -26,23 +26,32 @@ const Maps = () => {
       return localStorage.getItem("mapLastMode");
     }
   });
-
-  const whatMode = "city";
   const [cityOrZip, updateCityOrZip] = useState(() => {
-    if (whatMode === "city") {
+    if (!localStorage.getItem("mapCityorZip")) {
+      return 'city'
+    } else {
+      return localStorage.getItem("mapCityorZip");
+    }
+  })
+  const [cityOrZipURL, updateCityOrZipURL] = useState(() => {
+    if (cityOrZip === "city") {
       return CityDataWithGeo;
-    } else if (whatMode === "zip") {
+    } else if (cityOrZip === "zip") {
       return ZipDataWithGeo;
     } else {
       return CityDataWithGeo;
     }
   });
 
-  //Set a starting state so we can recognize when the theme changes since leaflet will not re-render
+  //Set a starting state for theme or city/zip mode so later we only reload page if theme or city/zip mode changes
   const [startingTheme, updateStartingTheme] = useState(theme);
+  const [startingCityOrZip, updateStartingCityOrZip] = useState(cityOrZip)
+  
   let geoArray = [];
   let mounted = true;
   let tileURL;
+
+
 
   if (theme) {
     console.log("Going to dark mode map");
@@ -51,15 +60,15 @@ const Maps = () => {
     tileURL = "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png";
   }
   async function getGEO() {
-    await fetch(cityOrZip)
+    await fetch(cityOrZipURL)
       .then((a) => a.json())
       .then((b) => b.features)
       .then((c) => {
-        if (whatMode == "city") {
+        if (cityOrZip == "city") {
           geoArray = c;
         }
         //Transform Zip array property names to be consistent with cities
-        else if (whatMode == "zip") {
+        else if (cityOrZip == "zip") {
           c.forEach((row) => {
             let d = row.properties;
             geoArray.push({
@@ -326,6 +335,8 @@ const Maps = () => {
     };
   }, [mode]);
 
+
+
   //Only reload the page if the starting theme is diffrent than the change
   useEffect(() => {
     if (mounted && theme != startingTheme) {
@@ -333,10 +344,38 @@ const Maps = () => {
       window.location.reload();
     }
   }, [theme]);
+    //Only reload the page if the starting cityOrZip is diffrent than the change
+  useEffect(() => {
+    if (mounted && cityOrZip != startingCityOrZip) {
+        console.log("The page should now reload because the city/zip mode has changed");
+        window.location.reload();
+      }
+    return () => {
+      mounted = false;
+    };
+  }, [cityOrZip]);
+
   return (
     <div>
       <Page title="Map">
         <ModeSelector
+          text="City or Zip"
+          current={ cityOrZip }
+          function={[updateCityOrZip]}
+          storageKey={ ['mapCityorZip'] }
+          options={[
+            {
+              display: 'City',
+              value: 'city'
+            },
+            {
+              display: 'Zip',
+              value: 'zip'
+            }
+          ]}
+        />
+        <ModeSelector
+           text="Select a Metric"
           function={[updateMode, updateModeDisplay]}
           current={mode}
           options={[
