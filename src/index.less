@@ -568,9 +568,6 @@ body.dark {
 }
 
 
-
-
-
 #cityGrid {
   margin-top           : @gap;
   display              : grid;
@@ -583,13 +580,32 @@ body.dark {
     overflow-x: hidden;
 
     canvas {
-      //height    : 100% !important;
       max-height: 100vh !important;
+    }
 
-      @media @wide {
-        max-height: 700px !important;
+    @media only screen and (min-width:768px) {
+      background-color: transparent !important;
+      padding         : 0;
+
+      .chartTitle {
+        border-radius   : @radius;
+        margin-top      : 2px;
+        background-color: var(--white);
+        padding         : @gap 0 1rem 0;
+        margin-bottom   : -1rem;
+      }
+
+      canvas {
+        border-radius   : @radius;
+        background-color: var(--white) !important;
+        padding-bottom  : 1rem;
+        min-height:700px;
+        max-height      : 750px !important;
       }
     }
+
+
+
 
   }
 
@@ -1003,7 +1019,8 @@ a.globButton {
   background-color: var(--white);
   margin-bottom   : 1rem;
   border-radius   : @radius;
-  width: 100%;
+  width           : 100%;
+
   &:hover {
     cursor            : pointer;
     -webkit-box-shadow: @shadow;
@@ -1035,13 +1052,13 @@ a.globButton {
     margin          : 1rem auto;
   }
 
-   .modeSelector {
-     display         : block;
-     margin          : 0 auto;
+  .modeSelector {
+    display             : block;
+    margin              : 0 auto;
     //  width           : -webkit-fit-content;
     //  width           : -moz-fit-content;
     //  width           : fit-content;
-   }
+  }
 
   .uiButtonInstruction {
     text-align: center;
@@ -1071,7 +1088,7 @@ a.globButton {
 
   #countySelect {
     ul {
-      width: 100%;
+      width                : 100%;
       padding              : 0 1rem;
       display              : -webkit-box;
       display              : -ms-flexbox;

@@ -531,9 +531,24 @@ body.dark {
 #cityGrid .chartContainer canvas {
   max-height: 100vh !important;
 }
-@media only screen and (min-width:1366px) {
+@media only screen and (min-width: 768px) {
+  #cityGrid .chartContainer {
+    background-color: transparent !important;
+    padding: 0;
+  }
+  #cityGrid .chartContainer .chartTitle {
+    border-radius: 5px;
+    margin-top: 2px;
+    background-color: var(--white);
+    padding: 10px 0 1rem 0;
+    margin-bottom: -1rem;
+  }
   #cityGrid .chartContainer canvas {
-    max-height: 700px !important;
+    border-radius: 5px;
+    background-color: var(--white) !important;
+    padding-bottom: 1rem;
+    min-height: 700px;
+    max-height: 750px !important;
   }
 }
 @media only screen and (min-width: 768px) {
