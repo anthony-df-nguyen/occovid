@@ -1099,3 +1099,16 @@ a.globButton {
   font-weight: 600;
   font-family: Arial, sans-serif;
 }
+.gear {
+  fill: var(--primary-text);
+  margin-bottom: -6px;
+  margin-right: 5px;
+  pointer-events: none;
+}
+@media only screen and (min-width:520px) {
+  .gear {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-bottom: -3px;
+  }
+}

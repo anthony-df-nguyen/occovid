@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Gear from "components/Gear";
 
 const ExpandCollapse = (props) => {
   const [openedorclosed, updateopenclose] = useState("0px");
@@ -20,6 +21,7 @@ const ExpandCollapse = (props) => {
   return (
     <div className="expander">
       <div className="expanderTitle" onClick={toggledOpenOrClosed}>
+        <Gear />
         {props.title}
       </div>
       <div className="expanderContent" style={{ maxHeight: openedorclosed }}>

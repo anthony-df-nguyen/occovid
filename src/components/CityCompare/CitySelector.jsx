@@ -77,7 +77,9 @@ const CitySelector = (props) => {
         <div>
             <ExpandCollapse title="Select City and Metric" buttontext={ 'Close' } buttonFunction={ updateCities }>
                 <div id="countySelect">
-                    <p className="expandContentInstruction"> Select up to 3 cities: </p>
+                    <p className="expandContentInstruction">
+                    
+                        Select up to 3 cities: </p>
                     <form onChange={ (e) => checkWhatsClicked(e) }>
                         <ul>
                             <li><label><input type="checkbox" value="Aliso_Viejo" label="Aliso Viejo"></input >Aliso Viejo</label></li>
