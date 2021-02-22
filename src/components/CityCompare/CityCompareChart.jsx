@@ -65,7 +65,8 @@ const CityCompareChart = props => {
             <div className='chartTitle'>{ props.title }</div>
        
             <Line data={ dataObject } options={ options } />
-            <p className="chartNote">{ props.chartNote }</p>
+            {props.children }
+            
         </div>
     )
 }

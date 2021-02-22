@@ -5,7 +5,7 @@ import vaccineArray from './vaccineArray.js'
 import average7 from 'components/Average7';
 
 const VaccineHistory = (props) => {
-
+    let cumuVax = 0;
 
     return (<>
         {
@@ -16,10 +16,12 @@ const VaccineHistory = (props) => {
                     let vax7Avg = average7(vaccineArray.map(a => a[1]));
                     vaccineArray.forEach((row, i) => {
                         let parseDate = moment(new Date(row[0])).format('l');
+                        cumuVax +=row[1]
                         transVaxArray.push({
                             date: parseDate,
                             vax: row[1],
                             vax7Avg: vax7Avg[i],
+                            cumuVax: cumuVax,
                         })
                     });
                     if (mounted) {

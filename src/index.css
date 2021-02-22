@@ -487,10 +487,6 @@ body.dark {
   #chartVaccineGrid {
     grid-template-columns: 1fr 1fr;
   }
-  #chartVaccineGrid :nth-child(1) {
-    grid-row: 1;
-    grid-column: 1 / span 2;
-  }
 }
 @media only screen and (min-width:1920px) {
   #chartVaccineGrid {
@@ -500,20 +496,24 @@ body.dark {
     grid-row: 1;
     grid-column: 1 / span 2;
   }
-  #chartVaccineGrid :nth-child(4) {
-    grid-row: 1;
-    grid-column: 3;
-  }
-  #chartVaccineGrid :nth-child(5) {
-    grid-row: 1;
-    grid-column: 4;
-  }
   #chartVaccineGrid :nth-child(2) {
-    grid-row: 2;
-    grid-column: 1 / span 2;
+    grid-row: 1;
+    grid-column: 3 / span 2;
   }
   #chartVaccineGrid :nth-child(3) {
+    grid-row: 2 / span 2;
+    grid-column: 1 / span 1;
+  }
+  #chartVaccineGrid :nth-child(4) {
+    grid-row: 2 / span 2;
+    grid-column: 2 / span 1;
+  }
+  #chartVaccineGrid :nth-child(5) {
     grid-row: 2;
+    grid-column: 3 / span 2;
+  }
+  #chartVaccineGrid :nth-child(6) {
+    grid-row: 3;
     grid-column: 3 / span 2;
   }
 }

@@ -388,8 +388,13 @@ const Compare = (props) => {
             title={`Comparing ${currentMode} for OC and ${comparisonCounty}`}
             label={[comparisonCounty, "Orange County"]}
             switches={["line"]}
-            chartNote={`${comparisonCounty} Pop:  ${comparisonCountyPop.toLocaleString()}  |  OC Pop: ${ocpop.toLocaleString()}`}
-          />
+          >
+            <p className="chartNote">
+              {comparisonCounty} Pop: ${comparisonCountyPop.toLocaleString()} |  OC Pop: ${ocpop.toLocaleString()} <br></br>
+              OC data: Cases using 'by Specimen Collection' | Deaths using
+              'Deaths by Report Dated
+            </p>
+          </CityCompareChart>
         </div>
       </Page>
     </div>
