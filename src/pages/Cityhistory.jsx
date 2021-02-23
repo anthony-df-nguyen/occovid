@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import FetchCityHistory from 'Datafetch/FetchCityHistory'
 import Timeselect from 'components/Timeselect';
-import TimeContext from "components/context/TimeContext";
+import {TimeContext}  from "components/context/TimeContext";
 import color from 'globalVars/Colors'
 import _ from "lodash";
 import CityCompareChart from 'components/CityCompare/CityCompareChart';
@@ -11,7 +11,7 @@ import Page from 'components/Page'
 
 const Cityhistory = (props) => {
 
-    const { time, setTime } = useContext(TimeContext);
+    const [ time, setTime ] = useContext(TimeContext);
     const [city1Array, updateCity1Array] = useState([])
     const [city2Array, updateCity2Array] = useState([])
     const [city3Array, updateCity3Array] = useState([])

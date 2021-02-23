@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import TimeContext from 'components/context/TimeContext'
+import {TimeContext}  from 'components/context/TimeContext'
 import moment from 'moment'
 
 function setStorage(value) {
@@ -7,7 +7,7 @@ function setStorage(value) {
 }
 
 const Timeselect = props => {
-  const { time, setTime } = useContext(TimeContext)
+  const [ time, setTime ] = useContext(TimeContext)
   //console.log("file: Timeselect.jsx ~ line 11 ~ time", time)
 
   const [valueForNoneOption, updateNoneValue] = useState(time)

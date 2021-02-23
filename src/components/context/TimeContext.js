@@ -1,5 +1,21 @@
-import { createContext } from 'react'
+import { createContext, useState } from "react";
 
-const TimeContext = createContext(null)
+export const TimeContext = createContext(null);
 
-export default TimeContext
+const TimeStore = ({ children }) => {
+  const [time, setTime] = useState(() => {
+    if (!localStorage.getItem("timeSetting")) {
+      localStorage.setItem("timeSetting", 30);
+      return 30;
+    } else {
+      return localStorage.getItem("timeSetting");
+    }
+  });
+  return (
+    <TimeContext.Provider value={[time, setTime]}>
+      {children}
+    </TimeContext.Provider>
+  );
+};
+
+export default TimeStore;

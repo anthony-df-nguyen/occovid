@@ -5,10 +5,8 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
-  Redirect,
 } from "react-router-dom";
-import TimeContext from "./components/context/TimeContext";
+import TimeStore from "./components/context/TimeContext";
 import ThemeStore from "./components/context/ThemeContext";
 import LastUpdateStore from "components/context/LastupdateContext";
 import Header from "./components/Header";
@@ -35,18 +33,11 @@ import {
   Compare,
   Serology,
 } from "pages/Master";
+
 function App() {
   const trackingId = "UA-164595635-1";
   ReactGA.initialize(trackingId);
   ReactGA.pageview(window.location.pathname + window.location.search);
-  let startingTime;
-  if (!localStorage.getItem("timeSetting")) {
-    localStorage.setItem("timeSetting", 30);
-    startingTime = 30;
-  } else {
-    startingTime = localStorage.getItem("timeSetting");
-  }
-  const [time, setTime] = useState(startingTime);
 
   return (
     <ThemeStore>
@@ -54,7 +45,7 @@ function App() {
         <div className="App">
           <Header />
           <LastUpdateStore>
-            <TimeContext.Provider value={{ time, setTime }}>
+            <TimeStore>
               <Switch>
                 <Route exact path="/" component={Home} />
                 <Route path="/cases" component={Cases} />
@@ -77,7 +68,7 @@ function App() {
                 <Route path="/compare" component={Compare} />
                 <Route component={NoPage} />
               </Switch>
-            </TimeContext.Provider>
+            </TimeStore>
           </LastUpdateStore>
         </div>
       </Router>

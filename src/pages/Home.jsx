@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import color from 'globalVars/Colors'
-import TimeContext from 'components/context/TimeContext'
+import {TimeContext}  from 'components/context/TimeContext'
 import Widget from 'components/Widget'
 import { ocpop } from 'globalVars/populations'
 import { FetchCases, lastTotalCases, lastDailyReported, lastRecovered, } from 'Datafetch/FetchCases'
@@ -16,7 +16,7 @@ import Page from 'components/Page'
 import Announcement from 'components/Announcement'
 
 const Home = props => {
-  const { time, setTime } = useContext(TimeContext)
+  const [ time, setTime ] = useContext(TimeContext)
   const [array, updateArray] = useState([])
   const [array2, update2Array] = useState([])
   const [array3, update3Array] = useState([])

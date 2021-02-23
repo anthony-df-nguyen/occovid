@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import TimeContext from "components/context/TimeContext";
+import {TimeContext}  from "components/context/TimeContext";
 import color from "globalVars/Colors";
 import Timeselect from "components/Timeselect";
 import {
@@ -18,7 +18,7 @@ import BuildTable from "components/BuildTable";
 import Page from "components/Page";
 
 const WhatsOpen = (props) => {
-  const { time, setTime } = useContext(TimeContext);
+  const [ time, setTime ] = useContext(TimeContext);
   const [array, updateArray] = useState([]);
   const [tableArray, updateTableArray] = useState([]);
   const [maxCaseRate, updateCaseMax] = useState(10);

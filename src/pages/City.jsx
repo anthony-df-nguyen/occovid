@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import TimeContext from "components/context/TimeContext";
+import {TimeContext}  from "components/context/TimeContext";
 import ModeSelector from "components/ModeSelector";
 import { FetchCityData } from "Datafetch/FetchCityData";
 import Chart from "components/Chart";
@@ -9,7 +9,7 @@ import ExpandCollapse from "components/ExpandCollapse";
 import {ContextColors} from 'components/ContextColors'
 
 const City = (props) => {
-  const { time, setTime } = useContext(TimeContext);
+  const [ time, setTime ] = useContext(TimeContext);
   const [array, updateArray] = useState([]);
   const [whichMetric, updateWhichMetric] = useState(() => {
     if (!localStorage.getItem("cityZipLastMode")) {

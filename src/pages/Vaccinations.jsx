@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import TimeContext from "components/context/TimeContext";
+import {TimeContext}  from "components/context/TimeContext";
 import color from "globalVars/Colors";
 import Timeselect from "components/Timeselect";
 import { FetchVaccines } from "Datafetch/FetchVaccines";
@@ -27,7 +27,7 @@ import BuildTable from "components/BuildTable";
 import Page from "components/Page";
 
 const Vaccinations = (props) => {
-  const { time, setTime } = useContext(TimeContext);
+  const [ time, setTime ] = useContext(TimeContext);
   const [array, updateArray] = useState([]);
   const [vaccineHisArray, updateVaxArray] = useState([]);
   const [

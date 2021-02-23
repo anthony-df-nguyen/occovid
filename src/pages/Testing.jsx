@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import TimeContext from "components/context/TimeContext";
+import {TimeContext}  from "components/context/TimeContext";
 import color from 'globalVars/Colors'
 import Timeselect from 'components/Timeselect';
 import { FetchTesting, lastTotalPCR, lastDailyTests } from 'Datafetch/FetchTesting'
@@ -9,7 +9,7 @@ import Widget from "components/Widget"
 import Page from 'components/Page'
 
 const Testing = (props) => {
-    const { time, setTime } = useContext(TimeContext);
+    const [ time, setTime ] = useContext(TimeContext);
     const [array, updateArray] = useState([]);
     const [hosArray, updateHosArray] = useState([])
 

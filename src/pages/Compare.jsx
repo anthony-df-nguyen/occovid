@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import TimeContext from "components/context/TimeContext";
+import {TimeContext}  from "components/context/TimeContext";
 import color from "globalVars/Colors";
 import Timeselect from "components/Timeselect";
 import { FetchCases } from "Datafetch/FetchCases";
@@ -14,7 +14,7 @@ import { countyPopulation, ocpop } from "globalVars/populations.js";
 import ExpandCollapse from "components/ExpandCollapse";
 
 const Compare = (props) => {
-  const { time, setTime } = useContext(TimeContext);
+  const [ time, setTime ] = useContext(TimeContext);
   const [ocArray, updateOCArray] = useState([]);
   const [compareArray, updateCompareArray] = useState([]);
   const [comparisonCounty, updateComparisonCounty] = useState(() => {

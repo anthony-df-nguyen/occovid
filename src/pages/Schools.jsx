@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react'
-import TimeContext from 'components/context/TimeContext'
+import {TimeContext}  from 'components/context/TimeContext'
 import color from 'globalVars/Colors'
 import Timeselect from 'components/Timeselect'
 import FetchSchool from 'Datafetch/FetchSchool'
@@ -11,7 +11,7 @@ import { stackedMultiBar, lineDefaults } from 'globalVars/chartJSconfig.js'
 import Page from 'components/Page'
 
 const Schools = props => {
-  const { time, setTime } = useContext(TimeContext)
+  const [ time, setTime ] = useContext(TimeContext)
   const [array, updateArray] = useState([])
   const [lastDate,updateDate] = useState()
 

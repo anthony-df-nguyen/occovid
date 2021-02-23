@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import TimeContext from "components/context/TimeContext";
+import {TimeContext}  from "components/context/TimeContext";
 import color from "globalVars/Colors";
 import Timeselect from "components/Timeselect";
 
@@ -18,7 +18,7 @@ import Widget from "components/Widget";
 import Page from "components/Page";
 
 const Cases = (props) => {
-  const { time, setTime } = useContext(TimeContext);
+  const [ time, setTime ] = useContext(TimeContext);
   const [array, updateArray] = useState([]);
 
 
