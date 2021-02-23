@@ -1,37 +1,42 @@
-import React, { useState, useEffect } from 'react'
-import Navigation from './Navigation'
+import React, { useState, useEffect } from "react";
+import Navigation from "./Navigation";
 import "../cssmodular/burger.css";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [isOpen, updateIsOpen] = useState(false);
-  let button = document.querySelector('#menubutton')
-  let navMenu = document.querySelector('#navMenu')
-  let page = document.querySelector('.page')
+  let button = document.querySelector("#menubutton");
+  let navMenu = document.querySelector("#navMenu");
+  let page = document.querySelector(".page");
 
   function closeNav() {
-    button.classList.remove('is-active')
-    navMenu.classList.remove('open')
-    page.classList.remove('hidden')
-    updateIsOpen(false)
+    let button = document.querySelector("#menubutton");
+    let navMenu = document.querySelector("#navMenu");
+    let page = document.querySelector(".page");
+    button.classList.remove("is-active");
+    navMenu.classList.remove("open");
+    page.classList.remove("hidden");
+    updateIsOpen(false);
   }
   function checkIfOpen() {
+    let button = document.querySelector("#menubutton");
+    let navMenu = document.querySelector("#navMenu");
+    let page = document.querySelector(".page");
     if (!isOpen) {
-      button.classList.add('is-active')
-      navMenu.classList.add('open')
-      page.classList.add('hidden');
-      updateIsOpen(true)
+      button.classList.add("is-active");
+      navMenu.classList.add("open");
+      page.classList.add("hidden");
+      updateIsOpen(true);
     } else {
-      closeNav()
+      closeNav();
     }
   }
- 
-
 
   return (
     <div>
-      <div className='header'>
-        <button onClick={ checkIfOpen }
+      <div className="header">
+        <button
+          onClick={checkIfOpen}
           id="menubutton"
           className="hamburger hamburger--arrow"
           type="button"
@@ -41,13 +46,14 @@ const Header = () => {
           </span>
         </button>
         <Link to="/">
-          <div className='siteName' onClick={closeNav}>OCCOVID</div>
+          <div className="siteName" onClick={closeNav}>
+            OCCOVID
+          </div>
         </Link>
-
       </div>
-      <Navigation function={ updateIsOpen } />
+      <Navigation function={updateIsOpen} />
     </div>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
