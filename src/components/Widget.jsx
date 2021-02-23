@@ -5,9 +5,8 @@ const Widget = (props) => {
         <div className="widget">
             <div className="statName">{props.title}</div>
             <div className="stat" style={{color:props.color}}>{props.stat}</div>
-            {/* <div>{props.change}</div> */}
         </div>
     );
 }
 
-export default Widget;
+export default Widget

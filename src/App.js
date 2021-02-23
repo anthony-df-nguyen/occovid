@@ -10,9 +10,9 @@ import {
 } from "react-router-dom";
 import TimeContext from "./components/context/TimeContext";
 import ThemeStore from "./components/context/ThemeContext";
-import LastUpdateDate from "components/context/LastupdateContext";
+import LastUpdateStore from "components/context/LastupdateContext";
 import Header from "./components/Header";
-import { lastUpdate } from "globalVars/Sources";
+
 import {
   Home,
   Cases,
@@ -47,24 +47,13 @@ function App() {
     startingTime = localStorage.getItem("timeSetting");
   }
   const [time, setTime] = useState(startingTime);
-  const [lastDate, setDate] = useState("");
-  const getUpdateDate = async () => {
-    await fetch(lastUpdate)
-      .then((res) => res.json())
-      .then((date) => date.features[0].attributes.update_date)
-      .then((final) => {
-        //console.log(final);
-        setDate(final);
-      });
-  };
-  getUpdateDate();
 
   return (
     <ThemeStore>
       <Router>
         <div className="App">
           <Header />
-          <LastUpdateDate.Provider value={{ lastDate, setDate }}>
+          <LastUpdateStore>
             <TimeContext.Provider value={{ time, setTime }}>
               <Switch>
                 <Route exact path="/" component={Home} />
@@ -89,7 +78,7 @@ function App() {
                 <Route component={NoPage} />
               </Switch>
             </TimeContext.Provider>
-          </LastUpdateDate.Provider>
+          </LastUpdateStore>
         </div>
       </Router>
     </ThemeStore>
