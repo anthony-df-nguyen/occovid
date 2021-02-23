@@ -53,7 +53,7 @@ const Navigation = (props) => {
           <div className='subSection'>Other</div>
         </div>
         <NavLink to='/compare' onClick={ () => { closeTheNav('/comppare') } } activeClassName='selectedLink'>Compare Counties</NavLink>
-        <NavLink to='/whatsopen' onClick={ () => { closeTheNav('/whatsopen') } } activeClassName='selectedLink'>What's Open</NavLink>
+        <NavLink to='/whatsopen' onClick={ () => { closeTheNav('/whatsopen') } } activeClassName='selectedLink'>CADPH Metrics</NavLink>
         <NavLink to='/reportbugs' onClick={ () => { closeTheNav('/reportbugs') } } activeClassName='selectedLink'>Bugs, Ideas, and Updates</NavLink>
 
 
