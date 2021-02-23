@@ -46,7 +46,7 @@ const FetchDeaths = props => {
               if (a.total_dth_repo) {
                 lastTotalDeaths = a.total_dth_repo.toLocaleString()
               }
-              if (a.daily_death_repo) {
+              if (a.daily_death_repo || a.daily_death_repo == 0) {
                 lastDailyReportedDeath = a.daily_death_repo.toLocaleString()
               }
               if (a.snf) {
