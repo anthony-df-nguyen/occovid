@@ -9,7 +9,7 @@ import {
   Redirect,
 } from "react-router-dom";
 import TimeContext from "./components/context/TimeContext";
-import ThemeContext from "./components/context/ThemeContext";
+import ThemeStore from "./components/context/ThemeContext";
 import LastUpdateDate from "components/context/LastupdateContext";
 import Header from "./components/Header";
 import { lastUpdate } from "globalVars/Sources";
@@ -59,20 +59,8 @@ function App() {
   };
   getUpdateDate();
 
-  const [theme, updateTheme] = useState(() => {
-    if (!localStorage.getItem("isDark")) {
-      return false
-    } else {
-      if (localStorage.getItem("isDark") == 'dark') {
-        return true
-      } else {
-        return false
-      }
-    }
-  });
-
   return (
-    <ThemeContext.Provider value={{ theme, updateTheme }}>
+    <ThemeStore>
       <Router>
         <div className="App">
           <Header />
@@ -104,7 +92,7 @@ function App() {
           </LastUpdateDate.Provider>
         </div>
       </Router>
-    </ThemeContext.Provider>
+    </ThemeStore>
   );
 }
 export default App;

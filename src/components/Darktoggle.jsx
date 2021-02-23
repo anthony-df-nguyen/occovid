@@ -1,11 +1,11 @@
 import React, { useState, useContext } from "react";
 import DarkModeToggle from "react-dark-mode-toggle";
-import ThemeContext from 'components/context/ThemeContext'
+import {ThemeContext} from 'components/context/ThemeContext'
 export default () => {
   let body = document.querySelector("body");
  
   //console.log(ThemeContext)
-  const {theme,updateTheme} = useContext(ThemeContext)
+  const [theme,updateTheme] = useContext(ThemeContext)
 
   const [isDarkMode, updateDarkMode] = useState(theme)
 

@@ -11,11 +11,11 @@ import {
   band5,
 } from "components/ContextColors";
 import ModeSelector from "components/ModeSelector";
-import ThemeContext from "components/context/ThemeContext";
+import {ThemeContext} from "components/context/ThemeContext";
 import ExpandCollapse from "components/ExpandCollapse";
 
 const Maps = () => {
-  const { theme, updateTheme } = useContext(ThemeContext);
+  const [theme, updateTheme] = useContext(ThemeContext);
   const [leaflet, updateleafLet] = useState();
   const [modeDisplay, updateModeDisplay] = useState();
   const [mode, updateMode] = useState(() => {
