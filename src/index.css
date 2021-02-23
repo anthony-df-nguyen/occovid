@@ -1112,3 +1112,28 @@ a.globButton {
     margin-bottom: -3px;
   }
 }
+.backToTop {
+  display: none;
+  background-color: var(--blue);
+  opacity: 0.7;
+  border-radius: 50px;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  position: fixed;
+  z-index: 2;
+  right: 1rem;
+  bottom: 1rem;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+.backToTop svg {
+  fill: var(--staywhite);
+  width: 3rem;
+  height: 3rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
