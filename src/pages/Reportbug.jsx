@@ -11,7 +11,14 @@ const Reportbug = (props) => {
             <div className='formTitle'>Have questions? <a href="mailto: anthonydfnguyen@gmail.com"> Email me</a></div>
 
             <div id="googleForm">
-                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScOtQjpnqcxaXju6gnSghVyLi4BRIj74u-5Un3_H3vki5y_Cw/viewform?embedded=true" width="100%" height="100%" frameBorder="0" marginHeight="0" marginWidth="0">Loading…</iframe>
+                <h2>Reports Bugs/Make Suggestions</h2>
+                <p>Please note, I can only show more data if it's publicly available. If you have a data source, please refer me to it.</p>
+                <form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLScOtQjpnqcxaXju6gnSghVyLi4BRIj74u-5Un3_H3vki5y_Cw/formResponse" method="POST">
+                    <label ></label>
+                    <textarea name="entry.655858757" placeholder="Report a bug(s). Please include which browser you are using and platform (iOS/Android/Windows/Mac)"></textarea>
+                    <textarea name="entry.520929852" placeholder="Any suggestions or ideas?"></textarea>
+                    <button className="globButton" type="submit">Submit</button>
+                </form>
             </div>
         </div>     
     );

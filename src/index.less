@@ -941,18 +941,19 @@ table {
 }
 
 
-a.globButton {
+a.globButton,
+.globButton {
     background-color: var(--blue);
     border-radius   : @radius;
     padding         : 8px 16px !important;
     display         : block;
     margin          : 1rem auto !important;
-
-    font-size: 1.25rem;
-    width    : -webkit-fit-content;
-    width    : -moz-fit-content;
-    width    : fit-content;
-    color    : var(--staywhite) !important;
+    border          : none;
+    font-size       : 1.25rem;
+    width           : -webkit-fit-content;
+    width           : -moz-fit-content;
+    width           : fit-content;
+    color           : var(--staywhite) !important;
 }
 
 .forceTableSep {
@@ -1015,12 +1016,35 @@ a.globButton {
 }
 
 #googleForm {
-    width  : 100%;
-    height : 100%;
-    display: block;
+    width     : 100%;
+    height    : 100%;
+    display   : block;
+    text-align: center;
+    color     : var(--primary-text);
+    margin    : 2rem auto;
 
-    iframe {
-        min-height: 100vh;
+    h2 {
+        color    : var(--blue);
+        max-width: 768px;
+        margin   : 1rem auto;
+    }
+
+    p {
+        max-width : 768px;
+        margin    : 1rem auto;
+        text-align: left;
+    }
+
+    textarea {
+        display      : block;
+        margin       : 1rem auto;
+        border-radius: @radius;
+        max-width    : 768px;
+        border       : none;
+        padding      : @gap;
+        min-height       : 8rem;
+        width        : 100%;
+        background-color: var(--white);
     }
 }
 
@@ -1283,22 +1307,22 @@ a.globButton {
 }
 
 .backToTop {
-    display: none;
+    display           : none;
     //background-color: rgba(0, 157, 219, 0.5);
-    background-color: var(--blue);
-    opacity: .7;
-    border-radius   : 50px;
-    width           : 48px;
-    height          : 48px;
-    padding         : 0;
-    position        : fixed;
-    z-index         : 2;
-    right           : 1rem;
-    bottom          : 1rem; 
-    box-shadow: @shadow;
+    background-color  : var(--blue);
+    opacity           : .7;
+    border-radius     : 50px;
+    width             : 48px;
+    height            : 48px;
+    padding           : 0;
+    position          : fixed;
+    z-index           : 2;
+    right             : 1rem;
+    bottom            : 1rem;
+    box-shadow        : @shadow;
 
     svg {
-        fill:var(--staywhite);
+        fill    : var(--staywhite);
         width   : 3rem;
         height  : 3rem;
         position: absolute;
