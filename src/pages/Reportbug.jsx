@@ -14,7 +14,7 @@ const Reportbug = (props) => {
       e.target.style.maxHeight = itemHeight;
       e.target.style.overflow = "visible";
     } else {
-      e.target.style.maxHeight = "8rem";
+      e.target.style.maxHeight = "6rem";
       e.target.style.overflow = "hidden";
     }
   }
@@ -51,7 +51,7 @@ const Reportbug = (props) => {
 
       <ExpandCollapse
         nogear={true}
-        title="🪳 Report a Bug or Suggestion"
+        title="🪳 Click here to report a bug or make a suggestion"
         buttontext="Close">
         <div id="googleForm">
           <p>
@@ -85,11 +85,12 @@ const Reportbug = (props) => {
       </div>
 
       <div id="updateGrid" style={{ visibility: showUpdates }}>
-        <ExpandCollapse
+              <ExpandCollapse
+                  
           nogear={true}
           title="🥳 New Features and Changelog"
           buttontext="Close">
-          <div className="updateFlex">
+          <div className="updateFlex" >
             {array.map((row, i) => {
               if (row.status === "Done") {
                 return (

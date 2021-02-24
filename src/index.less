@@ -989,21 +989,6 @@ a.globButton,
     }
 }
 
-// #countySelect {
-//   width: -webkit-fit-content;
-//   width: -moz-fit-content;
-//   width: fit-content;
-//   text-align: center;
-//   display   : block;
-//   margin    : 1rem auto;
-
-//   p {
-//     display     : inline;
-//     margin-right: @gap;
-//   }
-// }
-
-
 .formTitle {
     text-align   : center;
     margin-bottom: 1rem;
@@ -1327,10 +1312,12 @@ a.globButton,
         .center;
     }
 }
+
 #updateGrid {
     @media @wide {
         display : grid;
         grid-template-columns: repeat(5, 1fr);
+        grid-template-rows : auto;
         grid-gap             : @gap;
 
         .expander {
@@ -1357,8 +1344,11 @@ a.globButton,
             .standardButton {
                 display: none;
             }
+
         }
     }
+
+
 
     .updateFlex {
         padding: 0 @gap;
@@ -1368,8 +1358,8 @@ a.globButton,
             border-radius     : @radius;
             background-color  : var(--gray);
             margin-bottom     : @gap;
-            max-height        : 8rem;
-            overflow          : hidden;
+            max-height : 6rem;
+            overflow-y : hidden;
             width             : 100%;
             -webkit-transition: max-height .2s ease-in-out;
             -o-transition     : max-height .2s ease-in-out;
@@ -1385,16 +1375,17 @@ a.globButton,
             }
 
             .title {
-                font-weight   : 300;
+                font-weight : 400;
                 pointer-events: none;
+                font-size: 14px;
             }
 
             .detail {
-                font-weight   : 500;
+                font-weight : 300;
                 font-size     : .8rem;
-                margin-top    : @gap;
-                font-style    : italic;
+                margin-top : @gap;
                 pointer-events: none;
+                 font-size: 12px;
             }
 
             .bottom {
@@ -1414,6 +1405,10 @@ a.globButton,
             }
         }
 
+    }
+
+    #done {
+        background-color: var(--green) !important;
     }
 }
 
