@@ -114,7 +114,6 @@ const Reportbug = (props) => {
                     <div className="title">{row.title}</div>
                     <div className="bottom">
                       <div className="type">{row.type}</div>
-                      <div className="date">{row.date}</div>
                     </div>
                   </div>
                 );
@@ -133,8 +132,7 @@ const Reportbug = (props) => {
                   <div key={i} className="card" onClick={toggleOpen}>
                     <div className="title">{row.title}</div>
                     <div className="bottom">
-                      <div className="type">{row.type}</div>
-                      <div className="date">{row.date}</div>
+                      <div className="type">{row.priority}</div>
                     </div>
                   </div>
                 );
@@ -150,8 +148,7 @@ const Reportbug = (props) => {
                   <div key={i} className="card" onClick={toggleOpen}>
                     <div className="title">{row.title}</div>
                     <div className="bottom">
-                      <div className="type">{row.type}</div>
-                      <div className="date">{row.date}</div>
+                      <div className="type">{row.priority}</div>
                     </div>
                   </div>
                 );
