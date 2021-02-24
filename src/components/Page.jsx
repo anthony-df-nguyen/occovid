@@ -9,7 +9,7 @@ const Page = (props) => {
   }, []);
 
   const generateUpdateDate = (x) => {
-    if (x !== "Vaccinations" && x !== "School Cases" && x !== "City History") {
+    if (x !== "Vaccinations" && x !== "School Cases" && x !== "City History" && x !== "Updates") {
       return <Lastupdate />;
     }
   };

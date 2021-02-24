@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Gear from "components/Gear";
+import { prototype } from "chart.js";
 
 const ExpandCollapse = (props) => {
   const [openedorclosed, updateopenclose] = useState("0px");
@@ -21,7 +22,7 @@ const ExpandCollapse = (props) => {
   return (
     <div className="expander">
       <div className="expanderTitle" onClick={toggledOpenOrClosed}>
-        <Gear />
+        { props.nogear ? "" : <Gear />  }
         {props.title}
       </div>
       <div className="expanderContent" style={{ maxHeight: openedorclosed }}>
@@ -35,8 +36,7 @@ const ExpandCollapse = (props) => {
             if (props.buttonFunction) {
               props.buttonFunction();
             }
-          }}
-        >
+          }}>
           {props.buttontext}
         </div>
       </div>
