@@ -6,7 +6,7 @@ import Donate from "./Donate";
 const Reportbug = (props) => {
   const [array, updateArray] = useState([]);
   const [showGIF, updateGIF] = useState("block");
-  const [showUpdates, updateShowUpdates] = useState("none");
+  const [showUpdates, updateShowUpdates] = useState("hidden");
   function toggleOpen(e) {
     let itemHeight = e.clientY + "px";
 
@@ -32,7 +32,7 @@ const Reportbug = (props) => {
           });
             updateArray(b);
             updateGIF('none')
-            updateShowUpdates('block')
+            updateShowUpdates('visible')
         });
     };
     if (mounted) {
@@ -84,7 +84,7 @@ const Reportbug = (props) => {
         <p>Loading Updates</p>
       </div>
 
-      <div id="updateGrid" style={{ display: showUpdates }}>
+      <div id="updateGrid" style={{ visibility: showUpdates }}>
         <ExpandCollapse
           nogear={true}
           title="🥳 New Features and Changelog"
