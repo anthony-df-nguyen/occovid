@@ -10,7 +10,7 @@ const Footer = () => {
           <Link to="/reportbugs">Have questions, ideas, or bugs?</Link>
         </p>
         <br></br>
-        <p>No affiliation with OC Dept. of Public Health or any government agency</p>
+        <p>No affiliation with OC Health Care Agency or any government agency</p>
       </div>
     </div>
   )
