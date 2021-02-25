@@ -1,19 +1,26 @@
-import React from 'react'
-import {Link } from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <div className='footer'>
+    <div className="footer">
       <div>
-        Created by Anthony Nguyen
         <p>
-          <Link to="/reportbugs">Report bugs, ask questions, and view latest changes/updates here</Link>
+          <Link to="/sourcesfaq">View my sources and other FAQs</Link>
         </p>
-        <br></br>
-        <p>No affiliation with OC Health Care Agency or any government agency</p>
       </div>
+      <br></br>
+      <div>
+        <p>
+          <Link to="/reportbugs">
+            Report bugs, view latest changes, or contact me
+          </Link>
+        </p>
+      </div>
+      <h1> Site by Anthony Nguyen</h1>
+      <p>No affiliation with OC Health Care Agency or any government agency</p>
     </div>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

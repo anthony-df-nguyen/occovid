@@ -55,6 +55,7 @@ const Navigation = (props) => {
         <NavLink to='/whatsopen' onClick={ () => { closeTheNav('/whatsopen') } } activeClassName='selectedLink'>CADPH Metrics</NavLink>
         <NavLink to='/reportbugs' onClick={ () => { closeTheNav('/reportbugs') } } activeClassName='selectedLink'>Bugs, Ideas, and Updates</NavLink>
 
+         <NavLink to='/sourcesfaq' onClick={ () => { closeTheNav('/sourcesfaq') } } activeClassName='selectedLink'>Sources/FAQ</NavLink>
 
         <div style={ { paddingBottom: "8rem", } } onClick={ () => { closeTheNav('/donate') } }>
           <Button onClick={ () => { closeTheNav() } } url={ '/donate' } text="Donate" />

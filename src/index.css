@@ -279,10 +279,15 @@ body.dark {
   position: relative;
   width: 100%;
   font-size: 12px;
-  margin-top: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+}
+.footer h1 {
+  margin-top: 2rem;
+  font-size: 1.25rem;
 }
 .footer p {
-  font-size: 12px;
+  font-size: 14px;
 }
 .footer a {
   color: var(--blue);
@@ -808,6 +813,9 @@ table td {
   font-weight: 400;
   font-size: 0.8rem;
 }
+table td a {
+  color: var(--blue);
+}
 .title404,
 .donate {
   position: absolute;
@@ -1246,4 +1254,21 @@ a.globButton,
 .loading p {
   text-align: center;
   color: var(--primary-text);
+}
+#faq {
+  padding: 1rem;
+  max-width: 1024px;
+  margin: 0 auto;
+  color: var(--primary-text);
+}
+#faq a {
+  color: var(--blue);
+}
+#faq .question {
+  font-size: 1.2rem;
+}
+#faq .answer {
+  margin-top: 10px;
+  font-weight: 300;
+  margin-bottom: 2rem;
 }

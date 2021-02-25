@@ -15,11 +15,11 @@ import Gender from 'pages/Gender'
 import Compare from 'pages/Compare';
 import WhatsOpen from 'pages/WhatsOpen'
 import Reportbug from 'pages/Reportbug'
-
+import Sources from 'pages/Sources'
 import Donate from 'pages/Donate'
 import NoPage from 'pages/NoPage'
 
 
 
 
-export { Home, Cases, Deaths, Hospitalization, Vaccinations, Testing, Schools, Age, Race, Gender, Maps,CityZip,WhatsOpen, NoPage, Donate, Cityhistory, Reportbug, Compare, Serology}
+export { Home, Cases, Deaths, Hospitalization, Vaccinations, Testing, Schools, Age, Race, Gender, Maps,CityZip,WhatsOpen, NoPage, Donate, Cityhistory, Reportbug, Compare, Serology,Sources}

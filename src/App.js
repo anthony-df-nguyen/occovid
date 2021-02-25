@@ -1,15 +1,11 @@
 import logo from "./logo.svg";
 import ReactGA from "react-ga";
 import React, { useState } from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from "react-router-dom";
-import TimeStore from "./components/context/TimeContext";
-import ThemeStore from "./components/context/ThemeContext";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import TimeStore from "components/context/TimeContext";
+import ThemeStore from "components/context/ThemeContext";
 import LastUpdateStore from "components/context/LastupdateContext";
-import Header from "./components/Header";
+import Header from "components/Header";
 
 import {
   Home,
@@ -31,6 +27,7 @@ import {
   Donate,
   Compare,
   Serology,
+  Sources,
 } from "pages/Master";
 
 function App() {
@@ -60,10 +57,12 @@ function App() {
                 <Route path="/age" component={Age} />
                 <Route path="/race" component={Race} />
                 <Route path="/gender" component={Gender} />
+                <Route path="/compare" component={Compare} />
                 <Route path="/whatsopen" component={WhatsOpen} />
                 <Route path="/reportbugs" component={Reportbug} />
+                <Route path="/sourcesfaq" component={Sources} />
                 <Route path="/donate" component={Donate} />
-                <Route path="/compare" component={Compare} />
+
                 <Route component={NoPage} />
               </Switch>
             </TimeStore>

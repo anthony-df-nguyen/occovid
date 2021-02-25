@@ -327,15 +327,20 @@ body.dark {
     position  : relative;
     width     : 100%;
     font-size : 12px;
-    margin-top: 1rem;
+    margin-top: 2rem;
+    margin-bottom: 4rem;
 
+    h1 {
+        margin-top: 2rem;
+        font-size : 1.25rem;
+    }
     p {
 
-        font-size: 12px;
+        font-size: 14px;
     }
 
     a {
-        color: var(--blue)
+        color : var(--blue);
     }
 }
 
@@ -903,6 +908,9 @@ table {
         color           : var(--primary-text);
         font-weight     : 400;
         font-size       : .8rem;
+        a {
+            color: var(--blue)
+        }
     }
 }
 
@@ -1423,5 +1431,25 @@ a.globButton,
     p {
         text-align: center;
         color     : var(--primary-text)
+    }
+}
+#faq {
+    padding  : 1rem;
+    max-width: 1024px;
+    margin   : 0 auto;
+    color    : var(--primary-text);
+
+    a {
+        color: var(--blue)
+    }
+
+    .question {
+        font-size: 1.2rem;
+    }
+
+    .answer {
+        margin-top   : @gap;
+        font-weight  : 300;
+        margin-bottom: 2rem;
     }
 }
