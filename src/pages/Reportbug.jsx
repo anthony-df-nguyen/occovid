@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Page from "components/Page";
 import ExpandCollapse from "components/ExpandCollapse";
-import Donate from "./Donate";
 
 const Reportbug = (props) => {
   const [array, updateArray] = useState([]);
@@ -108,7 +107,6 @@ const Reportbug = (props) => {
           <div className="updateFlex">
             {array.map((row, i) => {
               if (row.status === "In Progress") {
-                console.log(row.status);
                 return (
                   <div key={i} className="card" onClick={toggleOpen}>
                     <div className="title">{row.title}</div>

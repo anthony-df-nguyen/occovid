@@ -11,7 +11,7 @@ import {
   band5,
 } from "components/ContextColors";
 import ModeSelector from "components/ModeSelector";
-import {ThemeContext} from "components/context/ThemeContext";
+import { ThemeContext } from "components/context/ThemeContext";
 import ExpandCollapse from "components/ExpandCollapse";
 
 const Maps = () => {
@@ -53,7 +53,6 @@ const Maps = () => {
   let tileURL;
 
   if (theme) {
-    console.log("Going to dark mode map");
     tileURL = "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png";
   } else {
     tileURL = "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png";
@@ -88,6 +87,8 @@ const Maps = () => {
                 CaseRate: d.tot_casrate,
                 DeathRate: d.tot_dthrate,
                 Total_Pop: d.pop,
+                SNFCase: d.SNF_Cases,
+                SNFDth: d.SNF_Death,
               },
             });
           });
@@ -129,6 +130,8 @@ const Maps = () => {
                   const DeathRate = a.DeathRate;
                   const Tot_Deaths = a.Tot_Deaths;
                   const Tot_Cases = a.Tot_Cases;
+                  const SNF_Cases = a.SNFCase;
+                  const SNF_Deaths = a.SNFDth;
                   let color;
                   switch (mode) {
                     case "CaseRate":
@@ -230,8 +233,7 @@ const Maps = () => {
                         weight: 0.2,
                         fillColor: color,
                         fillOpacity: ".3",
-                      }}
-                    >
+                      }}>
                       <Popup key={i}>
                         <div className="cityName"> {CityOrZipName} </div>
                         <div className="metricBlock">
@@ -314,6 +316,23 @@ const Maps = () => {
                             </div>
                           </li>
                         </ul>
+                        {/* List of SNF */}
+                        <ul>
+                          <li>
+                            <div className="metricBlock">
+                              <div className="metricName orange">
+                                SNF Cases:{" "}
+                              </div>
+                              {parseInt(SNF_Cases).toLocaleString()}
+                            </div>
+                          </li>
+                          <li>
+                            <div className="metricBlock">
+                              <div className="metricName red">SNF Deaths: </div>
+                              {parseInt(SNF_Deaths).toLocaleString()}
+                            </div>
+                          </li>
+                        </ul>
                       </Popup>
                     </GeoJSON>
                   );
@@ -337,7 +356,6 @@ const Maps = () => {
   //Only reload the page if the starting theme is diffrent than the change
   useEffect(() => {
     if (mounted && theme != startingTheme) {
-      console.log("The page should now reload because the theme has changed");
       window.location.reload();
     }
   }, [theme]);
@@ -357,10 +375,7 @@ const Maps = () => {
   return (
     <div>
       <Page title="Map">
-        <ExpandCollapse
-          title="Change Map Mode"
-          buttontext="Close"
-        >
+        <ExpandCollapse title="Change Map Mode" buttontext="Close">
           <ModeSelector
             text="City or Zip"
             current={cityOrZip}
