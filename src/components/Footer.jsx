@@ -7,7 +7,7 @@ const Footer = () => {
       <div>
         Created by Anthony Nguyen
         <p>
-          <Link to="/reportbugs">Have questions, ideas, or bugs?</Link>
+          <Link to="/reportbugs">Report bugs, ask questions, and view latest changes/updates here</Link>
         </p>
         <br></br>
         <p>No affiliation with OC Health Care Agency or any government agency</p>
