@@ -23,8 +23,7 @@ import {
   Race,
   Gender,
   Maps,
-  City,
-  Zip,
+  CityZip,
   Cityhistory,
   WhatsOpen,
   Reportbug,
@@ -57,8 +56,7 @@ function App() {
                 <Route path="/schools" component={Schools} />
                 <Route path="/map" component={Maps} />
                 <Route path="/cityhistory" component={Cityhistory} />
-                <Route path="/city" component={City} />
-                <Route path="/zip" component={Zip} />
+                <Route path="/cityzip" component={CityZip} />
                 <Route path="/age" component={Age} />
                 <Route path="/race" component={Race} />
                 <Route path="/gender" component={Gender} />

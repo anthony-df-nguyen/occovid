@@ -75,7 +75,7 @@ const CitySelector = (props) => {
 
     return (
         <div>
-            <ExpandCollapse title="Select City and Metric" buttontext={ 'Close' } buttonFunction={ updateCities }>
+            <ExpandCollapse title="Select the Cities" buttontext={ 'Close' } buttonFunction={ updateCities }>
                 <div id="countySelect">
                     <p className="expandContentInstruction">
                     

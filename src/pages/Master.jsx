@@ -8,8 +8,7 @@ import Serology from 'pages/Serology';
 import Schools from 'pages/Schools'
 import Maps from 'pages/Maps'
 import Cityhistory from 'pages/Cityhistory'
-import City from 'pages/City'
-import Zip from 'pages/Zip'
+import CityZip from 'pages/CityZip'
 import Age from 'pages/Age'
 import Race from 'pages/Race'
 import Gender from 'pages/Gender'
@@ -23,4 +22,4 @@ import NoPage from 'pages/NoPage'
 
 
 
-export { Home, Cases, Deaths, Hospitalization, Vaccinations, Testing, Schools, Age, Race, Gender, Maps,City, Zip, WhatsOpen, NoPage, Donate, Cityhistory, Reportbug, Compare, Serology}
+export { Home, Cases, Deaths, Hospitalization, Vaccinations, Testing, Schools, Age, Race, Gender, Maps,CityZip,WhatsOpen, NoPage, Donate, Cityhistory, Reportbug, Compare, Serology}

@@ -41,8 +41,7 @@ const Navigation = (props) => {
         </div>
         <NavLink to='/map' onClick={ () => { closeTheNav('/map') } } activeClassName='selectedLink'>Map</NavLink>
         <NavLink to='/cityhistory' onClick={ () => { closeTheNav('/cityhistory') } } activeClassName='selectedLink'>City History</NavLink>
-        <NavLink to='/city' onClick={ () => { closeTheNav('/city') } } activeClassName='selectedLink'>City</NavLink>
-        <NavLink to='/zip' onClick={ () => { closeTheNav('/zip') } } activeClassName='selectedLink'>Zip Code</NavLink>
+        <NavLink to='/cityzip' onClick={ () => { closeTheNav('/cityzip') } } activeClassName='selectedLink'>City/Zip Code</NavLink>
         <div>
           <div className='subSection'>by Demographic</div>
         </div>

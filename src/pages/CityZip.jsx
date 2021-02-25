@@ -1,15 +1,25 @@
 import React, { useState, useContext, useEffect } from "react";
-import {TimeContext}  from "components/context/TimeContext";
+import { TimeContext } from "components/context/TimeContext";
 import ModeSelector from "components/ModeSelector";
 import { FetchCityData } from "Datafetch/FetchCityData";
+import { FetchZipData } from "Datafetch/FetchZipData";
 import Chart from "components/Chart";
 import BuildTable from "components/BuildTable";
 import Page from "components/Page";
 import ExpandCollapse from "components/ExpandCollapse";
-import {ContextColors} from 'components/ContextColors'
+import { ContextColors } from "components/ContextColors";
 
-const City = (props) => {
-  const [ time, setTime ] = useContext(TimeContext);
+const CityZip = (props) => {
+  const [time, setTime] = useContext(TimeContext);
+
+  const [cityOrZip, updateCityOrZip] = useState(() => {
+    if (!localStorage.getItem("mapCityorZip")) {
+      return "city";
+    } else {
+      return localStorage.getItem("mapCityorZip");
+    }
+  });
+
   const [array, updateArray] = useState([]);
   const [whichMetric, updateWhichMetric] = useState(() => {
     if (!localStorage.getItem("cityZipLastMode")) {
@@ -27,11 +37,10 @@ const City = (props) => {
   });
   const [whichSort, updateWhichSort] = useState("high");
 
- let preSortColorArray = [];
+  let preSortColorArray = [];
   array.forEach((a) => {
     //Figure out which index to get in each
 
-   
     Object.keys(a).forEach((b, i) => {
       const parseValue = () => {
         if (parseFloat(Object.values(a)[i])) {
@@ -51,14 +60,14 @@ const City = (props) => {
   });
 
   //console.log(finalArraytoUse)
-  const max = Math.max(...preSortColorArray.map(row => row.value))
-  const min = Math.min(...preSortColorArray.map(row => row.value))
-  let finalArraytoUse = preSortColorArray.map(row => {
+  const max = Math.max(...preSortColorArray.map((row) => row.value));
+  const min = Math.min(...preSortColorArray.map((row) => row.value));
+  let finalArraytoUse = preSortColorArray.map((row) => {
     return {
       ...row,
-      color: ContextColors(row.value,'highisbad',max,min),
-    }
-  })
+      color: ContextColors(row.value, "highisbad", max, min),
+    };
+  });
 
   //Sort the Array
   switch (whichSort) {
@@ -89,12 +98,29 @@ const City = (props) => {
 
   return (
     <div>
-      <FetchCityData function={updateArray} time={time} />
-      <Page title="City Detail">
-        <ExpandCollapse
-          title="Change View Mode/Options"
-          buttontext="Close"
-        >
+      {cityOrZip === "city" ? (
+        <FetchCityData function={updateArray} time={time} />
+      ) : (
+        <FetchZipData function={updateArray} time={time} />
+      )}
+      <Page title="City/Zip Detail">
+        <ExpandCollapse title="Change View Mode/Options" buttontext="Close">
+          <ModeSelector
+            text="City or Zip"
+            current={cityOrZip}
+            function={[updateCityOrZip]}
+            storageKey={["mapCityorZip"]}
+            options={[
+              {
+                display: "City",
+                value: "city",
+              },
+              {
+                display: "Zip",
+                value: "zip",
+              },
+            ]}
+          />
           <ModeSelector
             text="Select a Metric"
             function={[updateWhichMetric, updateMetricName]}
@@ -167,7 +193,7 @@ const City = (props) => {
 
         <div id="cityGrid">
           <BuildTable
-            colName={["City", metricName, "Population"]}
+            colName={["City/Zip", metricName, "Population"]}
             rows={finalArraytoUse.map((a) => a.city)}
             columns={[
               finalArraytoUse.map((a) => a.value.toLocaleString()),
@@ -191,4 +217,4 @@ const City = (props) => {
   );
 };
 
-export default City;
+export default CityZip;
