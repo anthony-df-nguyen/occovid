@@ -36,7 +36,7 @@ const Hospitalization = props => {
           <Widget title={ 'ICU' } stat={ lastICU } color={ color.red } />
           <Widget
             title={ 'Change in 3 Day Avg' }
-            stat={ lastHosRateChange }
+            stat={ lastHosRateChange + "%"}
             color={ color.purple }
           />
           <Widget
@@ -46,12 +46,12 @@ const Hospitalization = props => {
           />
           <Widget
             title={ 'Bed Avail. Adjusted' }
-            stat={ lastBedsAdj }
+            stat={ lastBedsAdj + "%"}
             color={ color.red }
           />
           <Widget
             title={ 'Beds Avail. Unadjusted' }
-            stat={ lastBedsUnadj }
+            stat={ lastBedsUnadj + "%"}
             color={ color.red }
           />
         </div>

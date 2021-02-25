@@ -41,7 +41,6 @@ import Page from "components/Page";
 import Announcement from "components/Announcement";
 
 const Home = (props) => {
-
   const [time, setTime] = useContext(TimeContext);
   const [array, updateArray] = useState([]);
   const [array2, update2Array] = useState([]);
@@ -142,7 +141,7 @@ const Home = (props) => {
                     <Widget title={"ICU"} stat={lastICU} color={color.red} />
                     <Widget
                       title={"Change in 3 Day Avg"}
-                      stat={lastHosRateChange}
+                      stat={lastHosRateChange + "%"}
                       color={color.pink}
                     />
                     <Widget
@@ -152,12 +151,12 @@ const Home = (props) => {
                     />
                     <Widget
                       title={"Bed Avail. Adjusted"}
-                      stat={lastBedsAdj}
+                      stat={lastBedsAdj + "%"}
                       color={color.red}
                     />
                     <Widget
                       title={"Beds Avail. Unadjusted"}
-                      stat={lastBedsUnadj}
+                      stat={lastBedsUnadj + "%"}
                       color={color.red}
                     />
                   </div>
@@ -262,6 +261,7 @@ const Home = (props) => {
                   customSegmentStops={[0, 2, 5, 8, maxPosRate]}
                   forceRender={true}
                   needleColor={"#999"}
+                  currentValueText={lastPositiveRate + "%"}
                 />
               </div>
               <div className="gaugeContainer">
@@ -280,12 +280,12 @@ const Home = (props) => {
                   customSegmentStops={[0, 2.2, 5.3, 8, maxEqRate]}
                   forceRender={true}
                   needleColor={"#999"}
+                  currentValueText={lastHealthEquity + "%"}
                 />
               </div>
             </div>
           </div>
         </Link>
-
       </Page>
     </div>
   );

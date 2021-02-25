@@ -30,9 +30,9 @@ const Reportbug = (props) => {
             //   console.log(new Date(c))
             return new Date(a.date) - new Date(c.date) < 1 ? 1 : -1;
           });
-            updateArray(b);
-            updateGIF('none')
-            updateShowUpdates('visible')
+          updateArray(b);
+          updateGIF("none");
+          updateShowUpdates("visible");
         });
     };
     if (mounted) {
@@ -85,12 +85,11 @@ const Reportbug = (props) => {
       </div>
 
       <div id="updateGrid" style={{ visibility: showUpdates }}>
-              <ExpandCollapse
-                  
+        <ExpandCollapse
           nogear={true}
           title="🥳 New Features and Changelog"
           buttontext="Close">
-          <div className="updateFlex" >
+          <div className="updateFlex">
             {array.map((row, i) => {
               if (row.status === "Done") {
                 return (

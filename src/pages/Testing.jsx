@@ -32,9 +32,9 @@ const Testing = (props) => {
                 <div className="widgetGrid">
                     <Widget title={ "Total PCR Tests" } stat={ lastTotalPCR }
                         color={ color.blue } />
-                    <Widget title={ "Daily Tests Received" } stat={ lastDailyTests }
+                    <Widget title={ "Daily Tests Received" } stat={ lastDailyTests  }
                         color={ color.green } />
-                    <Widget title={ "Test Positivity %" } stat={ lastTPP }
+                    <Widget title={ "Test Positivity %" } stat={ lastTPP + "%"}
                         color={ color.red } />
 
                 </div>

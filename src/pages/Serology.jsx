@@ -21,7 +21,7 @@ const Serology = (props) => {
                         color={ color.blue } />
                     <Widget title={ "Daily Tests Received" } stat={ lastDailySero }
                         color={ color.green } />
-                    <Widget title={ "Test Positivity %" } stat={ lastPosSero }
+                    <Widget title={ "Test Positivity %" } stat={ lastPosSero + "%" }
                         color={ color.red } />
 
                 </div>

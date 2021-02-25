@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import {TimeContext}  from "components/context/TimeContext";
+import { TimeContext } from "components/context/TimeContext";
 import color from "globalVars/Colors";
 import Timeselect from "components/Timeselect";
 import {
@@ -18,7 +18,7 @@ import BuildTable from "components/BuildTable";
 import Page from "components/Page";
 
 const WhatsOpen = (props) => {
-  const [ time, setTime ] = useContext(TimeContext);
+  const [time, setTime] = useContext(TimeContext);
   const [array, updateArray] = useState([]);
   const [tableArray, updateTableArray] = useState([]);
   const [maxCaseRate, updateCaseMax] = useState(10);
@@ -51,12 +51,12 @@ const WhatsOpen = (props) => {
           />
           <Widget
             title={"Test Positivity Rate"}
-            stat={lastPositiveRate}
+            stat={lastPositiveRate + "%"}
             color={color.red}
           />
           <Widget
             title={"Health Equity Quartile %"}
-            stat={lastHealthEquity}
+            stat={lastHealthEquity + "%"}
             color={color.purple}
           />
           <Widget
@@ -100,6 +100,7 @@ const WhatsOpen = (props) => {
               customSegmentStops={[0, 2, 5, 8, maxPosRate]}
               forceRender={true}
               needleColor={"#999"}
+              currentValueText={lastPositiveRate + "%"}
             />
           </div>
           <div className="gaugeContainer">
@@ -118,6 +119,7 @@ const WhatsOpen = (props) => {
               customSegmentStops={[0, 2.2, 5.3, 8, maxEqRate]}
               forceRender={true}
               needleColor={"#999"}
+              currentValueText={lastHealthEquity + "%"}
             />
           </div>
         </div>
@@ -131,8 +133,7 @@ const WhatsOpen = (props) => {
             data={[array.map((c) => c.dailyCaseRate)]}
             fill={[color.red]}
             title={"CADPH Daily Case Rate"}
-            label={["Case Rate"]}
-          >
+            label={["Case Rate"]}>
             <p className="chartNote">Updated once a week</p>
           </Chart>
           <Chart
@@ -143,8 +144,7 @@ const WhatsOpen = (props) => {
             data={[array.map((c) => c.positiveRate)]}
             fill={[color.orange]}
             title={"CADPH Positivity Rate"}
-            label={["Positivity Rate"]}
-          >
+            label={["Positivity Rate"]}>
             <p className="chartNote">Updated once a week</p>
           </Chart>
           <Chart
@@ -155,8 +155,7 @@ const WhatsOpen = (props) => {
             data={[array.map((c) => c.healthEquity)]}
             fill={[color.purple]}
             title={"CADPH Health Equity "}
-            label={["Positivity Rate"]}
-          >
+            label={["Positivity Rate"]}>
             <p className="chartNote">Updated once a week</p>
           </Chart>
           <Chart
@@ -167,8 +166,7 @@ const WhatsOpen = (props) => {
             data={[array.map((c) => c.testsPer100k)]}
             fill={[color.green]}
             title={"CADPH Tests per 100k "}
-            label={["Tests"]}
-          >
+            label={["Tests"]}>
             <p className="chartNote">Updated once a week</p>
           </Chart>
         </div>
