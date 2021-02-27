@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import {TimeContext}  from "components/context/TimeContext";
+import { TimeContext } from "components/context/TimeContext";
 import color from "globalVars/Colors";
 import Timeselect from "components/Timeselect";
 import { FetchCases } from "Datafetch/FetchCases";
@@ -8,13 +8,14 @@ import { FetchHospitals } from "Datafetch/FetchHospitals";
 import CityCompareChart from "components/CityCompare/CityCompareChart";
 import GetCountyCasesAndDeaths from "Datafetch/GetCountyCasesAndDeaths";
 import GetCountyHospitalized from "Datafetch/GetCountyHospitalized";
+import GetCountyVax from "Datafetch/GetCountyVaccinations";
 import Page from "components/Page";
 import ModeSelector from "components/ModeSelector";
 import { countyPopulation, ocpop } from "globalVars/populations.js";
 import ExpandCollapse from "components/ExpandCollapse";
 
 const Compare = (props) => {
-  const [ time, setTime ] = useContext(TimeContext);
+  const [time, setTime] = useContext(TimeContext);
   const [ocArray, updateOCArray] = useState([]);
   const [compareArray, updateCompareArray] = useState([]);
   const [comparisonCounty, updateComparisonCounty] = useState(() => {
@@ -274,6 +275,7 @@ const Compare = (props) => {
   return (
     <div>
       {returnFetchComponents()}
+      <GetCountyVax />
       <Page title="Compare ">
         <Timeselect />
         <ExpandCollapse title="Select County and Metric" buttontext={"Close"}>
@@ -284,8 +286,7 @@ const Compare = (props) => {
               onChange={(e) => {
                 localStorage.setItem("countyCompareLastCounty", e.target.value);
                 updateComparisonCounty(e.target.value);
-              }}
-            >
+              }}>
               <option value="Alameda">Alameda</option>
               <option value="Alpine">Alpine</option>
               <option value="Amador">Amador</option>
@@ -387,10 +388,10 @@ const Compare = (props) => {
             fill={[color.blue, color.red]}
             title={`Comparing ${currentMode} for OC and ${comparisonCounty}`}
             label={[comparisonCounty, "Orange County"]}
-            switches={["line"]}
-          >
+            switches={["line"]}>
             <p className="chartNote">
-              {comparisonCounty} Pop: ${comparisonCountyPop.toLocaleString()} |  OC Pop: ${ocpop.toLocaleString()} <br></br>
+              {comparisonCounty} Pop: ${comparisonCountyPop.toLocaleString()} |
+              OC Pop: ${ocpop.toLocaleString()} <br></br>
               OC data: Cases using 'by Specimen Collection' | Deaths using
               'Deaths by Report Dated
             </p>
