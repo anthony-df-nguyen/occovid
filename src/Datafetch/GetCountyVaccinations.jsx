@@ -1,8 +1,7 @@
-
-
 import TimeFilterForCounties from 'components/TimeFilterForCounties.js'
 import { useEffect } from 'react'
 import average7 from 'components/Average7'
+import moment from "moment";
 
 const GetCountyVax = props => {
     let thisDataArray = [];
@@ -17,24 +16,30 @@ const GetCountyVax = props => {
                     thisDataArray = []
                     await fetch(url)
                         .then(response => response.text())
-                        .then(grab => grab)
-                        .then(a => {
-                            let temp = [...a]
-                            console.log(temp)
-                          temp.forEach((row, i) => {
-                                thisDataArray.push({
-                                    date: new Date(row.todays_date).toLocaleDateString(),
-                                    hospitalized: row.hospitalized_covid_confirmed_patients,
-                                    icu: row.icu_covid_confirmed_patients,
-                                })
-                          })
+                        .then(grab => {
+                            let split = grab.split('\n').slice(1)
+                            //Remove the last empty row
+                            split.pop();
+                            split.forEach(row => {
+                                let col = row.split(',')
+                                const [date, county, , doses, newDoses] = col;
+                                
+                                const parseDate = moment(new Date(date+"T00:00:00")).format('L');
+                                if (county == selectedCounty) {
+                                    thisDataArray.push({
+                                        date: parseDate,
+                                        county: county,
+                                        doses: parseInt(doses),
+                                    })
+                                }
+                            })
+                            //console.log(thisDataArray)
                         })
                         .then(() => TimeFilterForCounties(thisDataArray, props.time,props.mode))
                         .then(final => {
                             if (mounted) {
                                 props.function(final)
                             }
-
                         })
                 }
                 if (mounted) {

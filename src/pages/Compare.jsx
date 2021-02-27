@@ -5,6 +5,7 @@ import Timeselect from "components/Timeselect";
 import { FetchCases } from "Datafetch/FetchCases";
 import { FetchDeaths } from "Datafetch/FetchDeaths";
 import { FetchHospitals } from "Datafetch/FetchHospitals";
+import VaccineHistory from "Datafetch/VaccineHistory";
 import CityCompareChart from "components/CityCompare/CityCompareChart";
 import GetCountyCasesAndDeaths from "Datafetch/GetCountyCasesAndDeaths";
 import GetCountyHospitalized from "Datafetch/GetCountyHospitalized";
@@ -36,6 +37,7 @@ const Compare = (props) => {
       return localStorage.getItem("countyCompareLastMode");
     }
   });
+  //console.log(compareArray);
 
   //Determine Which Arrays to Map
   function calculateAlltheArrays() {
@@ -65,12 +67,29 @@ const Compare = (props) => {
           return getper100ks(compareArray, "hospitalized");
         });
         break;
-      case "Cases":
+      case "Hospitalized":
+        //console.log("calculating for hospitalized")
         updateOCFinalArray(() => {
-          return ocArray.map((a) => a.totalCasesbySpecimen);
+          return ocArray.map((a) => a.hospital);
         });
         updateCompareFinalArray(() => {
-          return compareArray.map((a) => a.totalCases);
+          return compareArray.map((a) => a.hospitalized);
+        });
+        break;
+      case "Vaccine Doses Administered":
+        updateOCFinalArray(() => {
+          return ocArray.map((a) => a.cumuVax);
+        });
+        updateCompareFinalArray(() => {
+          return compareArray.map((a) => a.doses);
+        });
+        break;
+      case "Deaths per 100k":
+        updateOCFinalArray(() => {
+          return getper100ks(ocArray, "total_dth_repo", "oc");
+        });
+        updateCompareFinalArray(() => {
+          return getper100ks(compareArray, "totalDeaths");
         });
         break;
       case "Deaths":
@@ -81,14 +100,23 @@ const Compare = (props) => {
           return compareArray.map((a) => a.totalDeaths);
         });
         break;
-      case "Hospitalized":
+      case "Cases":
         //console.log("calculating for hospitalized")
         updateOCFinalArray(() => {
-          return ocArray.map((a) => a.hospital);
+          return ocArray.map((a) => a.totalCasesbySpecimen);
         });
         updateCompareFinalArray(() => {
-          return compareArray.map((a) => a.hospitalized);
+          return compareArray.map((a) => a.totalCases);
         });
+        break;
+      case "Vaccine Doses Administered per 100k":
+        updateOCFinalArray(() => {
+          return getper100ks(ocArray, "cumuVax", "oc");
+        });
+        updateCompareFinalArray(() => {
+          return getper100ks(compareArray, "doses");
+        });
+        //console.log(compareArray)
         break;
       default:
         console.log("Default is running");
@@ -117,18 +145,23 @@ const Compare = (props) => {
     //for non-OC counties
     if (!oc) {
       let pop = findMatchingCountyPopulation();
+      //console.log(pop)
       let tempArray = [];
       array.forEach((a) => {
         Object.keys(a).forEach((b, i) => {
           if (b === whichValue) {
-            //console.log(`There is a match for ${key} at position ${index} for array position ${i}`)
+            //console.log(`There is a match for ${whichValue} at position ${i} for array position ${a}`)
             tempArray.push(Object.values(a)[i]);
           }
         });
       });
-      return tempArray.map((row) =>
-        parseFloat((row / pop) * 100000).toFixed(1)
-      );
+      return tempArray.map((row) => {
+        if (!row) {
+          return null;
+        } else {
+          return parseFloat((row / pop) * 100000).toFixed(1);
+        }
+      });
     } else if (oc) {
       let tempArray = [];
       array.forEach((a) => {
@@ -231,6 +264,32 @@ const Compare = (props) => {
           </>
         );
         break;
+      case "Vaccine Doses Administered":
+        return (
+          <>
+            <VaccineHistory function={updateOCArray} time={time} />
+            <GetCountyVax
+              function={updateCompareArray}
+              county={comparisonCounty}
+              time={time}
+              mode={currentMode}
+            />
+          </>
+        );
+        break;
+      case "Vaccine Doses Administered per 100k":
+        return (
+          <>
+            <VaccineHistory function={updateOCArray} time={time} />
+            <GetCountyVax
+              function={updateCompareArray}
+              county={comparisonCounty}
+              time={time}
+              mode={currentMode}
+            />
+          </>
+        );
+        break;
       default:
         //console.log('defualt')
         return (
@@ -264,7 +323,7 @@ const Compare = (props) => {
     returnFetchComponents();
   }, [comparisonCounty]);
 
-  //Recalculate when the Mode Changes
+  //   //Recalculate when the Mode Changes
   useEffect(() => {
     returnFetchComponents();
     calculateAlltheArrays();
@@ -275,7 +334,7 @@ const Compare = (props) => {
   return (
     <div>
       {returnFetchComponents()}
-      <GetCountyVax />
+
       <Page title="Compare ">
         <Timeselect />
         <ExpandCollapse title="Select County and Metric" buttontext={"Close"}>
@@ -365,6 +424,10 @@ const Compare = (props) => {
                 value: "Hospitalized per 100k",
               },
               {
+                display: "Vaccine Doses per 100k",
+                value: "Vaccine Doses Administered per 100k",
+              },
+              {
                 display: "Cases",
                 value: "Cases",
               },
@@ -375,6 +438,10 @@ const Compare = (props) => {
               {
                 display: "Hospitalized",
                 value: "Hospitalized",
+              },
+              {
+                display: "Vaccine Doses",
+                value: "Vaccine Doses Administered",
               },
             ]}
           />
@@ -390,10 +457,13 @@ const Compare = (props) => {
             label={[comparisonCounty, "Orange County"]}
             switches={["line"]}>
             <p className="chartNote">
-              {comparisonCounty} Pop: ${comparisonCountyPop.toLocaleString()} |
-              OC Pop: ${ocpop.toLocaleString()} <br></br>
-              OC data: Cases using 'by Specimen Collection' | Deaths using
-              'Deaths by Report Dated
+              {comparisonCounty} Pop: {comparisonCountyPop.toLocaleString()} |
+              OC Pop: {ocpop.toLocaleString()} <br></br><br></br>
+              OC Data:
+              <br></br>
+              Cases using 'by Specimen Collection' <br></br>
+              Deaths using 'Deaths by Report Dated <br></br>
+              Vax Doses Admin. using 'Cumulative Doses administered'
             </p>
           </CityCompareChart>
         </div>

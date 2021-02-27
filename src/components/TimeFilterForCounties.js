@@ -1,7 +1,6 @@
 import moment from "moment";
 
 function TimeFilterForCounties(array, timeSetting, mode) {
-  
   array.sort((a, b) => (new Date(a.date) > new Date(b.date) ? 1 : -1));
   let ocStart;
   switch (mode) {
@@ -23,19 +22,25 @@ function TimeFilterForCounties(array, timeSetting, mode) {
     case "Hospitalized":
       ocStart = new Date("2020-04-01T00:00:00");
       break;
+    case "Vaccine Doses Administered":
+      ocStart = new Date("2020-12-15T00:00:00");
+      break;
+    case "Vaccine Doses Administered per 100k":
+      ocStart = new Date("2020-12-15T00:00:00");
+      break;
     default:
       ocStart = new Date("2020-03-03T00:00:00");
       break;
   }
-  //console.log(array[0].date)
   let countyStart = new Date(array[0].date);
 
   //Normalize the county array
-   let fullArray = [];
+  let fullArray = [];
   if (countyStart.getTime() - ocStart.getTime() > 1) {
-    console.log('The county start later')
+    //console.log("The county start later");
     let differenceTime = countyStart.getTime() - ocStart.getTime();
     let dayDelta = Math.ceil(differenceTime / (1000 * 60 * 60 * 24));
+    //console.log("file: TimeFilterForCounties.js ~ line 44 ~ TimeFilterForCounties ~ dayDelta", dayDelta)
     let fakeStart = moment(ocStart).format("L");
     for (let z = 0; z < dayDelta; z++) {
       let fakeDate;
@@ -47,13 +52,15 @@ function TimeFilterForCounties(array, timeSetting, mode) {
 
       fullArray.push({
         date: fakeDate,
-        newCases: 0,
-        newDeaths: 0,
-        totalCases: 0,
-        totalDeaths: 0,
+        newCases: null,
+        newDeaths: null,
+        totalCases: null,
+        totalDeaths: null,
+        doses: null,
       });
       fakeStart = fakeDate;
     }
+ 
     for (let i = 0; i < array.length; i++) {
       fullArray.push({
         date: array[i].date,
@@ -61,17 +68,19 @@ function TimeFilterForCounties(array, timeSetting, mode) {
         newDeaths: array[i].newDeaths,
         totalCases: array[i].totalCases,
         totalDeaths: array[i].totalDeaths,
+        doses: array[i].doses,
       });
     }
+         
   } else {
     let differenceTime = ocStart.getTime() - countyStart.getTime();
     let dayDelta = Math.ceil(differenceTime / (1000 * 60 * 60 * 24));
-    console.log('The county starts earlier by ', dayDelta);
+    //console.log("The county starts earlier by ", dayDelta);
     let fakeStart = moment(ocStart).format("L");
     for (let z = 0; z < dayDelta; z++) {
       array.shift();
     }
-    fullArray = [...array]
+    fullArray = [...array];
   }
 
   if (timeSetting === "All Time") {
@@ -80,7 +89,7 @@ function TimeFilterForCounties(array, timeSetting, mode) {
     let comparisonStart = new Date(
       moment().subtract(timeSetting, "days").format("L")
     );
-    let fullArray = array;
+
     let shortArray = fullArray.filter((row) => {
       let comparisonDate = new Date(row.date);
       if (comparisonDate > comparisonStart) {
