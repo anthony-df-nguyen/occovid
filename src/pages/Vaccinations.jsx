@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import {TimeContext}  from "components/context/TimeContext";
+import { TimeContext } from "components/context/TimeContext";
 import color from "globalVars/Colors";
 import Timeselect from "components/Timeselect";
 import { FetchVaccines } from "Datafetch/FetchVaccines";
@@ -25,11 +25,14 @@ import {
 } from "globalVars/populations";
 import BuildTable from "components/BuildTable";
 import Page from "components/Page";
+import FetchVaccineTier from "Datafetch/FetchVaccineTier";
 
 const Vaccinations = (props) => {
-  const [ time, setTime ] = useContext(TimeContext);
+  const [time, setTime] = useContext(TimeContext);
   const [array, updateArray] = useState([]);
   const [vaccineHisArray, updateVaxArray] = useState([]);
+  const [vaccinePhase, updateVaccinePhases] = useState([]);
+
   const [
     asof,
     peopleOneDose,
@@ -124,11 +127,21 @@ const Vaccinations = (props) => {
     <div>
       <VaccineHistory function={updateVaxArray} time={time} />
       <FetchVaccines function={updateArray} time={time} />
+      <FetchVaccineTier function={updateVaccinePhases} />
       <Page title="Vaccinations">
         <div id="lastUpdateDate">
           <p>Last Updated {asof}</p>
         </div>
         <div className="widgetGrid">
+          <a href={`${vaccinePhase.url}`} target="_blank">
+       
+            <Widget
+              title={"Active Phase"}
+              stat={vaccinePhase.phase}
+              color={color.red}
+            />
+          </a>
+
           <Widget
             title={"OC Population"}
             stat={ocpop.toLocaleString()}
@@ -178,8 +191,7 @@ const Vaccinations = (props) => {
             fill={[color.blue, color.gold]}
             title={"Daily Doses Administered"}
             label={["Doses", "7 Day Avg"]}
-            switches={["line", "bar"]}
-          ></Chart>
+            switches={["line", "bar"]}></Chart>
 
           <Chart
             key="6"
@@ -189,11 +201,10 @@ const Vaccinations = (props) => {
             fill={[color.blue, color.gold]}
             title={"Cumulative Doses Administered"}
             label={["Doses"]}
-            switches={["line", "bar"]}
-          >
+            switches={["line", "bar"]}>
             <p className="chartNote">
-              Most recent cumulative may not match 'Total Administered' due to lags
-              in county's data set
+              Most recent cumulative may not match 'Total Administered' due to
+              lags in county's data set
             </p>
           </Chart>
 
@@ -205,8 +216,7 @@ const Vaccinations = (props) => {
             fill={[[...ageColors]]}
             title={"Persons w/ at Least 1 Dose: by Age"}
             label={["People"]}
-            switches={["horizontalBar", "bar", "doughnut"]}
-          >
+            switches={["horizontalBar", "bar", "doughnut"]}>
             <BuildTable
               colName={["Age", "Pop", "% of Pop", "% w/ at Least 1 Dose"]}
               rows={[...ageLabels.slice(0, -1)]}
@@ -223,8 +233,7 @@ const Vaccinations = (props) => {
             fill={[[...raceColors]]}
             title={"Persons w/ at Least 1 Dose: by Race"}
             label={["People"]}
-            switches={["horizontalBar", "bar", "doughnut"]}
-          >
+            switches={["horizontalBar", "bar", "doughnut"]}>
             <BuildTable
               colName={["Age", "Pop", "% of Pop", "% w/ at Least 1 Dose"]}
               rows={["Asian/PI", "Black", "Hispanic", "White"]}

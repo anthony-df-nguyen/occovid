@@ -36,6 +36,7 @@ import {
   lastHealthEquity,
   lastTestRate,
 } from "Datafetch/FetchCAMetrics";
+import FetchVaccineTier from "Datafetch/FetchVaccineTier";
 import ReactSpeedometer from "react-d3-speedometer";
 import Page from "components/Page";
 import Announcement from "components/Announcement";
@@ -49,6 +50,7 @@ const Home = (props) => {
   const [array5, update5Array] = useState([]);
   const [array6, update6Array] = useState([]);
   const [array7, update7Array] = useState([]);
+  const [vaccinePhase, updateVaccinePhases] = useState([]);
   const [, peopleOneDose, peopleTwoDose, totalPeople] = array5;
   const [maxCaseRate, updateCaseMax] = useState(10);
   const [maxPosRate, updatePosMax] = useState(10);
@@ -81,7 +83,7 @@ const Home = (props) => {
         <FetchVaccines function={update5Array} time={time} />
         <FetchTesting function={update6Array} time={time} />
         <FetchCAMetrics time={time} function={update7Array} />
-
+        <FetchVaccineTier function={updateVaccinePhases} />
         <div className="homeWidgetGrid">
           <Link to="/cases">
             {" "}
@@ -170,6 +172,12 @@ const Home = (props) => {
                 <div id="hosWidget">
                   <div className="widgetTitle t4">Vaccinated</div>
                   <div className="subFlex">
+                    <Widget
+                      title={"Active Phase"}
+                      stat={vaccinePhase.phase}
+                      color={color.red}
+                    />
+
                     <Widget
                       title={"OC Population"}
                       stat={ocpop.toLocaleString()}
