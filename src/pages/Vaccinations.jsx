@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { TimeContext } from "components/context/TimeContext";
 import color from "globalVars/Colors";
 import Timeselect from "components/Timeselect";
-import { FetchVaccines } from "Datafetch/FetchVaccines";
+import { FetchVaccines,peopleOneDose ,peopleTwoDose } from "Datafetch/FetchVaccines";
 import VaccineHistory from "Datafetch/VaccineHistory.jsx";
 import Chart from "components/Chart";
 import Widget from "components/Widget";

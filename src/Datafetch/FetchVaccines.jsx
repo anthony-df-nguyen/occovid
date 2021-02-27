@@ -1,51 +1,122 @@
-import { useEffect } from 'react'
-
+import { useEffect } from "react";
 
 let thisDataArray = [];
 let vaccineDataTable;
 
 const FetchVaccines = (props) => {
-    let vaccineData
-    return (<>
-        {
-            useEffect(() => {
-                let mounted = true;
-                const getData = async () => {
-                    await fetch('/manualdatasources/vaccine.csv').then(response => response.text())
-                        .then(grab => vaccineData = grab)
-                        .then(() => {
-                            vaccineDataTable = vaccineData.split("\n").slice(1);
-                        })
-                        .then(() => {
-                            vaccineDataTable.forEach((a) => {
-                                let col = a.split(",");
-                                thisDataArray = [...col];
-                            });
-                        })
-                        .then(() => {
-                            if (mounted) {
-                                props.function(thisDataArray);
-                            }
-
-                        })
-                }
-                if (mounted) {
-                    thisDataArray = [];
-                
-                    try {
-                        getData()                       
-                    } catch (err) {
-                        console.log("Could not getch Vaccine data")
-                        console.log(err)
+  let vaccineData;
+  return (
+    <>
+      {useEffect(() => {
+        let mounted = true;
+        const getData = async () => {
+          await fetch(
+            "https://services2.arcgis.com/LORzk2hk9xzHouw9/ArcGIS/rest/services/vacc_totalsummary/FeatureServer/0/query?where=0%3D0&objectIds=&time=&resultType=none&outFields=category%2C+num_1st%2C+num_1st2nd%2C+num_atleast1%2C+num_totalvalid&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&sqlFormat=none&f=pjson&token="
+          )
+            .then((a) => a.json())
+            .then((b) => {
+              let results = b.features;
+              const findValue = (category, metric) => {
+                try {
+                  let resultArray = results.filter(
+                    (a) => a.attributes.category == category
+                  );
+                  let finalValue;
+                  Object.keys(resultArray[0].attributes).forEach((a, i) => {
+                    if (a == metric) {
+                      let value = Object.values(resultArray[0].attributes)[i];
+                      finalValue = value;
                     }
+                  });
+
+                  return finalValue;
+                } catch (err) {
+                  console.log(err);
+                  console.log("Could not find this value");
+                  return 0;
                 }
-                return () => {
-                    mounted = false;
-                }
-            }, [props.time])
+              };
+              let asof = "2/25/2021";
+              let peopleOneDose = findValue("TotalDoses", "num_1st");
+              let peopleTwoDose = findValue("TotalDoses", "num_1st2nd");
+              let totalPeople = findValue("TotalDoses", "num_atleast1");
+              let adminOneDose = findValue("ValidDoses", "num_1st");
+              let adminTwoDose = findValue("ValidDoses", "num_1st2nd");
+              let totalAdmin = findValue("ValidDoses", "num_atleast1");
+              let female = findValue("Female", "num_atleast1");
+              let male = findValue("Male", "num_atleast1");
+              let otherSex = findValue("Other_sex", "num_atleast1");
+              let asianPI = findValue("AsianPI", "num_atleast1");
+              let black = findValue("Black", "num_atleast1");
+              let hispanic = findValue("Hispanic", "num_atleast1");
+              let white = findValue("White", "num_atleast1");
+              let otherRace = findValue("Other_race", "num_atleast1");
+              let age017 = findValue("0-17y", "num_atleast1");
+              let age1824 = findValue("18-24y", "num_atleast1");
+              let age2534 = findValue("25-34y", "num_atleast1");
+              let age3544 = findValue("35-44y", "num_atleast1");
+              let age4554 = findValue("45-54y", "num_atleast1");
+              let age5564 = findValue("55-64y", "num_atleast1");
+              let age6574yrs = findValue("65-74y", "num_atleast1");
+              let age7584 = findValue("75-84y", "num_atleast1");
+              let age85 = findValue("85y", "num_atleast1");
+              let ageUnknown = null;
+              let moderna = findValue("Moderna", "num_totalvalid");
+              let pfizer = findValue("Pfizer", "num_totalvalid");
+              let unknownTrade = findValue("Unk_trade", "num_totalvalid");
+              thisDataArray = [
+                asof,
+                peopleOneDose,
+                peopleTwoDose,
+                totalPeople,
+                adminOneDose,
+                adminTwoDose,
+                totalAdmin,
+                female,
+                male,
+                otherSex,
+                asianPI,
+                black,
+                hispanic,
+                white,
+                otherRace,
+                age017,
+                age1824,
+                age2534,
+                age3544,
+                age4554,
+                age5564,
+                age6574yrs,
+                age7584,
+                age85,
+                ageUnknown,
+                moderna,
+                pfizer,
+                unknownTrade,
+              ];
+            })
+            .then(() => {
+              if (mounted) {
+                props.function(thisDataArray);
+              }
+            });
+        };
+
+        if (mounted) {
+          thisDataArray = [];
+          try {
+            getData();
+          } catch (err) {
+            console.log("Could not getch Vaccine data");
+            console.log(err);
+          }
         }
-    </>);
-}
+        return () => {
+          mounted = false;
+        };
+      }, [props.time])}
+    </>
+  );
+};
 
-
-export { FetchVaccines }
+export { FetchVaccines };
