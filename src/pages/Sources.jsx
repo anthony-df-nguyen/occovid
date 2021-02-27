@@ -230,11 +230,28 @@ const Sources = () => {
               </td>
             </tr>
             <tr>
+              <td>Vaccinations for other CA counties</td>
+              <td>
+                {" "}
+                Used on 'Compare Counties'. State data for OC ignored in favor
+                of using data reported by OC Health Care Agency
+              </td>
+              <td>
+                <a
+                  target="_blank"
+                  href="https://github.com/datadesk/california-coronavirus-data/blob/master/cdph-vaccination-county-totals.csv">
+                  Link: LA Times CA Vaccine Data (which they take from CA state dashboard)
+                </a>
+              </td>
+            </tr>
+            <tr>
               <td>Populations for other CA counties</td>
               <td>
                 {" "}
-                Used on 'Compare Counties' to calculate 'per 100k' data for cases, deaths hospitalizations. Ignoring the OC population estimate and using the one reported by OC Healthier Together instead (source used above in race/age population data)
-
+                Used on 'Compare Counties' to calculate 'per 100k' data for
+                cases, deaths hospitalizations. Ignoring the OC population
+                estimate and using the one reported by OC Healthier Together
+                instead (source used above in race/age population data)
               </td>
               <td>
                 <a
