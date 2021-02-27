@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Page from "components/Page";
 import ExpandCollapse from "components/ExpandCollapse";
+import moment from 'moment'
 
 const Reportbug = (props) => {
   const [array, updateArray] = useState([]);
@@ -98,7 +99,7 @@ const Reportbug = (props) => {
                   <div className="card" key={i} onClick={toggleOpen}>
                     <div className="title">{row.title}</div>
                     <div className="bottom">
-                      <div className="type">{row.type}</div>
+                      <div className="type"> {moment(new Date(row.date)).calendar()}</div>
                     </div>
                   </div>
                 );
