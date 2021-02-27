@@ -16,14 +16,14 @@ let todaysyear = 2021;
 const tier = 4;
 
 // Cumulative Total, SCF, Jail, Homeless Cases, Deaths by Reported and Specimen Collection
-const CasesURL = "https://services2.arcgis.com/LORzk2hk9xzHouw9/ArcGIS/rest/services/occovid_case_csv/FeatureServer/0//query?where=Date%3Etimestamp+%273%2F3%2F2020%27+AND+Date%3Ctimestamp+%27" +
+const CasesURL =
+  "https://services2.arcgis.com/LORzk2hk9xzHouw9/ArcGIS/rest/services/occovid_case_csv/FeatureServer/0//query?where=Date%3Etimestamp+%273%2F3%2F2020%27+AND+Date%3Ctimestamp+%27" +
   tomorrowsmonth +
   "%2F" +
   tomorrowday +
   "%2F" +
   todaysyear +
   "%27&objectIds=&time=&resultType=none&outFields=*&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&cacheHint=false&orderByFields=date&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&sqlFormat=none&f=pjson&token=";
-
 
 const AntigenURL =
   "https://services2.arcgis.com/LORzk2hk9xzHouw9/ArcGIS/rest/services/occovid_antigen_csv/FeatureServer/0//query?where=Date%3Etimestamp+%273%2F3%2F2020%27+AND+Date%3Ctimestamp+%27" +
@@ -136,6 +136,9 @@ const YouthCases =
 const lastUpdate =
   "https://services2.arcgis.com/LORzk2hk9xzHouw9/ArcGIS/rest/services/update_date_csv/FeatureServer/0/query?where=0%3D0&objectIds=&time=&resultType=none&outFields=*&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&sqlFormat=none&f=pjson&token=";
 
+const dailyDoses =
+  "https://services2.arcgis.com/LORzk2hk9xzHouw9/ArcGIS/rest/services/vacc_dosebydate/FeatureServer/0/query?where=0%3D0&objectIds=&time=&resultType=none&outFields=vac_date%2C+valid_admin&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&sqlFormat=none&f=pjson&token=";
+
 export {
   CasesURL,
   AntigenURL,
@@ -154,5 +157,6 @@ export {
   ZipDataWithGeo,
   ZipData,
   lastUpdate,
-  tier
+    tier,
+  dailyDoses
 };
