@@ -20,21 +20,24 @@ const Reportbug = (props) => {
 
   useEffect(() => {
     let mounted = true;
-    const getUpdates = async () => {
-      await fetch("https://announcement-api.vercel.app/api/updates")
-        .then((a) => a.json())
-        .then((b) => {
-          b.sort((a, c) => {
-            //   console.log(new Date(a))
-            //   console.log(new Date(c))
-            return new Date(a.date) - new Date(c.date) < 1 ? 1 : -1;
-          });
-          updateArray(b);
-          updateGIF("none");
-          updateShowUpdates("visible");
-        });
-    };
+
     if (mounted) {
+      const getUpdates = async () => {
+        await fetch("https://announcement-api.vercel.app/api/updates")
+          .then((a) => a.json())
+          .then((b) => {
+            b.sort((a, c) => {
+              //   console.log(new Date(a))
+              //   console.log(new Date(c))
+              return new Date(a.date) - new Date(c.date) < 1 ? 1 : -1;
+            });
+            if (mounted) {
+              updateArray(b);
+              updateGIF("none");
+              updateShowUpdates("visible");
+            }
+          });
+      };
       getUpdates();
     }
     return () => {
