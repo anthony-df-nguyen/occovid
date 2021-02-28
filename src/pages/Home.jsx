@@ -51,7 +51,7 @@ const Home = (props) => {
   const [array6, update6Array] = useState([]);
   const [array7, update7Array] = useState([]);
   const [vaccinePhase, updateVaccinePhases] = useState([]);
-  const [, peopleOneDose, peopleTwoDose, totalPeople] = array5;
+  const [peopleOneDose, peopleTwoDose, totalPeople] = array5;
   const [maxCaseRate, updateCaseMax] = useState(10);
   const [maxPosRate, updatePosMax] = useState(10);
   const [maxEqRate, updateEqMax] = useState(10);
@@ -80,7 +80,7 @@ const Home = (props) => {
         <FetchDeaths function={update2Array} time={time} />
         <FetchHosTriggers function={update3Array} time={time} />
         <FetchHospitals function={update4Array} time={time} />
-        <FetchVaccines function={update5Array} time={time} />
+        <FetchVaccines function={[update5Array,()=>{}]} time={time} />
         <FetchTesting function={update6Array} time={time} />
         <FetchCAMetrics time={time} function={update7Array} />
         <FetchVaccineTier function={updateVaccinePhases} />

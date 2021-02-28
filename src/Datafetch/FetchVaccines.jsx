@@ -1,14 +1,29 @@
 import { useEffect } from "react";
+import cheerio from "cheerio";
 
 let thisDataArray = [];
 let vaccineDataTable;
 
 const FetchVaccines = (props) => {
-  let vaccineData;
   return (
     <>
       {useEffect(() => {
         let mounted = true;
+        const getUpdate = async () => {
+          await fetch(
+            "https://services2.arcgis.com/LORzk2hk9xzHouw9/ArcGIS/rest/services/vacc_totalsummary/FeatureServer/0"
+          )
+            .then((a) => a.text())
+            .then((b) => {
+              const $ = cheerio.load(b);
+              let yolo = $(".restBody b");
+              let lastUpdateDate = yolo[20].next.data;
+              let shortdate = lastUpdateDate.substring(0, 10);
+              if (mounted) {
+                props.function[1](shortdate);
+              }
+            });
+        };
         const getData = async () => {
           await fetch(
             "https://services2.arcgis.com/LORzk2hk9xzHouw9/ArcGIS/rest/services/vacc_totalsummary/FeatureServer/0/query?where=0%3D0&objectIds=&time=&resultType=none&outFields=category%2C+num_1st%2C+num_1st2nd%2C+num_atleast1%2C+num_totalvalid&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&sqlFormat=none&f=pjson&token="
@@ -36,7 +51,6 @@ const FetchVaccines = (props) => {
                   return 0;
                 }
               };
-              let asof = "2/25/2021";
               let peopleOneDose = findValue("TotalDoses", "num_1st");
               let peopleTwoDose = findValue("TotalDoses", "num_1st2nd");
               let totalPeople = findValue("TotalDoses", "num_atleast1");
@@ -65,7 +79,6 @@ const FetchVaccines = (props) => {
               let pfizer = findValue("Pfizer", "num_totalvalid");
               let unknownTrade = findValue("Unk_trade", "num_totalvalid");
               thisDataArray = [
-                asof,
                 peopleOneDose,
                 peopleTwoDose,
                 totalPeople,
@@ -97,7 +110,7 @@ const FetchVaccines = (props) => {
             })
             .then(() => {
               if (mounted) {
-                props.function(thisDataArray);
+                props.function[0](thisDataArray);
               }
             });
         };
@@ -105,6 +118,7 @@ const FetchVaccines = (props) => {
         if (mounted) {
           thisDataArray = [];
           try {
+            getUpdate();
             getData();
           } catch (err) {
             console.log("Could not getch Vaccine data");

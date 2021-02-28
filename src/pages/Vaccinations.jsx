@@ -32,9 +32,9 @@ const Vaccinations = (props) => {
   const [array, updateArray] = useState([]);
   const [vaccineHisArray, updateVaxArray] = useState([]);
   const [vaccinePhase, updateVaccinePhases] = useState([]);
-
+  const [asof, updateDate] = useState('Last Updated...')
+    
   const [
-    asof,
     peopleOneDose,
     peopleTwoDose,
     totalPeople,
@@ -126,7 +126,7 @@ const Vaccinations = (props) => {
   return (
     <div>
       <VaccineHistory function={updateVaxArray} time={time} />
-      <FetchVaccines function={updateArray} time={time} />
+      <FetchVaccines function={[updateArray,updateDate]} time={time} />
       <FetchVaccineTier function={updateVaccinePhases} />
       <Page title="Vaccinations">
         <div id="lastUpdateDate">
