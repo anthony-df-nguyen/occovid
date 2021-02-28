@@ -4,7 +4,6 @@ import Deaths from 'pages/Deaths'
 import Hospitalization from 'pages/Hospitalization'
 import Vaccinations from 'pages/Vaccinations'
 import Testing from 'pages/Testing'
-import Serology from 'pages/Serology';
 import Schools from 'pages/Schools'
 import Maps from 'pages/Maps'
 import Cityhistory from 'pages/Cityhistory'
@@ -22,4 +21,4 @@ import NoPage from 'pages/NoPage'
 
 
 
-export { Home, Cases, Deaths, Hospitalization, Vaccinations, Testing, Schools, Age, Race, Gender, Maps,CityZip,WhatsOpen, NoPage, Donate, Cityhistory, Reportbug, Compare, Serology,Sources}
+export { Home, Cases, Deaths, Hospitalization, Vaccinations, Testing, Schools, Age, Race, Gender, Maps,CityZip,WhatsOpen, NoPage, Donate, Cityhistory, Reportbug, Compare,Sources}

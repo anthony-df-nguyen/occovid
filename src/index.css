@@ -395,6 +395,12 @@ body.dark {
 .chartButtonContainer .chartTypeButton + .chartTypeButton {
   margin-left: 0.5rem;
 }
+.chartBreak {
+  color: var(--primary-text);
+  font-size: 1.5rem;
+  margin: 2rem 0 10px 0;
+  text-align: center;
+}
 #chartGrid {
   display: grid;
   grid-gap: 10px;
@@ -986,6 +992,9 @@ a.globButton,
   -o-transition: max-height 0.2s ease-in-out;
   transition: max-height 0.2s ease-in-out;
 }
+.expander .expanderContent #chartGrid {
+  padding: 0 10px;
+}
 .expander #countySelect ul {
   width: 100%;
   padding: 0 1rem;
@@ -1127,14 +1136,14 @@ a.globButton,
   font-weight: 600;
   font-family: Arial, sans-serif;
 }
-.gear {
+.svgExpander {
   fill: var(--primary-text);
   margin-bottom: -6px;
   margin-right: 5px;
   pointer-events: none;
 }
 @media only screen and (min-width:520px) {
-  .gear {
+  .svgExpander {
     width: 1.5rem;
     height: 1.5rem;
     margin-bottom: -3px;

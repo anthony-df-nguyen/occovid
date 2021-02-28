@@ -1,9 +1,16 @@
 import React, { useState } from "react";
 import Gear from "components/Gear";
+import ChartIcon from "components/ChartIcon";
 import { prototype } from "chart.js";
 
 const ExpandCollapse = (props) => {
-  const [openedorclosed, updateopenclose] = useState("0px");
+  const [openedorclosed, updateopenclose] = useState(() => {
+    if (!props.opendefault) {
+      return "0px";
+    } else {
+      return "100%";
+    }
+  });
   function toggledOpenOrClosed(e) {
     let itemHeight = e.target.nextSibling.scrollHeight;
     switch (openedorclosed) {
@@ -11,6 +18,9 @@ const ExpandCollapse = (props) => {
         return updateopenclose(itemHeight + "px");
         break;
       case itemHeight + "px":
+        return updateopenclose("0px");
+        break;
+      case "100%":
         return updateopenclose("0px");
         break;
       default:
@@ -22,7 +32,8 @@ const ExpandCollapse = (props) => {
   return (
     <div className="expander">
       <div className="expanderTitle" onClick={toggledOpenOrClosed}>
-        { props.nogear ? "" : <Gear />  }
+        {props.nogear ? "" : <Gear />}
+        {props.charticon ? <ChartIcon /> : "" }
         {props.title}
       </div>
       <div className="expanderContent" style={{ maxHeight: openedorclosed }}>

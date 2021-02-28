@@ -26,7 +26,6 @@ import {
   NoPage,
   Donate,
   Compare,
-  Serology,
   Sources,
 } from "pages/Master";
 
@@ -49,7 +48,6 @@ function App() {
                 <Route path="/hospitalizations" component={Hospitalization} />
                 <Route path="/vaccinations" component={Vaccinations} />
                 <Route path="/testing" component={Testing} />
-                <Route path="/serology" component={Serology} />
                 <Route path="/schools" component={Schools} />
                 <Route path="/map" component={Maps} />
                 <Route path="/cityhistory" component={Cityhistory} />

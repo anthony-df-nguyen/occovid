@@ -433,6 +433,8 @@ body.dark {
     }
 }
 
+
+
 .chartTitle {
     font-size    : 1rem;
     font-weight  : 400;
@@ -467,6 +469,13 @@ body.dark {
     }
 }
 
+//Chart break two separate multiple chartgrids
+.chartBreak {
+    color     : var(--primary-text);
+    font-size : 1.5rem;
+    margin    : 2rem 0 @gap 0;
+    text-align: center;
+}
 //Chart grid
 #chartGrid {
     display              : grid;
@@ -1106,7 +1115,9 @@ a.globButton,
         -o-transition: max-height .2s ease-in-out;
 
         transition: max-height .2s ease-in-out;
-
+        #chartGrid {
+            padding: 0 @gap;
+        }
     }
 
     #countySelect {
@@ -1283,8 +1294,8 @@ a.globButton,
     }
 }
 
-.gear {
-    fill          : var(--primary-text);
+.svgExpander {
+    fill: var(--primary-text);
     margin-bottom : -6px;
     margin-right  : 5px;
     pointer-events: none;
