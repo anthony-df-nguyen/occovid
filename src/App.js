@@ -13,6 +13,7 @@ import {
   Deaths,
   Hospitalization,
   Vaccinations,
+  VaccinationMap,
   Testing,
   Schools,
   Age,
@@ -47,6 +48,7 @@ function App() {
                 <Route path="/deaths" component={Deaths} />
                 <Route path="/hospitalizations" component={Hospitalization} />
                 <Route path="/vaccinations" component={Vaccinations} />
+                <Route path="/vaccinationmap" component={VaccinationMap} />
                 <Route path="/testing" component={Testing} />
                 <Route path="/schools" component={Schools} />
                 <Route path="/map" component={Maps} />

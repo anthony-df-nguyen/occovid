@@ -113,6 +113,9 @@ body {
 .purple {
     color: var(--purple);
 }
+.blue {
+    color: var(--blue);
+}
 
 body.dark {
     --primary-text: rgba(255, 255, 255, 0.70);
@@ -1249,9 +1252,29 @@ a.globButton,
         }
     }
 
+    >div.percgood {
+        &:nth-child(5) {
+            background-color: #009ddb66;
+        }
 
-}
+        &:nth-child(4) {
+            background-color: #66c26666;
+        }
 
+        &:nth-child(3) {
+            background-color: #ffcc0066;
+        }
+
+        &:nth-child(2) {
+            background-color: #ff7c4366;
+        }
+
+        &:nth-child(1) {
+            background-color: #f95d6a66;
+        }
+        }
+
+        }
 #mapid {
     height: 70vh;
     width : 100%;
@@ -1292,6 +1315,13 @@ a.globButton,
         font-weight: 600;
         font-family: Arial, sans-serif;
     }
+#mapVaxRaceGrid {
+    margin-top           : 1rem;
+    display              : grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows   : auto;
+    grid-gap             : @gap;
+}
 }
 
 .svgExpander {

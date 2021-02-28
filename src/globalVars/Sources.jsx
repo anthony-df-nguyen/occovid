@@ -139,6 +139,8 @@ const lastUpdate =
 const dailyDoses =
   "https://services2.arcgis.com/LORzk2hk9xzHouw9/ArcGIS/rest/services/vacc_dosebydate/FeatureServer/0/query?where=0%3D0&objectIds=&time=&resultType=none&outFields=vac_date%2C+valid_admin&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&sqlFormat=none&f=pjson&token=";
 
+const zipVaxMap = "https://services2.arcgis.com/LORzk2hk9xzHouw9/ArcGIS/rest/services/VIEWLAYER_C19VaccinationRatesbyZIP/FeatureServer/0/query?where=0%3D0&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&resultType=none&distance=0.0&units=esriSRUnit_Meter&returnGeodetic=false&outFields=*&returnGeometry=true&returnCentroid=false&featureEncoding=esriDefault&multipatchOption=xyFootprint&maxAllowableOffset=&geometryPrecision=&outSR=&datumTransformation=&applyVCSProjection=false&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnExtentOnly=false&returnQueryGeometry=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&returnZ=false&returnM=false&returnExceededLimitFeatures=true&quantizationParameters=&sqlFormat=none&f=pgeojson&token="
+
 export {
   CasesURL,
   AntigenURL,
@@ -158,5 +160,6 @@ export {
   ZipData,
   lastUpdate,
     tier,
-  dailyDoses
+    dailyDoses,
+  zipVaxMap
 };

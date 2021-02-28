@@ -3,6 +3,7 @@ import Cases from 'pages/Cases'
 import Deaths from 'pages/Deaths'
 import Hospitalization from 'pages/Hospitalization'
 import Vaccinations from 'pages/Vaccinations'
+import VaccinationMap from 'pages/VaccinationMap'
 import Testing from 'pages/Testing'
 import Schools from 'pages/Schools'
 import Maps from 'pages/Maps'
@@ -21,4 +22,5 @@ import NoPage from 'pages/NoPage'
 
 
 
-export { Home, Cases, Deaths, Hospitalization, Vaccinations, Testing, Schools, Age, Race, Gender, Maps,CityZip,WhatsOpen, NoPage, Donate, Cityhistory, Reportbug, Compare,Sources}
+
+export { Home, Cases, Deaths, Hospitalization, Vaccinations, VaccinationMap, Testing, Schools, Age, Race, Gender, Maps,CityZip,WhatsOpen, NoPage, Donate, Cityhistory, Reportbug, Compare,Sources}

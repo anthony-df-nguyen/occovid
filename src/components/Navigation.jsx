@@ -23,7 +23,6 @@ const Navigation = (props) => {
     <div id="navMenu">
       <div className="linkContainer">
         <Darktoggle />
-
         <NavLink
           exact
           to="/"
@@ -64,6 +63,14 @@ const Navigation = (props) => {
           }}
           activeClassName="selectedLink">
           Vaccinations
+        </NavLink>
+        <NavLink
+          to="/vaccinationmap"
+          onClick={() => {
+            closeTheNav("/vaccinationmap");
+          }}
+          activeClassName="selectedLink">
+          Vaccination Map
         </NavLink>
         <NavLink
           to="/testing"
