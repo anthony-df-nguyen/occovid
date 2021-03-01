@@ -1105,6 +1105,24 @@ a.globButton,
 #mapLegend > div:nth-child(6) {
   background-color: #ff000066;
 }
+#mapLegend > div.highisgood:nth-child(6) {
+  background-color: #009ddb66;
+}
+#mapLegend > div.highisgood:nth-child(5) {
+  background-color: #66c26666;
+}
+#mapLegend > div.highisgood:nth-child(4) {
+  background-color: #ffcc0066;
+}
+#mapLegend > div.highisgood:nth-child(3) {
+  background-color: #ff7c4366;
+}
+#mapLegend > div.highisgood:nth-child(2) {
+  background-color: #f95d6a66;
+}
+#mapLegend > div.highisgood:nth-child(1) {
+  background-color: #ff000066;
+}
 #mapLegend > div.percgood:nth-child(5) {
   background-color: #009ddb66;
 }
