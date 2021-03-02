@@ -85,7 +85,7 @@ const WhatsOpen = (props) => {
             />
           </div>
           <div className="gaugeContainer">
-            <div className="chartTitle">Tests per 100K</div>
+            <div className="chartTitle">Test Positivity Rate</div>
             <ReactSpeedometer
               value={lastPositiveRate}
               minValue={0}
