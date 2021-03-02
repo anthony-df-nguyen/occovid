@@ -113,6 +113,7 @@ body {
 .purple {
     color: var(--purple);
 }
+
 .blue {
     color: var(--blue);
 }
@@ -323,27 +324,28 @@ body.dark {
 
 //Footer
 .footer {
-    display   : block;
-    padding   : @pad;
-    text-align: center;
-    color     : var(--darktext);
-    position  : relative;
-    width     : 100%;
-    font-size : 12px;
-    margin-top: 2rem;
+    display      : block;
+    padding      : @pad;
+    text-align   : center;
+    color        : var(--darktext);
+    position     : relative;
+    width        : 100%;
+    font-size    : 12px;
+    margin-top   : 2rem;
     margin-bottom: 4rem;
 
     h1 {
         margin-top: 2rem;
         font-size : 1.25rem;
     }
+
     p {
 
         font-size: 14px;
     }
 
     a {
-        color : var(--blue);
+        color: var(--blue);
     }
 }
 
@@ -479,6 +481,7 @@ body.dark {
     margin    : 2rem 0 @gap 0;
     text-align: center;
 }
+
 //Chart grid
 #chartGrid {
     display              : grid;
@@ -920,6 +923,7 @@ table {
         color           : var(--primary-text);
         font-weight     : 400;
         font-size       : .8rem;
+
         a {
             color: var(--blue)
         }
@@ -1021,31 +1025,31 @@ a.globButton,
 }
 
 #googleForm {
-    width : calc(100% - 2rem);
+    width     : calc(100% - 2rem);
     height    : 100%;
     display   : block;
     text-align: center;
     color     : var(--primary-text);
-    margin : 0 auto 1rem auto;
+    margin    : 0 auto 1rem auto;
     max-width : 768px;
 
 
     p {
         max-width : 768px;
-        margin : 1 auto 1rem auto;
+        margin    : 1 auto 1rem auto;
         font-size : 1rem;
         text-align: left;
     }
 
     textarea {
-        display       : block;
-        margin        : 1rem auto;
-        border-radius : @radius;
-        max-width     : 768px;
-        border        : none;
-        padding       : @gap;
-        min-height    : 8rem;
-        width         : 100%;
+        display         : block;
+        margin          : 1rem auto;
+        border-radius   : @radius;
+        max-width       : 768px;
+        border          : none;
+        padding         : @gap;
+        min-height      : 8rem;
+        width           : 100%;
         background-color: var(--gray);
     }
 }
@@ -1118,6 +1122,7 @@ a.globButton,
         -o-transition: max-height .2s ease-in-out;
 
         transition: max-height .2s ease-in-out;
+
         #chartGrid {
             padding: 0 @gap;
         }
@@ -1251,32 +1256,33 @@ a.globButton,
             background-color: #ff000066;
         }
     }
- >div.highisgood {
 
-     &:nth-child(6) {
-         background-color: #009ddb66;
-     }
+    >div.highisgood {
 
-     &:nth-child(5) {
-         background-color: #66c26666;
-     }
+        &:nth-child(6) {
+            background-color: #009ddb66;
+        }
 
-     &:nth-child(4) {
-         background-color: #ffcc0066;
-     }
+        &:nth-child(5) {
+            background-color: #66c26666;
+        }
 
-     &:nth-child(3) {
-         background-color: #ff7c4366;
-     }
+        &:nth-child(4) {
+            background-color: #ffcc0066;
+        }
 
-     &:nth-child(2) {
-         background-color: #f95d6a66;
-     }
+        &:nth-child(3) {
+            background-color: #ff7c4366;
+        }
 
-     &:nth-child(1) {
-         background-color: #ff000066;
-     }
- }
+        &:nth-child(2) {
+            background-color: #f95d6a66;
+        }
+
+        &:nth-child(1) {
+            background-color: #ff000066;
+        }
+    }
 
     >div.percgood {
         &:nth-child(5) {
@@ -1298,9 +1304,10 @@ a.globButton,
         &:nth-child(1) {
             background-color: #f95d6a66;
         }
-        }
+    }
 
-        }
+}
+
 #mapid {
     height: 70vh;
     width : 100%;
@@ -1341,17 +1348,18 @@ a.globButton,
         font-weight: 600;
         font-family: Arial, sans-serif;
     }
-#mapVaxRaceGrid {
-    margin-top           : 1rem;
-    display              : grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows   : auto;
-    grid-gap             : @gap;
-}
+
+    #mapVaxRaceGrid {
+        margin-top           : 1rem;
+        display              : grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows   : auto;
+        grid-gap             : @gap;
+    }
 }
 
 .svgExpander {
-    fill: var(--primary-text);
+    fill          : var(--primary-text);
     margin-bottom : -6px;
     margin-right  : 5px;
     pointer-events: none;
@@ -1390,9 +1398,9 @@ a.globButton,
 
 #updateGrid {
     @media @wide {
-        display : grid;
-        grid-template-columns: repeat(5, 1fr);
-        grid-template-rows : auto;
+        display              : grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows   : auto;
         grid-gap             : @gap;
 
         .expander {
@@ -1433,8 +1441,8 @@ a.globButton,
             border-radius     : @radius;
             background-color  : var(--gray);
             margin-bottom     : @gap;
-            max-height : 6rem;
-            overflow-y : hidden;
+            max-height        : 6rem;
+            overflow-y        : hidden;
             width             : 100%;
             -webkit-transition: max-height .2s ease-in-out;
             -o-transition     : max-height .2s ease-in-out;
@@ -1450,17 +1458,17 @@ a.globButton,
             }
 
             .title {
-                font-weight : 400;
+                font-weight   : 400;
                 pointer-events: none;
-                font-size: 14px;
+                font-size     : 14px;
             }
 
             .detail {
-                font-weight : 300;
+                font-weight   : 300;
                 font-size     : .8rem;
-                margin-top : @gap;
+                margin-top    : @gap;
                 pointer-events: none;
-                 font-size: 12px;
+                font-size     : 12px;
             }
 
             .bottom {
@@ -1500,6 +1508,7 @@ a.globButton,
         color     : var(--primary-text)
     }
 }
+
 #faq {
     padding  : 1rem;
     max-width: 1024px;

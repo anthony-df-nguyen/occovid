@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Page from "components/Page";
 import ExpandCollapse from "components/ExpandCollapse";
 import moment from 'moment'
+import reportWebVitals from "reportWebVitals";
 
 const Reportbug = (props) => {
   const [array, updateArray] = useState([]);
@@ -18,19 +19,29 @@ const Reportbug = (props) => {
       e.target.style.overflow = "hidden";
     }
   }
-
+    moment.locale('en', {
+        calendar : {
+            lastDay : '[Yesterday]',
+            sameDay : '[Today]',
+            nextDay : '[Tomorrow at] LT',
+            lastWeek : '[Last] dddd',
+            nextWeek : 'dddd',
+            sameElse : 'L'
+        }
+    });
   useEffect(() => {
     let mounted = true;
 
     if (mounted) {
       const getUpdates = async () => {
-        await fetch("https://announcement-api.vercel.app/api/updates")
-          .then((a) => a.json())
-          .then((b) => {
+        await fetch("https://occovidtaskmongo.vercel.app/api")
+            .then((a) => a.json())
+            .then((b) => {
+              
             b.sort((a, c) => {
-              //   console.log(new Date(a))
-              //   console.log(new Date(c))
-              return new Date(a.date) - new Date(c.date) < 1 ? 1 : -1;
+                 //console.log(new Date(a.completed))
+                 //console.log(new Date(c))
+              return new Date(a.completed) - new Date(c.completed) < 1 ? 1 : -1;
             });
             if (mounted) {
               updateArray(b);
@@ -94,12 +105,14 @@ const Reportbug = (props) => {
           buttontext="Close">
           <div className="updateFlex">
             {array.map((row, i) => {
-              if (row.status === "Done") {
+                if (row.status === "Completed") {
+                    //console.log(row.completed)
+                    let convertDate = row.completed.slice(0,-1) + "-08:00"
                 return (
                   <div className="card" key={i} onClick={toggleOpen}>
                     <div className="title">{row.title}</div>
                     <div className="bottom">
-                      <div className="type"> {moment(new Date(row.date)).calendar()}</div>
+                      <div className="type"> {moment(new Date(convertDate)).calendar()}</div>
                     </div>
                   </div>
                 );
@@ -129,12 +142,12 @@ const Reportbug = (props) => {
           buttontext="Close">
           <div className="updateFlex">
             {array.map((row, i) => {
-              if (row.status === "To Do") {
+              if (row.status === "Not Started" && row.type !== "Bug") {
                 return (
                   <div key={i} className="card" onClick={toggleOpen}>
                     <div className="title">{row.title}</div>
                     <div className="bottom">
-                      <div className="type">{row.priority}</div>
+                      <div className="type">{row.priority} Priority</div>
                     </div>
                   </div>
                 );
@@ -145,12 +158,12 @@ const Reportbug = (props) => {
         <ExpandCollapse nogear={true} title="🪳 Known Bugs" buttontext="Close">
           <div className="updateFlex">
             {array.map((row, i) => {
-              if (row.status === "Known Bugs") {
+              if (row.type === "Bug" && row.status === "Not Started") {
                 return (
                   <div key={i} className="card" onClick={toggleOpen}>
                     <div className="title">{row.title}</div>
                     <div className="bottom">
-                      <div className="type">{row.priority}</div>
+                      <div className="type">{row.priority} Priority</div>
                     </div>
                   </div>
                 );
@@ -159,7 +172,7 @@ const Reportbug = (props) => {
           </div>
         </ExpandCollapse>
 
-        <ExpandCollapse
+        {/* <ExpandCollapse
           nogear={true}
           title="💌 Responding to Suggestions"
           buttontext="Close">
@@ -179,7 +192,7 @@ const Reportbug = (props) => {
               }
             })}
           </div>
-        </ExpandCollapse>
+        </ExpandCollapse> */}
       </div>
     </Page>
   );
