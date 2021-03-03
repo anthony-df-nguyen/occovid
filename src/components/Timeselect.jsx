@@ -35,7 +35,7 @@ const Timeselect = props => {
 
     //Create Array of Month Strings
     let theMonthArray = [{ display: 'Mar 2020', value: '03/01/2020' }]
-    for (let i = 0; i < monthDifference - 2; i++) {
+    for (let i = 0; i < monthDifference - 1; i++) {
       let theMonth = startFrom.setMonth(startFrom.getMonth() + 1)
       let value = moment(new Date(theMonth)).format('L')
       let monthDisplay = moment(new Date(value))
