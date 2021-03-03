@@ -148,7 +148,7 @@ const Navigation = (props) => {
         <NavLink
           to="/compare"
           onClick={() => {
-            closeTheNav("/comppare");
+            closeTheNav("/compare");
           }}
           activeClassName="selectedLink">
           Compare Counties
@@ -167,7 +167,7 @@ const Navigation = (props) => {
             closeTheNav("/reportbugs");
           }}
           activeClassName="selectedLink">
-          Bugs, Ideas, and Updates
+          Bugs and Updates
         </NavLink>
 
         <NavLink
