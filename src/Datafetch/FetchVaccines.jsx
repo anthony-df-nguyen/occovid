@@ -31,7 +31,7 @@ const FetchVaccines = (props) => {
             .then((a) => a.json())
             .then((b) => {
               let results = b.features;
-              console.log("file: FetchVaccines.jsx ~ line 34 ~ .then ~ results", results)
+              //console.log("file: FetchVaccines.jsx ~ line 34 ~ .then ~ results", results)
               const findValue = (category, metric) => {
                 try {
                   let resultArray = results.filter(
