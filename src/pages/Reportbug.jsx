@@ -37,14 +37,12 @@ const Reportbug = (props) => {
         await fetch("https://occovidtaskmongo.vercel.app/api")
             .then((a) => a.json())
             .then((b) => {
-              
-            b.sort((a, c) => {
-                 //console.log(new Date(a.completed))
-                 //console.log(new Date(c))
+            let publicArray = b.filter(b => !b.hidden && b)  
+            publicArray.sort((a, c) => {
               return new Date(a.completed) - new Date(c.completed) < 1 ? 1 : -1;
             });
             if (mounted) {
-              updateArray(b);
+              updateArray(publicArray);
               updateGIF("none");
               updateShowUpdates("visible");
             }
