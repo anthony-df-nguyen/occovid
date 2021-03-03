@@ -31,6 +31,7 @@ const FetchVaccines = (props) => {
             .then((a) => a.json())
             .then((b) => {
               let results = b.features;
+              console.log("file: FetchVaccines.jsx ~ line 34 ~ .then ~ results", results)
               const findValue = (category, metric) => {
                 try {
                   let resultArray = results.filter(
@@ -59,25 +60,25 @@ const FetchVaccines = (props) => {
               let totalAdmin = findValue("ValidDoses", "num_atleast1");
               let female = findValue("Female", "num_atleast1");
               let male = findValue("Male", "num_atleast1");
-              let otherSex = findValue("Other_sex", "num_atleast1");
-              let asianPI = findValue("AsianPI", "num_atleast1");
+              let otherSex = findValue("Other Sex", "num_atleast1");
+              let asianPI = findValue("Asian/PI", "num_atleast1");
               let black = findValue("Black", "num_atleast1");
               let hispanic = findValue("Hispanic", "num_atleast1");
               let white = findValue("White", "num_atleast1");
-              let otherRace = findValue("Other_race", "num_atleast1");
-              let age017 = findValue("0-17y", "num_atleast1");
-              let age1824 = findValue("18-24y", "num_atleast1");
-              let age2534 = findValue("25-34y", "num_atleast1");
-              let age3544 = findValue("35-44y", "num_atleast1");
-              let age4554 = findValue("45-54y", "num_atleast1");
-              let age5564 = findValue("55-64y", "num_atleast1");
-              let age6574yrs = findValue("65-74y", "num_atleast1");
-              let age7584 = findValue("75-84y", "num_atleast1");
-              let age85 = findValue("85y", "num_atleast1");
+              let otherRace = findValue("Other Race", "num_atleast1");
+              let age017 = findValue("0-17 yrs", "num_atleast1");
+              let age1824 = findValue("18-24 yrs", "num_atleast1");
+              let age2534 = findValue("25-34 yrs", "num_atleast1");
+              let age3544 = findValue("35-44 yrs", "num_atleast1");
+              let age4554 = findValue("45-54 yrs", "num_atleast1");
+              let age5564 = findValue("55-64 yrs", "num_atleast1");
+              let age6574yrs = findValue("65-74 yrs", "num_atleast1");
+              let age7584 = findValue("75-84 yrs", "num_atleast1");
+              let age85 = findValue("85+ yrs", "num_atleast1");
               let ageUnknown = null;
               let moderna = findValue("Moderna", "num_totalvalid");
               let pfizer = findValue("Pfizer", "num_totalvalid");
-              let unknownTrade = findValue("Unk_trade", "num_totalvalid");
+              let unknownTrade = findValue("Unknown Trade", "num_totalvalid");
               thisDataArray = [
                 peopleOneDose,
                 peopleTwoDose,
