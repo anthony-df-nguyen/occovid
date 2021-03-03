@@ -118,6 +118,22 @@ body {
     color: var(--blue);
 }
 
+.bluebg {
+    background-color: var(--blue);
+}
+
+.redbg {
+    background-color: var(--red);
+}
+
+.greenbg {
+    background-color: var(--green);
+}
+
+.purplebg {
+    background-color: var(--lightpurple);
+}
+
 body.dark {
     --primary-text: rgba(255, 255, 255, 0.70);
     --blue        : #009ddb;
@@ -978,6 +994,11 @@ a.globButton,
     width           : -moz-fit-content;
     width           : fit-content;
     color           : var(--staywhite) !important;
+
+    &:hover {
+        cursor: pointer;
+
+    }
 }
 
 .forceTableSep {
@@ -1397,6 +1418,21 @@ a.globButton,
 }
 
 #updateGrid {
+    .expander {
+        &:hover {
+            cursor            : pointer;
+            border            : none;
+            -webkit-box-shadow: none;
+            box-shadow        : none;
+        }
+    }
+
+    .expanderTitle {
+        color          : var(--staywhite);
+        font-size      : 1rem;
+        //border-radius: @radius @radius 0 0;
+    }
+
     @media @wide {
         display              : grid;
         grid-template-columns: repeat(4, 1fr);
@@ -1404,10 +1440,16 @@ a.globButton,
         grid-gap             : @gap;
 
         .expander {
-            width : auto;
-            height: -webkit-min-content;
-            height: -moz-min-content;
-            height: min-content;
+            width           : auto;
+            height          : -webkit-min-content;
+            height          : -moz-min-content;
+            height          : min-content;
+            background-color: var(--white);
+
+            .expanderTitle {
+                font-size    : 1rem;
+                border-radius: @radius @radius 0 0;
+            }
 
             &:hover {
                 cursor            : default;
@@ -1416,11 +1458,11 @@ a.globButton,
                 box-shadow        : none;
             }
 
-            .expanderTitle {
-                font-size: 1rem;
-            }
+
+
 
             .expanderContent {
+                //margin-top: @gap;
                 max-height: 100% !important;
             }
 
@@ -1432,8 +1474,8 @@ a.globButton,
     }
 
 
-
     .updateFlex {
+
         padding: 0 @gap;
 
         .card {
@@ -1441,6 +1483,7 @@ a.globButton,
             border-radius     : @radius;
             background-color  : var(--gray);
             margin-bottom     : @gap;
+            margin-top        : @gap;
             max-height        : 6rem;
             overflow-y        : hidden;
             width             : 100%;

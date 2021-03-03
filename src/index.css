@@ -88,6 +88,18 @@ body {
 .blue {
   color: var(--blue);
 }
+.bluebg {
+  background-color: var(--blue);
+}
+.redbg {
+  background-color: var(--red);
+}
+.greenbg {
+  background-color: var(--green);
+}
+.purplebg {
+  background-color: var(--lightpurple);
+}
 body.dark {
   --primary-text: rgba(255, 255, 255, 0.7);
   --blue: #009ddb;
@@ -878,6 +890,10 @@ a.globButton,
   width: fit-content;
   color: var(--staywhite) !important;
 }
+a.globButton:hover,
+.globButton:hover {
+  cursor: pointer;
+}
 .forceTableSep {
   color: var(--primary-text);
   font-weight: bold;
@@ -1218,6 +1234,16 @@ a.globButton,
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
+#updateGrid .expander:hover {
+  cursor: pointer;
+  border: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+#updateGrid .expanderTitle {
+  color: var(--staywhite);
+  font-size: 1rem;
+}
 @media only screen and (min-width:1366px) {
   #updateGrid {
     display: grid;
@@ -1230,15 +1256,17 @@ a.globButton,
     height: -webkit-min-content;
     height: -moz-min-content;
     height: min-content;
+    background-color: var(--white);
+  }
+  #updateGrid .expander .expanderTitle {
+    font-size: 1rem;
+    border-radius: 5px 5px 0 0;
   }
   #updateGrid .expander:hover {
     cursor: default;
     border: none;
     -webkit-box-shadow: none;
     box-shadow: none;
-  }
-  #updateGrid .expander .expanderTitle {
-    font-size: 1rem;
   }
   #updateGrid .expander .expanderContent {
     max-height: 100% !important;
@@ -1255,6 +1283,7 @@ a.globButton,
   border-radius: 5px;
   background-color: var(--gray);
   margin-bottom: 10px;
+  margin-top: 10px;
   max-height: 6rem;
   overflow-y: hidden;
   width: 100%;

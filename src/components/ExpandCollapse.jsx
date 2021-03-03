@@ -29,9 +29,10 @@ const ExpandCollapse = (props) => {
     }
   }
 
+  const titleClass = `expanderTitle + ${props.bg}`
   return (
     <div className="expander">
-      <div className="expanderTitle" onClick={toggledOpenOrClosed}>
+      <div className={titleClass} onClick={toggledOpenOrClosed}>
         {props.nogear ? "" : <Gear />}
         {props.charticon ? <ChartIcon /> : "" }
         {props.title}

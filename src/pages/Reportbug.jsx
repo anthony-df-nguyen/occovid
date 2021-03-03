@@ -121,7 +121,8 @@ const Reportbug = (props) => {
       <div id="updateGrid" style={{ visibility: showUpdates }}>
         <ExpandCollapse
           nogear={true}
-          title="🥳 New Features and Changelog"
+          title="Completed"
+          bg="bluebg"
           buttontext="Close">
           <div className="updateFlex">
             {array.map((row, i) => {
@@ -147,7 +148,7 @@ const Reportbug = (props) => {
             })}
           </div>
         </ExpandCollapse>
-        <ExpandCollapse nogear={true} title="💪 In Progress" buttontext="Close">
+        <ExpandCollapse bg="greenbg" nogear={true} title="In Progress" buttontext="Close">
           <div className="updateFlex">
             {array.map((row, i) => {
               if (row.status === "In Progress") {
@@ -168,8 +169,9 @@ const Reportbug = (props) => {
           </div>
         </ExpandCollapse>
         <ExpandCollapse
+        bg="purplebg"
           nogear={true}
-          title="👨‍💻 To Do List and Ideas"
+          title="To-Do or Ideas"
           buttontext="Close">
           <div className="updateFlex">
             {array.map((row, i) => {
@@ -190,7 +192,7 @@ const Reportbug = (props) => {
             })}
           </div>
         </ExpandCollapse>
-        <ExpandCollapse nogear={true} title="🪳 Known Bugs" buttontext="Close">
+        <ExpandCollapse bg="redbg" nogear={true} title="Known Bugs/Issues" buttontext="Close">
           <div className="updateFlex">
             {array.map((row, i) => {
               if (row.type === "Bug" && row.status === "Not Started") {
