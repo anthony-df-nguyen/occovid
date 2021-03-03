@@ -1,43 +1,65 @@
 import React, { useEffect, useState } from "react";
 import Page from "components/Page";
 import ExpandCollapse from "components/ExpandCollapse";
-import moment from 'moment'
+import moment from "moment";
 import reportWebVitals from "reportWebVitals";
 
 const Reportbug = (props) => {
   const [array, updateArray] = useState([]);
+  const [fullCard, updateFullCard] = useState({
+    title: "",
+    description: "",
+    completed: "",
+    parseComplete: "",
+    priority: "",
+    status: "",
+    type: "",
+  });
+  //console.log("file: Reportbug.jsx ~ line 9 ~ Reportbug ~ array", array)
   const [showGIF, updateGIF] = useState("block");
   const [showUpdates, updateShowUpdates] = useState("hidden");
+  const [showFullCard,updateShowFullCard] = useState("none")
   function toggleOpen(e) {
-    let itemHeight = e.clientY + "px";
+    let cardValue = e.nativeEvent.srcElement.attributes[1].value;
+    let cardData = array.filter((row) => row._id === cardValue)[0];
 
-    if (e.target.style.overflow == "hidden" || e.target.style.overflow == "") {
-      e.target.style.maxHeight = itemHeight;
-      e.target.style.overflow = "visible";
-    } else {
-      e.target.style.maxHeight = "6rem";
-      e.target.style.overflow = "hidden";
-    }
+    const theDate = cardData.completed
+      ? cardData.completed.slice(0, -1) + "-08:00"
+      : false;
+    const parseComplete = theDate
+      ? moment(new Date(theDate)).calendar()
+      : "Not Done";
+    const cardObject = {
+      title: cardData.title,
+      description: cardData.description,
+      completed: cardData.completed,
+      parseComplete: parseComplete,
+      priority: cardData.priority,
+      status: cardData.status,
+      type: cardData.type,
+    };
+    updateShowFullCard('block')
+    updateFullCard(cardObject);
   }
-    moment.locale('en', {
-        calendar : {
-            lastDay : '[Yesterday]',
-            sameDay : '[Today]',
-            nextDay : '[Tomorrow at] LT',
-            lastWeek : '[Last] dddd',
-            nextWeek : 'dddd',
-            sameElse : 'L'
-        }
-    });
+  moment.locale("en", {
+    calendar: {
+      lastDay: "[Yesterday]",
+      sameDay: "[Today]",
+      nextDay: "[Tomorrow at] LT",
+      lastWeek: "[Last] dddd",
+      nextWeek: "dddd",
+      sameElse: "L",
+    },
+  });
   useEffect(() => {
     let mounted = true;
 
     if (mounted) {
       const getUpdates = async () => {
         await fetch("https://occovidtaskmongo.vercel.app/api")
-            .then((a) => a.json())
-            .then((b) => {
-            let publicArray = b.filter(b => !b.hidden && b)  
+          .then((a) => a.json())
+          .then((b) => {
+            let publicArray = b.filter((b) => !b.hidden && b);
             publicArray.sort((a, c) => {
               return new Date(a.completed) - new Date(c.completed) < 1 ? 1 : -1;
             });
@@ -95,7 +117,7 @@ const Reportbug = (props) => {
         />
         <p>Loading Updates</p>
       </div>
-
+        <div style={{textAlign: 'center',marginBottom:'1rem',fontWeight: 300,}}>Click a card in any category to view more detail</div>
       <div id="updateGrid" style={{ visibility: showUpdates }}>
         <ExpandCollapse
           nogear={true}
@@ -103,14 +125,21 @@ const Reportbug = (props) => {
           buttontext="Close">
           <div className="updateFlex">
             {array.map((row, i) => {
-                if (row.status === "Completed") {
-                    //console.log(row.completed)
-                    let convertDate = row.completed.slice(0,-1) + "-08:00"
+              if (row.status === "Completed") {
+                //console.log(row.completed)
+                let convertDate = row.completed.slice(0, -1) + "-08:00";
                 return (
-                  <div className="card" key={i} onClick={toggleOpen}>
+                  <div
+                    className="card"
+                    key={i}
+                    value={row._id}
+                    onClick={toggleOpen}>
                     <div className="title">{row.title}</div>
                     <div className="bottom">
-                      <div className="type"> {moment(new Date(convertDate)).calendar()}</div>
+                      <div className="type">
+                        {" "}
+                        {moment(new Date(convertDate)).calendar()}
+                      </div>
                     </div>
                   </div>
                 );
@@ -123,7 +152,11 @@ const Reportbug = (props) => {
             {array.map((row, i) => {
               if (row.status === "In Progress") {
                 return (
-                  <div key={i} className="card" onClick={toggleOpen}>
+                  <div
+                    key={i}
+                    className="card"
+                    value={row._id}
+                    onClick={toggleOpen}>
                     <div className="title">{row.title}</div>
                     <div className="bottom">
                       <div className="type">{row.type}</div>
@@ -142,7 +175,11 @@ const Reportbug = (props) => {
             {array.map((row, i) => {
               if (row.status === "Not Started" && row.type !== "Bug") {
                 return (
-                  <div key={i} className="card" onClick={toggleOpen}>
+                  <div
+                    key={i}
+                    className="card"
+                    value={row._id}
+                    onClick={toggleOpen}>
                     <div className="title">{row.title}</div>
                     <div className="bottom">
                       <div className="type">{row.priority} Priority</div>
@@ -158,7 +195,11 @@ const Reportbug = (props) => {
             {array.map((row, i) => {
               if (row.type === "Bug" && row.status === "Not Started") {
                 return (
-                  <div key={i} className="card" onClick={toggleOpen}>
+                  <div
+                    key={i}
+                    className="card"
+                    value={row._id}
+                    onClick={toggleOpen}>
                     <div className="title">{row.title}</div>
                     <div className="bottom">
                       <div className="type">{row.priority} Priority</div>
@@ -191,6 +232,34 @@ const Reportbug = (props) => {
             })}
           </div>
         </ExpandCollapse> */}
+      </div>
+
+      <div id="fullPageCard" style={{display: showFullCard}}>
+        <div id="card">
+          <div className="title">{fullCard.title}</div>
+          <div className="label">Description / Notes</div>
+          <div className="description">{fullCard.description}</div>
+
+          <div id="fullCardFlex">
+            <div>
+              <div className="label">Type</div>
+              <div className="text">{fullCard.type}</div>
+            </div>
+            <div>
+              <div className="label">Priority</div>
+              <div className="text">{fullCard.priority}</div>
+            </div>
+            <div>
+              <div className="label">Status</div>
+              <div className="text">{fullCard.status}</div>
+            </div>
+            <div>
+              <div className="label">Completed</div>
+              <div className="text">{fullCard.parseComplete}</div>
+            </div>
+          </div>
+          <button className="globButton" onClick={()=> updateShowFullCard("none")}>Close</button>
+        </div>
       </div>
     </Page>
   );

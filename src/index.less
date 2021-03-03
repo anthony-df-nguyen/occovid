@@ -973,7 +973,7 @@ a.globButton,
     display         : block;
     margin          : 1rem auto !important;
     border          : none;
-    font-size       : 1.25rem;
+    font-size       : 1rem;
     width           : -webkit-fit-content;
     width           : -moz-fit-content;
     width           : fit-content;
@@ -1492,6 +1492,91 @@ a.globButton,
 
     #done {
         background-color: var(--green) !important;
+    }
+}
+
+#fullPageCard {
+    display         : block;
+    position        : fixed;
+    top             : 0;
+    left            : 0;
+    background-color: rgba(0, 0, 0, .3);
+    backdrop-filter : blur(8px);
+    width           : 100vw;
+    height          : 100vh;
+
+    @media @wider1366 {
+        left : @navBarWidth;
+        width: calc(100vw - @navBarWidth);
+    }
+
+    z-index: 3;
+
+    #card {
+        border-radius: @radius;
+        box-shadow   : @shadow;
+        position     : relative !important;
+        .center;
+        background-color: var(--white);
+        width           : calc(100% - 2rem);
+        padding         : 1rem;
+        color           : var(--primary-text);
+        max-width       : 768px;
+
+        .title {
+            font-size  : 1.25rem;
+            margin-top : 1rem;
+            font-weight: 600;
+            color      : var(--blue);
+        }
+
+        .label {
+            font-weight: 500;
+            margin     : 1rem 0;
+        }
+
+        .text {
+            font-size    : 1rem;
+            font-weight  : 400;
+            margin-bottom: 1rem;
+        }
+
+        .description {
+            border-radius   : @radius;
+            background-color: var(--gray);
+            padding         : @gap;
+            min-height      : 8rem;
+            max-height      : 8rem;
+            overflow-y      : scroll;
+            margin-bottom   : 1rem;
+            font-weight     : 300;
+        }
+
+        #fullCardFlex {
+            display       : flex;
+            flex-direction: row;
+            flex-wrap     : wrap;
+            margin        : -@gap 0 0 -@gap;
+
+            .label {
+                font-weight: 300;
+                margin     : @gap 0 0 0;
+            }
+
+            .text {
+                margin     : 0 0 @gap 0;
+                font-weight: 500;
+            }
+
+            >div {
+                border-radius   : @radius;
+                background-color: var(--gray);
+                flex-grow       : 1;
+                margin          : @gap 0 0 @gap;
+                padding         : 0 @gap;
+                text-align      : center;
+            }
+        }
     }
 }
 

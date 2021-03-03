@@ -872,7 +872,7 @@ a.globButton,
   display: block;
   margin: 1rem auto !important;
   border: none;
-  font-size: 1.25rem;
+  font-size: 1rem;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -1296,6 +1296,86 @@ a.globButton,
 }
 #updateGrid #done {
   background-color: var(--green) !important;
+}
+#fullPageCard {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(8px);
+  width: 100vw;
+  height: 100vh;
+  z-index: 3;
+}
+@media only screen and (min-width:1366px) {
+  #fullPageCard {
+    left: 250px;
+    width: calc(100vw - 250px);
+  }
+}
+#fullPageCard #card {
+  border-radius: 5px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative !important;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  background-color: var(--white);
+  width: calc(100% - 2rem);
+  padding: 1rem;
+  color: var(--primary-text);
+  max-width: 768px;
+}
+#fullPageCard #card .title {
+  font-size: 1.25rem;
+  margin-top: 1rem;
+  font-weight: 600;
+  color: var(--blue);
+}
+#fullPageCard #card .label {
+  font-weight: 500;
+  margin: 1rem 0;
+}
+#fullPageCard #card .text {
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+}
+#fullPageCard #card .description {
+  border-radius: 5px;
+  background-color: var(--gray);
+  padding: 10px;
+  min-height: 8rem;
+  max-height: 8rem;
+  overflow-y: scroll;
+  margin-bottom: 1rem;
+  font-weight: 300;
+}
+#fullPageCard #card #fullCardFlex {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: -10px 0 0 -10px;
+}
+#fullPageCard #card #fullCardFlex .label {
+  font-weight: 300;
+  margin: 10px 0 0 0;
+}
+#fullPageCard #card #fullCardFlex .text {
+  margin: 0 0 10px 0;
+  font-weight: 500;
+}
+#fullPageCard #card #fullCardFlex > div {
+  border-radius: 5px;
+  background-color: var(--gray);
+  flex-grow: 1;
+  margin: 10px 0 0 10px;
+  padding: 0 10px;
+  text-align: center;
 }
 .loading .loadingGIF {
   display: block;
