@@ -31,7 +31,6 @@ const FetchVaccines = (props) => {
             .then((a) => a.json())
             .then((b) => {
               let results = b.features;
-              //console.log("file: FetchVaccines.jsx ~ line 34 ~ .then ~ results", results)
               const findValue = (category, metric) => {
                 try {
                   let resultArray = results.filter(
@@ -48,7 +47,7 @@ const FetchVaccines = (props) => {
                   return finalValue;
                 } catch (err) {
                   console.log(err);
-                  console.log("Could not find this value");
+                  console.log("Could not find this value", category, metric);
                   return 0;
                 }
               };
@@ -79,6 +78,17 @@ const FetchVaccines = (props) => {
               let moderna = findValue("Moderna", "num_totalvalid");
               let pfizer = findValue("Pfizer", "num_totalvalid");
               let unknownTrade = findValue("Unknown Trade", "num_totalvalid");
+              let asianPI65up = findValue("Asian/PI 65+", "num_atleast1");
+              let black65up = findValue("Black 65+", "num_atleast1");
+              let hispanic65up = findValue("Hispanic  65+", "num_atleast1");
+              let white65up = findValue("White 65+", "num_atleast1");
+              let otherRace65up = findValue("Other Race 65+", "num_atleast1");
+              let asianPI65down = findValue("Asian/PI <65", "num_atleast1");
+              let black65down = findValue("Black <65", "num_atleast1");
+              let hispanic65down = findValue("Hispanic <65", "num_atleast1");
+              let white65down = findValue("White <65", "num_atleast1");
+              let otherRace65down = findValue("Other Race <65", "num_atleast1");
+
               thisDataArray = [
                 peopleOneDose,
                 peopleTwoDose,
@@ -107,6 +117,16 @@ const FetchVaccines = (props) => {
                 moderna,
                 pfizer,
                 unknownTrade,
+                asianPI65up,
+                black65up,
+                hispanic65up,
+                white65up,
+                otherRace65up,
+                asianPI65down,
+                black65down,
+                hispanic65down,
+                white65down,
+                otherRace65down,
               ];
             })
             .then(() => {

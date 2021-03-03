@@ -167,12 +167,23 @@ const Sources = () => {
             </tr>
             <tr>
               <td>Vaccination data</td>
-              <td>Vaccine page</td>
+              <td>Vaccination page</td>
               <td>
                 <a
                   target="_blank"
                   href="https://coronavirus.egovoc.com/vaccines-administered-oc">
                   Link: OC Health Care Agency Vaccine Dashboard
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>Vaccination data by Zip Code</td>
+              <td>Vaccination Map</td>
+              <td>
+                <a
+                  target="_blank"
+                  href="https://services2.arcgis.com/LORzk2hk9xzHouw9/ArcGIS/rest/services/VIEWLAYER_C19VaccinationRatesbyZIP/FeatureServer/0">
+                  Link: OC Health Care Agency ArcGIS database 
                 </a>
               </td>
             </tr>
@@ -240,7 +251,8 @@ const Sources = () => {
                 <a
                   target="_blank"
                   href="https://github.com/datadesk/california-coronavirus-data/blob/master/cdph-vaccination-county-totals.csv">
-                  Link: LA Times CA Vaccine Data (which they take from CA state dashboard)
+                  Link: LA Times CA Vaccine Data (which they take from CA state
+                  dashboard)
                 </a>
               </td>
             </tr>

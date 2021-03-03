@@ -2,7 +2,12 @@ import React, { useState, useContext } from "react";
 import { TimeContext } from "components/context/TimeContext";
 import color from "globalVars/Colors";
 import Timeselect from "components/Timeselect";
-import { FetchVaccines,peopleOneDose ,peopleTwoDose } from "Datafetch/FetchVaccines";
+import ChartNonStacked from "components/ChartNonStacked";
+import {
+  FetchVaccines,
+  peopleOneDose,
+  peopleTwoDose,
+} from "Datafetch/FetchVaccines";
 import VaccineHistory from "Datafetch/VaccineHistory.jsx";
 import Chart from "components/Chart";
 import Widget from "components/Widget";
@@ -32,8 +37,8 @@ const Vaccinations = (props) => {
   const [array, updateArray] = useState([]);
   const [vaccineHisArray, updateVaxArray] = useState([]);
   const [vaccinePhase, updateVaccinePhases] = useState([]);
-  const [asof, updateDate] = useState('Last Updated...')
-    
+  const [asof, updateDate] = useState("Last Updated...");
+
   const [
     peopleOneDose,
     peopleTwoDose,
@@ -62,6 +67,16 @@ const Vaccinations = (props) => {
     moderna,
     pfizer,
     unknownTrade,
+    asianPI65up,
+    black65up,
+    hispanic65up,
+    white65up,
+    otherRace65up,
+    asianPI65down,
+    black65down,
+    hispanic65down,
+    white65down,
+    otherRace65down,
   ] = array;
 
   //Total People Reports
@@ -111,6 +126,14 @@ const Vaccinations = (props) => {
     (a) => parseFloat(((a / ocpop) * 100).toFixed(1)) + "%"
   );
 
+  const customRaceColors = [
+    color.blue,
+    color.red,
+    color.green,
+    color.purple,
+    color.orange,
+  ];
+
   //Race Vaccine Reports
   const racePopArray = [asian_pop, black_pop, hispanic_pop, white_pop];
   const raceOCPop = racePopArray.map((a) => a.toLocaleString());
@@ -126,7 +149,7 @@ const Vaccinations = (props) => {
   return (
     <div>
       <VaccineHistory function={updateVaxArray} time={time} />
-      <FetchVaccines function={[updateArray,updateDate]} time={time} />
+      <FetchVaccines function={[updateArray, updateDate]} time={time} />
       <FetchVaccineTier function={updateVaccinePhases} />
       <Page title="Vaccinations">
         <div id="lastUpdateDate">
@@ -134,7 +157,6 @@ const Vaccinations = (props) => {
         </div>
         <div className="widgetGrid">
           <a href={`${vaccinePhase.url}`} target="_blank">
-       
             <Widget
               title={"Active Phase"}
               stat={vaccinePhase.phase}
@@ -225,14 +247,14 @@ const Vaccinations = (props) => {
             <p className="chartNote">OC Population: {ocpop.toLocaleString()}</p>
           </Chart>
 
-          <Chart
+          <ChartNonStacked
             key="2"
             id="vaccine2"
-            date={["Asian/PI", "Black", "Hispanic", "White", "Other"]}
-            data={[raceVaxArrayAll]}
-            fill={[[...raceColors]]}
+            labels={["Asian/PI", "Black", "Hispanic", "White", "Other"]}
+            data={[[asianPI65up, black65up, hispanic65up, white65up, otherRace65up],[asianPI65down,black65down,hispanic65down,white65down,otherRace65down]]}
+            fill={customRaceColors}
             title={"Persons w/ at Least 1 Dose: by Race"}
-            label={["People"]}
+            label={["Over 65", "Under 65"]}
             switches={["horizontalBar", "bar", "doughnut"]}>
             <BuildTable
               colName={["Age", "Pop", "% of Pop", "% w/ at Least 1 Dose"]}
@@ -244,7 +266,26 @@ const Vaccinations = (props) => {
               <br></br> Note: Sum of % of pop != 100 because hispanic ethncity
               includes overlap of some races
             </p>
-          </Chart>
+          </ChartNonStacked>
+{/* 
+          <ChartNonStacked
+            key="vaccinebyraceagesplit"
+            id="vaccineRaceAgeSplit"
+            labels={["Asian/PI", "Black", "Hispanic", "White", "Other"]}
+            data={[
+              [asianPI65up, black65up, hispanic65up, white65up, otherRace65up],
+              [
+                asianPI65down,
+                black65down,
+                hispanic65down,
+                white65down,
+                otherRace65down,
+              ],
+            ]}
+            fill={customRaceColors}
+            title={"Persons w/ at Least 1 Dose: by Race Split by Age Groups"}
+            label={["Over 65", "Under 65"]}
+            switches={["horizontalBar", "bar","doughnut"]}></ChartNonStacked> */}
 
           <Chart
             key="3"
