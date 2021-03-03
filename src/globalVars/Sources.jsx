@@ -107,7 +107,7 @@ const CaseDemographics =
 
 // Detailed Death info by Demographics Age, Sex, Race
 const DeathDemographics =
-  "https://services2.arcgis.com/LORzk2hk9xzHouw9/ArcGIS/rest/services/occovid_demodth_csv/FeatureServer/0/query?where=date+%3E+timestamp+%2703%2F03%2F2020%27+AND+date+%3C+timestamp+%27" +
+  "https://services2.arcgis.com/LORzk2hk9xzHouw9/ArcGIS/rest/services/occovid_demodths_csv/FeatureServer/0/query?where=date+%3E+timestamp+%2703%2F03%2F2020%27+AND+date+%3C+timestamp+%27" +
   tomorrowsmonth +
   "%2F" +
   tomorrowday +
