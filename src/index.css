@@ -1251,15 +1251,13 @@ a.globButton:hover,
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-#updateGrid .expander:hover {
-  cursor: pointer;
-  border: none;
-  -webkit-box-shadow: none;
-  box-shadow: none;
+#updateGrid .expander {
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 #updateGrid .expanderTitle {
   color: var(--staywhite);
   font-size: 1rem;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 @media only screen and (min-width:1366px) {
   #updateGrid {
@@ -1282,8 +1280,6 @@ a.globButton:hover,
   #updateGrid .expander:hover {
     cursor: default;
     border: none;
-    -webkit-box-shadow: none;
-    box-shadow: none;
   }
   #updateGrid .expander .expanderContent {
     max-height: 100% !important;
@@ -1291,6 +1287,10 @@ a.globButton:hover,
   #updateGrid .expander .standardButton {
     display: none;
   }
+}
+#updateGrid #completedList {
+  max-height: 60vh;
+  overflow-y: scroll;
 }
 #updateGrid .updateFlex {
   padding: 0 10px;

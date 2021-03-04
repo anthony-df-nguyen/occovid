@@ -124,7 +124,7 @@ const Reportbug = (props) => {
           title="Completed"
           bg="bluebg"
           buttontext="Close">
-          <div className="updateFlex">
+          <div className="updateFlex" id="completedList">
             {array.map((row, i) => {
               if (row.status === "Completed") {
                 //console.log(row.completed)

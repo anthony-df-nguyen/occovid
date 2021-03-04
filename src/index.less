@@ -1436,18 +1436,14 @@ a.globButton,
 
 #updateGrid {
     .expander {
-        &:hover {
-            cursor            : pointer;
-            border            : none;
-            -webkit-box-shadow: none;
-            box-shadow        : none;
-        }
+        box-shadow: @shadow;
     }
 
     .expanderTitle {
         color          : var(--staywhite);
         font-size      : 1rem;
         //border-radius: @radius @radius 0 0;
+        box-shadow     : @shadow;
     }
 
     @media @wide {
@@ -1469,10 +1465,8 @@ a.globButton,
             }
 
             &:hover {
-                cursor            : default;
-                border            : none;
-                -webkit-box-shadow: none;
-                box-shadow        : none;
+                cursor: default;
+                border: none;
             }
 
 
@@ -1490,6 +1484,11 @@ a.globButton,
         }
     }
 
+
+    #completedList {
+        max-height: 60vh;
+        overflow-y: scroll;
+    }
 
     .updateFlex {
 
