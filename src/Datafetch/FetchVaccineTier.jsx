@@ -6,7 +6,7 @@ const FetchVaccineTier = (props) => {
     if (mounted) {
       const getData = async () => {
         try {
-          await fetch("https://announcement-api.vercel.app/api/vaxphase")
+          await fetch("https://occovidtaskmongo.vercel.app/api/vaxphase")
             .then((a) => a.json())
             .then((b) => {
               if (mounted) {

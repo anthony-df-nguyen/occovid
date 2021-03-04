@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 const Announcement = () => {
-    const announcementURL = "https://announcement-api.vercel.app/api"
+    const announcementURL = "https://occovidtaskmongo.vercel.app/api/announcement"
     const [message, updateMessage] = useState()
     const [padding, updatePadding] = useState()  
 
@@ -14,7 +14,8 @@ const Announcement = () => {
                 await fetch(announcementURL)
                     .then(a => a.json())
                     .then(final => {
-                        responseArray.push(final.display, final.message)
+                       
+                        responseArray.push(final[0].display, final[0].text)
                     })
                     .then(() => {
                         const [display, jsonMessage] = responseArray;
