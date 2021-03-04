@@ -87,7 +87,7 @@ const WhatsOpen = (props) => {
           </div>
         </div>
         <Timeselect />
-        <div id="chartGrid">
+        <div id="chartGridMax2">
           <Chart
             key="1"
             id="whatopen1"

@@ -432,6 +432,17 @@ body.dark {
     grid-template-columns: repeat(3, 1fr);
   }
 }
+#chartGridMax2 {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+}
+@media only screen and (min-width: 1024px) {
+  #chartGridMax2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 #chartGridAge {
   display: grid;
   grid-gap: 10px;

@@ -133,7 +133,7 @@ const Schools = props => {
             <p>Last Updated {  lastDate }</p>
         </div>
         
-        <div id='chartGrid'>
+        <div id='chartGridMax2'>
           <Chart
             key='1'
             id='school1'

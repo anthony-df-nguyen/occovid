@@ -515,6 +515,18 @@ body.dark {
 
 }
 
+//Chart Grid that maxes out at 2 columns
+#chartGridMax2 {
+    display              : grid;
+    grid-gap             : @gap;
+    grid-template-columns: 1fr;
+    grid-template-rows   : auto;
+
+    @media only screen and (min-width: 1024px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 //Specifically for Age/Race Page
 #chartGridAge {
     #chartGrid;
