@@ -551,7 +551,7 @@ body.dark {
   }
   #chartVaccineGrid :nth-child(6) {
     grid-row: 3;
-    grid-column: 3 / span 2;
+    grid-column: 3 / span 1;
   }
 }
 #cityGrid {
