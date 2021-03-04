@@ -18,17 +18,13 @@ const Reportbug = (props) => {
   //console.log("file: Reportbug.jsx ~ line 9 ~ Reportbug ~ array", array)
   const [showGIF, updateGIF] = useState("block");
   const [showUpdates, updateShowUpdates] = useState("hidden");
-  const [showFullCard,updateShowFullCard] = useState("none")
+  const [showFullCard, updateShowFullCard] = useState("none");
   function toggleOpen(e) {
     let cardValue = e.nativeEvent.srcElement.attributes[1].value;
     let cardData = array.filter((row) => row._id === cardValue)[0];
 
-    const theDate = cardData.completed
-      ? cardData.completed.slice(0, -1) + "-08:00"
-      : false;
-    const parseComplete = theDate
-      ? moment(new Date(theDate)).calendar()
-      : "Not Done";
+    const theDate = cardData.completed ? cardData.completed.slice(0, -1) + "-08:00" : false;
+    const parseComplete = theDate ? moment(new Date(theDate)).calendar() : "Not Done";
     const cardObject = {
       title: cardData.title,
       description: cardData.description,
@@ -38,18 +34,19 @@ const Reportbug = (props) => {
       status: cardData.status,
       type: cardData.type,
     };
-    updateShowFullCard('block')
+    updateShowFullCard("block");
     updateFullCard(cardObject);
   }
-  moment.locale("en", {
-    calendar: {
-      lastDay: "[Yesterday]",
-      sameDay: "[Today]",
-      nextDay: "[Tomorrow at] LT",
-      lastWeek: "[Last] dddd",
-      nextWeek: "dddd",
-      sameElse: "L",
-    },
+
+  moment.updateLocale("en", {
+      calendar: {
+        lastDay: "[Yesterday]",
+        sameDay: "[Today]",
+        nextDay: "[Tomorrow at] LT",
+        lastWeek: "[Last] dddd",
+        nextWeek: "dddd",
+        sameElse: "L",
+      },
   });
   useEffect(() => {
     let mounted = true;
@@ -79,29 +76,16 @@ const Reportbug = (props) => {
   return (
     <Page title="Updates">
       <div className="formTitle">
-        Have questions?{" "}
-        <a href="mailto: anthonydfnguyen@gmail.com"> Email me</a>
+        Have questions? <a href="mailto: anthonydfnguyen@gmail.com"> Email me</a>
       </div>
 
-      <ExpandCollapse
-        nogear={true}
-        title="🪳 Click here to report a bug or make a suggestion"
-        buttontext="Close">
+      <ExpandCollapse nogear={true} title="🪳 Click here to report a bug or make a suggestion" buttontext="Close">
         <div id="googleForm">
-          <p>
-            Please note, I can only show more data if it's publicly available.
-            If you have a data source, please refer me to it.
-          </p>
-          <form
-            action="https://docs.google.com/forms/u/0/d/e/1FAIpQLScOtQjpnqcxaXju6gnSghVyLi4BRIj74u-5Un3_H3vki5y_Cw/formResponse"
-            method="POST">
+          <p>Please note, I can only show more data if it's publicly available. If you have a data source, please refer me to it.</p>
+          <form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLScOtQjpnqcxaXju6gnSghVyLi4BRIj74u-5Un3_H3vki5y_Cw/formResponse" method="POST">
             <label></label>
-            <textarea
-              name="entry.655858757"
-              placeholder="Report a bug(s). Please include which browser you are using and platform (iOS/Android/Windows/Mac)"></textarea>
-            <textarea
-              name="entry.520929852"
-              placeholder="Any suggestions or ideas?"></textarea>
+            <textarea name="entry.655858757" placeholder="Report a bug(s). Please include which browser you are using and platform (iOS/Android/Windows/Mac)"></textarea>
+            <textarea name="entry.520929852" placeholder="Any suggestions or ideas?"></textarea>
             <button className="globButton" type="submit">
               Submit
             </button>
@@ -110,37 +94,21 @@ const Reportbug = (props) => {
       </ExpandCollapse>
 
       <div style={{ display: showGIF }} className="loading">
-        <img
-          className="loadingGIF"
-          src="https://media.tenor.com/images/e9666fa015f403a882f069b9234995cc/tenor.gif"
-          alt=""
-        />
+        <img className="loadingGIF" src="https://media.tenor.com/images/e9666fa015f403a882f069b9234995cc/tenor.gif" alt="" />
         <p>Loading Updates</p>
       </div>
-        <div style={{textAlign: 'center',marginBottom:'1rem',fontWeight: 300,}}>Click a card in any category to view more detail</div>
+      <div style={{ textAlign: "center", marginBottom: "1rem", fontWeight: 300 }}>Click a card in any category to view more detail</div>
       <div id="updateGrid" style={{ visibility: showUpdates }}>
-        <ExpandCollapse
-          nogear={true}
-          title="Completed"
-          bg="bluebg"
-          buttontext="Close">
+        <ExpandCollapse nogear={true} title="Completed" bg="bluebg" buttontext="Close">
           <div className="updateFlex" id="completedList">
             {array.map((row, i) => {
               if (row.status === "Completed") {
-                //console.log(row.completed)
                 let convertDate = row.completed.slice(0, -1) + "-08:00";
                 return (
-                  <div
-                    className="card"
-                    key={i}
-                    value={row._id}
-                    onClick={toggleOpen}>
+                  <div className="card" key={i} value={row._id} onClick={toggleOpen}>
                     <div className="title">{row.title}</div>
                     <div className="bottom">
-                      <div className="type">
-                        {" "}
-                        {moment(new Date(convertDate)).calendar()}
-                      </div>
+                      <div className="type"> {moment(new Date(convertDate)).calendar()}</div>
                     </div>
                   </div>
                 );
@@ -153,11 +121,7 @@ const Reportbug = (props) => {
             {array.map((row, i) => {
               if (row.status === "In Progress") {
                 return (
-                  <div
-                    key={i}
-                    className="card"
-                    value={row._id}
-                    onClick={toggleOpen}>
+                  <div key={i} className="card" value={row._id} onClick={toggleOpen}>
                     <div className="title">{row.title}</div>
                     <div className="bottom">
                       <div className="type">{row.type}</div>
@@ -168,20 +132,12 @@ const Reportbug = (props) => {
             })}
           </div>
         </ExpandCollapse>
-        <ExpandCollapse
-        bg="purplebg"
-          nogear={true}
-          title="To-Do or Ideas"
-          buttontext="Close">
+        <ExpandCollapse bg="purplebg" nogear={true} title="To-Do or Ideas" buttontext="Close">
           <div className="updateFlex">
             {array.map((row, i) => {
               if (row.status === "Not Started" && row.type !== "Bug") {
                 return (
-                  <div
-                    key={i}
-                    className="card"
-                    value={row._id}
-                    onClick={toggleOpen}>
+                  <div key={i} className="card" value={row._id} onClick={toggleOpen}>
                     <div className="title">{row.title}</div>
                     <div className="bottom">
                       <div className="type">{row.priority} Priority</div>
@@ -197,11 +153,7 @@ const Reportbug = (props) => {
             {array.map((row, i) => {
               if (row.type === "Bug" && row.status === "Not Started") {
                 return (
-                  <div
-                    key={i}
-                    className="card"
-                    value={row._id}
-                    onClick={toggleOpen}>
+                  <div key={i} className="card" value={row._id} onClick={toggleOpen}>
                     <div className="title">{row.title}</div>
                     <div className="bottom">
                       <div className="type">{row.priority} Priority</div>
@@ -236,7 +188,7 @@ const Reportbug = (props) => {
         </ExpandCollapse> */}
       </div>
 
-      <div id="fullPageCard" style={{display: showFullCard}}>
+      <div id="fullPageCard" style={{ display: showFullCard }}>
         <div id="card">
           <div className="title">{fullCard.title}</div>
           <div className="label">Description / Notes</div>
@@ -260,7 +212,9 @@ const Reportbug = (props) => {
               <div className="text">{fullCard.parseComplete}</div>
             </div>
           </div>
-          <button className="globButton" onClick={()=> updateShowFullCard("none")}>Close</button>
+          <button className="globButton" onClick={() => updateShowFullCard("none")}>
+            Close
+          </button>
         </div>
       </div>
     </Page>
