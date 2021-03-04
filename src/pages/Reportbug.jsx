@@ -56,7 +56,7 @@ const Reportbug = (props) => {
 
     if (mounted) {
       const getUpdates = async () => {
-        await fetch("https://occovidtaskmongo.vercel.app/api")
+        await fetch("https://occovidtaskmongo.vercel.app/api/gettasks")
           .then((a) => a.json())
           .then((b) => {
             let publicArray = b.filter((b) => !b.hidden && b);
