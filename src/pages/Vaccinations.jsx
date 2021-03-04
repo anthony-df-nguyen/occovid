@@ -233,8 +233,8 @@ const Vaccinations = (props) => {
           <Chart
             key="1"
             id="vaccine1"
-            date={[...ageLabels]}
-            data={[ageVaxArrayAll]}
+            date={[...ageLabels.slice(0, -1)]}
+            data={[ageVaxArray]}
             fill={[[...ageColors]]}
             title={"Persons w/ at Least 1 Dose: by Age"}
             label={["People"]}
@@ -247,14 +247,14 @@ const Vaccinations = (props) => {
             <p className="chartNote">OC Population: {ocpop.toLocaleString()}</p>
           </Chart>
 
-          <ChartNonStacked
+           <Chart
             key="2"
             id="vaccine2"
-            labels={["Asian/PI", "Black", "Hispanic", "White", "Other"]}
-            data={[[asianPI65up, black65up, hispanic65up, white65up, otherRace65up],[asianPI65down,black65down,hispanic65down,white65down,otherRace65down]]}
-            fill={customRaceColors}
+            date={["Asian/PI", "Black", "Hispanic", "White", "Other"]}
+            data={[raceVaxArrayAll]}
+            fill={[[...raceColors]]}
             title={"Persons w/ at Least 1 Dose: by Race"}
-            label={["Over 65", "Under 65"]}
+            label={["People"]}
             switches={["horizontalBar", "bar", "doughnut"]}>
             <BuildTable
               colName={["Age", "Pop", "% of Pop", "% w/ at Least 1 Dose"]}
@@ -266,8 +266,8 @@ const Vaccinations = (props) => {
               <br></br> Note: Sum of % of pop != 100 because hispanic ethncity
               includes overlap of some races
             </p>
-          </ChartNonStacked>
-{/* 
+          </Chart>
+
           <ChartNonStacked
             key="vaccinebyraceagesplit"
             id="vaccineRaceAgeSplit"
@@ -285,7 +285,7 @@ const Vaccinations = (props) => {
             fill={customRaceColors}
             title={"Persons w/ at Least 1 Dose: by Race Split by Age Groups"}
             label={["Over 65", "Under 65"]}
-            switches={["horizontalBar", "bar","doughnut"]}></ChartNonStacked> */}
+            switches={["horizontalBar", "bar","doughnut"]}></ChartNonStacked>
 
           <Chart
             key="3"

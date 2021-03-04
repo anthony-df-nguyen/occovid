@@ -1216,6 +1216,14 @@ a.globButton,
     overflow-x   : scroll;
     margin-bottom: 10px;
 
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width   : none;
+
     table {
 
         td:first-child,
@@ -1656,4 +1664,21 @@ a.globButton,
         font-weight  : 300;
         margin-bottom: 2rem;
     }
+}
+
+#customRaceAgeLegend {
+    text-align: center;
+
+    p {
+        display    : inline-block;
+        color      : #999;
+        font-size  : 12px;
+        margin-left: 4px;
+    }
+}
+
+.customLegend {
+    padding  : 0 10px;
+    font-size: 10px;
+    color    : white;
 }
