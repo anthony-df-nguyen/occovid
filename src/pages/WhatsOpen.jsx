@@ -2,13 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { TimeContext } from "components/context/TimeContext";
 import color from "globalVars/Colors";
 import Timeselect from "components/Timeselect";
-import {
-  FetchCAMetrics,
-  lastCaseRate,
-  lastPositiveRate,
-  lastHealthEquity,
-  lastTestRate,
-} from "Datafetch/FetchCAMetrics";
+import { FetchCAMetrics, lastCaseRate, lastPositiveRate, lastHealthEquity, lastTestRate } from "Datafetch/FetchCAMetrics";
 import Chart from "components/Chart";
 import Widget from "components/Widget";
 import ReactSpeedometer from "react-d3-speedometer";
@@ -44,26 +38,10 @@ const WhatsOpen = (props) => {
       <FetchCAMetrics time={time} function={updateArray} />
       <Page title="CADPH Metrics">
         <div className="widgetGrid">
-          <Widget
-            title={"Daily Case Rate"}
-            stat={lastCaseRate}
-            color={color.yellow}
-          />
-          <Widget
-            title={"Test Positivity Rate"}
-            stat={lastPositiveRate + "%"}
-            color={color.red}
-          />
-          <Widget
-            title={"Health Equity Quartile %"}
-            stat={lastHealthEquity + "%"}
-            color={color.purple}
-          />
-          <Widget
-            title={"Tests per 100k"}
-            stat={lastTestRate}
-            color={color.blue}
-          />
+          <Widget title={"Daily Case Rate"} stat={lastCaseRate} color={color.yellow} />
+          <Widget title={"Test Positivity Rate"} stat={lastPositiveRate + "%"} color={color.red} />
+          <Widget title={"Health Equity Quartile %"} stat={lastHealthEquity + "%"} color={color.purple} />
+          <Widget title={"Tests per 100k"} stat={lastTestRate} color={color.blue} />
         </div>
         <div className="widgetGrid" style={{ marginTop: "-2rem" }}>
           <div className="gaugeContainer">
@@ -73,12 +51,7 @@ const WhatsOpen = (props) => {
               minValue={0}
               maxValue={maxCaseRate}
               segments={4}
-              segmentColors={[
-                color.gold,
-                color.orange,
-                color.red,
-                color.purple,
-              ]}
+              segmentColors={[color.gold, color.orange, color.red, color.purple]}
               customSegmentStops={[0, 1, 4, 7, maxCaseRate]}
               forceRender={true}
               needleColor={"#999"}
@@ -91,12 +64,7 @@ const WhatsOpen = (props) => {
               minValue={0}
               maxValue={maxPosRate}
               segments={4}
-              segmentColors={[
-                color.gold,
-                color.orange,
-                color.red,
-                color.purple,
-              ]}
+              segmentColors={[color.gold, color.orange, color.red, color.purple]}
               customSegmentStops={[0, 2, 5, 8, maxPosRate]}
               forceRender={true}
               needleColor={"#999"}
@@ -110,12 +78,7 @@ const WhatsOpen = (props) => {
               minValue={0}
               maxValue={maxEqRate}
               segments={4}
-              segmentColors={[
-                color.gold,
-                color.orange,
-                color.red,
-                color.purple,
-              ]}
+              segmentColors={[color.gold, color.orange, color.red, color.purple]}
               customSegmentStops={[0, 2.2, 5.3, 8, maxEqRate]}
               forceRender={true}
               needleColor={"#999"}
@@ -130,52 +93,48 @@ const WhatsOpen = (props) => {
             id="whatopen1"
             switches={["bar", "line"]}
             date={array.map((a) => a.date)}
-            data={[array.map((c) => c.dailyCaseRate)]}
-            fill={[color.red]}
-            title={"CADPH Daily Case Rate"}
-            label={["Case Rate"]}>
-            <p className="chartNote">Updated once a week</p>
+            data={[array.map((c) => c.dailyCaseRate), array.map((c) => c.average4CaseRate)]}
+            fill={[color.red, color.blue]}
+            title={"CADPH Daily Case Rate - Tuesdays"}
+            label={["Case Rate", "4 Week Avg"]}>
+            <p className="chartNote">Updated each Tuesday</p>
           </Chart>
           <Chart
             key="2"
             id="whatopen2"
             switches={["bar", "line"]}
             date={array.map((a) => a.date)}
-            data={[array.map((c) => c.positiveRate)]}
-            fill={[color.orange]}
-            title={"CADPH Positivity Rate"}
-            label={["Positivity Rate"]}>
-            <p className="chartNote">Updated once a week</p>
+            data={[array.map((c) => c.positiveRate),array.map(c => c.avg4WkPositiveRate)]}
+            fill={[color.orange,color.blue]}
+            title={"CADPH Positivity Rate - Tuesdays"}
+            label={["Positivity Rate","4 Week Avg"]}>
+            <p className="chartNote">Updated each Tuesday</p>
           </Chart>
           <Chart
             key="3"
             id="whatopen3"
             switches={["bar", "line"]}
             date={array.map((a) => a.date)}
-            data={[array.map((c) => c.healthEquity)]}
-            fill={[color.purple]}
-            title={"CADPH Health Equity "}
-            label={["Positivity Rate"]}>
-            <p className="chartNote">Updated once a week</p>
+            data={[array.map((c) => c.healthEquity),array.map((c) => c.avg4WkHealthEquity)]}
+            fill={[color.purple,color.blue]}
+            title={"CADPH Health Equity - Tuesdays "}
+            label={["Positivity Rate","4 Week Avg"]}>
+            <p className="chartNote">Updated each Tuesday</p>
           </Chart>
           <Chart
             key="4"
             id="whatopen4"
             switches={["bar", "line"]}
             date={array.map((a) => a.date)}
-            data={[array.map((c) => c.testsPer100k)]}
-            fill={[color.green]}
-            title={"CADPH Tests per 100k "}
-            label={["Tests"]}>
-            <p className="chartNote">Updated once a week</p>
+            data={[array.map((c) => c.testsPer100k),array.map((c) => c.avg4WkTestRate)]}
+            fill={[color.gold,color.blue]}
+            title={"CADPH Tests per 100k - Tuesdays"}
+            label={["Tests","4 Week Avg"]}>
+            <p className="chartNote">Updated each Tuesday</p>
           </Chart>
         </div>
         <br></br>
-        <BuildTable
-          colName={["Sector", "Status"]}
-          rows={tableArray.map((a) => a.name)}
-          columns={[tableArray.map((a) => a.desc)]}
-        />
+        <BuildTable colName={["Sector", "Status"]} rows={tableArray.map((a) => a.name)} columns={[tableArray.map((a) => a.desc)]} />
       </Page>
     </div>
   );
