@@ -2,7 +2,14 @@ import React, { useEffect, useState, useContext } from "react";
 import Page from "components/Page";
 import { MapContainer, TileLayer, Popup, GeoJSON } from "react-leaflet";
 import { zipVaxMap } from "globalVars/Sources";
-import { ContextColors, band1, band2, band3, band4, band5 } from "components/ContextColors";
+import {
+  ContextColors,
+  band1,
+  band2,
+  band3,
+  band4,
+  band5,
+} from "components/ContextColors";
 import PercentColors from "components/PercentColors";
 import ModeSelector from "components/ModeSelector";
 import { ThemeContext } from "components/context/ThemeContext";
@@ -11,27 +18,32 @@ import ExpandCollapse from "components/ExpandCollapse";
 const VaccinationMap = () => {
   const [theme, updateTheme] = useContext(ThemeContext);
   const [leaflet, updateleafLet] = useState();
+
+  //Set State for the Mode (Total vs % Vaccinated)
   const [modeDisplay, updateModeDisplay] = useState();
   const [mode, updateMode] = useState(() => {
     if (!localStorage.getItem("vaxmapLastMode")) {
-      updateModeDisplay("Total Vax Rate Age 65+");
+      updateModeDisplay("% Vaccinated");
       return "rate";
     } else {
       updateModeDisplay(localStorage.getItem("vaxmapLastModeText"));
       return localStorage.getItem("vaxmapLastMode");
     }
   });
+
+  //Set state for which age group All vs over 65 vs under 65
   const [ageDisplay, updateAgeDisplay] = useState();
   const [age, updateAge] = useState(() => {
     if (!localStorage.getItem("vaxMapLastAge")) {
-      updateAgeDisplay("All Ages");
-      return "all";
+      updateAgeDisplay("Over 65");
+      return "over65";
     } else {
       updateAgeDisplay(localStorage.getItem("vaxMapLastAgeText"));
       return localStorage.getItem("vaxMapLastAge");
     }
   });
 
+  //Set state for which race is being used all vs specific
   const [raceDisplay, updateRaceDisplay] = useState();
   const [race, updateRace] = useState(() => {
     if (!localStorage.getItem("vaxmapLastRace")) {
@@ -43,6 +55,7 @@ const VaccinationMap = () => {
     }
   });
 
+  //Set state for what the final querymode is. This is used to generate the legend range and figure out which vars to use later
   const createAgeRaceMode = () => {
     //All Ages
     if (age == "all") {
@@ -195,10 +208,8 @@ const VaccinationMap = () => {
       }
     }
   };
-
   const [queryMode, updateQueryMode] = useState(createAgeRaceMode);
 
-  console.log("THe querymode  is ", queryMode);
   //Set a starting state for theme or city/zip mode so later we only reload page if theme or city/zip mode changes
   const [startingTheme, updateStartingTheme] = useState(theme);
 
@@ -211,6 +222,8 @@ const VaccinationMap = () => {
   } else {
     tileURL = "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png";
   }
+
+  //Fetch and build the GEOJSON components
   async function getGEO() {
     await fetch(zipVaxMap)
       .then((a) => a.json())
@@ -230,10 +243,10 @@ const VaccinationMap = () => {
           });
         });
 
-        console.log('The minmax array is ',valueArray)
+        //console.log('The minmax array is ',valueArray)
         const maxValue = Math.max(...valueArray);
         const minValue = Math.min(...valueArray);
-        //console.log(`With a min of ${minValue} and a max of ${maxValue}`)
+        //console.log(`With a min of ${minValue} and a max of ${maxValue}`);
         if (mounted) {
           updateleafLet(() => {
             return (
@@ -245,10 +258,27 @@ const VaccinationMap = () => {
                 />
 
                 {geoArray.map((row, i) => {
-                  //Goes through array of data and returns the property of each zip
+                  //Goes through array of data and returns the property of each zip code
                   let a = row.properties;
                   const CityOrZipName = a.ZIP_NUM;
-                  let asianPop, asianVax, asianRate, blackPop, blackVax, blackRate, whitePop, whiteVax, whiteRate, hisPop, hisVax, hisRate, othPop, othVax, othRate, totalPop, totalVax, totalRate;
+                  let asianPop,
+                    asianVax,
+                    asianRate,
+                    blackPop,
+                    blackVax,
+                    blackRate,
+                    whitePop,
+                    whiteVax,
+                    whiteRate,
+                    hisPop,
+                    hisVax,
+                    hisRate,
+                    othPop,
+                    othVax,
+                    othRate,
+                    totalPop,
+                    totalVax,
+                    totalRate;
 
                   //All Ages
                   if (age === "all") {
@@ -272,7 +302,7 @@ const VaccinationMap = () => {
                     totalVax = a.nv_Tot;
                   }
                   //Ages < 65
-                  if (age == "under65") {
+                  if (age === "under65") {
                     blackPop = a.Black_bel65Pop;
                     hisPop = a.Hisp_bel65Pop;
                     whitePop = a.White_bel65Pop;
@@ -294,7 +324,7 @@ const VaccinationMap = () => {
                   }
 
                   //Ages 65+ Only
-                  if (age == "over65") {
+                  if (age === "over65") {
                     blackPop = a.Black_65upPop;
                     hisPop = a.Hisp_65upPop;
                     whitePop = a.White_65upPop;
@@ -315,54 +345,68 @@ const VaccinationMap = () => {
                     totalVax = a.nv_Tot65up;
                   }
 
-                  //Figure out which metric is being used to generate a color for the legend
-                  // const checkColorSwitch = () => {
-                  //   switch (queryMode) {
-                  //     case "Total_65upVRate":
-                  //       return Total_65upVRate;
-                  //       break;
-                  //     case "AsiPI_65upVRate":
-                  //       return AsiPI_65upVRate;
-                  //       break;
-                  //     case "Black_65upVRate":
-                  //       return Black_65upVRate;
-                  //       break;
-                  //     case "Hisp_65upVRate":
-                  //       return Hisp_65upVRate;
-                  //       break;
-                  //     case "White_65upVRate":
-                  //       return White_65upVRate;
-                  //       break;
-                  //     case "Oth_65upVRate":
-                  //       return Oth_65upVRate;
-                  //       break;
-                  //     case "nv_Tot65up":
-                  //       return nv_Tot65up;
-                  //       break;
-                  //     case "nv_AsiPI65up":
-                  //       return nv_AsiPI65up;
-                  //       break;
-                  //     case "nv_Black65up":
-                  //       return nv_Black65up;
-                  //       break;
-                  //     case "nv_Hisp65up":
-                  //       return nv_Hisp65up;
-                  //       break;
-                  //     case "nv_White65up":
-                  //       return nv_White65up;
-                  //       break;
-                  //     case "nv_Oth65up":
-                  //       return nv_Oth65up;
-                  //       break;
-                  //     default:
-                  //       return Total_65upVRate;
-                  //       break;
-                  //   }
-                  // };
-                  let checkColor = queryMode;
+                  //Figure out which var to pass to the color legend component
+                  const checkColorSwitch = () => {
+                    if (mode == "total") {
+                      switch (race) {
+                        case "all":
+                          return totalVax;
+                          break;
+                        case "asian":
+                          return asianVax;
+                          break;
+                        case "black":
+                          return blackVax;
+                          break;
+                        case "hispanic":
+                          return hisVax;
+                          break;
+                        case "white":
+                          return whiteVax;
+                          break;
+                        case "other":
+                          return othVax;
+                          break;
+                        default:
+                          return totalVax;
+                          break;
+                      }
+                    } else if (mode == "rate") {
+                      switch (race) {
+                        case "all":
+                          return totalRate;
+                          break;
+                        case "asian":
+                          return asianRate;
+                          break;
+                        case "black":
+                          return blackRate;
+                          break;
+                        case "hispanic":
+                          return hisRate;
+                          break;
+                        case "white":
+                          return whiteRate;
+                          break;
+                        case "other":
+                          return othRate;
+                          break;
+                        default:
+                          return totalRate;
+                          break;
+                      }
+                    }
+                  };
+                  let checkColor = checkColorSwitch();
+
                   let color;
                   if (mode == "total") {
-                    color = ContextColors(checkColor, "highisgood", maxValue, minValue);
+                    color = ContextColors(
+                      checkColor,
+                      "highisgood",
+                      maxValue,
+                      minValue
+                    );
                   } else if (mode == "rate") {
                     color = PercentColors(checkColor, "highisgood");
                   }
@@ -389,41 +433,62 @@ const VaccinationMap = () => {
                           {parseInt(totalVax).toLocaleString()}
                           <br></br>
                           <div className="metricName">Vaccination Rate: </div>
-                          {parseFloat(totalVax).toFixed(1)}%
+                          {parseFloat(totalRate).toFixed(1)}%
                         </div>
                         <div id="mapVaxRaceGrid">
                           <div>
                             <div className="metricName">Asian/PI</div>
-                            <div>Pop: {parseInt(asianPop).toLocaleString()}</div>
-                            <div> Vaccinated: {parseInt(asianVax).toLocaleString()}</div>
+                            <div>
+                              Pop: {parseInt(asianPop).toLocaleString()}
+                            </div>
+                            <div>
+                              {" "}
+                              Vaccinated: {parseInt(asianVax).toLocaleString()}
+                            </div>
                             <div>Rate: {parseFloat(asianRate).toFixed(1)}%</div>
                           </div>
 
                           <div>
                             <div className="metricName">Black</div>
-                            <div>Pop: {parseInt(blackPop).toLocaleString()}</div>
-                            <div> Vaccinated: {parseInt(blackVax).toLocaleString()}</div>
+                            <div>
+                              Pop: {parseInt(blackPop).toLocaleString()}
+                            </div>
+                            <div>
+                              {" "}
+                              Vaccinated: {parseInt(blackVax).toLocaleString()}
+                            </div>
                             <div>Rate: {parseFloat(blackRate).toFixed(1)}%</div>
                           </div>
 
                           <div>
                             <div className="metricName">Hispanic</div>
                             <div>Pop: {parseInt(hisPop).toLocaleString()}</div>
-                            <div> Vaccinated: {parseInt(hisVax).toLocaleString()}</div>
+                            <div>
+                              {" "}
+                              Vaccinated: {parseInt(hisVax).toLocaleString()}
+                            </div>
                             <div>Rate: {parseFloat(hisRate).toFixed(1)}%</div>
                           </div>
 
                           <div>
                             <div className="metricName">White</div>
-                            <div>Pop: {parseInt(whitePop).toLocaleString()}</div>
-                            <div> Vaccinated: {parseInt(whiteVax).toLocaleString()}</div>
+                            <div>
+                              Pop: {parseInt(whitePop).toLocaleString()}
+                            </div>
+                            <div>
+                              {" "}
+                              Vaccinated: {parseInt(whiteVax).toLocaleString()}
+                            </div>
                             <div>Rate: {parseFloat(whiteRate).toFixed(1)}%</div>
                           </div>
 
                           <div>
                             <div className="metricName">Other</div>
                             <div>Pop: {parseInt(othPop).toLocaleString()}</div>
-                            <div> Vaccinated: {parseInt(othVax).toLocaleString()}</div>
+                            <div>
+                              {" "}
+                              Vaccinated: {parseInt(othVax).toLocaleString()}
+                            </div>
                             <div>Rate: {parseFloat(othRate).toFixed(1)}%</div>
                           </div>
                         </div>
@@ -505,29 +570,19 @@ const VaccinationMap = () => {
   return (
     <div>
       <Page title="Vaccination Map">
+
+      <div  className="chartTitle">
+            <div id='mapModeDisplayContainer'>
+            
+            <div className="mapModeDisplay"><b>Mode:</b> {modeDisplay}</div>
+          <div className="mapModeDisplay"><b>Race:</b> {raceDisplay}   </div>
+          <div className="mapModeDisplay"><b>Ages:</b> {ageDisplay}</div>
+            </div>
+            
+        </div>
         <ExpandCollapse title="Change Map Mode" buttontext="Close">
-          <ModeSelector
-            text="Age Group"
-            function={[updateAge, updateAgeDisplay]}
-            current={age}
-            options={[
-              {
-                display: "All Ages",
-                value: "all",
-              },
-              {
-                display: "Over 65",
-                value: "over65",
-              },
-              {
-                display: "Under 65",
-                value: "under65",
-              },
-            ]}
-            storageKey={["vaxMapLastAge", "vaxMapLastAgeText"]}
-          />
-          <ModeSelector
-            text="Select Race/Ethnicity"
+        <ModeSelector
+            text="Color the map using data for which race?"
             function={[updateRace, updateRaceDisplay]}
             current={race}
             options={[
@@ -559,7 +614,28 @@ const VaccinationMap = () => {
             storageKey={["vaxmapLastRace", "vaxmapLastRaceText"]}
           />
           <ModeSelector
-            text="Select Metric"
+            text="By age group"
+            function={[updateAge, updateAgeDisplay]}
+            current={age}
+            options={[
+              {
+                display: "All Ages",
+                value: "all",
+              },
+              {
+                display: "Ages >= 65",
+                value: "over65",
+              },
+              {
+                display: "Ages < 65",
+                value: "under65",
+              },
+            ]}
+            storageKey={["vaxMapLastAge", "vaxMapLastAgeText"]}
+          />
+
+          <ModeSelector
+            text="Choose a mode"
             function={[updateMode, updateModeDisplay]}
             current={mode}
             options={[
@@ -576,14 +652,10 @@ const VaccinationMap = () => {
           />
         </ExpandCollapse>
 
-        <div style={{ marginTop: "1rem" }} className="chartTitle">
-          Ages: {ageDisplay} &nbsp;&nbsp;&nbsp; |&nbsp;&nbsp; &nbsp;Race/Eth: {raceDisplay} &nbsp;&nbsp;&nbsp; |&nbsp;&nbsp; &nbsp;Mode: {modeDisplay}
-        </div>
+
         {switchLegend()}
 
         <div id="mapid">{leaflet}</div>
-        <br></br>
-        <p style={{ textAlign: "center" }}>Only data for ages 65+ is currently available. Data for those under &lt; 65 and totals expected to be available soon</p>
       </Page>
     </div>
   );

@@ -3,7 +3,7 @@
   margin: 0;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: 400;
 }
 * a {
@@ -908,7 +908,7 @@ a.globButton:hover,
 .forceTableSep {
   color: var(--primary-text);
   font-weight: bold;
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
 }
 .standardButton {
   background-color: var(--darkblue);
@@ -1049,7 +1049,7 @@ a.globButton:hover,
   margin-top: 5px;
   color: var(--primary-text);
 }
-.expander #countySelect ul li input[type=checkbox] {
+.expander #countySelect ul li input[type="checkbox"] {
   display: block;
   float: left;
   margin-right: 10px;
@@ -1212,6 +1212,21 @@ a.globButton:hover,
   grid-template-rows: auto;
   grid-gap: 10px;
 }
+#mapModeDisplayContainer {
+  text-align: center;
+  margin-top: 10px;
+}
+#mapModeDisplayContainer .mapModeDisplay {
+  display: inline-block;
+  padding: 5px;
+  margin: 0;
+  color: var(--blue);
+  font-weight: 400;
+}
+#mapModeDisplayContainer .mapModeDisplay b {
+  color: var(--primary-text);
+  font-weight: 300;
+}
 .svgExpander {
   fill: var(--primary-text);
   margin-bottom: -6px;
@@ -1252,11 +1267,13 @@ a.globButton:hover,
   transform: translate(-50%, -50%);
 }
 #updateGrid .expander {
+  -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 #updateGrid .expanderTitle {
   color: var(--staywhite);
   font-size: 1rem;
+  -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 @media only screen and (min-width:1366px) {
@@ -1349,6 +1366,7 @@ a.globButton:hover,
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.3);
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   width: 100vw;
   height: 100vh;
@@ -1362,6 +1380,7 @@ a.globButton:hover,
 }
 #fullPageCard #card {
   border-radius: 5px;
+  -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
   position: relative !important;
   position: absolute;
@@ -1402,8 +1421,14 @@ a.globButton:hover,
   font-weight: 300;
 }
 #fullPageCard #card #fullCardFlex {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
   flex-direction: row;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   margin: -10px 0 0 -10px;
 }
@@ -1418,6 +1443,8 @@ a.globButton:hover,
 #fullPageCard #card #fullCardFlex > div {
   border-radius: 5px;
   background-color: var(--gray);
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
   flex-grow: 1;
   margin: 10px 0 0 10px;
   padding: 0 10px;
