@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
-
+import filtertime from 'components/Timefilter.js'
+import moment from 'moment'
 let thisDataArray = [];
 let schoolDataTable;
 const FetchSchool = (props) => {
@@ -17,9 +18,10 @@ const FetchSchool = (props) => {
                         .then(() => {
                             schoolDataTable.forEach((a) => {
                                 let splita = a.split(",");
+                                let parseDate =new Date(splita[0]);
                                 if (splita[0]) {
                                     thisDataArray.push({
-                                        week: splita[0],
+                                        date: parseDate,
                                         student: splita[1],
                                         teacher: splita[2],
                                         otherstaff: splita[3],
@@ -33,10 +35,11 @@ const FetchSchool = (props) => {
                                 }
                             });
                         })
-                        .then(() => {
+                        .then(()=> filtertime(thisDataArray,props.time))
+                        .then((final) => {
                             if (mounted) {
 
-                                props.function[0](thisDataArray);
+                                props.function[0](final);
                             }
                         })
                 }

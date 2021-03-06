@@ -13,11 +13,12 @@ import Page from 'components/Page'
 const Schools = props => {
   const [ time, setTime ] = useContext(TimeContext)
   const [array, updateArray] = useState([])
+  //console.log("🚀 ~ file: Schools.jsx ~ line 16 ~ array", array)
   const [lastDate,updateDate] = useState()
 
 
   const stackedSchoolIndividuals = {
-    labels: array.map(a => a.week),
+    labels: array.map(a => moment(a.date).format('l')),
     datasets: [
       {
         type: 'bar',
@@ -49,7 +50,7 @@ const Schools = props => {
     ]
   }
   const stackedSchoolSchoolType = {
-    labels: array.map(a => a.week),
+    labels: array.map(a => moment(a.date).format('l')),
     datasets: [
       {
         type: 'bar',
@@ -116,12 +117,9 @@ const Schools = props => {
   
   useEffect(() => {
     if (array.length > 1) {
-      let lastArray = array.slice(-1);
-      let lastWeek = lastArray[0].week.slice(-5);
-      let thisYear = '/' + moment(new Date()).format('yyyy')
-      let dateString = lastWeek + thisYear;
-      let parseDate = moment(new Date(dateString)).format('l')
-      updateDate(parseDate)
+      let lastDate = moment(array[array.length - 1].date).format("L")
+      let displayString = `Recent up to week of ${lastDate}`
+      updateDate(displayString)
     }
   },[array])
 
@@ -130,9 +128,9 @@ const Schools = props => {
       <FetchSchool function={[updateArray,updateDate]} time={time} />
       <Page title='School Cases'>
           <div id="lastUpdateDate">
-            <p>Last Updated {  lastDate }</p>
+            <p>{  lastDate }</p>
         </div>
-        
+        <Timeselect />
         <div id='chartGridMax2'>
           <Chart
             key='1'
@@ -140,7 +138,7 @@ const Schools = props => {
             date={['Student', 'Teacher', 'Other Staff']}
             data={[indArray]}
             fill={[[color.green, color.blue, color.purple]]}
-            title={'Total Cases by Individual'}
+            title={'Total Cases by Individual: '}
             label={['Cases']}
             switches={['horizontalBar', 'bar', 'doughnut']}
           />
@@ -156,7 +154,8 @@ const Schools = props => {
           />
           {/* Manual Creation of Special Chart Types */}
           <div className='chartContainer'>
-            <div className='chartTitle'>Cases by Individual Type</div>
+            <div className='chartTitle'>Cases by Individual Type by Week</div>
+            <p className="weekStartingMsg">Dates on x-axis represent 'Week Starting On'</p>
             <Bar
               key='3'
               data={stackedSchoolIndividuals}
@@ -164,7 +163,8 @@ const Schools = props => {
             />
           </div>
           <div className='chartContainer'>
-            <div className='chartTitle'>Cases by School Type</div>
+            <div className='chartTitle'>Cases by School Type by Week</div>
+            <p className="weekStartingMsg">Dates on x-axis represent 'Week Starting On'</p>
             <Bar
               key='4'
               data={stackedSchoolSchoolType}

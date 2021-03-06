@@ -1,6 +1,7 @@
 import moment from 'moment'
 
 function filtertime (array, timeSetting) {
+  //console.log("🚀 ~ file: Timefilter.js ~ line 4 ~ filtertime ~ array", array)
   let fullArray = array
   if (timeSetting === 'All Time') {
     return fullArray
