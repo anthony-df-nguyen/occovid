@@ -104,7 +104,7 @@ const Reportbug = (props) => {
         <ExpandCollapse nogear={true} title="Completed" bg="bluebg" buttontext="Close">
           <div className="updateFlex" id="completedList">
             {array.map((row, i) => {
-              if (row.status === "Completed") {
+              if (row.status === "Recently Completed") {
                 let convertDate = row.completed.slice(0, -1) + "-08:00";
                 return (
                   <div className="card" key={i} value={row._id} onClick={toggleOpen}>
