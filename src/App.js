@@ -27,7 +27,7 @@ import {
   NoPage,
   Donate,
   Compare,
-  Sources,
+  Sources,Query
 } from "pages/Master";
 
 function App() {
@@ -62,6 +62,7 @@ function App() {
                 <Route path="/reportbugs" component={Reportbug} />
                 <Route path="/sourcesfaq" component={Sources} />
                 <Route path="/donate" component={Donate} />
+                <Route path="/query" component={Query} />
 
                 <Route component={NoPage} />
               </Switch>

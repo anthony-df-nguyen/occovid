@@ -18,9 +18,9 @@ import Reportbug from 'pages/Reportbug'
 import Sources from 'pages/Sources'
 import Donate from 'pages/Donate'
 import NoPage from 'pages/NoPage'
+import Query from 'pages/Query'
 
 
 
 
-
-export { Home, Cases, Deaths, Hospitalization, Vaccinations, VaccinationMap, Testing, Schools, Age, Race, Gender, Maps,CityZip,WhatsOpen, NoPage, Donate, Cityhistory, Reportbug, Compare,Sources}
+export { Home, Cases, Deaths, Hospitalization, Vaccinations, VaccinationMap, Testing, Schools, Age, Race, Gender, Maps,CityZip,WhatsOpen, NoPage, Donate, Cityhistory, Reportbug, Compare,Sources,Query}
