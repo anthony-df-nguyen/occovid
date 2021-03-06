@@ -54,7 +54,7 @@ const Reportbug = (props) => {
     if (mounted) {
       const getUpdates = async () => {
         //const testurl = "http://localhost:5100/api/gettasks/public"
-        const realurl = "https://occovidtaskmongo.vercel.app/api/gettasks/public"
+        const realurl = "https://occovidtaskmongo.vercel.app/api/gettasks/"
         await fetch(realurl)
           .then((a) => a.json())
           .then((b) => {
