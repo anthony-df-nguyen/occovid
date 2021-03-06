@@ -53,7 +53,9 @@ const Reportbug = (props) => {
 
     if (mounted) {
       const getUpdates = async () => {
-        await fetch("https://occovidtaskmongo.vercel.app/api/gettasks")
+        //const testurl = "http://localhost:5100/api/gettasks/public"
+        const realurl = "https://occovidtaskmongo.vercel.app/api/gettasks/public"
+        await fetch(realurl)
           .then((a) => a.json())
           .then((b) => {
             let publicArray = b.filter((b) => !b.hidden && b);
