@@ -101,10 +101,10 @@ const Reportbug = (props) => {
       </div>
       <div style={{ textAlign: "center", marginBottom: "1rem", fontWeight: 300 }}>Click a card in any category to view more detail</div>
       <div id="updateGrid" style={{ visibility: showUpdates }}>
-        <ExpandCollapse nogear={true} title="Completed" bg="bluebg" buttontext="Close">
+        <ExpandCollapse nogear={true} title="Recently Completed" bg="bluebg" buttontext="Close">
           <div className="updateFlex" id="completedList">
             {array.map((row, i) => {
-              if (row.status === "Recently Completed") {
+              if (row.status === "Completed") {
                 let convertDate = row.completed.slice(0, -1) + "-08:00";
                 return (
                   <div className="card" key={i} value={row._id} onClick={toggleOpen}>
