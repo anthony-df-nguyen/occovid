@@ -11,7 +11,7 @@ import Page from "components/Page";
 
 const Cases = (props) => {
   const [time, setTime] = useContext(TimeContext);
-  console.log("file: Cases.jsx ~ line 22 ~ Cases ~ time", time);
+  //console.log("file: Cases.jsx ~ line 22 ~ Cases ~ time", time);
   const [array, updateArray] = useState([]);
 
   return (

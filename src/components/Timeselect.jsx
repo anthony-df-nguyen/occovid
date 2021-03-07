@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import {TimeContext}  from 'components/context/TimeContext'
 import moment from 'moment'
 
@@ -8,18 +8,23 @@ function setStorage(value) {
 
 const Timeselect = props => {
   const [ time, setTime ] = useContext(TimeContext)
-  //console.log("file: Timeselect.jsx ~ line 11 ~ time", time)
 
-  const [valueForNoneOption, updateNoneValue] = useState(time)
+
+  //This changes the month selector to the 'Top Option' when changing the time to a days amount
+  useEffect(()=> {
+    if (!isNaN(time) || time === 'All Time') {
+      let selector = document.querySelector('select option')
+      selector.removeAttribute("selected","");
+      selector.setAttribute("selected","");
+    }
+  },[time])
 
   function updateAllTime(x) {
     setStorage(x)
     setTime(x)
-    updateNoneValue(x)
   }
 
   function monthSwitch(e) {
-    //console.log(e.target)
     let value = e.target.value
     updateAllTime(value)
   }
@@ -57,9 +62,6 @@ const Timeselect = props => {
 
     //Create React partials for Each Month
     let optionJSX = [
-      // <option key={ 0 } value={ valueForNoneOption }>
-      //   No Month Isolated
-      // </option>
       <option key={ 0 } value={'All Time'}>
         No Month Isolated
       </option>
@@ -68,8 +70,10 @@ const Timeselect = props => {
     for (let i = 0; i < theMonthArray.length; i++) {
       if (new Date(theMonthArray[i].value) == time) {
         let adasd = new Date(theMonthArray[i].value);
+
+        
         optionJSX.push(
-          <option key={ i + 1 } value={ time } selected >
+          <option key={ i + 1 } value={ time }  >
             { theMonthArray[i].display }
           </option>
         )
@@ -84,7 +88,7 @@ const Timeselect = props => {
     }
 
     return (
-      <select onChange={ monthSwitch } >
+      <select defaultValue={time} onChange={ monthSwitch } >
         {optionJSX }
       </select>
     )
@@ -92,7 +96,7 @@ const Timeselect = props => {
 
   return (
     <div>
-      <div className='uiButtonInstruction'>Isolate Time Periods</div>
+      <div className='uiButtonInstruction'>Isolate a Time Period or Month</div>
       <div className='uiParent'>
         <div className='uiButtonContainer'>
           <a
