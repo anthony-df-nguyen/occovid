@@ -263,12 +263,14 @@ body.dark {
   color: white;
   font-weight: 500;
   font-size: 2rem;
+  position: relative;
   position: absolute;
   left: 50%;
   top: 50%;
   -webkit-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+  margin-top: -2px;
 }
 @media only screen and (min-width:1366px) {
   .header .siteName {
@@ -278,7 +280,7 @@ body.dark {
     -ms-transform: translate(0, 0);
     transform: translate(0, 0);
     left: 1rem;
-    top: -3px;
+    top: -4px;
   }
 }
 @media only screen and (min-width:1366px) {
