@@ -41,22 +41,41 @@
   }
 }
 
-.selectStyling {
-  width: 100%;
-  max-width: -webkit-fit-content;
-  max-width: -moz-fit-content;
-  max-width: fit-content;
-  border: 1px solid var(--select-border);
-  border-radius: @radius;
-  padding: 0.25em 0.5em;
-  cursor: pointer;
-  color: var(--primary-text);
-  line-height: 0;
-  background-color: var(--white);
-}
-
 select {
-  .selectStyling;
+  .select-css;
+  padding-right:2rem;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"),
+    -o-linear-gradient(top, var(--white) 0%, var(--gray) 100%);
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"),
+    -o-linear-gradient(top,  var(--white) 0%, var(--gray) 100%);
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"),
+    -webkit-gradient(linear,  left top, left bottom,  from(var(--white)), to(var(--gray)));
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"),
+    linear-gradient(to bottom,  var(--white) 0%, var(--gray) 100%);
+  background-repeat: no-repeat, repeat;
+  /* arrow icon position (1em from the right, 50% vertical) , then gradient position*/
+  background-position: right @gap top 50%, 0 0;
+  /* icon size, then gradient */
+  background-size: .75rem auto, 100%;
+  /* Hide arrow icon in IE browsers */
+  &::-ms-expand {
+    display: none;
+  }
+  /* Hover style */
+  &:hover {
+    border-color: var(--blue);
+    cursor: pointer;
+  }
+  /* Focus style */
+  &:focus {
+    border-color: none;
+    /* It'd be nice to use -webkit-focus-ring-color here but it doesn't work on box-shadow */
+    -webkit-box-shadow: 0 0 1px 3px var(--blue);
+    box-shadow: 0 0 1px 3px var(--blue);
+    box-shadow: 0 0 0 3px -moz-mac-focusring;
+    color: var(--primary-text);
+    outline: none;
+  }
 }
 
 body {
@@ -85,7 +104,31 @@ body {
   --tablehead: var(--blue);
   --borderOnHover: 2px solid var(--blue);
 }
-
+.select-css {
+  display: block;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--primary-text);
+  line-height: 1;
+  padding: @buttonpad;
+  width: 100%;
+  max-width: -webkit-max-content;
+  max-width: -moz-max-content;
+  max-width: max-content;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  border: none;
+  -webkit-box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
+  border-radius: @radius;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  @media @wide {
+    font-size: 1rem;
+  }
+}
 .orange {
   color: var(--orange);
 }
@@ -320,8 +363,7 @@ body.dark {
     font-size: 2rem;
     position: relative;
     .center;
-    margin-top:-2px;
-
+    margin-top: -2px;
 
     @media @wide {
       text-align: left;
@@ -693,9 +735,9 @@ body.dark {
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
 
-    a,
-    select {
-      margin: @gap 0 0 @gap;
+    a {
+      .select-css;
+      //margin: 0 @gap;
       -webkit-box-flex: 1;
       -ms-flex-positive: 1;
       flex-grow: 1;
@@ -703,9 +745,10 @@ body.dark {
       font-weight: 300;
       text-align: center;
       background-color: var(--white);
-      padding: @buttonpad;
-      border-radius: 10px;
+      // padding: @buttonpad;
+      border-radius: @radius;
       color: var(--primary-text);
+      border: none;
 
       &:hover {
         cursor: pointer;
@@ -716,6 +759,13 @@ body.dark {
         font-size: 1rem;
       }
     }
+    a,
+    select {
+      margin: @gap 0 0 @gap;
+    }
+    // select {
+    //   .select-css;
+    // }
 
     @media @wide {
       -webkit-box-pack: center;
@@ -1094,9 +1144,9 @@ a.globButton,
   }
 
   select {
-    background-color: var(--gray);
+    .select-css;
     display: block;
-    margin: 1rem auto;
+    margin: 0 auto;
   }
 
   .modeSelector {
@@ -1370,8 +1420,8 @@ a.globButton,
 }
 //For vax map
 #mapModeDisplayContainer {
-    text-align: center;
-    margin-top:@gap;
+  text-align: center;
+  margin-top: @gap;
   .mapModeDisplay {
     display: inline-block;
     padding: 5px;
@@ -1379,8 +1429,8 @@ a.globButton,
     color: var(--blue);
     font-weight: 400;
     b {
-        color: var(--primary-text);
-        font-weight: 300;
+      color: var(--primary-text);
+      font-weight: 300;
     }
   }
 }
