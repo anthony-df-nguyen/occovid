@@ -21,11 +21,11 @@ const FetchCityData = props => {
                 if (row.City) {
                   unifiedArray.push({
                     city: row.City,
-                    caseRate: row.CaseRate ? row.CaseRate.toFixed(1) : 0,
-                    deathRate: row.DeathRate ? row.DeathRate.toFixed(1) : 0,
+                    caseRate: row.CaseRate ? row.CaseRate.toFixed(1) : 'N/A',
+                    deathRate: row.DeathRate ? row.DeathRate.toFixed(1) : 'N/A',
                     totalCases: row.Tot_Cases,
                     totalDeaths: row.Tot_Deaths,
-                    population: row.Total_Pop,
+                    population: row.Total_Pop ? row.Total_Pop : "N/A",
                     snfCases: row.SNFCase,
                     snfDeaths: row.SNFDth,
                     Cases_0_3: row.Cases_0_3,
