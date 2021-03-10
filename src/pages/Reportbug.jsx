@@ -137,7 +137,7 @@ const Reportbug = (props) => {
         <ExpandCollapse bg="purplebg" nogear={true} title="To-Do or Ideas" buttontext="Close">
           <div className="updateFlex">
             {array.map((row, i) => {
-              if (row.status === "Not Started" && row.type !== "Bug") {
+              if (row.status === "Not Started" && row.type !== "Bug" && row.type !== "Suggestion") {
                 return (
                   <div key={i} className="card" value={row._id} onClick={toggleOpen}>
                     <div className="title">{row.title}</div>
@@ -159,6 +159,23 @@ const Reportbug = (props) => {
                     <div className="title">{row.title}</div>
                     <div className="bottom">
                       <div className="type">{row.priority} Priority</div>
+                    </div>
+                  </div>
+                );
+              }
+            })}
+          </div>
+        </ExpandCollapse>
+         <ExpandCollapse bg="graybluebg" nogear={true} title="Responding to Suggestions" buttontext="Close">
+          <div className="updateFlex">
+                {array.map((row, i) => {
+              if (row.type === "Suggestion") {
+                let convertDate = row.completed.slice(0, -1) + "-08:00";
+                return (
+                  <div className="card" key={i} value={row._id} onClick={toggleOpen}>
+                    <div className="title">{row.title}</div>
+                    <div className="bottom">
+                      <div className="type"> Received {moment(new Date(convertDate)).calendar()}</div>
                     </div>
                   </div>
                 );

@@ -175,6 +175,9 @@ body {
 .purplebg {
   background-color: var(--lightpurple);
 }
+.graybluebg {
+  background-color: var(--grayblue);
+}
 
 body.dark {
   --primary-text: rgba(255, 255, 255, 0.7);
@@ -1487,7 +1490,7 @@ a.globButton,
 
   @media @wide {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     grid-template-rows: auto;
     grid-gap: @gap;
 
@@ -1533,7 +1536,7 @@ a.globButton,
       background-color: var(--gray);
       margin-bottom: @gap;
       margin-top: @gap;
-      max-height: 6rem;
+      //max-height: 6rem;
       overflow-y: hidden;
       width: 100%;
       -webkit-transition: max-height 0.2s ease-in-out;
@@ -1640,6 +1643,7 @@ a.globButton,
       min-height: 8rem;
       max-height: 8rem;
       overflow-y: scroll;
+      overflow-wrap: break-word;
       margin-bottom: 1rem;
       font-weight: 300;
     }
