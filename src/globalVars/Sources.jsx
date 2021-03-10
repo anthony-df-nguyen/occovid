@@ -13,8 +13,6 @@ let todaysyear = 2021;
 //   todaysyear
 // );
 
-const tier = 4;
-
 // Cumulative Total, SCF, Jail, Homeless Cases, Deaths by Reported and Specimen Collection
 const CasesURL =
   "https://services2.arcgis.com/LORzk2hk9xzHouw9/ArcGIS/rest/services/occovid_case_csv/FeatureServer/0//query?where=Date%3Etimestamp+%273%2F3%2F2020%27+AND+Date%3Ctimestamp+%27" +
@@ -159,7 +157,6 @@ export {
   ZipDataWithGeo,
   ZipData,
   lastUpdate,
-    tier,
     dailyDoses,
   zipVaxMap
 };

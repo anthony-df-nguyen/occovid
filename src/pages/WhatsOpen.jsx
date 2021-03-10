@@ -7,7 +7,7 @@ import Chart from "components/Chart";
 import Widget from "components/Widget";
 import ReactSpeedometer from "react-d3-speedometer";
 import FetchWhatsOpenJson from "Datafetch/FetchWhatsOpenJson";
-import { tier } from "globalVars/Sources";
+import FetchCountyTier from "Datafetch/FetchCountyTier"
 import BuildTable from "components/BuildTable";
 import Page from "components/Page";
 
@@ -18,6 +18,7 @@ const WhatsOpen = (props) => {
   const [maxCaseRate, updateCaseMax] = useState(10);
   const [maxPosRate, updatePosMax] = useState(10);
   const [maxEqRate, updateEqMax] = useState(10);
+  const [tier,updateTier] = useState();
 
   useEffect(() => {
     let a = lastCaseRate > 10 ? lastCaseRate + 2 : 10;
@@ -34,6 +35,7 @@ const WhatsOpen = (props) => {
 
   return (
     <div>
+      <FetchCountyTier function={updateTier} />
       <FetchWhatsOpenJson function={updateTableArray} tier={tier} />
       <FetchCAMetrics time={time} function={updateArray} />
       <Page title="CADPH Metrics">
