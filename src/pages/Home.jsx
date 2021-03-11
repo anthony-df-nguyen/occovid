@@ -4,7 +4,7 @@ import color from "globalVars/Colors";
 import { TimeContext } from "components/context/TimeContext";
 import Widget from "components/Widget";
 import { ocpop } from "globalVars/populations";
-import FetchCountyTier from 'Datafetch/FetchCountyTier';
+import FetchCountyTier from "Datafetch/FetchCountyTier";
 import {
   FetchCases,
   lastTotalCases,
@@ -57,7 +57,7 @@ const Home = (props) => {
   const [maxPosRate, updatePosMax] = useState(10);
   const [maxEqRate, updateEqMax] = useState(10);
   const [tier, updateTier] = useState();
-  const [tierColor, updatetTierColor] = useState()
+  const [tierColor, updatetTierColor] = useState();
 
   useEffect(() => {
     let a = lastCaseRate > 10 ? lastCaseRate + 2 : 10;
@@ -73,37 +73,37 @@ const Home = (props) => {
   }, []);
   const getTierText = () => {
     switch (tier) {
-      case '4':
-        return 'Widespread (Tier 1)';
-      case '3':
-        return 'Substantial (Tier 2)';
-      case '2':
-        return 'Moderate (Tier 3)';
-      case '1':
-        return 'Minimal (Tier 4)';
+      case "4":
+        return "Widespread (Tier 1)";
+      case "3":
+        return "Substantial (Tier 2)";
+      case "2":
+        return "Moderate (Tier 3)";
+      case "1":
+        return "Minimal (Tier 4)";
       default:
         return "Fetching tier...";
     }
-  }
+  };
   useEffect(() => {
     switch (tier) {
-      case '4':
+      case "4":
         updatetTierColor(color.purple);
         break;
-      case '3':
+      case "3":
         updatetTierColor(color.red);
         break;
-      case '2':
+      case "2":
         updatetTierColor(color.orange);
         break;
-      case '1':
+      case "1":
         updatetTierColor(color.yellow);
         break;
       default:
         updatetTierColor(color.white);
         break;
     }
-  }, [tier])
+  }, [tier]);
 
   const totalPPL = parseInt(totalPeople);
   const totallPPLPerc = parseFloat((totalPPL / ocpop) * 100).toFixed(1);
@@ -116,7 +116,7 @@ const Home = (props) => {
         <FetchDeaths function={update2Array} time={time} />
         <FetchHosTriggers function={update3Array} time={time} />
         <FetchHospitals function={update4Array} time={time} />
-        <FetchVaccines function={[update5Array, () => { }]} time={time} />
+        <FetchVaccines function={[update5Array, () => {}]} time={time} />
         <FetchTesting function={update6Array} time={time} />
         <FetchCountyTier function={updateTier} />
         <FetchCAMetrics time={time} function={update7Array} />
@@ -261,13 +261,13 @@ const Home = (props) => {
               </div>
             </div>
           </Link>
-          <Link to="/whatsopen">
-            {/* <div id="homeGauges"> */}
+      
+            <Link to="/whatsopen">
               <div className="innerDiv">
                 <div className="widgetTitle">State Metrics</div>
                 <div className="subFlex">
                   <Widget
-                    title={'Current Tier'}
+                    title={"Current Tier"}
                     stat={getTierText()}
                     color={tierColor}
                   />
@@ -276,72 +276,69 @@ const Home = (props) => {
                     stat={lastTestRate}
                     color={color.blue}
                   />
-               
                 </div>
-              <div className="widgetGrid">
-                <div className="gaugeContainer">
-                  <div className="chartTitle">Adj. Case Rate per 100k</div>
-                  <ReactSpeedometer
-                    value={lastCaseRate}
-                    minValue={0}
-                    maxValue={maxCaseRate}
-                    segments={4}
-                    segmentColors={[
-                      color.gold,
-                      color.orange,
-                      color.red,
-                      color.purple,
-                    ]}
-                    customSegmentStops={[0, 1, 4, 7, maxCaseRate]}
-                    forceRender={true}
-                    needleColor={"#999"}
-                  />
-                </div>
-                <div className="gaugeContainer">
-                  <div className="chartTitle">Test Positivity Rate</div>
-                  <ReactSpeedometer
-                    value={lastPositiveRate}
-                    minValue={0}
-                    maxValue={maxPosRate}
-                    segments={4}
-                    segmentColors={[
-                      color.gold,
-                      color.orange,
-                      color.red,
-                      color.purple,
-                    ]}
-                    customSegmentStops={[0, 2, 5, 8, maxPosRate]}
-                    forceRender={true}
-                    needleColor={"#999"}
-                    currentValueText={lastPositiveRate + "%"}
-                  />
-                </div>
-                <div className="gaugeContainer">
-                  <div className="chartTitle">Healthy Equity Quart %</div>
-                  <ReactSpeedometer
-                    value={lastHealthEquity}
-                    minValue={0}
-                    maxValue={maxEqRate}
-                    segments={4}
-                    segmentColors={[
-                      color.gold,
-                      color.orange,
-                      color.red,
-                      color.purple,
-                    ]}
-                    customSegmentStops={[0, 2.2, 5.3, 8, maxEqRate]}
-                    forceRender={true}
-                    needleColor={"#999"}
-                    currentValueText={lastHealthEquity + "%"}
-                  />
+                <div className="widgetGrid">
+                  <div className="gaugeContainer">
+                    <div className="chartTitle">Adj. Case Rate per 100k</div>
+                    <ReactSpeedometer
+                      value={lastCaseRate}
+                      minValue={0}
+                      maxValue={maxCaseRate}
+                      segments={4}
+                      segmentColors={[
+                        color.gold,
+                        color.orange,
+                        color.red,
+                        color.purple,
+                      ]}
+                      customSegmentStops={[0, 1, 4, 7, maxCaseRate]}
+                      forceRender={true}
+                      needleColor={"#999"}
+                    />
+                  </div>
+                  <div className="gaugeContainer">
+                    <div className="chartTitle">Test Positivity Rate</div>
+                    <ReactSpeedometer
+                      value={lastPositiveRate}
+                      minValue={0}
+                      maxValue={maxPosRate}
+                      segments={4}
+                      segmentColors={[
+                        color.gold,
+                        color.orange,
+                        color.red,
+                        color.purple,
+                      ]}
+                      customSegmentStops={[0, 2, 5, 8, maxPosRate]}
+                      forceRender={true}
+                      needleColor={"#999"}
+                      currentValueText={lastPositiveRate + "%"}
+                    />
+                  </div>
+                  <div className="gaugeContainer">
+                    <div className="chartTitle">Healthy Equity Quart %</div>
+                    <ReactSpeedometer
+                      value={lastHealthEquity}
+                      minValue={0}
+                      maxValue={maxEqRate}
+                      segments={4}
+                      segmentColors={[
+                        color.gold,
+                        color.orange,
+                        color.red,
+                        color.purple,
+                      ]}
+                      customSegmentStops={[0, 2.2, 5.3, 8, maxEqRate]}
+                      forceRender={true}
+                      needleColor={"#999"}
+                      currentValueText={lastHealthEquity + "%"}
+                    />
+                  </div>
                 </div>
               </div>
-              </div>
-            
-            {/* </div> */}
-          </Link>
+            </Link>
+         
         </div>
-        
       </Page>
     </div>
   );

@@ -841,6 +841,9 @@ body.dark {
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
   border: var(--borderOnHover);
 }
+.homeWidgetGrid > a #homeStateMetrics {
+  width: 100%;
+}
 .homeWidgetGrid > a .innerDiv {
   position: relative;
 }
@@ -885,6 +888,9 @@ body.dark {
 .homeWidgetGrid > a .innerDiv .widgetGrid .gaugeContainer {
   margin: 0;
   padding: 0;
+}
+.homeWidgetGrid > a:nth-child(6) {
+  width: 100%;
 }
 table {
   width: 100%;
