@@ -12,7 +12,7 @@ const FetchWhatsOpenJson = (props) => {
                         .then(a => a.Table1.forEach(a => {
                             thisDataArray.push({
                                 name: a[0],
-                                desc: a[`${props.tier}`],
+                                desc: a[props.tier],
                             })
                         }))
                         .then(a => {

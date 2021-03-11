@@ -934,35 +934,19 @@ body.dark {
           flex-direction: row;
           background-color: var(--gray);
         }
+      
+      }
+      .widgetGrid {
+        margin: 2rem 0 0 0;
+        .gaugeContainer {
+          margin:0;
+          padding: 0;
+        }
       }
     }
   }
 }
 
-#homeGauges {
-  margin-top: @gap;
-  background-color: var(--white);
-
-  //max-width : 500px;
-  #testsper100 {
-    padding: 2rem 0;
-  }
-
-  .statName {
-    .chartTitle;
-  }
-
-  .stat {
-    font-size: 2rem;
-  }
-
-  &:hover {
-    cursor: pointer;
-    -webkit-box-shadow: @shadow;
-    box-shadow: @shadow;
-    border: var(--borderOnHover);
-  }
-}
 
 table {
   width: 100%;
