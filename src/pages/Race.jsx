@@ -1,6 +1,6 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 
-import color from "globalVars/Colors";
+
 import { FetchCaseDemo } from "Datafetch/FetchCaseDemo";
 import { FetchDeathDemo } from "Datafetch/FetchDeathDemo";
 import Chart from "components/Chart";
@@ -13,7 +13,7 @@ import {
   hispanic_pop,
   white_pop,
   native_pop,
-  pi_pop,
+  pi_pop,other_pop,mult_pop
 } from "globalVars/populations";
 import Page from "components/Page";
 
@@ -72,6 +72,7 @@ const Race = (props) => {
     raceCase.case_white,
     raceCase.case_ai,
     raceCase.case_pi,
+    raceCase.case_mult_race,
   ];
   const subRaceDeathArray = [
     raceDeath.dth_asian,
@@ -80,6 +81,7 @@ const Race = (props) => {
     raceDeath.dth_white,
     raceDeath.dth_ai,
     raceDeath.dth_pi,
+    raceDeath.dth_mult_race,
   ];
 
   const populationArray = [
@@ -89,6 +91,7 @@ const Race = (props) => {
     white_pop,
     native_pop,
     pi_pop,
+    mult_pop,
   ];
   const percOfOC = populationArray.map((a) =>
     parseFloat((a / ocpop) * 100).toFixed(1)
@@ -120,12 +123,13 @@ const Race = (props) => {
   });
 
   let tableRaceNames = [
-    "Asian",
-    "Black",
+    "Asian*",
+    "Black*",
     "Hispanic/Latino",
-    "White",
-    "Native",
-    "Pac. Is/HI",
+    "White*",
+    "Native*",
+    "Pac. Is/HI*",
+    "Multiple Races*",
   ];
 
   return (
@@ -154,9 +158,9 @@ const Race = (props) => {
               rows={[...tableRaceNames]}
               columns={[displayedPopCol, percKnownCases, percRaceInfected]}
             />
-            <p className="chartNote">
-              Hispanic ethnicity includes counting of some other races, so sum
-              of pop % &gt; 100%{" "}
+           <p className="chartNote">
+            *Population not of Hispanic/Latino ethnicity<br></br>
+            <a className="blue" target="_new" href="http://www.ochealthiertogether.org/demographicdata?id=267&sectionId=941">Population source</a>  
             </p>
           </Chart>
 
@@ -181,8 +185,8 @@ const Race = (props) => {
               columns={[displayedPopCol, percKnownDeaths, percRaceDied]}
             />
             <p className="chartNote">
-              Hispanic ethnicity includes counting of some other races, so sum
-              of pop % &gt; 100%{" "}
+            *Population not of Hispanic/Latino ethnicity<br></br>
+            <a className="blue" target="_new" href="http://www.ochealthiertogether.org/demographicdata?id=267&sectionId=941">Population source</a>  
             </p>
           </Chart>
 

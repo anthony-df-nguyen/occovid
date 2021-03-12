@@ -258,13 +258,12 @@ const Vaccinations = (props) => {
             switches={["horizontalBar", "bar", "doughnut"]}>
             <BuildTable
               colName={["Age", "Pop", "% of Pop", "% w/ at Least 1 Dose"]}
-              rows={["Asian/PI", "Black", "Hispanic", "White"]}
+              rows={["Asian/PI*", "Black*", "Hispanic/Latino", "White*"]}
               columns={[raceOCPop, racePercOfPop, racePercent1Dose]}
             />
-            <p className="chartNote">
-              OC Population: {ocpop.toLocaleString()}
-              <br></br> Note: Sum of % of pop != 100 because hispanic ethncity
-              includes overlap of some races
+             <p className="chartNote">
+            *Population not of Hispanic/Latino ethnicity<br></br>
+            <a className="blue" target="_new" href="http://www.ochealthiertogether.org/demographicdata?id=267&sectionId=941">Population source</a>  
             </p>
           </Chart>
 

@@ -204,12 +204,14 @@ const age65_74_pop = 287876
 const age75_84_pop = 150978
 const age85_pop = 63557
 
-const asian_pop = 691596
-const black_pop = 60125
+const asian_pop = 685728
+const black_pop = 52696
 const hispanic_pop = 1115740
-const white_pop = 1776369
-const native_pop = 19142
-const pi_pop = 9983
+const white_pop = 1223157
+const native_pop = 6018
+const pi_pop = 8885
+const other_pop = 5814
+const mult_pop = 94483
 
 export {
   countyPopulation,
@@ -231,5 +233,5 @@ export {
   hispanic_pop,
   white_pop,
   native_pop,
-  pi_pop
+  pi_pop,other_pop,mult_pop
 }
