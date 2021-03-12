@@ -439,7 +439,7 @@ const VaccinationMap = () => {
                       minValue
                     );
                   } else if (mode === "rate") {
-                    color = PercentColors(checkColor, "highisgood");
+                    color = PercentColors(checkColor, "highisgood",15,30,45,60,75);
                   }
 
                   return (
@@ -450,7 +450,7 @@ const VaccinationMap = () => {
                         color: "#333",
                         weight: 0.2,
                         fillColor: color,
-                        fillOpacity: ".3",
+                        fillOpacity: ".35",
                       }}
                     >
                       <Popup key={i}>
@@ -589,11 +589,12 @@ const VaccinationMap = () => {
     } else {
       return (
         <div id="mapLegend">
-          <div className="percgood">&lt; 20%</div>
-          <div className="percgood">20% - 40%</div>
-          <div className="percgood">40% - 60%</div>
-          <div className="percgood">60% - 80%</div>
-          <div className="percgood">&gt; 80%</div>
+          <div className="percgood">&lt; 15%</div>
+          <div className="percgood">15% - 30%</div>
+          <div className="percgood">30% - 45%</div>
+          <div className="percgood">45% - 60%</div>
+          <div className="percgood">60% - 75%</div>
+          <div className="percgood">&gt; 75% +</div>
         </div>
       );
     }
