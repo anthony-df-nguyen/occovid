@@ -1,14 +1,11 @@
-import React, { useState, useContext } from 'react'
+import React, { useState } from 'react'
 import color from 'globalVars/Colors'
 import { FetchCaseDemo } from 'Datafetch/FetchCaseDemo'
 import { FetchDeathDemo } from 'Datafetch/FetchDeathDemo'
 import Chart from 'components/Chart'
-import { ageLabels, ageColors } from 'globalVars/chartJSconfig'
-import { ocpop } from 'globalVars/populations'
 import Page from 'components/Page'
 
 const Gender = props => {
-  //const {time,setTime} =  useContext(TimeContext);
   const [genderCase, updategenderCaseArray] = useState([])
   const [genderDeath, updategenderDeathArray] = useState([])
 

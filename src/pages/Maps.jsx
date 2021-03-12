@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState, useContext } from "react";
 import Page from "components/Page";
 import { MapContainer, TileLayer, Popup, GeoJSON } from "react-leaflet";
@@ -62,11 +64,11 @@ const Maps = () => {
       .then((a) => a.json())
       .then((b) => b.features)
       .then((c) => {
-        if (cityOrZip == "city") {
+        if (cityOrZip === "city") {
           geoArray = c;
         }
         //Transform Zip array property names to be consistent with cities
-        else if (cityOrZip == "zip") {
+        else if (cityOrZip === "zip") {
           c.forEach((row) => {
             let d = row.properties;
             geoArray.push({
@@ -355,13 +357,13 @@ const Maps = () => {
 
   //Only reload the page if the starting theme is diffrent than the change
   useEffect(() => {
-    if (mounted && theme != startingTheme) {
+    if (mounted && theme !== startingTheme) {
       window.location.reload();
     }
   }, [theme]);
   //Only reload the page if the starting cityOrZip is diffrent than the change
   useEffect(() => {
-    if (mounted && cityOrZip != startingCityOrZip) {
+    if (mounted && cityOrZip !== startingCityOrZip) {
       console.log(
         "The page should now reload because the city/zip mode has changed"
       );

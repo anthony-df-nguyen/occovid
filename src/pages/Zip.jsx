@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import {TimeContext}  from "components/context/TimeContext";
 import ModeSelector from "components/ModeSelector";
 import { FetchZipData } from "Datafetch/FetchZipData";
@@ -9,6 +9,7 @@ import ExpandCollapse from "components/ExpandCollapse";
 import {ContextColors} from 'components/ContextColors'
 
 const Zip = (props) => {
+  // eslint-disable-next-line no-unused-vars
   const [ time, setTime ] = useContext(TimeContext);
   const [array, updateArray] = useState([]);
   const [whichMetric, updateWhichMetric] = useState(() => {

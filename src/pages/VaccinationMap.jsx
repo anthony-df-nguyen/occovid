@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState, useContext } from "react";
 import Page from "components/Page";
 import { MapContainer, TileLayer, Popup, GeoJSON } from "react-leaflet";
@@ -16,6 +18,7 @@ import { ThemeContext } from "components/context/ThemeContext";
 import ExpandCollapse from "components/ExpandCollapse";
 
 const VaccinationMap = () => {
+  // eslint-disable-next-line no-unused-vars
   const [theme, updateTheme] = useContext(ThemeContext);
   const [leaflet, updateleafLet] = useState();
 
@@ -58,152 +61,146 @@ const VaccinationMap = () => {
   //Set state for what the final querymode is. This is used to generate the legend range and figure out which vars to use later
   const createAgeRaceMode = () => {
     //All Ages
-    if (age == "all") {
-      if (mode == "total") {
+    if (age === "all") {
+      if (mode === "total") {
         switch (race) {
           case "all":
             return "nv_Tot";
-            break;
+
           case "asian":
             return "nv_AsiPI";
-            break;
+
           case "black":
             return "nv_Black";
-            break;
+
           case "hispanic":
             return "nv_Hisp";
-            break;
+
           case "white":
             return "nv_White";
-            break;
+
           case "other":
             return "nv_Oth";
           default:
             return "nv_Tot";
-            break;
         }
-      } else if (mode == "rate") {
+      } else if (mode === "rate") {
         switch (race) {
           case "all":
             return "Total_VRate";
-            break;
+
           case "asian":
             return "AsiPI_VRate";
-            break;
+
           case "black":
             return "Black_VRate";
-            break;
+
           case "hispanic":
             return "Hisp_VRate";
-            break;
+
           case "white":
             return "White_VRate";
-            break;
+
           case "other":
             return "Oth_VRate";
           default:
             return "Total_VRate";
-            break;
         }
       }
     }
     //For Under 65
-    if (age == "under65") {
-      if (mode == "total") {
+    if (age === "under65") {
+      if (mode === "total") {
         switch (race) {
           case "all":
             return "nv_Totbel65";
-            break;
+
           case "asian":
             return "nv_AsiPIbel65";
-            break;
+
           case "black":
             return "nv_Blackbel65";
-            break;
+
           case "hispanic":
             return "nv_Hispbel65";
-            break;
+
           case "white":
             return "nv_Whitebel65";
-            break;
+
           case "other":
             return "nv_Othbel65";
           default:
             return "nv_Totbel65";
-            break;
         }
-      } else if (mode == "rate") {
+      } else if (mode === "rate") {
         switch (race) {
           case "all":
             return "Total_bel65VRate";
-            break;
+
           case "asian":
             return "AsiPI_bel65pPop";
-            break;
+
           case "black":
             return "Black_bel65VRate";
-            break;
+
           case "hispanic":
             return "Hisp_bel65VRate";
-            break;
+
           case "white":
             return "White_bel65VRate";
-            break;
+
           case "other":
             return "Oth_bel65VRate";
           default:
             return "Total_bel65VRate";
-            break;
         }
       }
     }
     //For Over 65
-    if (age == "over65") {
-      if (mode == "total") {
+    if (age === "over65") {
+      if (mode === "total") {
         switch (race) {
           case "all":
             return "nv_Tot65up";
-            break;
+
           case "asian":
             return "nv_AsiPI65up";
-            break;
+
           case "black":
             return "nv_Black65up";
-            break;
+
           case "hispanic":
             return "nv_Hisp65up";
-            break;
+
           case "white":
             return "nv_White65up";
-            break;
+
           case "other":
             return "nv_Oth65up";
           default:
             return "nv_Tot65up";
-            break;
         }
-      } else if (mode == "rate") {
+      } else if (mode === "rate") {
         switch (race) {
           case "all":
             return "Total_65upVRate";
-            break;
+
           case "asian":
             return "AsiPI_65upVRate";
-            break;
+
           case "black":
             return "Black_65upVRate";
-            break;
+
           case "hispanic":
             return "Hisp_65upVRate";
-            break;
+
           case "white":
             return "White_65upVRate";
-            break;
+
           case "other":
             return "Oth_65upVRate";
           default:
             return "Total_65upVRate";
-            break;
         }
       }
     }
@@ -288,12 +285,24 @@ const VaccinationMap = () => {
                     asianPop = a.AsiPI_Pop;
                     othPop = a.Oth_Pop;
                     totalPop = a.Total_Pop;
-                    blackRate = parseFloat(((a.nv_Black / a.Black_pop)*100).toFixed(1));
-                    hisRate = parseFloat(((a.nv_Hisp / a.Hisp_pop)*100).toFixed(1));
-                    whiteRate = parseFloat(((a.nv_White / a.White_Pop)*100).toFixed(1));
-                    asianRate = parseFloat(((a.nv_AsiPI / a.AsiPI_Pop)*100).toFixed(1));
-                    othRate = parseFloat(((a.nv_Oth / a.Oth_Pop)*100).toFixed(1));
-                    totalRate = parseFloat(((a.nv_Tot / a.Total_Pop)*100).toFixed(1));
+                    blackRate = parseFloat(
+                      ((a.nv_Black / a.Black_pop) * 100).toFixed(1)
+                    );
+                    hisRate = parseFloat(
+                      ((a.nv_Hisp / a.Hisp_pop) * 100).toFixed(1)
+                    );
+                    whiteRate = parseFloat(
+                      ((a.nv_White / a.White_Pop) * 100).toFixed(1)
+                    );
+                    asianRate = parseFloat(
+                      ((a.nv_AsiPI / a.AsiPI_Pop) * 100).toFixed(1)
+                    );
+                    othRate = parseFloat(
+                      ((a.nv_Oth / a.Oth_Pop) * 100).toFixed(1)
+                    );
+                    totalRate = parseFloat(
+                      ((a.nv_Tot / a.Total_Pop) * 100).toFixed(1)
+                    );
                     blackVax = a.nv_Black;
                     hisVax = a.nv_Hisp;
                     whiteVax = a.nv_White;
@@ -309,12 +318,24 @@ const VaccinationMap = () => {
                     asianPop = a.AsiPI_bel65pPop;
                     othPop = a.Oth_bel65Pop;
                     totalPop = a.Total_bel65Pop;
-                    blackRate = parseFloat(((a.nv_Blackbel65 / a.Black_bel65Pop)*100).toFixed(1));
-                    hisRate = parseFloat(((a.nv_Hispbel65 / a.Hisp_bel65Pop)*100).toFixed(1));
-                    whiteRate = parseFloat(((a.nv_Whitebel65 / a.White_bel65Pop)*100).toFixed(1));
-                    asianRate = parseFloat(((a.nv_AsiPIbel65 / a.AsiPI_bel65pPop)*100).toFixed(1));
-                    othRate = parseFloat(((a.nv_Othbel65 / a.Oth_bel65Pop)*100).toFixed(1));
-                    totalRate = parseFloat(((a.nv_Totbel65 / a.Total_bel65Pop)*100).toFixed(1));
+                    blackRate = parseFloat(
+                      ((a.nv_Blackbel65 / a.Black_bel65Pop) * 100).toFixed(1)
+                    );
+                    hisRate = parseFloat(
+                      ((a.nv_Hispbel65 / a.Hisp_bel65Pop) * 100).toFixed(1)
+                    );
+                    whiteRate = parseFloat(
+                      ((a.nv_Whitebel65 / a.White_bel65Pop) * 100).toFixed(1)
+                    );
+                    asianRate = parseFloat(
+                      ((a.nv_AsiPIbel65 / a.AsiPI_bel65pPop) * 100).toFixed(1)
+                    );
+                    othRate = parseFloat(
+                      ((a.nv_Othbel65 / a.Oth_bel65Pop) * 100).toFixed(1)
+                    );
+                    totalRate = parseFloat(
+                      ((a.nv_Totbel65 / a.Total_bel65Pop) * 100).toFixed(1)
+                    );
                     blackVax = a.nv_Blackbel65;
                     hisVax = a.nv_Hispbel65;
                     whiteVax = a.nv_Whitebel65;
@@ -331,12 +352,24 @@ const VaccinationMap = () => {
                     asianPop = a.AsiPI_65upPop;
                     othPop = a.Oth_65upPop;
                     totalPop = a.Total_65upPop;
-                    totalRate = parseFloat(((a.nv_Tot65up / a.Total_65upPop)*100).toFixed(1));
-                    asianRate = parseFloat(((a.nv_AsiPI65up / a.AsiPI_65upPop)*100).toFixed(1))
-                    blackRate = parseFloat(((a.nv_Black65up / a.Black_65upPop)*100).toFixed(1))
-                    hisRate = parseFloat(((a.nv_Hisp65up / a.Hisp_65upPop)*100).toFixed(1))
-                    whiteRate = parseFloat(((a.nv_White65up / a.White_65upPop)*100).toFixed(1))
-                    othRate = parseFloat(((a.nv_Oth65up / a.Oth_65upPop)*100).toFixed(1))
+                    totalRate = parseFloat(
+                      ((a.nv_Tot65up / a.Total_65upPop) * 100).toFixed(1)
+                    );
+                    asianRate = parseFloat(
+                      ((a.nv_AsiPI65up / a.AsiPI_65upPop) * 100).toFixed(1)
+                    );
+                    blackRate = parseFloat(
+                      ((a.nv_Black65up / a.Black_65upPop) * 100).toFixed(1)
+                    );
+                    hisRate = parseFloat(
+                      ((a.nv_Hisp65up / a.Hisp_65upPop) * 100).toFixed(1)
+                    );
+                    whiteRate = parseFloat(
+                      ((a.nv_White65up / a.White_65upPop) * 100).toFixed(1)
+                    );
+                    othRate = parseFloat(
+                      ((a.nv_Oth65up / a.Oth_65upPop) * 100).toFixed(1)
+                    );
                     blackVax = a.nv_Black65up;
                     hisVax = a.nv_Hisp65up;
                     whiteVax = a.nv_White65up;
@@ -347,67 +380,65 @@ const VaccinationMap = () => {
 
                   //Figure out which var to pass to the color legend component
                   const checkColorSwitch = () => {
-                    if (mode == "total") {
+                    if (mode === "total") {
                       switch (race) {
                         case "all":
                           return totalVax;
-                          break;
+
                         case "asian":
                           return asianVax;
-                          break;
+
                         case "black":
                           return blackVax;
-                          break;
+
                         case "hispanic":
                           return hisVax;
-                          break;
+
                         case "white":
                           return whiteVax;
-                          break;
+
                         case "other":
                           return othVax;
-                          break;
+
                         default:
                           return totalVax;
-                          break;
                       }
-                    } else if (mode == "rate") {
+                    } else if (mode === "rate") {
                       switch (race) {
                         case "all":
                           return totalRate;
-                          break;
+
                         case "asian":
                           return asianRate;
-                          break;
+
                         case "black":
                           return blackRate;
-                          break;
+
                         case "hispanic":
                           return hisRate;
-                          break;
+
                         case "white":
                           return whiteRate;
-                          break;
+
                         case "other":
                           return othRate;
-                          break;
+
                         default:
                           return totalRate;
-                          break;
                       }
                     }
                   };
                   let checkColor = checkColorSwitch();
 
                   let color;
-                  if (mode == "total") {
+                  if (mode === "total") {
                     color = ContextColors(
                       checkColor,
                       "highisgood",
                       maxValue,
                       minValue
                     );
-                  } else if (mode == "rate") {
+                  } else if (mode === "rate") {
                     color = PercentColors(checkColor, "highisgood");
                   }
 
@@ -420,7 +451,8 @@ const VaccinationMap = () => {
                         weight: 0.2,
                         fillColor: color,
                         fillOpacity: ".3",
-                      }}>
+                      }}
+                    >
                       <Popup key={i}>
                         <div className="cityName"> {CityOrZipName} </div>
                         <h3>for {ageDisplay}</h3>
@@ -523,14 +555,14 @@ const VaccinationMap = () => {
 
   //Only reload the page if the starting theme is diffrent than the change
   useEffect(() => {
-    if (mounted && theme != startingTheme) {
+    if (mounted && theme !== startingTheme) {
       window.location.reload();
     }
   }, [theme]);
   //Only reload the page if the starting cityOrZip is diffrent than the change
 
   const switchLegend = () => {
-    if (mode == "total") {
+    if (mode === "total") {
       return (
         <div id="mapLegend">
           <div className="highisgood">
@@ -570,18 +602,21 @@ const VaccinationMap = () => {
   return (
     <div>
       <Page title="Vaccination Map">
-
-      <div  className="chartTitle">
-            <div id='mapModeDisplayContainer'>
-            
-            <div className="mapModeDisplay"><b>Mode:</b> {modeDisplay}</div>
-          <div className="mapModeDisplay"><b>Race:</b> {raceDisplay}   </div>
-          <div className="mapModeDisplay"><b>Ages:</b> {ageDisplay}</div>
+        <div className="chartTitle">
+          <div id="mapModeDisplayContainer">
+            <div className="mapModeDisplay">
+              <b>Mode:</b> {modeDisplay}
             </div>
-            
+            <div className="mapModeDisplay">
+              <b>Race:</b> {raceDisplay}{" "}
+            </div>
+            <div className="mapModeDisplay">
+              <b>Ages:</b> {ageDisplay}
+            </div>
+          </div>
         </div>
         <ExpandCollapse title="Change Map Mode" buttontext="Close">
-        <ModeSelector
+          <ModeSelector
             text="Color the map using data for which race?"
             function={[updateRace, updateRaceDisplay]}
             current={race}
@@ -651,7 +686,6 @@ const VaccinationMap = () => {
             storageKey={["vaxmapLastMode", "vaxmapLastModeText"]}
           />
         </ExpandCollapse>
-
 
         {switchLegend()}
 

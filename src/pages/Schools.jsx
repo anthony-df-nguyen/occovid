@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useContext, useEffect } from 'react'
 import {TimeContext}  from 'components/context/TimeContext'
 import color from 'globalVars/Colors'
@@ -5,9 +6,9 @@ import Timeselect from 'components/Timeselect'
 import FetchSchool from 'Datafetch/FetchSchool'
 import Chart from 'components/Chart'
 import moment from 'moment'
-import Widget from 'components/Widget'
-import { Bar, Line } from 'react-chartjs-2'
-import { stackedMultiBar, lineDefaults } from 'globalVars/chartJSconfig.js'
+
+import { Bar } from 'react-chartjs-2'
+import { stackedMultiBar } from 'globalVars/chartJSconfig.js'
 import Page from 'components/Page'
 
 const Schools = props => {

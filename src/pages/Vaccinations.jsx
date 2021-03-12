@@ -5,8 +5,7 @@ import Timeselect from "components/Timeselect";
 import ChartNonStacked from "components/ChartNonStacked";
 import {
   FetchVaccines,
-  peopleOneDose,
-  peopleTwoDose,
+
 } from "Datafetch/FetchVaccines";
 import VaccineHistory from "Datafetch/VaccineHistory.jsx";
 import Chart from "components/Chart";
@@ -33,6 +32,7 @@ import Page from "components/Page";
 import FetchVaccineTier from "Datafetch/FetchVaccineTier";
 
 const Vaccinations = (props) => {
+  // eslint-disable-next-line no-unused-vars
   const [time, setTime] = useContext(TimeContext);
   const [array, updateArray] = useState([]);
   const [vaccineHisArray, updateVaxArray] = useState([]);
@@ -63,6 +63,7 @@ const Vaccinations = (props) => {
     age6574yrs,
     age7584,
     age85,
+    // eslint-disable-next-line no-unused-vars
     ageUnknown,
     moderna,
     pfizer,
@@ -106,18 +107,7 @@ const Vaccinations = (props) => {
     age7584,
     age85,
   ];
-  const ageVaxArrayAll = [
-    age017,
-    age1824,
-    age2534,
-    age3544,
-    age4554,
-    age5564,
-    age6574yrs,
-    age7584,
-    age85,
-    ageUnknown,
-  ];
+
   const agePercent1Dose = ageVaxArray.map((a, i) => {
     return parseFloat((a / agePopArray[i]) * 100).toFixed(1) + "%";
   });
@@ -156,7 +146,7 @@ const Vaccinations = (props) => {
           <p>Last Updated {asof}</p>
         </div>
         <div className="widgetGrid">
-          <a href={`${vaccinePhase.url}`} target="_blank">
+          <a href={`${vaccinePhase.url}`} target="_blank" rel="noreferrer">
             <Widget
               title={"Active Phase"}
               stat={vaccinePhase.phase}

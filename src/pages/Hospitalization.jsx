@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useContext } from 'react'
 import {TimeContext}  from 'components/context/TimeContext'
 import color from 'globalVars/Colors'
@@ -23,7 +24,7 @@ const Hospitalization = props => {
   const [ time, setTime ] = useContext(TimeContext)
   const [array, updateArray] = useState([])
   const [triggerArray, updateTrigger] = useState([])
-  let hosRateChangeArray = []
+
 
   return (
     <div>

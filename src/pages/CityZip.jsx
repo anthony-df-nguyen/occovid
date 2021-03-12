@@ -1,4 +1,5 @@
-import React, { useState, useContext, useEffect } from "react";
+/* eslint-disable no-unused-vars */
+import React, { useState, useContext } from "react";
 import { TimeContext } from "components/context/TimeContext";
 import ModeSelector from "components/ModeSelector";
 import { FetchCityData } from "Datafetch/FetchCityData";

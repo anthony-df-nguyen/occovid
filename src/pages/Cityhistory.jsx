@@ -3,7 +3,6 @@ import FetchCityHistory from 'Datafetch/FetchCityHistory'
 import Timeselect from 'components/Timeselect';
 import {TimeContext}  from "components/context/TimeContext";
 import color from 'globalVars/Colors'
-import _ from "lodash";
 import CityCompareChart from 'components/CityCompare/CityCompareChart';
 import CitySelector from 'components/CityCompare/CitySelector';
 import Page from 'components/Page'

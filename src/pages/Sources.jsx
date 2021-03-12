@@ -30,7 +30,7 @@ const Sources = () => {
             <div className="answer">
               The county's official glossary for the metrics can be found{" "}
               <a
-                target="_blank"
+                target="_blank" rel="noreferrer"
                 href="https://coronavirus.egovoc.com/oc-covid-19-dashboard-glossary">
                 here
               </a>
@@ -76,18 +76,18 @@ const Sources = () => {
               Vercel. The primary charting library used is{" "}
               <a
                 href="https://www.npmjs.com/package/react-chartjs-2"
-                target="_blank">
+                target="_blank" rel="noreferrer">
                 React-ChartJS-2
               </a>
               . The Map view uses{" "}
-              <a href="https://react-leaflet.js.org/" target="_blank">
+              <a href="https://react-leaflet.js.org/" target="_blank" rel="noreferrer">
                 React Leaflet
               </a>{" "}
               with map tiles from CARTO. The speedometer dials used for CAPDH
               metrics are from{" "}
               <a
                 href="https://www.npmjs.com/package/react-d3-speedometer"
-                target="_blank">
+                target="_blank" rel="noreferrer">
                 React-D3-Speedometer
               </a>
             </div>
@@ -141,7 +141,7 @@ const Sources = () => {
                 This is the same database used for their official Dashboard
                 <br></br>
                 <a
-                  target="_blank"
+                  target="_blank" rel="noreferrer"
                   href="https://ochca.maps.arcgis.com/apps/opsdashboard/index.html#/cc4859c8c522496b9f21c451de2fedae">
                   Link: Main Dashboard
                 </a>
@@ -159,7 +159,7 @@ const Sources = () => {
               </td>
               <td>
                 <a
-                  target="_blank"
+                  target="_blank" rel="noreferrer"
                   href="http://www.ochealthiertogether.org/index.php?module=DemographicData&controller=index&action=index">
                   Link: OC Healthier Together
                 </a>
@@ -170,7 +170,7 @@ const Sources = () => {
               <td>Vaccination page</td>
               <td>
                 <a
-                  target="_blank"
+                  target="_blank" rel="noreferrer"
                   href="https://coronavirus.egovoc.com/vaccines-administered-oc">
                   Link: OC Health Care Agency Vaccine Dashboard
                 </a>
@@ -181,7 +181,7 @@ const Sources = () => {
               <td>Vaccination Map</td>
               <td>
                 <a
-                  target="_blank"
+                  target="_blank" rel="noreferrer"
                   href="https://services2.arcgis.com/LORzk2hk9xzHouw9/ArcGIS/rest/services/VIEWLAYER_C19VaccinationRatesbyZIP/FeatureServer/0">
                   Link: OC Health Care Agency ArcGIS database 
                 </a>
@@ -192,7 +192,7 @@ const Sources = () => {
               <td>Schools page</td>
               <td>
                 <a
-                  target="_blank"
+                  target="_blank" rel="noreferrer"
                   href="https://coronavirus.egovoc.com/coronavirus-in-oc">
                   Link: OC Health Care Agency Dashboard
                 </a>
@@ -203,7 +203,7 @@ const Sources = () => {
               <td> Used to obtain daily cases per city on 'City History'</td>
               <td>
                 <a
-                  target="_blank"
+                  target="_blank" rel="noreferrer"
                   href="https://data-ocpw.opendata.arcgis.com/datasets/772f5cdbb99c4f6689ed1460c26f4b05">
                   Link: OC Open Data: Public OC COVID Cases by City by Day
                 </a>
@@ -218,7 +218,7 @@ const Sources = () => {
               </td>
               <td>
                 <a
-                  target="_blank"
+                  target="_blank" rel="noreferrer"
                   href="https://data.ca.gov/dataset/covid-19-cases/resource/926fd08f-cc91-4828-af38-bd45de97f8c3">
                   Link: CA Open Data Portal: COVID-19 Cases
                 </a>
@@ -233,7 +233,7 @@ const Sources = () => {
               </td>
               <td>
                 <a
-                  target="_blank"
+                  target="_blank" rel="noreferrer"
                   href="https://data.ca.gov/dataset/covid-19-hospital-data/resource/42d33765-20fd-44b8-a978-b083b7542225">
                   Link: CA Open Data Portal: COVID-19 Hospital Data: Hospitals
                   by County
@@ -249,7 +249,7 @@ const Sources = () => {
               </td>
               <td>
                 <a
-                  target="_blank"
+                  target="_blank" rel="noreferrer"
                   href="https://github.com/datadesk/california-coronavirus-data/blob/master/cdph-vaccination-county-totals.csv">
                   Link: LA Times CA Vaccine Data (which they take from CA state
                   dashboard)
@@ -267,7 +267,7 @@ const Sources = () => {
               </td>
               <td>
                 <a
-                  target="_blank"
+                  target="_blank" rel="noreferrer"
                   href="https://www.dof.ca.gov/Forecasting/Demographics/Estimates/e-1/">
                   Link: CA Dept of Finance Population Estimates (2019/2020)
                 </a>

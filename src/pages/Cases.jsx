@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useContext } from "react";
+/* eslint-disable no-unused-vars */
+import React, { useState, useContext } from "react";
 import { TimeContext } from "components/context/TimeContext";
 import color from "globalVars/Colors";
 import Timeselect from "components/Timeselect";
 
 import { FetchCases, lastTotalCases, lastDailyReported, lastRecovered, lastHomeless, lastJail, lastSNF } from "Datafetch/FetchCases";
-import { FetchCAMetrics } from "Datafetch/FetchCAMetrics";
 import Chart from "components/Chart";
 import Widget from "components/Widget";
 import Page from "components/Page";

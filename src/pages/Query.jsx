@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import Page from "components/Page";
 import moment from 'moment'
@@ -24,55 +25,38 @@ export default function Query() {
     switch (name) {
       case "occovid_sero_csv":
         return "Serology";
-        break;
       case "occovid_antigen_csv":
         return "Antigen";
-        break;
       case "occovid_democase_csv":
         return "Cases by Demographics";
-        break;
       case "occovid_trigger_csv":
         return "Triggers";
-        break;
       case "occovid_case_csv":
         return "Cases";
-        break;
       case "occovid_death_csv":
         return "Deaths";
-        break;
       case "vacc_totalsummary":
         return "Total Vaccine Data";
-        break;
       case "occovid_demodths_csv":
         return "Deaths by Demographic";
-        break;
       case "vacc_dosebydate":
         return "Vaccine Daily Doses";
-        break;
       case "occovid_childbyagecase_csv":
         return "Cases by Youth";
-        break;
       case "VaccbyRate":
         return "Vaccinations by Zip Code";
-        break;
       case "occovid_blueprint_csv":
         return "CADPH Metrics";
-        break;
       case "occovid_pcr_csv":
         return "PCR Test";
-        break;
       case "C19ZIP_TPP1dayrte":
         return "Zip Code Data";
-        break;
       case "City_C19Cases_childagegrp_supfields":
         return "City Data";
-        break;
       case "occovid_hospicu_csv":
         return "Hospitalization";
-        break;
       default:
           return "No Source"
-        break;
     }
   };
 

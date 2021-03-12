@@ -1,8 +1,8 @@
+/* eslint-disable array-callback-return */
 import React, { useEffect, useState } from "react";
 import Page from "components/Page";
 import ExpandCollapse from "components/ExpandCollapse";
 import moment from "moment";
-import reportWebVitals from "reportWebVitals";
 
 const Reportbug = (props) => {
   const [array, updateArray] = useState([]);

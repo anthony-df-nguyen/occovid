@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useContext } from "react";
 import { TimeContext } from "components/context/TimeContext";
 import color from "globalVars/Colors";
@@ -24,14 +25,6 @@ const Testing = (props) => {
   const [array, updateArray] = useState([]);
   const [seroArray, updateSeroArray] = useState([]);
   const [hosArray, updateHosArray] = useState([]);
-
-  let testPosArray = [];
-
-  hosArray.filter((a) => {
-    if (a.testPos) {
-      testPosArray.push(a.testPos);
-    }
-  });
 
   return (
     <div>

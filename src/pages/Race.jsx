@@ -13,7 +13,7 @@ import {
   hispanic_pop,
   white_pop,
   native_pop,
-  pi_pop,other_pop,mult_pop
+  pi_pop,mult_pop
 } from "globalVars/populations";
 import Page from "components/Page";
 

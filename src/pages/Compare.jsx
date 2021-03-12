@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect, useContext } from "react";
 import { TimeContext } from "components/context/TimeContext";
 import color from "globalVars/Colors";
@@ -82,14 +84,6 @@ const Compare = (props) => {
         });
         updateCompareFinalArray(() => {
           return compareArray.map((a) => a.doses);
-        });
-        break;
-      case "Deaths per 100k":
-        updateOCFinalArray(() => {
-          return getper100ks(ocArray, "total_dth_repo", "oc");
-        });
-        updateCompareFinalArray(() => {
-          return getper100ks(compareArray, "totalDeaths");
         });
         break;
       case "Deaths":
@@ -193,7 +187,7 @@ const Compare = (props) => {
             />
           </>
         );
-        break;
+        
       case "Deaths per 100k":
         //console.log('Fetching deaths per 100k')
         return (
@@ -207,7 +201,7 @@ const Compare = (props) => {
             />
           </>
         );
-        break;
+        
       case "Hospitalized per 100k":
         //console.log('Fetching Hospitalized per 100k')
         return (
@@ -221,7 +215,7 @@ const Compare = (props) => {
             />
           </>
         );
-        break;
+       
       case "Cases":
         //console.log('Fetching cases')
         return (
@@ -235,7 +229,7 @@ const Compare = (props) => {
             />
           </>
         );
-        break;
+        
       case "Deaths":
         //console.log('Fetching deaths')
         return (
@@ -249,7 +243,7 @@ const Compare = (props) => {
             />
           </>
         );
-        break;
+        
       case "Hospitalized":
         //console.log('Hospitalized')
         return (
@@ -263,7 +257,6 @@ const Compare = (props) => {
             />
           </>
         );
-        break;
       case "Vaccine Doses Administered":
         return (
           <>
@@ -276,7 +269,7 @@ const Compare = (props) => {
             />
           </>
         );
-        break;
+       
       case "Vaccine Doses Administered per 100k":
         return (
           <>
@@ -289,7 +282,7 @@ const Compare = (props) => {
             />
           </>
         );
-        break;
+        
       default:
         //console.log('defualt')
         return (
@@ -303,18 +296,16 @@ const Compare = (props) => {
             />
           </>
         );
-        break;
+        
     }
   };
 
   //Updates ocArray when Data is Done Fetching
   useEffect(() => {
-    //console.log('ocArray has changed with a length of ', ocArray.length)
     calculateAlltheArrays();
   }, [ocArray]);
   //Updates compareArray when Data is Done Fetching
   useEffect(() => {
-    //console.log('compareArray has changed with a length of ', compareArray.length)
     calculateAlltheArrays();
   }, [compareArray]);
 
@@ -328,8 +319,7 @@ const Compare = (props) => {
     returnFetchComponents();
     calculateAlltheArrays();
   }, [currentMode]);
-  //  console.log('OC array is ',ocArray[0])
-  //   console.log('compare array is ',compareArray[0])
+
 
   return (
     <div>
