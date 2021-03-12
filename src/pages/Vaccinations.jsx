@@ -242,7 +242,7 @@ const Vaccinations = (props) => {
             id="vaccine2"
             date={["Asian/PI", "Black", "Hispanic", "White", "Other"]}
             data={[raceVaxArrayAll]}
-            fill={[[...raceColors]]}
+            fill={[[...customRaceColors]]}
             title={"Persons w/ at Least 1 Dose: by Race"}
             label={["People"]}
             switches={["horizontalBar", "bar", "doughnut"]}>
