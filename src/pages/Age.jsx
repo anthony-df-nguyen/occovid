@@ -109,7 +109,7 @@ const Age = props => {
             data={ [[age03, age49, age1012, age1314, age1518]] }
             fill={ [...[youngColorAll]] }
             title={ 'Cases Among Youth' }
-            label={ ['Fatality Rate'] }
+            label={ ['Cases'] }
             switches={ ['horizontalBar', 'bar', 'doughnut'] }>
 
           </Chart>
