@@ -7,10 +7,11 @@ import {
   FetchVaccines,
 
 } from "Datafetch/FetchVaccines";
+import FetchVaccineVendor from "Datafetch/FetchVaccineVendor"
 import VaccineHistory from "Datafetch/VaccineHistory.jsx";
 import Chart from "components/Chart";
 import Widget from "components/Widget";
-import { ageLabels, ageColors, raceColors } from "globalVars/chartJSconfig";
+import { ageLabels, ageColors } from "globalVars/chartJSconfig";
 import {
   ocpop,
   age0_17_pop,
@@ -35,6 +36,7 @@ const Vaccinations = (props) => {
   // eslint-disable-next-line no-unused-vars
   const [time, setTime] = useContext(TimeContext);
   const [array, updateArray] = useState([]);
+   const [vendorArray, updateVendorArray] = useState([]);
   const [vaccineHisArray, updateVaxArray] = useState([]);
   const [vaccinePhase, updateVaccinePhases] = useState([]);
   const [asof, updateDate] = useState("Last Updated...");
@@ -136,11 +138,15 @@ const Vaccinations = (props) => {
     return parseFloat((a / racePopArray[i]) * 100).toFixed(1) + "%";
   });
 
+ const vendorNames = vendorArray.map((a) => a.vendor);
+ const vendorDoses = vendorArray.map((a) => (a.doses ? parseInt(a.doses).toLocaleString() : ''));
+ const vendorPerc = vendorArray.map((a) => (parseFloat(a.doses / totalAdmin)*100).toFixed(1) + '%');
   return (
     <div>
       <VaccineHistory function={updateVaxArray} time={time} />
       <FetchVaccines function={[updateArray, updateDate]} time={time} />
       <FetchVaccineTier function={updateVaccinePhases} />
+      <FetchVaccineVendor function={updateVendorArray} />
       <Page title="Vaccinations">
         <div id="lastUpdateDate">
           <p>Last Updated {asof}</p>
@@ -203,7 +209,8 @@ const Vaccinations = (props) => {
             fill={[color.blue, color.gold]}
             title={"Daily Doses Administered"}
             label={["Doses", "7 Day Avg"]}
-            switches={["line", "bar"]}></Chart>
+            switches={["line", "bar"]}
+          ></Chart>
 
           <Chart
             key="6"
@@ -213,7 +220,8 @@ const Vaccinations = (props) => {
             fill={[color.blue, color.gold]}
             title={"Cumulative Doses Administered"}
             label={["Doses"]}
-            switches={["line", "bar"]}>
+            switches={["line", "bar"]}
+          >
             <p className="chartNote">
               Most recent cumulative may not match 'Total Administered' due to
               lags in county's data set
@@ -228,7 +236,8 @@ const Vaccinations = (props) => {
             fill={[[...ageColors]]}
             title={"Persons w/ at Least 1 Dose: by Age"}
             label={["People"]}
-            switches={["horizontalBar", "bar", "doughnut"]}>
+            switches={["horizontalBar", "bar", "doughnut"]}
+          >
             <BuildTable
               colName={["Age", "Pop", "% of Pop", "% w/ at Least 1 Dose"]}
               rows={[...ageLabels.slice(0, -1)]}
@@ -237,7 +246,7 @@ const Vaccinations = (props) => {
             <p className="chartNote">OC Population: {ocpop.toLocaleString()}</p>
           </Chart>
 
-           <Chart
+          <Chart
             key="2"
             id="vaccine2"
             date={["Asian/PI", "Black", "Hispanic", "White", "Other"]}
@@ -245,15 +254,22 @@ const Vaccinations = (props) => {
             fill={[[...customRaceColors]]}
             title={"Persons w/ at Least 1 Dose: by Race"}
             label={["People"]}
-            switches={["horizontalBar", "bar", "doughnut"]}>
+            switches={["horizontalBar", "bar", "doughnut"]}
+          >
             <BuildTable
               colName={["Age", "Pop", "% of Pop", "% w/ at Least 1 Dose"]}
               rows={["Asian/PI*", "Black*", "Hispanic/Latino", "White*"]}
               columns={[raceOCPop, racePercOfPop, racePercent1Dose]}
             />
-             <p className="chartNote">
-            *Population not of Hispanic/Latino ethnicity<br></br>
-            <a className="blue" target="_new" href="http://www.ochealthiertogether.org/demographicdata?id=267&sectionId=941">Population source</a>  
+            <p className="chartNote">
+              *Population not of Hispanic/Latino ethnicity<br></br>
+              <a
+                className="blue"
+                target="_new"
+                href="http://www.ochealthiertogether.org/demographicdata?id=267&sectionId=941"
+              >
+                Population source
+              </a>
             </p>
           </Chart>
 
@@ -274,7 +290,8 @@ const Vaccinations = (props) => {
             fill={customRaceColors}
             title={"Persons w/ at Least 1 Dose: by Race Split by Age Groups"}
             label={["Over 65", "Under 65"]}
-            switches={["horizontalBar", "bar","doughnut"]}></ChartNonStacked>
+            switches={["horizontalBar", "bar", "doughnut"]}
+          ></ChartNonStacked>
 
           <Chart
             key="3"
@@ -297,6 +314,14 @@ const Vaccinations = (props) => {
             label={["People"]}
             switches={["horizontalBar", "bar", "doughnut"]}
           />
+          <div className="chartContainer">
+            <div className="chartTitle">Top 25 Dose Providers</div>
+            <BuildTable
+              rows={vendorNames}
+              colName={["Vendor", "Doses Administered","% of All Doses Administered"]}
+              columns={[vendorDoses, vendorPerc]}
+            />
+          </div>
         </div>
       </Page>
     </div>

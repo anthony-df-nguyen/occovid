@@ -31,14 +31,15 @@ const FetchVaccines = (props) => {
             .then((a) => a.json())
             .then((b) => {
               let results = b.features;
+            
               const findValue = (category, metric) => {
                 try {
                   let resultArray = results.filter(
-                    (a) => a.attributes.category == category
+                    (a) => a.attributes.category === category
                   );
                   let finalValue;
                   Object.keys(resultArray[0].attributes).forEach((a, i) => {
-                    if (a == metric) {
+                    if (a === metric) {
                       let value = Object.values(resultArray[0].attributes)[i];
                       finalValue = value;
                     }
