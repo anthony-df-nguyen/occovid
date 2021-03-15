@@ -212,7 +212,7 @@ const Home = (props) => {
                   <div className="subFlex">
                     <Widget
                       title={"Active Phase"}
-                      stat={vaccinePhase.phase}
+                      stat={vaccinePhase.phase + " w/ Medical Conditions"}
                       color={color.red}
                     />
 

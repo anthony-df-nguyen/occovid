@@ -149,7 +149,7 @@ const Vaccinations = (props) => {
           <a href={`${vaccinePhase.url}`} target="_blank" rel="noreferrer">
             <Widget
               title={"Active Phase"}
-              stat={vaccinePhase.phase}
+              stat={vaccinePhase.phase + " w/ Medical Conditions"}
               color={color.red}
             />
           </a>
