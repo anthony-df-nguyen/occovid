@@ -602,7 +602,7 @@ const VaccinationMap = () => {
 
   return (
     <div>
-      <Page title="Vaccination Map">
+      <Page title="Vaccination Map" subtitle="(Othena Data)">
         <div className="chartTitle">
           <div id="mapModeDisplayContainer">
             <div className="mapModeDisplay">

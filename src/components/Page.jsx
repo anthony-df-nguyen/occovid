@@ -41,6 +41,7 @@ const Page = (props) => {
     <div>
       <div className="page">
         <h1 className="pageTitle">{props.title}</h1>
+        <p className="subtitle">{props.subtitle}</p>
         {generateUpdateDate(props.title)}
         {props.children}
         <div className="backToTop" id="backToTopButton" onClick={scrollToTop}>

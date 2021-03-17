@@ -377,6 +377,12 @@ body.dark {
   margin-bottom: 1rem;
   text-align: center;
 }
+.page .subtitle {
+  font-size: 14px;
+  text-align: center;
+  margin: -1rem 0 1rem 0;
+  font-weight: 300;
+}
 @media only screen and (min-width:1366px) {
   .page {
     position: relative;

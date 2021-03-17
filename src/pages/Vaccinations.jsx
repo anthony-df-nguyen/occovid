@@ -147,7 +147,7 @@ const Vaccinations = (props) => {
       <FetchVaccines function={[updateArray, updateDate]} time={time} />
       <FetchVaccineTier function={updateVaccinePhases} />
       <FetchVaccineVendor function={updateVendorArray} />
-      <Page title="Vaccinations">
+      <Page title="Vaccinations" subtitle="(CAIR2 Data)">
         <div id="lastUpdateDate">
           <p>Last Updated {asof}</p>
         </div>
