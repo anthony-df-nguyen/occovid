@@ -121,7 +121,7 @@ const Home = (props) => {
         <FetchDeaths function={update2Array} time={time} />
         <FetchHosTriggers function={update3Array} time={time} />
         <FetchHospitals function={update4Array} time={time} />
-        <FetchVaccines function={[update5Array, () => {}]} time={time} />
+        <FetchVaccines function={update5Array} time={time} />
         <FetchTesting function={update6Array} time={time} />
         <FetchCountyTier function={updateTier} />
         <FetchCAMetrics time={time} function={update7Array} />

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import cheerio from "cheerio";
+
 
 let thisDataArray = [];
 let vaccineDataTable;
@@ -9,21 +9,7 @@ const FetchVaccines = (props) => {
     <>
       {useEffect(() => {
         let mounted = true;
-        const getUpdate = async () => {
-          await fetch(
-            "https://services2.arcgis.com/LORzk2hk9xzHouw9/ArcGIS/rest/services/vacc_totalsummary/FeatureServer/0"
-          )
-            .then((a) => a.text())
-            .then((b) => {
-              const $ = cheerio.load(b);
-              let yolo = $(".restBody b");
-              let lastUpdateDate = yolo[20].next.data;
-              let shortdate = lastUpdateDate.substring(0, 10);
-              if (mounted) {
-                props.function[1](shortdate);
-              }
-            });
-        };
+
         const getData = async () => {
           await fetch(
             "https://services2.arcgis.com/LORzk2hk9xzHouw9/ArcGIS/rest/services/vacc_totalsummary/FeatureServer/0/query?where=0%3D0&objectIds=&time=&resultType=none&outFields=category%2C+num_1st%2C+num_1st2nd%2C+num_atleast1%2C+num_totalvalid&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&sqlFormat=none&f=pjson&token="
@@ -31,14 +17,13 @@ const FetchVaccines = (props) => {
             .then((a) => a.json())
             .then((b) => {
               let results = b.features;
-             
+
               const findValue = (category, metric) => {
                 try {
                   let resultArray = results.filter(
-               
                     (a) => a.attributes.category === category
                   );
-                     
+
                   let finalValue;
                   Object.keys(resultArray[0].attributes).forEach((a, i) => {
                     if (a === metric) {
@@ -98,7 +83,6 @@ const FetchVaccines = (props) => {
               let pfizerDose1 = findValue("Pfizer", "num_1st");
               let astraDose1 = findValue("AstraZeneca", "num_1st");
 
-
               thisDataArray = [
                 peopleOneDose,
                 peopleTwoDose,
@@ -140,12 +124,14 @@ const FetchVaccines = (props) => {
                 fullVaccinated,
                 janssen,
                 astra,
-                modernaDose1,pfizerDose1,astraDose1
+                modernaDose1,
+                pfizerDose1,
+                astraDose1,
               ];
             })
             .then(() => {
               if (mounted) {
-                props.function[0](thisDataArray);
+                props.function(thisDataArray);
               }
             });
         };
@@ -153,7 +139,6 @@ const FetchVaccines = (props) => {
         if (mounted) {
           thisDataArray = [];
           try {
-            getUpdate();
             getData();
           } catch (err) {
             console.log("Could not getch Vaccine data");

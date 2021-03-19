@@ -8,7 +8,7 @@ export default function FetchCountyTier(props) {
             await fetch("https://occovidtaskmongo.vercel.app/api/countytier").then(a => a.json()).then(b=> b[0])
             .then(c => {
                 let tier = c["Overall Status"]
-                console.log(tier)
+               
                 if (mounted) {
                     props.function(tier);
                 }

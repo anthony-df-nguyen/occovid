@@ -9,7 +9,13 @@ const Page = (props) => {
   }, []);
 
   const generateUpdateDate = (x) => {
-    if (x !== "Vaccinations" && x !== "School Cases" && x !== "City History" && x !== "Updates") {
+    if (
+      x !== "Vaccinations" &&
+      x !== "School Cases" &&
+      x !== "City History" &&
+      x !== "Updates" &&
+      x !== "Vaccination Map Ages 65+"
+    ) {
       return <Lastupdate />;
     }
   };

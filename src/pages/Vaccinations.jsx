@@ -6,6 +6,7 @@ import ChartNonStacked from "components/ChartNonStacked";
 import { FetchVaccines } from "Datafetch/FetchVaccines";
 import FetchVaccineVendor from "Datafetch/FetchVaccineVendor";
 import VaccineHistory from "Datafetch/VaccineHistory.jsx";
+import FetchVaccineDate from "Datafetch/FetchVaccineDate"
 import Chart from "components/Chart";
 import Widget from "components/Widget";
 import { ageLabels, ageColors } from "globalVars/chartJSconfig";
@@ -36,7 +37,7 @@ const Vaccinations = (props) => {
   const [vendorArray, updateVendorArray] = useState([]);
   const [vaccineHisArray, updateVaxArray] = useState([]);
   const [vaccinePhase, updateVaccinePhases] = useState([]);
-  const [asof, updateDate] = useState("Last Updated...");
+  const [asof, updateDate] = useState("Getting last update date...");
 
   const [
     peopleOneDose,
@@ -156,13 +157,14 @@ const Vaccinations = (props) => {
   const brand2Dose = [pfizer,moderna,astra,janssen]
   return (
     <div>
+      <FetchVaccineDate function={updateDate} />
       <VaccineHistory function={updateVaxArray} time={time} />
-      <FetchVaccines function={[updateArray, updateDate]} time={time} />
+      <FetchVaccines function={updateArray} time={time} />
       <FetchVaccineTier function={updateVaccinePhases} />
       <FetchVaccineVendor function={updateVendorArray} />
       <Page title="Vaccinations">
         <div id="lastUpdateDate">
-          <p>Last Updated {asof}</p>
+          <p>{asof}</p>
         </div>
         <div className="widgetGrid">
           <a href={`${vaccinePhase.url}`} target="_blank" rel="noreferrer">
@@ -323,9 +325,9 @@ const Vaccinations = (props) => {
               columns={[
                 brand1Dose.map((a) => a && a.toLocaleString()),
                 brand2Dose.map((a) => a && a.toLocaleString()),
-                brand2Dose
-                  .map((a) => a && (parseFloat((a / ocpop) * 100)).toFixed(1) + "%")
-                  ,
+                brand2Dose.map(
+                  (a) => a && parseFloat((a / ocpop) * 100).toFixed(1) + "%"
+                ),
               ]}
             />
           </Chart>

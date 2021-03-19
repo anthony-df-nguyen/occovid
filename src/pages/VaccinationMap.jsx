@@ -4,6 +4,7 @@ import React, { useEffect, useState, useContext } from "react";
 import Page from "components/Page";
 import { MapContainer, TileLayer, Popup, GeoJSON } from "react-leaflet";
 import { zipVaxMap } from "globalVars/Sources";
+import FetchVaccineDate from "Datafetch/FetchVaccineDate";
 import {
   ContextColors,
   band1,
@@ -18,6 +19,7 @@ import { ThemeContext } from "components/context/ThemeContext";
 import ExpandCollapse from "components/ExpandCollapse";
 
 const VaccinationMap = () => {
+    const [asof, updateDate] = useState("Getting last update date...");
   // eslint-disable-next-line no-unused-vars
   const [theme, updateTheme] = useContext(ThemeContext);
   const [leaflet, updateleafLet] = useState();
@@ -605,7 +607,11 @@ const VaccinationMap = () => {
 
   return (
     <div>
-      <Page title="Vaccination Map Ages 65+" >
+      <FetchVaccineDate function={updateDate} />
+      <Page title="Vaccination Map Ages 65+">
+        <div id="lastUpdateDate">
+          <p>{asof}</p>
+        </div>
         <div className="chartTitle">
           <div id="mapModeDisplayContainer">
             <div className="mapModeDisplay">
@@ -620,7 +626,8 @@ const VaccinationMap = () => {
           </div>
         </div>
         <div className="uiButtonSubText">
-          'All Ages' and '&lt; 65' removed as it's unclear if county will continue to provide the data
+          'All Ages' and '&lt; 65' removed as it's unclear if county will
+          continue to provide the data
         </div>
         <ExpandCollapse title="Change Map Mode" buttontext="Close">
           <ModeSelector
