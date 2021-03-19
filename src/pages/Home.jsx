@@ -53,7 +53,8 @@ const Home = (props) => {
   const [array6, update6Array] = useState([]);
   const [array7, update7Array] = useState([]);
   const [vaccinePhase, updateVaccinePhases] = useState([]);
-  const [peopleOneDose, peopleTwoDose, totalPeople] = array5;
+  const peopleOneDose = array5[2];
+  const fullVaccinated = array5[37];
   const [maxCaseRate, updateCaseMax] = useState(10);
   const [maxPosRate, updatePosMax] = useState(10);
   const [maxEqRate, updateEqMax] = useState(10);
@@ -106,8 +107,11 @@ const Home = (props) => {
     }
   }, [tier]);
 
-  const totalPPL = parseInt(totalPeople);
-  const totallPPLPerc = parseFloat((totalPPL / ocpop) * 100).toFixed(1);
+    const totalPPL1Dose = parseInt(peopleOneDose);
+    const totalPPL1Perc = parseFloat((totalPPL1Dose / ocpop) * 100).toFixed(1);
+
+    const totalPPL = parseInt(fullVaccinated);
+    const totallPPLPerc = parseFloat((totalPPL / ocpop) * 100).toFixed(1);
 
   return (
     <div>
@@ -222,18 +226,15 @@ const Home = (props) => {
                       color={color.blue}
                     />
                     <Widget
-                      title={"Total People Vaccinated"}
+                      title={"Fully Vaccinated (All Brands) "}
                       stat={`${totalPPL.toLocaleString()} | ${totallPPLPerc}%`}
                       color={color.green}
                     />
                     <Widget
-                      title={"People: 1st Dose Only"}
-                      stat={parseInt(peopleOneDose).toLocaleString()}
-                      color={color.green}
-                    />
-                    <Widget
-                      title={"People: 1st & 2nd Dose"}
-                      stat={parseInt(peopleTwoDose).toLocaleString()}
+                      title={"People w/ at Least 1 Dose (All Brands)"}
+                      stat={`${parseInt(
+                        totalPPL1Dose
+                      ).toLocaleString()}  | ${totalPPL1Perc}%`}
                       color={color.green}
                     />
                   </div>
@@ -262,83 +263,82 @@ const Home = (props) => {
               </div>
             </div>
           </Link>
-      
-            <Link to="/whatsopen">
-              <div className="innerDiv">
-                <div className="widgetTitle">State Metrics</div>
-                <div className="subFlex">
-                  <Widget
-                    title={"Current Tier"}
-                    stat={getTierText()}
-                    color={tierColor}
-                  />
-                  <Widget
-                    title={"Tests per 100k"}
-                    stat={lastTestRate}
-                    color={color.blue}
+
+          <Link to="/whatsopen">
+            <div className="innerDiv">
+              <div className="widgetTitle">State Metrics</div>
+              <div className="subFlex">
+                <Widget
+                  title={"Current Tier"}
+                  stat={getTierText()}
+                  color={tierColor}
+                />
+                <Widget
+                  title={"Tests per 100k"}
+                  stat={lastTestRate}
+                  color={color.blue}
+                />
+              </div>
+              <div className="widgetGrid">
+                <div className="gaugeContainer">
+                  <div className="chartTitle">Adj. Case Rate per 100k</div>
+                  <ReactSpeedometer
+                    value={lastCaseRate}
+                    minValue={0}
+                    maxValue={maxCaseRate}
+                    segments={4}
+                    segmentColors={[
+                      color.gold,
+                      color.orange,
+                      color.red,
+                      color.purple,
+                    ]}
+                    customSegmentStops={[0, 1, 4, 7, maxCaseRate]}
+                    forceRender={true}
+                    needleColor={"#999"}
                   />
                 </div>
-                <div className="widgetGrid">
-                  <div className="gaugeContainer">
-                    <div className="chartTitle">Adj. Case Rate per 100k</div>
-                    <ReactSpeedometer
-                      value={lastCaseRate}
-                      minValue={0}
-                      maxValue={maxCaseRate}
-                      segments={4}
-                      segmentColors={[
-                        color.gold,
-                        color.orange,
-                        color.red,
-                        color.purple,
-                      ]}
-                      customSegmentStops={[0, 1, 4, 7, maxCaseRate]}
-                      forceRender={true}
-                      needleColor={"#999"}
-                    />
-                  </div>
-                  <div className="gaugeContainer">
-                    <div className="chartTitle">Test Positivity Rate</div>
-                    <ReactSpeedometer
-                      value={lastPositiveRate}
-                      minValue={0}
-                      maxValue={maxPosRate}
-                      segments={4}
-                      segmentColors={[
-                        color.gold,
-                        color.orange,
-                        color.red,
-                        color.purple,
-                      ]}
-                      customSegmentStops={[0, 2, 5, 8, maxPosRate]}
-                      forceRender={true}
-                      needleColor={"#999"}
-                      currentValueText={lastPositiveRate + "%"}
-                    />
-                  </div>
-                  <div className="gaugeContainer">
-                    <div className="chartTitle">Healthy Equity Quart %</div>
-                    <ReactSpeedometer
-                      value={lastHealthEquity}
-                      minValue={0}
-                      maxValue={maxEqRate}
-                      segments={4}
-                      segmentColors={[
-                        color.gold,
-                        color.orange,
-                        color.red,
-                        color.purple,
-                      ]}
-                      customSegmentStops={[0, 2.2, 5.3, 8, maxEqRate]}
-                      forceRender={true}
-                      needleColor={"#999"}
-                      currentValueText={lastHealthEquity + "%"}
-                    />
-                  </div>
+                <div className="gaugeContainer">
+                  <div className="chartTitle">Test Positivity Rate</div>
+                  <ReactSpeedometer
+                    value={lastPositiveRate}
+                    minValue={0}
+                    maxValue={maxPosRate}
+                    segments={4}
+                    segmentColors={[
+                      color.gold,
+                      color.orange,
+                      color.red,
+                      color.purple,
+                    ]}
+                    customSegmentStops={[0, 2, 5, 8, maxPosRate]}
+                    forceRender={true}
+                    needleColor={"#999"}
+                    currentValueText={lastPositiveRate + "%"}
+                  />
+                </div>
+                <div className="gaugeContainer">
+                  <div className="chartTitle">Healthy Equity Quart %</div>
+                  <ReactSpeedometer
+                    value={lastHealthEquity}
+                    minValue={0}
+                    maxValue={maxEqRate}
+                    segments={4}
+                    segmentColors={[
+                      color.gold,
+                      color.orange,
+                      color.red,
+                      color.purple,
+                    ]}
+                    customSegmentStops={[0, 2.2, 5.3, 8, maxEqRate]}
+                    forceRender={true}
+                    needleColor={"#999"}
+                    currentValueText={lastHealthEquity + "%"}
+                  />
                 </div>
               </div>
-            </Link>
-         
+            </div>
+          </Link>
         </div>
       </Page>
     </div>

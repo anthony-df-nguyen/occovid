@@ -31,12 +31,14 @@ const FetchVaccines = (props) => {
             .then((a) => a.json())
             .then((b) => {
               let results = b.features;
-            
+             
               const findValue = (category, metric) => {
                 try {
                   let resultArray = results.filter(
+               
                     (a) => a.attributes.category === category
                   );
+                     
                   let finalValue;
                   Object.keys(resultArray[0].attributes).forEach((a, i) => {
                     if (a === metric) {
@@ -76,8 +78,8 @@ const FetchVaccines = (props) => {
               let age7584 = findValue("75-84 yrs", "num_atleast1");
               let age85 = findValue("85+ yrs", "num_atleast1");
               let ageUnknown = null;
-              let moderna = findValue("Moderna", "num_totalvalid");
-              let pfizer = findValue("Pfizer", "num_totalvalid");
+              let moderna = findValue("Moderna", "num_1st2nd");
+              let pfizer = findValue("Pfizer", "num_1st2nd");
               let unknownTrade = findValue("Unknown Trade", "num_totalvalid");
               let asianPI65up = findValue("Asian/PI 65+", "num_atleast1");
               let black65up = findValue("Black 65+", "num_atleast1");
@@ -89,6 +91,9 @@ const FetchVaccines = (props) => {
               let hispanic65down = findValue("Hispanic <65", "num_atleast1");
               let white65down = findValue("White <65", "num_atleast1");
               let otherRace65down = findValue("Other Race <65", "num_atleast1");
+              let fullVaccinated = findValue("Total Trade", "num_1st2nd");
+              let janssen = findValue("Janssen", "num_1st2nd");
+              let astra = findValue("AstraZeneca", "num_1st2nd");
 
               thisDataArray = [
                 peopleOneDose,
@@ -128,6 +133,9 @@ const FetchVaccines = (props) => {
                 hispanic65down,
                 white65down,
                 otherRace65down,
+                fullVaccinated,
+                janssen,
+                astra,
               ];
             })
             .then(() => {

@@ -382,6 +382,7 @@ body.dark {
   text-align: center;
   margin: -1rem 0 1rem 0;
   font-weight: 300;
+  color: var(--primary-text);
 }
 @media only screen and (min-width:1366px) {
   .page {

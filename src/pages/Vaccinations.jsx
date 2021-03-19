@@ -80,10 +80,16 @@ const Vaccinations = (props) => {
     hispanic65down,
     white65down,
     otherRace65down,
+    fullVaccinated,
+    janssen,
+    astra,
   ] = array;
 
   //Total People Reports
-  const totalPPL = parseInt(totalPeople);
+  const totalPPL1Dose = parseInt(totalPeople);
+  const totalPPL1Perc = parseFloat((totalPPL1Dose / ocpop) * 100).toFixed(1);
+
+  const totalPPL = parseInt(fullVaccinated);
   const totallPPLPerc = parseFloat((totalPPL / ocpop) * 100).toFixed(1);
 
   //Age Vaccine Reports
@@ -166,22 +172,17 @@ const Vaccinations = (props) => {
             color={color.green}
           />
           <Widget
-            title={"Total People Vaccinated"}
+            title={"Fully Vaccinated (All Brands)"}
             stat={`${totalPPL.toLocaleString()} | ${totallPPLPerc}%`}
             color={color.blue}
           />
           <Widget
-            title={"People: 1st Dose Only"}
-            stat={parseInt(peopleOneDose).toLocaleString()}
+            title={"People w/ at Least 1 Dose (All Brands)"}
+            stat={`${totalPPL1Dose.toLocaleString()} | ${totalPPL1Perc}%`}
             color={color.blue}
           />
           <Widget
-            title={"People: 1st & 2nd Dose"}
-            stat={parseInt(peopleTwoDose).toLocaleString()}
-            color={color.blue}
-          />
-          <Widget
-            title={"Total Administered"}
+            title={"Total Doses Administered"}
             stat={parseInt(totalAdmin).toLocaleString()}
             color={color.pink}
           />
@@ -196,6 +197,7 @@ const Vaccinations = (props) => {
             color={color.pink}
           />
         </div>
+
         <Timeselect />
         <div id="chartVaccineGrid">
           <Chart
@@ -234,7 +236,7 @@ const Vaccinations = (props) => {
             date={[...ageLabels.slice(0, -1)]}
             data={[ageVaxArray]}
             fill={[[...ageColors]]}
-            title={"Persons w/ at Least 1 Dose: by Age"}
+            title={"People w/ at Least 1 Dose: by Age"}
             label={["People"]}
             switches={["horizontalBar", "bar", "doughnut"]}
           >
@@ -252,7 +254,7 @@ const Vaccinations = (props) => {
             date={["Asian/PI", "Black", "Hispanic", "White", "Other"]}
             data={[raceVaxArrayAll]}
             fill={[[...customRaceColors]]}
-            title={"Persons w/ at Least 1 Dose: by Race"}
+            title={"People w/ at Least 1 Dose: by Race"}
             label={["People"]}
             switches={["horizontalBar", "bar", "doughnut"]}
           >
@@ -288,7 +290,7 @@ const Vaccinations = (props) => {
               ],
             ]}
             fill={customRaceColors}
-            title={"Persons w/ at Least 1 Dose: by Race Split by Age Groups"}
+            title={"People w/ at Least 1 Dose: by Race Split by Age Groups"}
             label={["Over 65", "Under 65"]}
             switches={["horizontalBar", "bar", "doughnut"]}
           ></ChartNonStacked>
@@ -296,10 +298,10 @@ const Vaccinations = (props) => {
           <Chart
             key="3"
             id="vaccine3"
-            date={["Moderna", "Pfizer", "Unknown"]}
-            data={[[moderna, pfizer, unknownTrade]]}
-            fill={[[color.green, color.blue, color.lightergray]]}
-            title={"All Doses Administered by Trade"}
+            date={["Moderna", "Pfizer", "Janssen", "AstraZen"]}
+            data={[[moderna, pfizer, janssen, astra]]}
+            fill={[[color.green, color.blue, color.red]]}
+            title={"Fully Vaccinated by Brand"}
             label={["People"]}
             switches={["horizontalBar", "bar", "doughnut"]}
           />
@@ -310,7 +312,7 @@ const Vaccinations = (props) => {
             date={["Female", "Male", "Other"]}
             data={[[female, male, otherSex]]}
             fill={[[color.pink, color.blue, color.orange]]}
-            title={"Persons w/ at Least 1 Dose: by Sex"}
+            title={"People w/ at Least 1 Dose: by Sex"}
             label={["People"]}
             switches={["horizontalBar", "bar", "doughnut"]}
           />
@@ -318,7 +320,11 @@ const Vaccinations = (props) => {
             <div className="chartTitle">Top 25 Dose Providers</div>
             <BuildTable
               rows={vendorNames}
-              colName={["Vendor", "Doses Administered","% of All Doses Administered"]}
+              colName={[
+                "Vendor",
+                "Doses Administered",
+                "% of All Doses Administered",
+              ]}
               columns={[vendorDoses, vendorPerc]}
             />
           </div>
