@@ -35,16 +35,18 @@ const VaccinationMap = () => {
   });
 
   //Set state for which age group All vs over 65 vs under 65
-  const [ageDisplay, updateAgeDisplay] = useState();
-  const [age, updateAge] = useState(() => {
-    if (!localStorage.getItem("vaxMapLastAge")) {
-      updateAgeDisplay("Over 65");
-      return "over65";
-    } else {
-      updateAgeDisplay(localStorage.getItem("vaxMapLastAgeText"));
-      return localStorage.getItem("vaxMapLastAge");
-    }
-  });
+  //const [ageDisplay, updateAgeDisplay] = useState();
+  // const [age, updateAge] = useState(() => {
+  //   if (!localStorage.getItem("vaxMapLastAge")) {
+  //     updateAgeDisplay("Over 65");
+  //     return "over65";
+  //   } else {
+  //     updateAgeDisplay(localStorage.getItem("vaxMapLastAgeText"));
+  //     return localStorage.getItem("vaxMapLastAge");
+  //   }
+  // });
+  const [age,updateAge] =  useState('over65')
+  const [ageDisplay, updateAgeDisplay] = useState("Ages >= 65");
 
   //Set state for which race is being used all vs specific
   const [raceDisplay, updateRaceDisplay] = useState();
@@ -206,6 +208,7 @@ const VaccinationMap = () => {
     }
   };
   const [queryMode, updateQueryMode] = useState(createAgeRaceMode);
+
 
   //Set a starting state for theme or city/zip mode so later we only reload page if theme or city/zip mode changes
   const [startingTheme, updateStartingTheme] = useState(theme);
@@ -602,7 +605,7 @@ const VaccinationMap = () => {
 
   return (
     <div>
-      <Page title="Vaccination Map" subtitle="(Othena Data)">
+      <Page title="Vaccination Map Ages 65+" subtitle="(Othena Data)">
         <div className="chartTitle">
           <div id="mapModeDisplayContainer">
             <div className="mapModeDisplay">
@@ -611,10 +614,13 @@ const VaccinationMap = () => {
             <div className="mapModeDisplay">
               <b>Race:</b> {raceDisplay}{" "}
             </div>
-            <div className="mapModeDisplay">
+            {/* <div className="mapModeDisplay">
               <b>Ages:</b> {ageDisplay}
-            </div>
+            </div> */}
           </div>
+        </div>
+        <div className="uiButtonSubText">
+          'All Ages' and '&lt; 65' removed as it's unclear if county will continue to provide the data
         </div>
         <ExpandCollapse title="Change Map Mode" buttontext="Close">
           <ModeSelector
@@ -649,26 +655,26 @@ const VaccinationMap = () => {
             ]}
             storageKey={["vaxmapLastRace", "vaxmapLastRaceText"]}
           />
-          <ModeSelector
+          {/* <ModeSelector
             text="By age group"
             function={[updateAge, updateAgeDisplay]}
             current={age}
             options={[
-              {
-                display: "All Ages",
-                value: "all",
-              },
+              // {
+              //   display: "All Ages",
+              //   value: "all",
+              // },
               {
                 display: "Ages >= 65",
                 value: "over65",
               },
-              {
-                display: "Ages < 65",
-                value: "under65",
-              },
+              // {
+              //   display: "Ages < 65",
+              //   value: "under65",
+              // },
             ]}
             storageKey={["vaxMapLastAge", "vaxMapLastAgeText"]}
-          />
+          /> */}
 
           <ModeSelector
             text="Choose a mode"

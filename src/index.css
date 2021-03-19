@@ -655,6 +655,12 @@ body.dark {
     text-align: center;
   }
 }
+.uiButtonSubText {
+  text-align: center;
+  color: var(--primary-text);
+  font-size: 0.8rem;
+  margin-bottom: 10px;
+}
 .uiParent {
   margin: 10px auto;
   display: block;
@@ -1193,11 +1199,15 @@ a.globButton:hover,
 #mapid ul li {
   list-style-type: none;
 }
+#mapid h3 {
+  color: var(--primary-text);
+}
 #mapid .metricBlock {
   display: block;
   color: var(--primary-text);
 }
 #mapid .metricName {
+  color: var(--primary-text);
   display: inline;
   font-weight: 600;
   font-family: Arial, sans-serif;
@@ -1208,6 +1218,9 @@ a.globButton:hover,
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto;
   grid-gap: 10px;
+}
+#mapid #mapVaxRaceGrid div {
+  color: var(--primary-text);
 }
 #mapModeDisplayContainer {
   text-align: center;

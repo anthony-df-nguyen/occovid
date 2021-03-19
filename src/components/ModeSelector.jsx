@@ -31,22 +31,23 @@ const ModeSelector = (props) => {
   return (
     <div className="modeSelector">
       <div className="uiButtonInstruction">{props.text}</div>
+      <div className="uiButtonSubText">{props.subtext}</div>
       <div className="uiParent">
         <div className="uiButtonContainer">
           {
             //Generate X buttons based on what's passed in
             props.options.map((row, i) => {
-                  return (
-                    <a
-                      key={i}
-                      className={selectedMetric == row.value ? "active" : null}
-                      onClick={() => updateMode(row.value, row.display)}
-                    >
-                      {row.display}
-                    </a>
-                  )
-                })
-              }
+              return (
+                <a
+                  key={i}
+                  className={selectedMetric == row.value ? "active" : null}
+                  onClick={() => updateMode(row.value, row.display)}
+                >
+                  {row.display}
+                </a>
+              );
+            })
+          }
         </div>
       </div>
     </div>

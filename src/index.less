@@ -739,6 +739,12 @@ body.dark {
     text-align: center;
   }
 }
+.uiButtonSubText {
+  text-align: center;
+  color: var(--primary-text);
+  font-size:.8rem;
+  margin-bottom: @gap;
+}
 
 .uiParent {
   margin : @gap auto;
@@ -1419,6 +1425,9 @@ a.globButton,
       list-style-type: none;
     }
   }
+  h3 {
+    color:var(--primary-text);
+  }
 
   .metricBlock {
     display: block;
@@ -1426,6 +1435,7 @@ a.globButton,
   }
 
   .metricName {
+    color:var(--primary-text);
     display    : inline;
     font-weight: 600;
     font-family: Arial, sans-serif;
@@ -1437,6 +1447,9 @@ a.globButton,
     grid-template-columns: 1fr 1fr;
     grid-template-rows   : auto;
     grid-gap             : @gap;
+    div {
+      color:var(--primary-text);
+    }
   }
 }
 
