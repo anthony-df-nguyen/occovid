@@ -1,6 +1,7 @@
 import moment from "moment";
 
 function TimeFilterForCounties(array, timeSetting, mode) {
+  
   array.sort((a, b) => (new Date(a.date) > new Date(b.date) ? 1 : -1));
   let ocStart;
   switch (mode) {
@@ -32,15 +33,16 @@ function TimeFilterForCounties(array, timeSetting, mode) {
       ocStart = new Date("2020-03-03T00:00:00");
       break;
   }
+  //console.log(array);
   let countyStart = new Date(array[0].date);
 
   //Normalize the county array
   let fullArray = [];
   if (countyStart.getTime() - ocStart.getTime() > 1) {
-    //console.log("The county start later");
+    // console.log("The county start later");
     let differenceTime = countyStart.getTime() - ocStart.getTime();
     let dayDelta = Math.ceil(differenceTime / (1000 * 60 * 60 * 24));
-    //console.log("file: TimeFilterForCounties.js ~ line 44 ~ TimeFilterForCounties ~ dayDelta", dayDelta)
+    // console.log("file: TimeFilterForCounties.js ~ line 44 ~ TimeFilterForCounties ~ dayDelta", dayDelta)
     let fakeStart = moment(ocStart).format("L");
     for (let z = 0; z < dayDelta; z++) {
       let fakeDate;
@@ -75,7 +77,7 @@ function TimeFilterForCounties(array, timeSetting, mode) {
   } else {
     let differenceTime = ocStart.getTime() - countyStart.getTime();
     let dayDelta = Math.ceil(differenceTime / (1000 * 60 * 60 * 24));
-    //console.log("The county starts earlier by ", dayDelta);
+    // console.log("The county starts earlier by ", dayDelta);
     let fakeStart = moment(ocStart).format("L");
     for (let z = 0; z < dayDelta; z++) {
       array.shift();
