@@ -94,6 +94,10 @@ const FetchVaccines = (props) => {
               let fullVaccinated = findValue("Total Trade", "num_1st2nd");
               let janssen = findValue("Janssen", "num_1st2nd");
               let astra = findValue("AstraZeneca", "num_1st2nd");
+              let modernaDose1 = findValue("Moderna", "num_1st");
+              let pfizerDose1 = findValue("Pfizer", "num_1st");
+              let astraDose1 = findValue("AstraZeneca", "num_1st");
+
 
               thisDataArray = [
                 peopleOneDose,
@@ -136,6 +140,7 @@ const FetchVaccines = (props) => {
                 fullVaccinated,
                 janssen,
                 astra,
+                modernaDose1,pfizerDose1,astraDose1
               ];
             })
             .then(() => {

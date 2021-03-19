@@ -3,11 +3,8 @@ import { TimeContext } from "components/context/TimeContext";
 import color from "globalVars/Colors";
 import Timeselect from "components/Timeselect";
 import ChartNonStacked from "components/ChartNonStacked";
-import {
-  FetchVaccines,
-
-} from "Datafetch/FetchVaccines";
-import FetchVaccineVendor from "Datafetch/FetchVaccineVendor"
+import { FetchVaccines } from "Datafetch/FetchVaccines";
+import FetchVaccineVendor from "Datafetch/FetchVaccineVendor";
 import VaccineHistory from "Datafetch/VaccineHistory.jsx";
 import Chart from "components/Chart";
 import Widget from "components/Widget";
@@ -36,7 +33,7 @@ const Vaccinations = (props) => {
   // eslint-disable-next-line no-unused-vars
   const [time, setTime] = useContext(TimeContext);
   const [array, updateArray] = useState([]);
-   const [vendorArray, updateVendorArray] = useState([]);
+  const [vendorArray, updateVendorArray] = useState([]);
   const [vaccineHisArray, updateVaxArray] = useState([]);
   const [vaccinePhase, updateVaccinePhases] = useState([]);
   const [asof, updateDate] = useState("Last Updated...");
@@ -83,6 +80,9 @@ const Vaccinations = (props) => {
     fullVaccinated,
     janssen,
     astra,
+    modernaDose1,
+    pfizerDose1,
+    astraDose1,
   ] = array;
 
   //Total People Reports
@@ -144,16 +144,23 @@ const Vaccinations = (props) => {
     return parseFloat((a / racePopArray[i]) * 100).toFixed(1) + "%";
   });
 
- const vendorNames = vendorArray.map((a) => a.vendor);
- const vendorDoses = vendorArray.map((a) => (a.doses ? parseInt(a.doses).toLocaleString() : ''));
- const vendorPerc = vendorArray.map((a) => (parseFloat(a.doses / totalAdmin)*100).toFixed(1) + '%');
+  const vendorNames = vendorArray.map((a) => a.vendor);
+  const vendorDoses = vendorArray.map((a) =>
+    a.doses ? parseInt(a.doses).toLocaleString() : ""
+  );
+  const vendorPerc = vendorArray.map(
+    (a) => (parseFloat(a.doses / totalAdmin) * 100).toFixed(1) + "%"
+  );
+
+  const brand1Dose = [pfizerDose1,modernaDose1,astraDose1,"N/A"]
+  const brand2Dose = [pfizer,moderna,astra,janssen]
   return (
     <div>
       <VaccineHistory function={updateVaxArray} time={time} />
       <FetchVaccines function={[updateArray, updateDate]} time={time} />
       <FetchVaccineTier function={updateVaccinePhases} />
       <FetchVaccineVendor function={updateVendorArray} />
-      <Page title="Vaccinations" subtitle="(CAIR2 Data)">
+      <Page title="Vaccinations">
         <div id="lastUpdateDate">
           <p>Last Updated {asof}</p>
         </div>
@@ -192,7 +199,7 @@ const Vaccinations = (props) => {
             color={color.pink}
           />
           <Widget
-            title={"2nd Dose Administered"}
+            title={"1st+2nd Dose Administered"}
             stat={parseInt(adminTwoDose).toLocaleString()}
             color={color.pink}
           />
@@ -298,13 +305,30 @@ const Vaccinations = (props) => {
           <Chart
             key="3"
             id="vaccine3"
-            date={["Moderna", "Pfizer", "Janssen", "AstraZen"]}
+            date={["Moderna", "Pfizer", "J&J", "AstraZen"]}
             data={[[moderna, pfizer, janssen, astra]]}
             fill={[[color.green, color.blue, color.red]]}
             title={"Fully Vaccinated by Brand"}
             label={["People"]}
             switches={["horizontalBar", "bar", "doughnut"]}
-          />
+          >
+            <BuildTable
+              rows={["Pfizer", "Moderna", "AstraZeneca", "J&J"]}
+              colName={[
+                "Brand",
+                "1st Doses",
+                "Fully Vaccinated",
+                "% of OC Pop",
+              ]}
+              columns={[
+                brand1Dose.map((a) => a && a.toLocaleString()),
+                brand2Dose.map((a) => a && a.toLocaleString()),
+                brand2Dose
+                  .map((a) => a && (parseFloat((a / ocpop) * 100)).toFixed(1) + "%")
+                  ,
+              ]}
+            />
+          </Chart>
 
           <Chart
             key="4"

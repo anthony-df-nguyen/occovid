@@ -605,7 +605,7 @@ const VaccinationMap = () => {
 
   return (
     <div>
-      <Page title="Vaccination Map Ages 65+" subtitle="(Othena Data)">
+      <Page title="Vaccination Map Ages 65+" >
         <div className="chartTitle">
           <div id="mapModeDisplayContainer">
             <div className="mapModeDisplay">
