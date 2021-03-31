@@ -19,6 +19,7 @@ const FetchVaccineVendor = (props) => {
                 });
               });
               thisDataArray.sort((a,b) => a.doses < b.doses ? 1 : -1)
+              //console.log(thisDataArray)
               let final = thisDataArray.slice(0,25);
               if (mounted) {
                 props.function(final);
