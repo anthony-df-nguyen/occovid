@@ -814,6 +814,12 @@ body.dark {
   margin-bottom: 1rem;
   color: var(--primary-text);
 }
+.homeWidgetGrid > a .innerDiv .widgetTitle p {
+  color: var(--primary-text);
+  font-size: 10px;
+  letter-spacing: 0;
+  font-weight: 300;
+}
 .homeWidgetGrid > a .innerDiv .subFlex {
   position: relative;
   display: flex;

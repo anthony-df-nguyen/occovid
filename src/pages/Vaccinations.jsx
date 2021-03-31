@@ -164,6 +164,7 @@ const Vaccinations = (props) => {
       <FetchVaccineVendor function={updateVendorArray} />
       <Page title="Vaccinations">
         <div id="lastUpdateDate">
+          <p style={{fontWeight: '500',}}>New data on Thursdays</p>
           <p>{asof}</p>
         </div>
         <div className="widgetGrid">
@@ -220,8 +221,7 @@ const Vaccinations = (props) => {
             fill={[color.blue, color.gold]}
             title={"Daily Doses Administered"}
             label={["Doses", "7 Day Avg"]}
-            switches={["line", "bar"]}
-          ></Chart>
+            switches={["line", "bar"]}></Chart>
 
           <Chart
             key="6"
@@ -231,8 +231,7 @@ const Vaccinations = (props) => {
             fill={[color.blue, color.gold]}
             title={"Cumulative Doses Administered"}
             label={["Doses"]}
-            switches={["line", "bar"]}
-          >
+            switches={["line", "bar"]}>
             <p className="chartNote">
               Most recent cumulative may not match 'Total Administered' due to
               lags in county's data set
@@ -247,8 +246,7 @@ const Vaccinations = (props) => {
             fill={[[...ageColors]]}
             title={"People w/ at Least 1 Dose: by Age"}
             label={["People"]}
-            switches={["horizontalBar", "bar", "doughnut"]}
-          >
+            switches={["horizontalBar", "bar", "doughnut"]}>
             <BuildTable
               colName={["Age", "Pop", "% of Pop", "% w/ at Least 1 Dose"]}
               rows={[...ageLabels.slice(0, -1)]}
@@ -265,8 +263,7 @@ const Vaccinations = (props) => {
             fill={[[...customRaceColors]]}
             title={"People w/ at Least 1 Dose: by Race"}
             label={["People"]}
-            switches={["horizontalBar", "bar", "doughnut"]}
-          >
+            switches={["horizontalBar", "bar", "doughnut"]}>
             <BuildTable
               colName={["Age", "Pop", "% of Pop", "% w/ at Least 1 Dose"]}
               rows={["Asian/PI*", "Black*", "Hispanic/Latino", "White*"]}
@@ -277,8 +274,7 @@ const Vaccinations = (props) => {
               <a
                 className="blue"
                 target="_new"
-                href="http://www.ochealthiertogether.org/demographicdata?id=267&sectionId=941"
-              >
+                href="http://www.ochealthiertogether.org/demographicdata?id=267&sectionId=941">
                 Population source
               </a>
             </p>
@@ -301,8 +297,7 @@ const Vaccinations = (props) => {
             fill={customRaceColors}
             title={"People w/ at Least 1 Dose: by Race Split by Age Groups"}
             label={["Over 65", "Under 65"]}
-            switches={["horizontalBar", "bar", "doughnut"]}
-          ></ChartNonStacked>
+            switches={["horizontalBar", "bar", "doughnut"]}></ChartNonStacked>
 
           <Chart
             key="3"
@@ -312,8 +307,7 @@ const Vaccinations = (props) => {
             fill={[[color.green, color.blue, color.red]]}
             title={"Fully Vaccinated by Brand"}
             label={["People"]}
-            switches={["horizontalBar", "bar", "doughnut"]}
-          >
+            switches={["horizontalBar", "bar", "doughnut"]}>
             <BuildTable
               rows={["Pfizer", "Moderna", "AstraZeneca", "J&J"]}
               colName={[

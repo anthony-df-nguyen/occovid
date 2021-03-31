@@ -6,6 +6,7 @@ import { TimeContext } from "components/context/TimeContext";
 import Widget from "components/Widget";
 import { ocpop } from "globalVars/populations";
 import FetchCountyTier from "Datafetch/FetchCountyTier";
+import FetchVaccineDate from "Datafetch/FetchVaccineDate";
 import {
   FetchCases,
   lastTotalCases,
@@ -43,6 +44,7 @@ import ReactSpeedometer from "react-d3-speedometer";
 import Page from "components/Page";
 import Announcement from "components/Announcement";
 
+
 const Home = (props) => {
   const [time, setTime] = useContext(TimeContext);
   const [array, updateArray] = useState([]);
@@ -53,6 +55,7 @@ const Home = (props) => {
   const [array6, update6Array] = useState([]);
   const [array7, update7Array] = useState([]);
   const [vaccinePhase, updateVaccinePhases] = useState([]);
+    const [vaccineDate, updateVaccineDate] = useState("Getting last update date...");
   const peopleOneDose = array5[2];
   const fullVaccinated = array5[37];
   const [maxCaseRate, updateCaseMax] = useState(10);
@@ -125,6 +128,7 @@ const Home = (props) => {
         <FetchTesting function={update6Array} time={time} />
         <FetchCountyTier function={updateTier} />
         <FetchCAMetrics time={time} function={update7Array} />
+        <FetchVaccineDate function={updateVaccineDate} />
         <FetchVaccineTier function={updateVaccinePhases} />
         <div className="homeWidgetGrid">
           <Link to="/cases">
@@ -212,7 +216,11 @@ const Home = (props) => {
             <div id="item4">
               <div className="innerDiv">
                 <div id="hosWidget">
-                  <div className="widgetTitle t4">Vaccinated</div>
+                  <div className="widgetTitle t4">
+                    Vaccinated
+                    <p>{vaccineDate}</p>
+                  </div>
+
                   <div className="subFlex">
                     <Widget
                       title={"Active Phase"}

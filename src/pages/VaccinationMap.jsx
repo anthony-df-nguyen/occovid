@@ -610,6 +610,7 @@ const VaccinationMap = () => {
       <FetchVaccineDate function={updateDate} />
       <Page title="Vaccination Map Ages 65+">
         <div id="lastUpdateDate">
+          <p style={{ fontWeight: "500" }}>New data on Thursdays</p>
           <p>{asof}</p>
         </div>
         <div className="chartTitle">
