@@ -43,6 +43,7 @@ import FetchVaccineTier from "Datafetch/FetchVaccineTier";
 import ReactSpeedometer from "react-d3-speedometer";
 import Page from "components/Page";
 import Announcement from "components/Announcement";
+import FindAVaccine from "components/FindAVaccine";
 
 
 const Home = (props) => {
@@ -130,6 +131,7 @@ const Home = (props) => {
         <FetchCAMetrics time={time} function={update7Array} />
         <FetchVaccineDate function={updateVaccineDate} />
         <FetchVaccineTier function={updateVaccinePhases} />
+        <FindAVaccine />
         <div className="homeWidgetGrid">
           <Link to="/cases">
             {" "}
@@ -348,6 +350,7 @@ const Home = (props) => {
             </div>
           </Link>
         </div>
+
       </Page>
     </div>
   );

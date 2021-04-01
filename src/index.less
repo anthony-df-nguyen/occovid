@@ -229,6 +229,9 @@ body.dark {
   -ms-transform    : translate(-50%, -50%);
   transform        : translate(-50%, -50%);
 }
+.bold {
+  font-weight: 700;
+}
 
 //Navigation
 @navBarWidth: 250px;
@@ -623,16 +626,16 @@ body.dark {
 
 #chartVaccineGrid {
   #chartGrid;
-
+  .vaxEffectiveness{
+    background-color: var(--white);
+    height: min-content;
+  }
   @media only screen and (min-width: 1024px) {
     grid-template-columns: 1fr 1fr;
 
-    //Target the daily dose admin chart
-    // :nth-child(1) {
-    //   grid-row   : 1;
-    //   grid-column: 1 / span 2;
-
-    // }
+    .vaxEffectiveness {
+      grid-column: 1 / span 2;
+    }
   }
 
   @media @wider1920 {
@@ -675,6 +678,10 @@ body.dark {
     #vaccine8 {
       grid-column: 1 / span 4;
     }
+    .vaxEffectiveness {
+      grid-column: 2 / span 3;
+    }
+    
   }
 
 }
@@ -1111,7 +1118,57 @@ a.globButton,
   }
 }
 
-#googleForm {
+.findVaccine {
+  background-color: var(--white);
+  border-radius: @radius;
+  width: 100%;
+  margin:@gap 0;
+  padding: calc(@gap * 2) @gap;
+  form {
+    margin:0 auto !important;
+    h2 {
+      margin-bottom:@gap;
+      span {
+        font-weight: 700 !important;
+      }
+      span.vax {
+        color:rgb(48, 161, 151);
+      }
+    }
+    p {
+      margin-left: @gap;
+      margin-right:@gap;
+      display: inline;
+    }
+    input[type=text] {
+      display         : inline-block;
+      margin-top:@gap;
+      border-radius   : @radius;
+      max-width       : 768px;
+      border          : none;
+      padding         : 6px @gap;
+      //width           : 100%;
+      background-color: var(--gray);
+      margin-right:@gap;
+    }
+    select {
+      margin-left: @gap;
+      display: inline;
+    }
+    .globButton {
+      margin:0 !important;
+      display:inline;
+      padding:3px 12px 5px 12px !important;
+      @media only screen and (max-width:530px) {
+        display:block;
+        margin:1rem auto 0 auto !important;
+      }
+    }
+  }
+
+
+}
+form {
   width     : calc(100% - 2rem);
   height    : 100%;
   display   : block;
@@ -1126,6 +1183,7 @@ a.globButton,
     font-size : 1rem;
     text-align: left;
   }
+
 
   textarea {
     display         : block;
@@ -1203,9 +1261,7 @@ a.globButton,
     height    : 100%;
 
     -webkit-transition: max-height 0.2s ease-in-out;
-
     -o-transition: max-height 0.2s ease-in-out;
-
     transition: max-height 0.2s ease-in-out;
 
     #chartGrid {
@@ -1783,3 +1839,4 @@ a.globButton,
   font-size : 12px;
   color     : var(--primary-text);
 }
+

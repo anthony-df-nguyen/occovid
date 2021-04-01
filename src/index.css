@@ -179,6 +179,9 @@ body.dark {
   top: 50%;
   transform: translate(-50%, -50%);
 }
+.bold {
+  font-weight: 700;
+}
 .open {
   width: 100% !important;
 }
@@ -560,9 +563,17 @@ body.dark {
     grid-template-columns: repeat(3, 1fr);
   }
 }
+#chartVaccineGrid .vaxEffectiveness {
+  background-color: var(--white);
+  height: -webkit-min-content;
+  height: min-content;
+}
 @media only screen and (min-width: 1024px) {
   #chartVaccineGrid {
     grid-template-columns: 1fr 1fr;
+  }
+  #chartVaccineGrid .vaxEffectiveness {
+    grid-column: 1 / span 2;
   }
 }
 @media only screen and (min-width:1920px) {
@@ -595,6 +606,9 @@ body.dark {
   }
   #chartVaccineGrid #vaccine8 {
     grid-column: 1 / span 4;
+  }
+  #chartVaccineGrid .vaxEffectiveness {
+    grid-column: 2 / span 3;
   }
 }
 #cityGrid {
@@ -953,7 +967,56 @@ a.globButton:hover,
 .formTitle a {
   color: var(--blue);
 }
-#googleForm {
+.findVaccine {
+  background-color: var(--white);
+  border-radius: 5px;
+  width: 100%;
+  margin: 10px 0;
+  padding: calc(10px * 2) 10px;
+}
+.findVaccine form {
+  margin: 0 auto !important;
+}
+.findVaccine form h2 {
+  margin-bottom: 10px;
+}
+.findVaccine form h2 span {
+  font-weight: 700 !important;
+}
+.findVaccine form h2 span.vax {
+  color: #30a197;
+}
+.findVaccine form p {
+  margin-left: 10px;
+  margin-right: 10px;
+  display: inline;
+}
+.findVaccine form input[type=text] {
+  display: inline-block;
+  margin-top: 10px;
+  border-radius: 5px;
+  max-width: 768px;
+  border: none;
+  padding: 6px 10px;
+  background-color: var(--gray);
+  margin-right: 10px;
+}
+.findVaccine form select {
+  margin-left: 10px;
+  display: inline;
+}
+.findVaccine form .globButton {
+  margin: 0 !important;
+  display: inline;
+  padding: 3px 12px 5px 12px !important;
+}
+@media only screen and (max-width: 530px) {
+  .findVaccine form .globButton {
+    display: block;
+    margin: 1rem auto 0 auto !important;
+  }
+}
+form {
   width: calc(100% - 2rem);
   height: 100%;
   display: block;
@@ -962,13 +1025,13 @@ a.globButton:hover,
   margin: 0 auto 1rem auto;
   max-width: 768px;
 }
-#googleForm p {
+form p {
   max-width: 768px;
   margin: 1 auto 1rem auto;
   font-size: 1rem;
   text-align: left;
 }
-#googleForm textarea {
+form textarea {
   display: block;
   margin: 1rem auto;
   border-radius: 5px;
