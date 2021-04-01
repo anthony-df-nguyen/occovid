@@ -9,8 +9,10 @@ const FetchVaccineTier = (props) => {
           await fetch("https://occovidtaskmongo.vercel.app/api/vaxphase")
             .then((a) => a.json())
             .then((b) => {
+              b.phase = 'Phase 1A/B, Ages 50+, & Age 16+';
               if (mounted) {
                 props.function(b);
+                
               }
             });
         } catch (err) {
