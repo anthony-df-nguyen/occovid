@@ -21,7 +21,7 @@ const FindAVaccine = () => {
 
     const searchVax = (e) => {
         e.preventDefault();
-        window.location.href = query;
+        window.open(query)
     }
 
 
