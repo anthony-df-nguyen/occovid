@@ -22,7 +22,7 @@ const FetchVaccineDate = (props) => {
                 const finalDate = parseText.querySelector("em em");
 
                 if (mounted) {
-                  props.function(finalDate.innerText.slice(0, -1));
+                  props.function(finalDate.innerText);
                 }
               });
           } catch (err) {
