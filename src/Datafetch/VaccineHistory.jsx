@@ -27,10 +27,12 @@ const VaccineHistory = (props) => {
               });
             })
             .then(() => {
-              let vax7Avg = average7(vaccineArray.map((a) => a.vax));
+              let vax7Avg = average7(
+                vaccineArray.map((a) => parseFloat(a.vax))
+              );
               vaccineArray.forEach((row, i) => {
                 //let parseDate = moment(new Date(row[0])).format("l");
-                cumuVax += row.vax;
+                cumuVax += parseFloat(row.vax);
                 transVaxArray.push({
                   date: row.date,
                   vax: row.vax,
