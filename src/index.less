@@ -229,6 +229,9 @@ body.dark {
   -ms-transform    : translate(-50%, -50%);
   transform        : translate(-50%, -50%);
 }
+.bold {
+  font-weight: 700;
+}
 
 //Navigation
 @navBarWidth: 250px;
@@ -623,16 +626,16 @@ body.dark {
 
 #chartVaccineGrid {
   #chartGrid;
-
+  .vaxEffectiveness{
+    background-color: var(--white);
+    height: min-content;
+  }
   @media only screen and (min-width: 1024px) {
     grid-template-columns: 1fr 1fr;
 
-    //Target the daily dose admin chart
-    // :nth-child(1) {
-    //   grid-row   : 1;
-    //   grid-column: 1 / span 2;
-
-    // }
+    .vaxEffectiveness {
+      grid-column: 1 / span 2;
+    }
   }
 
   @media @wider1920 {
@@ -675,6 +678,10 @@ body.dark {
     #vaccine8 {
       grid-column: 1 / span 4;
     }
+    .vaxEffectiveness {
+      grid-column: 2 / span 3;
+    }
+    
   }
 
 }
@@ -1783,3 +1790,4 @@ a.globButton,
   font-size : 12px;
   color     : var(--primary-text);
 }
+

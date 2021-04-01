@@ -153,8 +153,8 @@ const Vaccinations = (props) => {
     (a) => (parseFloat(a.doses / totalAdmin) * 100).toFixed(1) + "%"
   );
 
-  const brand1Dose = [pfizerDose1,modernaDose1,astraDose1,"N/A"]
-  const brand2Dose = [pfizer,moderna,astra,janssen]
+  const brand1Dose = [pfizerDose1, modernaDose1, astraDose1, "N/A"]
+  const brand2Dose = [pfizer, moderna, astra, janssen]
   return (
     <div>
       <FetchVaccineDate function={updateDate} />
@@ -164,7 +164,7 @@ const Vaccinations = (props) => {
       <FetchVaccineVendor function={updateVendorArray} />
       <Page title="Vaccinations">
         <div id="lastUpdateDate">
-          <p style={{fontWeight: '500',}}>New data on Thursdays</p>
+          <p style={{ fontWeight: '500', }}>New data on Thursdays</p>
           <p>{asof}</p>
         </div>
         <div className="widgetGrid">
@@ -348,7 +348,26 @@ const Vaccinations = (props) => {
               columns={[vendorDoses, vendorPerc]}
             />
           </div>
+          <div className="chartContainer vaxEffectiveness">
+            <div className="chartTitle">Vaccine Info</div>
+            <BuildTable
+              rows={[
+                "Doses",
+                "Protection Against Any Symptoms", "Protection Against Severe Symptoms", "Protection Against Death or Hospitalization", "Efficacy by Age"]}
+              colName={[
+                "Info",
+                'Pfizer/BioNTech',
+                "Moderna", "Johnson & Johnson"
+              ]}
+              columns={[
+                [2, '95%', '89%', '100%', '<span class="bold">Age 16-55</span>: 96%<br><span class="bold">Over 55</span>: 94%'],
+                [2, '94.1%', '100%', '100%', '<span class="bold">Age 16-55</span>: 96%<br><span class="bold">Over 55</span>: 86%'],
+                [1, '66% | 72% (US)', '85%', '100%', '<span class="bold">Age 18-64</span>: 66.1%<br><span class="bold">Over 65</span>: 66.2%']]}
+            />
+            <p className="chartNote"><a className="blue" href="https://coronavirus.egovoc.com/vaccine-effectiveness" target="_blank">More vaccine information here</a></p>
+          </div>
         </div>
+
       </Page>
     </div>
   );
