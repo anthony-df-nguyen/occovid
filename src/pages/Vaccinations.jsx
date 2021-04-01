@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { TimeContext } from "components/context/TimeContext";
 import color from "globalVars/Colors";
 import Timeselect from "components/Timeselect";
+import FindAVaccine from "components/FindAVaccine";
 import ChartNonStacked from "components/ChartNonStacked";
 import { FetchVaccines } from "Datafetch/FetchVaccines";
 import FetchVaccineVendor from "Datafetch/FetchVaccineVendor";
@@ -167,6 +168,7 @@ const Vaccinations = (props) => {
           <p style={{ fontWeight: '500', }}>New data on Thursdays</p>
           <p>{asof}</p>
         </div>
+        <FindAVaccine />
         <div className="widgetGrid">
           <a href={`${vaccinePhase.url}`} target="_blank" rel="noreferrer">
             <Widget
@@ -208,6 +210,7 @@ const Vaccinations = (props) => {
           />
         </div>
 
+      
         <Timeselect />
         <div id="chartVaccineGrid">
           <Chart

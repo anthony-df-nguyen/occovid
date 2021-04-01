@@ -1118,7 +1118,51 @@ a.globButton,
   }
 }
 
-#googleForm {
+.findVaccine {
+  background-color: var(--white);
+  border-radius: @radius;
+  width: 100%;
+  margin:@gap 0;
+  padding: calc(@gap * 2) @gap;
+  form {
+    margin:0 auto !important;
+    h2 {
+      margin-bottom:@gap;
+      span {
+        font-weight: 700 !important;
+      }
+      span.vax {
+        color:rgb(48, 161, 151);
+      }
+    }
+    p {
+      margin-left: @gap;
+      margin-right:@gap;
+      display: inline;
+    }
+    input[type=text] {
+      display         : inline-block;
+      margin-top:@gap;
+      border-radius   : @radius;
+      max-width       : 768px;
+      border          : none;
+      padding         : @gap;
+      //width           : 100%;
+      background-color: var(--gray);
+      margin-right:@gap;
+    }
+    select {
+      margin-left: @gap;
+      display: inline;
+    }
+    .globButton {
+      margin:0 !important;
+    }
+  }
+
+
+}
+form {
   width     : calc(100% - 2rem);
   height    : 100%;
   display   : block;
@@ -1133,6 +1177,7 @@ a.globButton,
     font-size : 1rem;
     text-align: left;
   }
+
 
   textarea {
     display         : block;

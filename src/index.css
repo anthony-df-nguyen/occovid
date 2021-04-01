@@ -1041,7 +1041,48 @@ a.globButton:hover,
 .formTitle a {
   color: var(--blue);
 }
-#googleForm {
+.findVaccine {
+  background-color: var(--white);
+  border-radius: 5px;
+  width: 100%;
+  margin: 10px 0;
+  padding: calc(10px * 2) 10px;
+}
+.findVaccine form {
+  margin: 0 auto !important;
+}
+.findVaccine form h2 {
+  margin-bottom: 10px;
+}
+.findVaccine form h2 span {
+  font-weight: 700 !important;
+}
+.findVaccine form h2 span.vax {
+  color: #30a197;
+}
+.findVaccine form p {
+  margin-left: 10px;
+  margin-right: 10px;
+  display: inline;
+}
+.findVaccine form input[type=text] {
+  display: inline-block;
+  margin-top: 10px;
+  border-radius: 5px;
+  max-width: 768px;
+  border: none;
+  padding: 10px;
+  background-color: var(--gray);
+  margin-right: 10px;
+}
+.findVaccine form select {
+  margin-left: 10px;
+  display: inline;
+}
+.findVaccine form .globButton {
+  margin: 0 !important;
+}
+form {
   width: calc(100% - 2rem);
   height: 100%;
   display: block;
@@ -1050,13 +1091,13 @@ a.globButton:hover,
   margin: 0 auto 1rem auto;
   max-width: 768px;
 }
-#googleForm p {
+form p {
   max-width: 768px;
   margin: 1 auto 1rem auto;
   font-size: 1rem;
   text-align: left;
 }
-#googleForm textarea {
+form textarea {
   display: block;
   margin: 1rem auto;
   border-radius: 5px;
