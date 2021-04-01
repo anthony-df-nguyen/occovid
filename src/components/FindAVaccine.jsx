@@ -40,7 +40,7 @@ const FindAVaccine = () => {
                 </select>
                 <p>of</p>
                 <input required type="text" pattern="[0-9]{5}" placeholder="Zip Code" onChange={handleZip}></input>
-                <button type='submit' style={{display:'inline'}} className="globButton" >Find</button>
+                <button type='submit' className="globButton" >Find</button>
 
             </form>
             {/* <p>{query}</p> */}

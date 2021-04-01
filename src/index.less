@@ -1146,7 +1146,7 @@ a.globButton,
       border-radius   : @radius;
       max-width       : 768px;
       border          : none;
-      padding         : @gap;
+      padding         : 6px @gap;
       //width           : 100%;
       background-color: var(--gray);
       margin-right:@gap;
@@ -1157,6 +1157,12 @@ a.globButton,
     }
     .globButton {
       margin:0 !important;
+      display:inline;
+      padding:3px 12px 5px 12px !important;
+      @media only screen and (max-width:530px) {
+        display:block;
+        margin:1rem auto 0 auto !important;
+      }
     }
   }
 
@@ -1255,9 +1261,7 @@ form {
     height    : 100%;
 
     -webkit-transition: max-height 0.2s ease-in-out;
-
     -o-transition: max-height 0.2s ease-in-out;
-
     transition: max-height 0.2s ease-in-out;
 
     #chartGrid {
