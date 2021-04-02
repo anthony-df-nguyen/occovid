@@ -42,7 +42,7 @@ import {
 import FetchVaccineTier from "Datafetch/FetchVaccineTier";
 import ReactSpeedometer from "react-d3-speedometer";
 import Page from "components/Page";
-import Announcement from "components/Announcement";
+
 import FindAVaccine from "components/FindAVaccine";
 
 
@@ -119,7 +119,6 @@ const Home = (props) => {
 
   return (
     <div>
-      <Announcement />
       <Page title="OCCOVID19 Summary">
         <FetchCases function={updateArray} time={time} />
         <FetchDeaths function={update2Array} time={time} />

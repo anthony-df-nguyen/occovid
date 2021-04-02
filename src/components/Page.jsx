@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import Footer from "components/Footer";
+import Announcement from "components/Announcement";
 import Lastupdate from "components/Lastupdate";
 import BackToTop from "components/BackToTop";
+
 
 const Page = (props) => {
   useEffect(() => {
@@ -45,6 +47,7 @@ const Page = (props) => {
 
   return (
     <div>
+      <Announcement path={window.location.pathname} />
       <div className="page">
         <h1 className="pageTitle">{props.title}</h1>
         <p className="subtitle">{props.subtitle}</p>

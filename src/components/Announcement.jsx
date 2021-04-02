@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const Announcement = () => {
+const Announcement = (props) => {
     const announcementURL = "https://occovidtaskmongo.vercel.app/api/announcement"
     const [message, updateMessage] = useState()
     const [padding, updatePadding] = useState()  
@@ -14,8 +14,13 @@ const Announcement = () => {
                 await fetch(announcementURL)
                     .then(a => a.json())
                     .then(final => {
-                       
-                        responseArray.push(final[0].display, final[0].text)
+                        const array = final[0];
+                        const correctAnnouncement = array[`${props.path}`];
+                        responseArray.push(
+                          correctAnnouncement.display,
+                          correctAnnouncement.text
+                        );
+                        console.log(responseArray)
                     })
                     .then(() => {
                         const [display, jsonMessage] = responseArray;
