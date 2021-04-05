@@ -16,7 +16,8 @@ const Page = (props) => {
       x !== "School Cases" &&
       x !== "City History" &&
       x !== "Updates" &&
-      x !== "Vaccination Map"
+      x !== "Vaccination Map" &&
+      x !== "CADPH Metrics"
     ) {
       return <Lastupdate />;
     }

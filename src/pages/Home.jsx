@@ -275,7 +275,10 @@ const Home = (props) => {
 
           <Link to="/whatsopen">
             <div className="innerDiv">
-              <div className="widgetTitle">State Metrics</div>
+              <div className="widgetTitle">
+                State Metrics
+                <p>Updated Tuesdays</p>
+              </div>
               <div className="subFlex">
                 <Widget
                   title={"Current Tier"}
@@ -349,7 +352,6 @@ const Home = (props) => {
             </div>
           </Link>
         </div>
-
       </Page>
     </div>
   );

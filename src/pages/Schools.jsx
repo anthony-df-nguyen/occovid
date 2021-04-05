@@ -126,48 +126,53 @@ const Schools = props => {
 
   return (
     <div>
-      <FetchSchool function={[updateArray,updateDate]} time={time} />
-      <Page title='School Cases'>
-          <div id="lastUpdateDate">
-            <p>{  lastDate }</p>
+      <FetchSchool function={[updateArray, updateDate]} time={time} />
+      <Page title="School Cases">
+        <div id="lastUpdateDate">
+          <p style={{ fontWeight: "500" }}>New data on Thursdays</p>
+          <p>{lastDate}</p>
         </div>
         <Timeselect />
-        <div id='chartGridMax2'>
+        <div id="chartGridMax2">
           <Chart
-            key='1'
-            id='school1'
-            date={['Student', 'Teacher', 'Other Staff']}
+            key="1"
+            id="school1"
+            date={["Student", "Teacher", "Other Staff"]}
             data={[indArray]}
             fill={[[color.green, color.blue, color.purple]]}
-            title={'Total Cases by Individual: '}
-            label={['Cases']}
-            switches={['horizontalBar', 'bar', 'doughnut']}
+            title={"Total Cases by Individual: "}
+            label={["Cases"]}
+            switches={["horizontalBar", "bar", "doughnut"]}
           />
           <Chart
-            key='2'
-            id='school2'
-            date={['Elementary', 'High School', 'College/Uni', 'Combined K-12']}
+            key="2"
+            id="school2"
+            date={["Elementary", "High School", "College/Uni", "Combined K-12"]}
             data={[schoolTotalArray]}
             fill={[[color.blue, color.purple, color.pink, color.gold]]}
-            title={'Total Cases by School Type'}
-            label={['Cases']}
-            switches={['horizontalBar', 'bar', 'doughnut']}
+            title={"Total Cases by School Type"}
+            label={["Cases"]}
+            switches={["horizontalBar", "bar", "doughnut"]}
           />
           {/* Manual Creation of Special Chart Types */}
-          <div className='chartContainer'>
-            <div className='chartTitle'>Cases by Individual Type by Week</div>
-            <p className="weekStartingMsg">Dates on x-axis represent 'Week Starting On'</p>
+          <div className="chartContainer">
+            <div className="chartTitle">Cases by Individual Type by Week</div>
+            <p className="weekStartingMsg">
+              Dates on x-axis represent 'Week Starting On'
+            </p>
             <Bar
-              key='3'
+              key="3"
               data={stackedSchoolIndividuals}
               options={stackedMultiBar}
             />
           </div>
-          <div className='chartContainer'>
-            <div className='chartTitle'>Cases by School Type by Week</div>
-            <p className="weekStartingMsg">Dates on x-axis represent 'Week Starting On'</p>
+          <div className="chartContainer">
+            <div className="chartTitle">Cases by School Type by Week</div>
+            <p className="weekStartingMsg">
+              Dates on x-axis represent 'Week Starting On'
+            </p>
             <Bar
-              key='4'
+              key="4"
               data={stackedSchoolSchoolType}
               options={stackedMultiBar}
             />
@@ -175,7 +180,7 @@ const Schools = props => {
         </div>
       </Page>
     </div>
-  )
+  );
 }
 
 export default Schools

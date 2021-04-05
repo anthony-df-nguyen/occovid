@@ -74,24 +74,42 @@ const WhatsOpen = (props) => {
   }, [tier])
 
   return (
-
     <div>
       <FetchCountyTier function={updateTier} />
       {/* <FetchWhatsOpenJson function={updateTableArray} tier={tier} /> */}
       <FetchCAMetrics time={time} function={updateArray} />
       <Page title="CADPH Metrics">
+        <div id="lastUpdateDate">
+          <p style={{ fontWeight: "500" }}>New data on Tuesdays</p>
+        </div>
         <div className="widgetGrid">
           <Widget
-            title={'Current Tier'}
+            title={"Current Tier"}
             stat={getTierText()}
             color={tierColor}
           />
-          <Widget title={'Daily Case Rate'} stat={lastCaseRate} color={color.yellow} />
-          <Widget title={'Test Positivity Rate'} stat={lastPositiveRate + '%'} color={color.red} />
-          <Widget title={'Health Equity Quartile %'} stat={lastHealthEquity + '%'} color={color.purple} />
-          <Widget title={'Tests per 100k'} stat={lastTestRate} color={color.blue} />
+          <Widget
+            title={"Daily Case Rate"}
+            stat={lastCaseRate}
+            color={color.yellow}
+          />
+          <Widget
+            title={"Test Positivity Rate"}
+            stat={lastPositiveRate + "%"}
+            color={color.red}
+          />
+          <Widget
+            title={"Health Equity Quartile %"}
+            stat={lastHealthEquity + "%"}
+            color={color.purple}
+          />
+          <Widget
+            title={"Tests per 100k"}
+            stat={lastTestRate}
+            color={color.blue}
+          />
         </div>
-        <div className="widgetGrid" style={{ marginTop: '-2rem' }}>
+        <div className="widgetGrid" style={{ marginTop: "-2rem" }}>
           <div className="gaugeContainer">
             <div className="chartTitle">Adj. Case Rate per 100k</div>
             <ReactSpeedometer
@@ -99,10 +117,15 @@ const WhatsOpen = (props) => {
               minValue={0}
               maxValue={maxCaseRate}
               segments={4}
-              segmentColors={[color.gold, color.orange, color.red, color.purple]}
+              segmentColors={[
+                color.gold,
+                color.orange,
+                color.red,
+                color.purple,
+              ]}
               customSegmentStops={[0, 1, 4, 7, maxCaseRate]}
               forceRender={true}
-              needleColor={'#999'}
+              needleColor={"#999"}
             />
           </div>
           <div className="gaugeContainer">
@@ -112,11 +135,16 @@ const WhatsOpen = (props) => {
               minValue={0}
               maxValue={maxPosRate}
               segments={4}
-              segmentColors={[color.gold, color.orange, color.red, color.purple]}
+              segmentColors={[
+                color.gold,
+                color.orange,
+                color.red,
+                color.purple,
+              ]}
               customSegmentStops={[0, 2, 5, 8, maxPosRate]}
               forceRender={true}
-              needleColor={'#999'}
-              currentValueText={lastPositiveRate + '%'}
+              needleColor={"#999"}
+              currentValueText={lastPositiveRate + "%"}
             />
           </div>
           <div className="gaugeContainer">
@@ -126,11 +154,16 @@ const WhatsOpen = (props) => {
               minValue={0}
               maxValue={maxEqRate}
               segments={4}
-              segmentColors={[color.gold, color.orange, color.red, color.purple]}
+              segmentColors={[
+                color.gold,
+                color.orange,
+                color.red,
+                color.purple,
+              ]}
               customSegmentStops={[0, 2.2, 5.3, 8, maxEqRate]}
               forceRender={true}
-              needleColor={'#999'}
-              currentValueText={lastHealthEquity + '%'}
+              needleColor={"#999"}
+              currentValueText={lastHealthEquity + "%"}
             />
           </div>
         </div>
@@ -139,49 +172,57 @@ const WhatsOpen = (props) => {
           <Chart
             key="1"
             id="whatopen1"
-            switches={['bar', 'line']}
+            switches={["bar", "line"]}
             date={array.map((a) => a.date)}
-            data={[array.map((c) => c.dailyCaseRate), array.map((c) => c.average4CaseRate)]}
+            data={[
+              array.map((c) => c.dailyCaseRate),
+              array.map((c) => c.average4CaseRate),
+            ]}
             fill={[color.red, color.blue]}
-            title={'CADPH Daily Case Rate - Tuesdays'}
-            label={['Case Rate', '4 Week Avg']}
-          >
+            title={"CADPH Daily Case Rate - Tuesdays"}
+            label={["Case Rate", "4 Week Avg"]}>
             <p className="chartNote">Updated each Tuesday</p>
           </Chart>
           <Chart
             key="2"
             id="whatopen2"
-            switches={['bar', 'line']}
+            switches={["bar", "line"]}
             date={array.map((a) => a.date)}
-            data={[array.map((c) => c.positiveRate), array.map((c) => c.avg4WkPositiveRate)]}
+            data={[
+              array.map((c) => c.positiveRate),
+              array.map((c) => c.avg4WkPositiveRate),
+            ]}
             fill={[color.orange, color.blue]}
-            title={'CADPH Positivity Rate - Tuesdays'}
-            label={['Positivity Rate', '4 Week Avg']}
-          >
+            title={"CADPH Positivity Rate - Tuesdays"}
+            label={["Positivity Rate", "4 Week Avg"]}>
             <p className="chartNote">Updated each Tuesday</p>
           </Chart>
           <Chart
             key="3"
             id="whatopen3"
-            switches={['bar', 'line']}
+            switches={["bar", "line"]}
             date={array.map((a) => a.date)}
-            data={[array.map((c) => c.healthEquity), array.map((c) => c.avg4WkHealthEquity)]}
+            data={[
+              array.map((c) => c.healthEquity),
+              array.map((c) => c.avg4WkHealthEquity),
+            ]}
             fill={[color.purple, color.blue]}
-            title={'CADPH Health Equity - Tuesdays '}
-            label={['Positivity Rate', '4 Week Avg']}
-          >
+            title={"CADPH Health Equity - Tuesdays "}
+            label={["Positivity Rate", "4 Week Avg"]}>
             <p className="chartNote">Updated each Tuesday</p>
           </Chart>
           <Chart
             key="4"
             id="whatopen4"
-            switches={['bar', 'line']}
+            switches={["bar", "line"]}
             date={array.map((a) => a.date)}
-            data={[array.map((c) => c.testsPer100k), array.map((c) => c.avg4WkTestRate)]}
+            data={[
+              array.map((c) => c.testsPer100k),
+              array.map((c) => c.avg4WkTestRate),
+            ]}
             fill={[color.gold, color.blue]}
-            title={'CADPH Tests per 100k - Tuesdays'}
-            label={['Tests', '4 Week Avg']}
-          >
+            title={"CADPH Tests per 100k - Tuesdays"}
+            label={["Tests", "4 Week Avg"]}>
             <p className="chartNote">Updated each Tuesday</p>
           </Chart>
         </div>
