@@ -1011,11 +1011,13 @@ a.globButton:hover,
   display: inline;
   padding: 3px 12px 5px 12px !important;
 }
-@media only screen and (max-width: 530px) {
-  .findVaccine form .globButton {
-    display: block;
-    margin: 1rem auto 0 auto !important;
-  }
+.findVaccine p {
+  margin-top: 10px;
+  text-align: center;
+  color: var(--blue);
+}
+.findVaccine p span {
+  color: var(--primary-text);
 }
 form {
   width: calc(100% - 2rem);

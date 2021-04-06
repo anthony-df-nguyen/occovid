@@ -37,7 +37,7 @@ const Vaccinations = (props) => {
   const [array, updateArray] = useState([]);
   const [vendorArray, updateVendorArray] = useState([]);
   const [vaccineHisArray, updateVaxArray] = useState([]);
-  const [vaccinePhase, updateVaccinePhases] = useState([]);
+ 
   const [asof, updateDate] = useState("Getting last update date...");
 
   const [
@@ -161,7 +161,7 @@ const Vaccinations = (props) => {
       <FetchVaccineDate function={updateDate} />
       <VaccineHistory function={updateVaxArray} time={time} />
       <FetchVaccines function={updateArray} time={time} />
-      <FetchVaccineTier function={updateVaccinePhases} />
+   
       <FetchVaccineVendor function={updateVendorArray} />
       <Page title="Vaccinations">
         <div id="lastUpdateDate">
@@ -170,13 +170,7 @@ const Vaccinations = (props) => {
         </div>
         <FindAVaccine />
         <div className="widgetGrid">
-          <a href={`${vaccinePhase.url}`} target="_blank" rel="noreferrer">
-            <Widget
-              title={"Active Phase"}
-              stat={vaccinePhase.phase + " w/ Medical Conditions"}
-              color={color.red}
-            />
-          </a>
+
 
           <Widget
             title={"OC Population"}

@@ -55,7 +55,6 @@ const Home = (props) => {
   const [array5, update5Array] = useState([]);
   const [array6, update6Array] = useState([]);
   const [array7, update7Array] = useState([]);
-  const [vaccinePhase, updateVaccinePhases] = useState([]);
     const [vaccineDate, updateVaccineDate] = useState("Getting last update date...");
   const peopleOneDose = array5[2];
   const fullVaccinated = array5[37];
@@ -129,7 +128,6 @@ const Home = (props) => {
         <FetchCountyTier function={updateTier} />
         <FetchCAMetrics time={time} function={update7Array} />
         <FetchVaccineDate function={updateVaccineDate} />
-        <FetchVaccineTier function={updateVaccinePhases} />
         <FindAVaccine />
         <div className="homeWidgetGrid">
           <Link to="/cases">
@@ -223,12 +221,6 @@ const Home = (props) => {
                   </div>
 
                   <div className="subFlex">
-                    <Widget
-                      title={"Active Phase"}
-                      stat={vaccinePhase.phase + " w/ Medical Conditions"}
-                      color={color.red}
-                    />
-
                     <Widget
                       title={"OC Population"}
                       stat={ocpop.toLocaleString()}
