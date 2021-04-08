@@ -20,7 +20,7 @@ const Announcement = (props) => {
                           correctAnnouncement.display,
                           correctAnnouncement.text
                         );
-                        console.log(responseArray)
+                        // console.log(responseArray)
                     })
                     .then(() => {
                         const [display, jsonMessage] = responseArray;

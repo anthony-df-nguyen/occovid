@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 
-
 let thisDataArray = [];
 let vaccineDataTable;
 
@@ -39,20 +38,22 @@ const FetchVaccines = (props) => {
                   return 0;
                 }
               };
-              let peopleOneDose = findValue("TotalDoses", "num_1st");
+              let peopleOneDose = findValue("TotalDoses", "num_atleast1");
               let peopleTwoDose = findValue("TotalDoses", "num_1st2nd");
               let totalPeople = findValue("TotalDoses", "num_atleast1");
-              let adminOneDose = findValue("ValidDoses", "num_1st");
+              let adminOneDose = findValue("TotalDoses", "num_1st");
               let adminTwoDose = findValue("ValidDoses", "num_1st2nd");
               let totalAdmin = findValue("ValidDoses", "num_atleast1");
               let female = findValue("Female", "num_atleast1");
               let male = findValue("Male", "num_atleast1");
               let otherSex = findValue("Other Sex", "num_atleast1");
+              let unkSex = findValue("Unknown Sex", "num_atleast1");
               let asianPI = findValue("Asian/PI", "num_atleast1");
               let black = findValue("Black", "num_atleast1");
               let hispanic = findValue("Hispanic", "num_atleast1");
               let white = findValue("White", "num_atleast1");
               let otherRace = findValue("Other Race", "num_atleast1");
+              let unkRace = findValue("Unknown Race", "num_atleast1");
               let age017 = findValue("0-17 yrs", "num_atleast1");
               let age1824 = findValue("18-24 yrs", "num_atleast1");
               let age2534 = findValue("25-34 yrs", "num_atleast1");
@@ -71,12 +72,17 @@ const FetchVaccines = (props) => {
               let hispanic65up = findValue("Hispanic  65+", "num_atleast1");
               let white65up = findValue("White 65+", "num_atleast1");
               let otherRace65up = findValue("Other Race 65+", "num_atleast1");
+              let unkRace65up = findValue("Unknown Race 65+", "num_atleast1");
               let asianPI65down = findValue("Asian/PI <65", "num_atleast1");
               let black65down = findValue("Black <65", "num_atleast1");
               let hispanic65down = findValue("Hispanic <65", "num_atleast1");
               let white65down = findValue("White <65", "num_atleast1");
               let otherRace65down = findValue("Other Race <65", "num_atleast1");
-              let fullVaccinated = findValue("Total Trade", "num_1st2nd");
+              let unkRace65down = findValue(
+                "Unknown Race <65",
+                "num_atleast1"
+              );
+              let fullVaccinated = findValue("TotalDoses", "num_1st2nd");
               let janssen = findValue("Janssen", "num_1st2nd");
               let astra = findValue("AstraZeneca", "num_1st2nd");
               let modernaDose1 = findValue("Moderna", "num_1st");
@@ -93,11 +99,13 @@ const FetchVaccines = (props) => {
                 female,
                 male,
                 otherSex,
+                unkSex,
                 asianPI,
                 black,
                 hispanic,
                 white,
                 otherRace,
+                unkRace,
                 age017,
                 age1824,
                 age2534,
@@ -116,11 +124,13 @@ const FetchVaccines = (props) => {
                 hispanic65up,
                 white65up,
                 otherRace65up,
+                unkRace65up,
                 asianPI65down,
                 black65down,
                 hispanic65down,
                 white65down,
                 otherRace65down,
+                unkRace65down,
                 fullVaccinated,
                 janssen,
                 astra,

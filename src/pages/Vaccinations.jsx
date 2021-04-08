@@ -7,7 +7,7 @@ import ChartNonStacked from "components/ChartNonStacked";
 import { FetchVaccines } from "Datafetch/FetchVaccines";
 import FetchVaccineVendor from "Datafetch/FetchVaccineVendor";
 import VaccineHistory from "Datafetch/VaccineHistory.jsx";
-import FetchVaccineDate from "Datafetch/FetchVaccineDate"
+import FetchVaccineDate from "Datafetch/FetchVaccineDate";
 import Chart from "components/Chart";
 import Widget from "components/Widget";
 import { ageLabels, ageColors } from "globalVars/chartJSconfig";
@@ -37,7 +37,7 @@ const Vaccinations = (props) => {
   const [array, updateArray] = useState([]);
   const [vendorArray, updateVendorArray] = useState([]);
   const [vaccineHisArray, updateVaxArray] = useState([]);
- 
+
   const [asof, updateDate] = useState("Getting last update date...");
 
   const [
@@ -50,11 +50,13 @@ const Vaccinations = (props) => {
     female,
     male,
     otherSex,
+    unkSex,
     asianPI,
     black,
     hispanic,
     white,
     otherRace,
+    unkRace,
     age017,
     age1824,
     age2534,
@@ -74,11 +76,13 @@ const Vaccinations = (props) => {
     hispanic65up,
     white65up,
     otherRace65up,
+    unkRace65up,
     asianPI65down,
     black65down,
     hispanic65down,
     white65down,
     otherRace65down,
+    unkRace65down,
     fullVaccinated,
     janssen,
     astra,
@@ -132,6 +136,7 @@ const Vaccinations = (props) => {
     color.green,
     color.purple,
     color.orange,
+    color.gray,
   ];
 
   //Race Vaccine Reports
@@ -141,7 +146,7 @@ const Vaccinations = (props) => {
     (a) => parseFloat(((a / ocpop) * 100).toFixed(1)) + "%"
   );
   const raceVaxArray = [asianPI, black, hispanic, white, otherRace];
-  const raceVaxArrayAll = [asianPI, black, hispanic, white, otherRace];
+  const raceVaxArrayAll = [asianPI, black, hispanic, white, otherRace, unkRace];
   const racePercent1Dose = raceVaxArray.map((a, i) => {
     return parseFloat((a / racePopArray[i]) * 100).toFixed(1) + "%";
   });
@@ -154,24 +159,22 @@ const Vaccinations = (props) => {
     (a) => (parseFloat(a.doses / totalAdmin) * 100).toFixed(1) + "%"
   );
 
-  const brand1Dose = [pfizerDose1, modernaDose1, astraDose1, "N/A"]
-  const brand2Dose = [pfizer, moderna, astra, janssen]
+  const brand1Dose = [pfizerDose1, modernaDose1, astraDose1, "N/A"];
+  const brand2Dose = [pfizer, moderna, astra, janssen];
   return (
     <div>
       <FetchVaccineDate function={updateDate} />
       <VaccineHistory function={updateVaxArray} time={time} />
       <FetchVaccines function={updateArray} time={time} />
-   
+
       <FetchVaccineVendor function={updateVendorArray} />
       <Page title="Vaccinations">
         <div id="lastUpdateDate">
-          <p style={{ fontWeight: '500', }}>New data on Thursdays</p>
+          <p style={{ fontWeight: "500" }}>New data on Thursdays</p>
           <p>{asof}</p>
         </div>
         <FindAVaccine />
         <div className="widgetGrid">
-
-
           <Widget
             title={"OC Population"}
             stat={ocpop.toLocaleString()}
@@ -193,18 +196,17 @@ const Vaccinations = (props) => {
             color={color.pink}
           />
           <Widget
-            title={"1st Dose Administered"}
+            title={"People w/ 1st Dose (2-Dose Brands)"}
             stat={parseInt(adminOneDose).toLocaleString()}
             color={color.pink}
           />
-          <Widget
+          {/* <Widget
             title={"1st+2nd Dose Administered"}
             stat={parseInt(adminTwoDose).toLocaleString()}
             color={color.pink}
-          />
+          /> */}
         </div>
 
-      
         <Timeselect />
         <div id="chartVaccineGrid">
           <Chart
@@ -255,7 +257,14 @@ const Vaccinations = (props) => {
           <Chart
             key="2"
             id="vaccine2"
-            date={["Asian/PI", "Black", "Hispanic", "White", "Other"]}
+            date={[
+              "Asian/PI",
+              "Black",
+              "Hispanic",
+              "White",
+              "Other",
+              "Unknown",
+            ]}
             data={[raceVaxArrayAll]}
             fill={[[...customRaceColors]]}
             title={"People w/ at Least 1 Dose: by Race"}
@@ -280,15 +289,30 @@ const Vaccinations = (props) => {
           <ChartNonStacked
             key="vaccinebyraceagesplit"
             id="vaccineRaceAgeSplit"
-            labels={["Asian/PI", "Black", "Hispanic", "White", "Other"]}
+            labels={[
+              "Asian/PI",
+              "Black",
+              "Hispanic",
+              "White",
+              "Other",
+              "Unknown",
+            ]}
             data={[
-              [asianPI65up, black65up, hispanic65up, white65up, otherRace65up],
+              [
+                asianPI65up,
+                black65up,
+                hispanic65up,
+                white65up,
+                otherRace65up,
+                unkRace65up,
+              ],
               [
                 asianPI65down,
                 black65down,
                 hispanic65down,
                 white65down,
                 otherRace65down,
+                unkRace65down,
               ],
             ]}
             fill={customRaceColors}
@@ -326,9 +350,9 @@ const Vaccinations = (props) => {
           <Chart
             key="4"
             id="vaccine4"
-            date={["Female", "Male", "Other"]}
-            data={[[female, male, otherSex]]}
-            fill={[[color.pink, color.blue, color.orange]]}
+            date={["Female", "Male", "Other","Unknown"]}
+            data={[[female, male, otherSex, unkSex]]}
+            fill={[[color.pink, color.blue, color.orange,color.gray]]}
             title={"People w/ at Least 1 Dose: by Sex"}
             label={["People"]}
             switches={["horizontalBar", "bar", "doughnut"]}
@@ -350,21 +374,51 @@ const Vaccinations = (props) => {
             <BuildTable
               rows={[
                 "Doses",
-                "Protection Against Any Symptoms", "Protection Against Severe Symptoms", "Protection Against Death or Hospitalization", "Efficacy by Age"]}
+                "Protection Against Any Symptoms",
+                "Protection Against Severe Symptoms",
+                "Protection Against Death or Hospitalization",
+                "Efficacy by Age",
+              ]}
               colName={[
                 "Info",
-                'Pfizer/BioNTech',
-                "Moderna", "Johnson & Johnson"
+                "Pfizer/BioNTech",
+                "Moderna",
+                "Johnson & Johnson",
               ]}
               columns={[
-                [2, '95%', '89%', '100%', '<span class="bold">Age 16-55</span>: 96%<br><span class="bold">Over 55</span>: 94%'],
-                [2, '94.1%', '100%', '100%', '<span class="bold">Age 16-55</span>: 96%<br><span class="bold">Over 55</span>: 86%'],
-                [1, '66% | 72% (US)', '85%', '100%', '<span class="bold">Age 18-64</span>: 66.1%<br><span class="bold">Over 65</span>: 66.2%']]}
+                [
+                  2,
+                  "95%",
+                  "89%",
+                  "100%",
+                  '<span class="bold">Age 16-55</span>: 96%<br><span class="bold">Over 55</span>: 94%',
+                ],
+                [
+                  2,
+                  "94.1%",
+                  "100%",
+                  "100%",
+                  '<span class="bold">Age 16-55</span>: 96%<br><span class="bold">Over 55</span>: 86%',
+                ],
+                [
+                  1,
+                  "66% | 72% (US)",
+                  "85%",
+                  "100%",
+                  '<span class="bold">Age 18-64</span>: 66.1%<br><span class="bold">Over 65</span>: 66.2%',
+                ],
+              ]}
             />
-            <p className="chartNote"><a className="blue" href="https://coronavirus.egovoc.com/vaccine-effectiveness" target="_blank">More vaccine information here</a></p>
+            <p className="chartNote">
+              <a
+                className="blue"
+                href="https://coronavirus.egovoc.com/vaccine-effectiveness"
+                target="_blank">
+                More vaccine information here
+              </a>
+            </p>
           </div>
         </div>
-
       </Page>
     </div>
   );
