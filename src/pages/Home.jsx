@@ -58,14 +58,14 @@ const Home = (props) => {
     const [vaccineDate, updateVaccineDate] = useState("Getting last update date...");
   const peopleOneDose = array5[2];
   const fullVaccinated = array5[37];
-  const [maxCaseRate, updateCaseMax] = useState(10);
+  const [maxCaseRate, updateCaseMax] = useState(14);
   const [maxPosRate, updatePosMax] = useState(10);
   const [maxEqRate, updateEqMax] = useState(10);
   const [tier, updateTier] = useState();
   const [tierColor, updatetTierColor] = useState();
 
   useEffect(() => {
-    let a = lastCaseRate > 10 ? lastCaseRate + 2 : 10;
+    let a = lastCaseRate > 14 ? lastCaseRate + 2 : 14;
     updateCaseMax(a);
   }, []);
   useEffect(() => {
@@ -297,7 +297,7 @@ const Home = (props) => {
                       color.red,
                       color.purple,
                     ]}
-                    customSegmentStops={[0, 1, 4, 7, maxCaseRate]}
+                    customSegmentStops={[0, 2, 6, 10, maxCaseRate]}
                     forceRender={true}
                     needleColor={"#999"}
                   />
