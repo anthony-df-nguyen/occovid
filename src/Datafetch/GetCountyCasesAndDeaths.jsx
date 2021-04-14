@@ -11,13 +11,14 @@ const GetCountyCasesAndDeaths = (props) => {
         let mounted = true;
         let selectedCounty = props.county;
         //console.log('The county has changed to ', selectedCounty);
-        let url = `https://data.chhs.ca.gov/api/3/action/datastore_search_sql?sql=SELECT "date","cases","cumulative_cases","cumulative_deaths","deaths" from "046cdd2b-31e5-4d34-9ed3-b48cdbc4be7a" WHERE "area" LIKE '${selectedCounty}'`;
+        let url = `https://data.chhs.ca.gov/api/3/action/datastore_search_sql?sql=SELECT "date","reported_cases","reported_deaths" from "046cdd2b-31e5-4d34-9ed3-b48cdbc4be7a" WHERE "area" LIKE '${selectedCounty}'`;
         thisDataArray = [];
         const getData = async () => {
           await fetch(url)
             .then((response) => response.json())
-
-            .then((grab) => grab.result.records)
+            .then((grab) => {
+              return grab.result.records;
+            })
             .then((a) => {
               let temp = [...a];
               //console.log(temp);
@@ -26,8 +27,8 @@ const GetCountyCasesAndDeaths = (props) => {
                 if (row.date) {
                   thisDataArray.push({
                     date: new Date(row.date + "T00:00:00").toLocaleDateString(),
-                    newDeaths: row.deaths,
-                    newCases: row.cases,
+                    newDeaths: row.reported_deaths,
+                    newCases: row.reported_cases,
                     totalCases: row.cumulative_cases,
                     totalDeaths: row.cumulative_deaths,
                   });

@@ -21,6 +21,7 @@ const Compare = (props) => {
   const [time, setTime] = useContext(TimeContext);
   const [ocArray, updateOCArray] = useState([]);
   const [compareArray, updateCompareArray] = useState([]);
+  //console.log('compareArray: ', compareArray);
   const [comparisonCounty, updateComparisonCounty] = useState(() => {
     if (!localStorage.getItem("countyCompareLastCounty")) {
       return "Los Angeles";
@@ -46,18 +47,18 @@ const Compare = (props) => {
     switch (currentMode) {
       case "Cases per 100K":
         updateOCFinalArray(() => {
-          return getper100ks(ocArray, "totalCasesbySpecimen", "oc");
+          return getper100ks(ocArray, "dailyCasesReported", "oc");
         });
         updateCompareFinalArray(() => {
-          return getper100ks(compareArray, "totalCases");
+          return getper100ks(compareArray, "newCases");
         });
         break;
       case "Deaths per 100k":
         updateOCFinalArray(() => {
-          return getper100ks(ocArray, "total_dth_repo", "oc");
+          return getper100ks(ocArray, "daily_death_repo", "oc");
         });
         updateCompareFinalArray(() => {
-          return getper100ks(compareArray, "totalDeaths");
+          return getper100ks(compareArray, "newDeaths");
         });
         break;
       case "Hospitalized per 100k":
@@ -88,19 +89,19 @@ const Compare = (props) => {
         break;
       case "Deaths":
         updateOCFinalArray(() => {
-          return ocArray.map((a) => a.total_dth_repo);
+          return ocArray.map((a) => a.daily_death_repo);
         });
         updateCompareFinalArray(() => {
-          return compareArray.map((a) => a.totalDeaths);
+          return compareArray.map((a) => a.newDeaths);
         });
         break;
       case "Cases":
         //console.log("calculating for hospitalized")
         updateOCFinalArray(() => {
-          return ocArray.map((a) => a.totalCasesbySpecimen);
+          return ocArray.map((a) => a.dailyCasesReported);
         });
         updateCompareFinalArray(() => {
-          return compareArray.map((a) => a.totalCases);
+          return compareArray.map((a) => a.newCases);
         });
         break;
       case "Vaccine Doses Administered per 100k":
@@ -448,11 +449,12 @@ const Compare = (props) => {
             switches={["line"]}>
             <p className="chartNote">
               {comparisonCounty} Pop: {comparisonCountyPop.toLocaleString()} |
-              OC Pop: {ocpop.toLocaleString()} <br></br><br></br>
+              OC Pop: {ocpop.toLocaleString()} <br></br>
+              <br></br>
               OC Data:
               <br></br>
-              Cases using 'by Specimen Collection' <br></br>
-              Deaths using 'Deaths by Report Dated <br></br>
+              Cases using 'by Report Date' Data <br></br>
+              Deaths using 'by Report Date' Data <br></br>
               Vax Doses Admin. using 'Cumulative Doses administered'
             </p>
           </CityCompareChart>
