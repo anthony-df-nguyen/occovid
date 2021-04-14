@@ -403,11 +403,11 @@ const Compare = (props) => {
             storageKey={["countyCompareLastMode"]}
             options={[
               {
-                display: "Cases per 100K",
+                display: "Daily Cases Reported per 100K",
                 value: "Cases per 100K",
               },
               {
-                display: "Deaths per 100k",
+                display: "Daily Deaths Reported per 100k",
                 value: "Deaths per 100k",
               },
               {
@@ -419,11 +419,11 @@ const Compare = (props) => {
                 value: "Vaccine Doses Administered per 100k",
               },
               {
-                display: "Cases",
+                display: "Daily Cases Reported",
                 value: "Cases",
               },
               {
-                display: "Deaths",
+                display: "Daily Deaths Reported",
                 value: "Deaths",
               },
               {
