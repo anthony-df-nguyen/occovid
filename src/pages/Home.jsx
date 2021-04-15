@@ -56,7 +56,6 @@ const Home = (props) => {
   const [array6, update6Array] = useState([]);
   const [array7, update7Array] = useState([]);
     const [vaccineDate, updateVaccineDate] = useState("Getting last update date...");
-
   const peopleOneDose = array5[2];
   const fullVaccinated = array5[41];
   const [maxCaseRate, updateCaseMax] = useState(14);
@@ -64,6 +63,7 @@ const Home = (props) => {
   const [maxEqRate, updateEqMax] = useState(10);
   const [tier, updateTier] = useState();
   const [tierColor, updatetTierColor] = useState();
+  const [vaxTier,updateVaxTier] = useState();
 
   useEffect(() => {
     let a = lastCaseRate > 14 ? lastCaseRate + 2 : 14;
@@ -130,6 +130,7 @@ const Home = (props) => {
         <FetchCAMetrics time={time} function={update7Array} />
         <FetchVaccineDate function={updateVaccineDate} />
         <FindAVaccine />
+        <FetchVaccineTier function={updateVaxTier} />
         <div className="homeWidgetGrid">
           <Link to="/cases">
             {" "}
@@ -222,6 +223,11 @@ const Home = (props) => {
                   </div>
 
                   <div className="subFlex">
+                    <Widget
+                      title={"Active Tier"}
+                      stat={vaxTier}
+                      color={color.purple}
+                    />
                     <Widget
                       title={"OC Population"}
                       stat={ocpop.toLocaleString()}

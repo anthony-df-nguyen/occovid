@@ -32,12 +32,13 @@ import Page from "components/Page";
 import FetchVaccineTier from "Datafetch/FetchVaccineTier";
 
 const Vaccinations = (props) => {
+
   // eslint-disable-next-line no-unused-vars
   const [time, setTime] = useContext(TimeContext);
   const [array, updateArray] = useState([]);
   const [vendorArray, updateVendorArray] = useState([]);
   const [vaccineHisArray, updateVaxArray] = useState([]);
-
+    const [vaxTier, updateVaxTier] = useState();
   const [asof, updateDate] = useState("Getting last update date...");
 
   const [
@@ -163,6 +164,7 @@ const Vaccinations = (props) => {
   const brand2Dose = [pfizer, moderna, astra, janssen];
   return (
     <div>
+      <FetchVaccineTier function={updateVaxTier} />
       <FetchVaccineDate function={updateDate} />
       <VaccineHistory function={updateVaxArray} time={time} />
       <FetchVaccines function={updateArray} time={time} />
@@ -175,6 +177,7 @@ const Vaccinations = (props) => {
         </div>
         <FindAVaccine />
         <div className="widgetGrid">
+          <Widget title={"Active Tier"} stat={vaxTier} color={color.purple} />
           <Widget
             title={"OC Population"}
             stat={ocpop.toLocaleString()}
@@ -350,9 +353,9 @@ const Vaccinations = (props) => {
           <Chart
             key="4"
             id="vaccine4"
-            date={["Female", "Male", "Other","Unknown"]}
+            date={["Female", "Male", "Other", "Unknown"]}
             data={[[female, male, otherSex, unkSex]]}
-            fill={[[color.pink, color.blue, color.orange,color.gray]]}
+            fill={[[color.pink, color.blue, color.orange, color.gray]]}
             title={"People w/ at Least 1 Dose: by Sex"}
             label={["People"]}
             switches={["horizontalBar", "bar", "doughnut"]}
