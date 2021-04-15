@@ -59,7 +59,7 @@ const FindAVaccine = () => {
         </form>
         <p>
           <b>Active Phase</b>:{" "}
-          <span style={{ fontWeight: 300 }}>{vaccinePhase.phase}</span>
+          <span style={{ fontWeight: 300 }}>{vaccinePhase}</span>
         </p>
       </div>
     );
