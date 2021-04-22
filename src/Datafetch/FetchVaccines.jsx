@@ -16,7 +16,6 @@ const FetchVaccines = (props) => {
             .then((a) => a.json())
             .then((b) => {
               let results = b.features;
-
               const findValue = (category, metric) => {
                 try {
                   let resultArray = results.filter(
