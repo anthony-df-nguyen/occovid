@@ -1,14 +1,14 @@
-@wide            : ~"only screen and (min-width:1366px)";
-@wider1366       : ~"only screen and (min-width:1366px)";
-@wider1680       : ~"only screen and (min-width:1680px)";
-@wider1920       : ~"only screen and (min-width:1920px)";
-@taller768       : ~"only screen and (min-height:768px) and (orientation:landscape)";
-@taller1080      : ~"only screen and (min-height:1080px) and (orientation:landscape)";
+@wide            :~"only screen and (min-width:1366px)";
+@wider1366       :~"only screen and (min-width:1366px)";
+@wider1680       :~"only screen and (min-width:1680px)";
+@wider1920       :~"only screen and (min-width:1920px)";
+@taller768       :~"only screen and (min-height:768px) and (orientation:landscape)";
+@taller1080      :~"only screen and (min-height:1080px) and (orientation:landscape)";
 @biggerthanmobile: ~"only screen and (min-width:520px)";
-@mobile          : ~"only screen and (max-width:500px)";
-@landscape       : ~"only screen and (orientation:landscape)";
-@portrait        : ~"only screen and (orientation:portrait)";
-@font            : ~"'Open Sans',sans-serif;";
+@mobile          :~"only screen and (max-width:500px)";
+@landscape       :~"only screen and (orientation:landscape)";
+@portrait        :~"only screen and (orientation:portrait)";
+@font            :~"'Open Sans',sans-serif;";
 @radius          : 5px;
 @pad             : 1rem;
 @padtop          : 2rem 1rem;
@@ -229,6 +229,7 @@ body.dark {
   -ms-transform    : translate(-50%, -50%);
   transform        : translate(-50%, -50%);
 }
+
 .bold {
   font-weight: 700;
 }
@@ -466,12 +467,13 @@ body.dark {
     //   display: none;
     // }
   }
+
   .subtitle {
-    font-size: 14px;
-    text-align: center;
-    margin:-1rem 0 1rem 0;
+    font-size  : 14px;
+    text-align : center;
+    margin     : -1rem 0 1rem 0;
     font-weight: 300;
-    color : var(--primary-text);
+    color      : var(--primary-text);
   }
 
   @media @wide {
@@ -511,6 +513,34 @@ body.dark {
 
     td {
       background-color: var(--gray);
+    }
+  }
+
+  .uiButtonContainer {
+    padding   : 0 @gap;
+    text-align: center;
+    display:block !important;
+
+    a {
+      font-size     : 12px !important;
+      letter-spacing: 0 !important;
+      
+      display: inline-block !important;
+      
+      background-color: var(--gray) !important;
+      color           : var(--primary-text) !important;
+      
+      padding: 5px 10px !important;
+      
+      border-radius: 5px !important;
+      
+      text-transform: capitalize !important;
+      font-weight   : 500 !important;
+
+      &.active {
+        background-color: var(--blue) !important;
+        color           : var(--staywhite) !important;
+      }
     }
   }
 }
@@ -626,10 +656,12 @@ body.dark {
 
 #chartVaccineGrid {
   #chartGrid;
-  .vaxEffectiveness{
+
+  .vaxEffectiveness {
     background-color: var(--white);
-    height: min-content;
+    height          : min-content;
   }
+
   @media only screen and (min-width: 1024px) {
     grid-template-columns: 1fr 1fr;
 
@@ -678,10 +710,11 @@ body.dark {
     #vaccine8 {
       grid-column: 1 / span 4;
     }
+
     .vaxEffectiveness {
       grid-column: 2 / span 3;
     }
-    
+
   }
 
 }
@@ -746,10 +779,11 @@ body.dark {
     text-align: center;
   }
 }
+
 .uiButtonSubText {
-  text-align: center;
-  color: var(--primary-text);
-  font-size:.8rem;
+  text-align   : center;
+  color        : var(--primary-text);
+  font-size    : .8rem;
   margin-bottom: @gap;
 }
 
@@ -944,11 +978,12 @@ body.dark {
         text-align    : center;
         margin-bottom : 1rem;
         color         : var(--primary-text);
+
         p {
-          color:var(--primary-text);
-          font-size: 10px;
+          color         : var(--primary-text);
+          font-size     : 10px;
           letter-spacing: 0;
-          font-weight: 300;
+          font-weight   : 300;
         }
       }
 
@@ -1120,45 +1155,53 @@ a.globButton,
 
 .findVaccine {
   background-color: var(--white);
-  border-radius: @radius;
-  width: 100%;
-  margin:@gap 0;
-  padding: calc(@gap * 2) @gap;
+  border-radius   : @radius;
+  width           : 100%;
+  margin          : @gap 0;
+  padding         : calc(@gap * 2) @gap;
+
   form {
-    margin:0 auto !important;
+    margin: 0 auto !important;
+
     h2 {
-      margin-bottom:@gap;
+      margin-bottom: @gap;
+
       span {
         font-weight: 700 !important;
       }
+
       span.vax {
-        color:rgb(48, 161, 151);
+        color: rgb(48, 161, 151);
       }
     }
+
     p {
-      margin-left: @gap;
-      margin-right:@gap;
-      display: inline;
+      margin-left : @gap;
+      margin-right: @gap;
+      display     : inline;
     }
+
     input[type=text] {
       display         : inline-block;
-      margin-top:@gap;
+      margin-top      : @gap;
       border-radius   : @radius;
       max-width       : 768px;
       border          : none;
       padding         : 6px @gap;
-      color:var(--primary-text);
+      color           : var(--primary-text);
       background-color: var(--gray);
-      margin-right:@gap;
+      margin-right    : @gap;
     }
+
     select {
       margin-left: @gap;
-      display: inline;
+      display    : inline;
     }
+
     .globButton {
-      margin:0 !important;
-      display:inline;
-      padding:3px 12px 5px 12px !important;
+      margin                              : 0 !important;
+      display                             : inline;
+      padding                             : 3px 12px 5px 12px !important;
       // @media only screen and (max-width:530px) {
       //   display:block;
       //   margin:1rem auto 0 auto !important;
@@ -1166,18 +1209,21 @@ a.globButton,
     }
 
   }
+
   p {
-    margin-top:@gap;
+    margin-top: @gap;
     text-align: center;
-      color: var(--blue);
+    color     : var(--blue);
+
     span {
-      color:var(--primary-text);
-   
+      color: var(--primary-text);
+
     }
   }
 
 
 }
+
 form {
   width     : calc(100% - 2rem);
   height    : 100%;
@@ -1271,8 +1317,8 @@ form {
     height    : 100%;
 
     -webkit-transition: max-height 0.2s ease-in-out;
-    -o-transition: max-height 0.2s ease-in-out;
-    transition: max-height 0.2s ease-in-out;
+    -o-transition     : max-height 0.2s ease-in-out;
+    transition        : max-height 0.2s ease-in-out;
 
     #chartGrid {
       padding: 0 @gap;
@@ -1497,8 +1543,9 @@ form {
       list-style-type: none;
     }
   }
+
   h3 {
-    color:var(--primary-text);
+    color: var(--primary-text);
   }
 
   .metricBlock {
@@ -1507,7 +1554,7 @@ form {
   }
 
   .metricName {
-    color:var(--primary-text);
+    color      : var(--primary-text);
     display    : inline;
     font-weight: 600;
     font-family: Arial, sans-serif;
@@ -1519,8 +1566,9 @@ form {
     grid-template-columns: 1fr 1fr;
     grid-template-rows   : auto;
     grid-gap             : @gap;
+
     div {
-      color:var(--primary-text);
+      color: var(--primary-text);
     }
   }
 }
@@ -1849,4 +1897,3 @@ form {
   font-size : 12px;
   color     : var(--primary-text);
 }
-

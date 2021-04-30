@@ -57,7 +57,7 @@ const Home = (props) => {
   const [array7, update7Array] = useState([]);
     const [vaccineDate, updateVaccineDate] = useState("Getting last update date...");
   const peopleOneDose = array5[2];
-  const fullVaccinated = array5[41];
+  const fullVaccinated = array5[60];
   const [maxCaseRate, updateCaseMax] = useState(14);
   const [maxPosRate, updatePosMax] = useState(10);
   const [maxEqRate, updateEqMax] = useState(10);
@@ -224,7 +224,7 @@ const Home = (props) => {
 
                   <div className="subFlex">
                     <Widget
-                      title={"Active Tier"}
+                      title={"Vaccine Eligibility"}
                       stat={vaxTier}
                       color={color.purple}
                     />

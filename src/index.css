@@ -424,6 +424,26 @@ body.dark {
 .chartContainer table td {
   background-color: var(--gray);
 }
+.chartContainer .uiButtonContainer {
+  padding: 0 10px;
+  text-align: center;
+  display: block !important;
+}
+.chartContainer .uiButtonContainer a {
+  font-size: 12px !important;
+  letter-spacing: 0 !important;
+  display: inline-block !important;
+  background-color: var(--gray) !important;
+  color: var(--primary-text) !important;
+  padding: 5px 10px !important;
+  border-radius: 5px !important;
+  text-transform: capitalize !important;
+  font-weight: 500 !important;
+}
+.chartContainer .uiButtonContainer a.active {
+  background-color: var(--blue) !important;
+  color: var(--staywhite) !important;
+}
 .chartTitle {
   font-size: 1rem;
   font-weight: 400;

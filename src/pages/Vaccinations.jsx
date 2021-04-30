@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { TimeContext } from "components/context/TimeContext";
 import color from "globalVars/Colors";
 import Timeselect from "components/Timeselect";
@@ -32,13 +32,12 @@ import Page from "components/Page";
 import FetchVaccineTier from "Datafetch/FetchVaccineTier";
 
 const Vaccinations = (props) => {
-
   // eslint-disable-next-line no-unused-vars
   const [time, setTime] = useContext(TimeContext);
   const [array, updateArray] = useState([]);
   const [vendorArray, updateVendorArray] = useState([]);
   const [vaccineHisArray, updateVaxArray] = useState([]);
-    const [vaxTier, updateVaxTier] = useState();
+  const [vaxTier, updateVaxTier] = useState();
   const [asof, updateDate] = useState("Getting last update date...");
 
   const [
@@ -52,23 +51,41 @@ const Vaccinations = (props) => {
     male,
     otherSex,
     unkSex,
+    femaleFull,
+    maleFull,
+    otherSexFull,
+    unkSexFull,
     asianPI,
     black,
     hispanic,
     white,
     otherRace,
     unkRace,
+    asianPIFull,
+    blackFull,
+    hispanicFull,
+    whiteFull,
+    otherRaceFull,
+    unkRaceFull,
     age017,
     age1824,
     age2534,
     age3544,
     age4554,
     age5564,
-    age6574yrs,
+    age6574,
     age7584,
     age85,
-    // eslint-disable-next-line no-unused-vars
     ageUnknown,
+    age017full,
+    age1824full,
+    age2534full,
+    age3544full,
+    age4554full,
+    age5564full,
+    age6574full,
+    age7584full,
+    age85full,
     moderna,
     pfizer,
     unknownTrade,
@@ -111,19 +128,54 @@ const Vaccinations = (props) => {
     age75_84_pop,
     age85_pop,
   ];
-  const ageVaxArray = [
+  const adultPop =
+    age18_24_pop +
+    age25_34_pop +
+    age35_44_pop +
+    age45_54_pop +
+    age55_64_pop +
+    age65_74_pop +
+    age75_84_pop +
+    age85_pop;
+  const age1DoseVaxArray = [
     age017,
     age1824,
     age2534,
     age3544,
     age4554,
     age5564,
-    age6574yrs,
+    age6574,
     age7584,
     age85,
   ];
+  const adultsWith1Dose =
+    age1824 + age2534 + age3544 + age4554 + age5564 + age6574 + age7584 + age85;
+  const ageFullVaxArray = [
+    age017full,
+    age1824full,
+    age2534full,
+    age3544full,
+    age4554full,
+    age5564full,
+    age6574full,
+    age7584full,
+    age85full,
+  ];
 
-  const agePercent1Dose = ageVaxArray.map((a, i) => {
+  const adultsFullyVax =
+    age1824full +
+    age2534full +
+    age3544full +
+    age4554full +
+    age5564full +
+    age6574full +
+    age7584full +
+    age85full;
+
+  const agePercentFullyVaxed = ageFullVaxArray.map((a, i) => {
+    return parseFloat((a / agePopArray[i]) * 100).toFixed(1) + "%";
+  });
+  const agePercent1Dose = age1DoseVaxArray.map((a, i) => {
     return parseFloat((a / agePopArray[i]) * 100).toFixed(1) + "%";
   });
   const ageOCPop = agePopArray.map((a) => a.toLocaleString());
@@ -131,6 +183,24 @@ const Vaccinations = (props) => {
     (a) => parseFloat(((a / ocpop) * 100).toFixed(1)) + "%"
   );
 
+  const [ageVaxMode, updateAgeVaxMode] = useState(() =>
+    localStorage.getItem("lastAgeVaxMode")
+      ? localStorage.getItem("lastAgeVaxMode")
+      : ()=> {
+        localStorage.setItem("lastAgeVaxMode", "full");
+        return 'full'
+      }
+  );
+  const [ageVaxArray, updateAgeVaxArray] = useState([]);
+
+  useEffect(() => {
+    const newAgeMode = localStorage.getItem("lastAgeVaxMode");
+    newAgeMode === "full"
+      ? updateAgeVaxArray(ageFullVaxArray)
+      : updateAgeVaxArray(age1DoseVaxArray);
+  }, [array, ageVaxMode]);
+
+  //Race Vaccine Reports
   const customRaceColors = [
     color.blue,
     color.red,
@@ -140,17 +210,54 @@ const Vaccinations = (props) => {
     color.gray,
   ];
 
-  //Race Vaccine Reports
   const racePopArray = [asian_pop, black_pop, hispanic_pop, white_pop];
   const raceOCPop = racePopArray.map((a) => a.toLocaleString());
+
   const racePercOfPop = racePopArray.map(
     (a) => parseFloat(((a / ocpop) * 100).toFixed(1)) + "%"
   );
   const raceVaxArray = [asianPI, black, hispanic, white, otherRace];
-  const raceVaxArrayAll = [asianPI, black, hispanic, white, otherRace, unkRace];
+  const race1DoseVaxArray = [
+    asianPI,
+    black,
+    hispanic,
+    white,
+    otherRace,
+    unkRace,
+  ];
+  const raceFullVaxArray = [
+    asianPIFull,
+
+    blackFull,
+    hispanicFull,
+    whiteFull,
+    otherRaceFull,
+    unkRaceFull,
+  ];
   const racePercent1Dose = raceVaxArray.map((a, i) => {
     return parseFloat((a / racePopArray[i]) * 100).toFixed(1) + "%";
   });
+  const racePercentFullyVaxed = raceFullVaxArray.map((a, i) => {
+    return parseFloat((a / racePopArray[i]) * 100).toFixed(1) + "%";
+  });
+
+  const [raceVaxMode, updateRaceVaxMode] = useState(() =>
+    localStorage.getItem("lastRaceVaxMode")
+      ? localStorage.getItem("lastRaceVaxMode")
+      : () => {
+          localStorage.setItem("lastRaceVaxMode", "full");
+          return "full";
+        }
+  );
+
+  const [raceVaxArrayState, updateRaceVaxArray] = useState([]);
+
+  useEffect(() => {
+    const newRaceMode = localStorage.getItem("lastRaceVaxMode");
+    newRaceMode === "full"
+      ? updateRaceVaxArray(raceFullVaxArray)
+      : updateRaceVaxArray(race1DoseVaxArray);
+  }, [array, raceVaxMode]);
 
   const vendorNames = vendorArray.map((a) => a.vendor);
   const vendorDoses = vendorArray.map((a) =>
@@ -160,8 +267,30 @@ const Vaccinations = (props) => {
     (a) => (parseFloat(a.doses / totalAdmin) * 100).toFixed(1) + "%"
   );
 
-  const brand1Dose = [pfizerDose1, modernaDose1, astraDose1, "N/A"];
-  const brand2Dose = [pfizer, moderna, astra, janssen];
+  const brand1Dose = [pfizerDose1, modernaDose1, "N/A"];
+  const brand2Dose = [pfizer, moderna, janssen];
+
+  //Gender
+  const sex1DoseArray = [female, male, unkSex];
+  const sexFullVaxArray = [femaleFull, maleFull, unkSexFull];
+    const [sexVaxMode, updateSexVaxMode] = useState(() =>
+      localStorage.getItem("lastSexVaxMode")
+        ? localStorage.getItem("lastSexVaxMode")
+        : () => {
+            localStorage.setItem("lastSexVaxMode", "full");
+            return "full";
+          }
+    );
+
+    const [sexVaxArrayState, updateSexVaxArray] = useState([]);
+
+    useEffect(() => {
+      const newSexMode = localStorage.getItem("lastSexVaxMode");
+      newSexMode === "full"
+        ? updateSexVaxArray(sexFullVaxArray)
+        : updateSexVaxArray(sex1DoseArray);
+    }, [array, sexVaxMode]);
+
   return (
     <div>
       <FetchVaccineTier function={updateVaxTier} />
@@ -177,10 +306,10 @@ const Vaccinations = (props) => {
         </div>
         <FindAVaccine />
         <div className="widgetGrid">
-          <Widget title={"Active Tier"} stat={vaxTier} color={color.purple} />
+          <Widget title={"Vaccine Eligibility"} stat={vaxTier} color={color.purple} />
           <Widget
-            title={"OC Population"}
-            stat={ocpop.toLocaleString()}
+            title={"Entire Population | 18+ Population"}
+            stat={`${ocpop.toLocaleString()} | ${adultPop.toLocaleString()}`}
             color={color.green}
           />
           <Widget
@@ -192,6 +321,20 @@ const Vaccinations = (props) => {
             title={"People w/ at Least 1 Dose (All Brands)"}
             stat={`${totalPPL1Dose.toLocaleString()} | ${totalPPL1Perc}%`}
             color={color.blue}
+          />
+          <Widget
+            title={"Adults (18+)  Fully Vaccinated (All Brands)"}
+            stat={`${adultsFullyVax.toLocaleString()} | ${parseFloat(
+              (adultsFullyVax / adultPop) * 100
+            ).toFixed(1)}% `}
+            color={color.green}
+          />
+          <Widget
+            title={"Adults (18+)  w/ at Least 1 Dose (All Brands)"}
+            stat={`${adultsWith1Dose.toLocaleString()} | ${parseFloat(
+              (adultsWith1Dose / adultPop) * 100
+            ).toFixed(1)}% `}
+            color={color.green}
           />
           <Widget
             title={"Total Doses Administered"}
@@ -241,23 +384,60 @@ const Vaccinations = (props) => {
           </Chart>
 
           <Chart
+            function={[updateAgeVaxMode]}
+            options={[
+              {
+                display: "Fully Vaxed",
+                value: "full",
+              },
+              {
+                display: "at Least 1 Dose",
+                value: "1dose",
+              },
+            ]}
+            current={ageVaxMode}
+            storageKey={["lastAgeVaxMode"]}
             key="1"
             id="vaccine1"
             date={[...ageLabels.slice(0, -1)]}
             data={[ageVaxArray]}
             fill={[[...ageColors]]}
-            title={"People w/ at Least 1 Dose: by Age"}
-            label={["People"]}
+            title={`By Age`}
+            label={["Prople"]}
             switches={["horizontalBar", "bar", "doughnut"]}>
             <BuildTable
-              colName={["Age", "Pop", "% of Pop", "% w/ at Least 1 Dose"]}
+              colName={[
+                "Age",
+                "Pop",
+                "% of Pop",
+                "% Fully Vaxed",
+                "% w/ 1 Dose",
+              ]}
               rows={[...ageLabels.slice(0, -1)]}
-              columns={[ageOCPop, agePercOfPop, agePercent1Dose]}
+              columns={[
+                ageOCPop,
+                agePercOfPop,
+                agePercentFullyVaxed,
+                agePercent1Dose,
+              ]}
             />
             <p className="chartNote">OC Population: {ocpop.toLocaleString()}</p>
           </Chart>
 
           <Chart
+            function={[updateRaceVaxMode]}
+            options={[
+              {
+                display: "Fully Vaxed",
+                value: "full",
+              },
+              {
+                display: "at Least 1 Dose",
+                value: "1dose",
+              },
+            ]}
+            current={raceVaxMode}
+            storageKey={["lastRaceVaxMode"]}
             key="2"
             id="vaccine2"
             date={[
@@ -268,15 +448,26 @@ const Vaccinations = (props) => {
               "Other",
               "Unknown",
             ]}
-            data={[raceVaxArrayAll]}
+            data={[raceVaxArrayState]}
             fill={[[...customRaceColors]]}
-            title={"People w/ at Least 1 Dose: by Race"}
+            title={"By Race"}
             label={["People"]}
             switches={["horizontalBar", "bar", "doughnut"]}>
             <BuildTable
-              colName={["Age", "Pop", "% of Pop", "% w/ at Least 1 Dose"]}
+              colName={[
+                "Age",
+                "Pop",
+                "% of Pop",
+                "% Fully Vaxed",
+                "% w/ 1 Dose",
+              ]}
               rows={["Asian/PI*", "Black*", "Hispanic/Latino", "White*"]}
-              columns={[raceOCPop, racePercOfPop, racePercent1Dose]}
+              columns={[
+                raceOCPop,
+                racePercOfPop,
+                racePercentFullyVaxed,
+                racePercent1Dose,
+              ]}
             />
             <p className="chartNote">
               *Population not of Hispanic/Latino ethnicity<br></br>
@@ -326,14 +517,14 @@ const Vaccinations = (props) => {
           <Chart
             key="3"
             id="vaccine3"
-            date={["Moderna", "Pfizer", "J&J", "AstraZen"]}
-            data={[[moderna, pfizer, janssen, astra]]}
-            fill={[[color.green, color.blue, color.red]]}
+            date={["Moderna", "Pfizer", "J&J"]}
+            data={[[moderna, pfizer, janssen]]}
+            fill={[[color.green, color.blue,color.red]]}
             title={"Fully Vaccinated by Brand"}
             label={["People"]}
             switches={["horizontalBar", "bar", "doughnut"]}>
             <BuildTable
-              rows={["Pfizer", "Moderna", "AstraZeneca", "J&J"]}
+              rows={["Pfizer", "Moderna", "J&J"]}
               colName={[
                 "Brand",
                 "1st Doses",
@@ -351,12 +542,25 @@ const Vaccinations = (props) => {
           </Chart>
 
           <Chart
+            function={[updateSexVaxMode]}
+            options={[
+              {
+                display: "Fully Vaxed",
+                value: "full",
+              },
+              {
+                display: "at Least 1 Dose",
+                value: "1dose",
+              },
+            ]}
+            current={sexVaxMode}
+            storageKey={["lastSexVaxMode"]}
             key="4"
             id="vaccine4"
-            date={["Female", "Male", "Other", "Unknown"]}
-            data={[[female, male, otherSex, unkSex]]}
-            fill={[[color.pink, color.blue, color.orange, color.gray]]}
-            title={"People w/ at Least 1 Dose: by Sex"}
+            date={["Female", "Male", "Unknown"]}
+            data={[sexVaxArrayState]}
+            fill={[[color.pink, color.blue, color.gray]]}
+            title={"By Sex"}
             label={["People"]}
             switches={["horizontalBar", "bar", "doughnut"]}
           />

@@ -1,32 +1,33 @@
-import React, { useState } from 'react'
-import { Bar, Doughnut, Line, HorizontalBar } from 'react-chartjs-2'
-import ChartDataLabels from 'chartjs-plugin-datalabels';
-import 'globalVars/chartJSconfig.js'
+import React, { useState } from "react";
+import { Bar, Doughnut, Line, HorizontalBar } from "react-chartjs-2";
+import ChartDataLabels from "chartjs-plugin-datalabels";
+import ModeSelector from "components/ModeSelector";
+import "globalVars/chartJSconfig.js";
 import {
   barDefaults,
   lineDefaults,
   piedefaults,
   Oneobject,
   Twoobject7DayAverage,
-  Threeobject7DayAverage
-} from 'globalVars/chartJSconfig.js'
-import Chartselect from 'components/Chartselect'
+  Threeobject7DayAverage,
+} from "globalVars/chartJSconfig.js";
+import Chartselect from "components/Chartselect";
 
-const Chart = props => {
+const Chart = (props) => {
   //Set initial state to saved memory
   const [currentType, updateType] = useState(() => {
     if (props.switches.length > 1) {
       if (!localStorage.getItem(props.id)) {
-        return 'bar'
+        return "bar";
       } else {
-        return localStorage.getItem(props.id)
+        return localStorage.getItem(props.id);
       }
     } else {
-      return props.switches[0]
+      return props.switches[0];
     }
-  })
+  });
 
-  let dataObject
+  let dataObject;
 
   //Create Data Object
   switch (props.data.length) {
@@ -36,8 +37,8 @@ const Chart = props => {
         props.label[0],
         props.data[0],
         props.fill[0]
-      )
-      break
+      );
+      break;
     case 2:
       dataObject = new Twoobject7DayAverage(
         props.date,
@@ -47,8 +48,8 @@ const Chart = props => {
         props.label[1],
         props.data[1],
         props.fill[1]
-      )
-      break
+      );
+      break;
     case 3:
       dataObject = new Threeobject7DayAverage(
         props.date,
@@ -61,46 +62,60 @@ const Chart = props => {
         props.label[2],
         props.data[2],
         props.fill[2]
-      )
-      break
+      );
+      break;
     default:
       dataObject = new Oneobject(
         props.date,
         props.label,
         props.data[0],
         props.fill[0]
-      )
-      break
+      );
+      break;
   }
 
   //Render the Type of Chart Based on Type
   function renderChart(currentType) {
     switch (currentType) {
-      case 'bar':
-        return <Bar data={ dataObject } options={ barDefaults } />
-        break
-      case 'line':
-        return <Line data={ dataObject } options={ lineDefaults } />
-        break
-      case 'doughnut':
-        return <Doughnut data={ dataObject } options={ piedefaults } />
-        break
-      case 'horizontalBar':
-        return <HorizontalBar data={ dataObject } options={ barDefaults } />
-        break
+      case "bar":
+        return <Bar data={dataObject} options={barDefaults} />;
+        break;
+      case "line":
+        return <Line data={dataObject} options={lineDefaults} />;
+        break;
+      case "doughnut":
+        return <Doughnut data={dataObject} options={piedefaults} />;
+        break;
+      case "horizontalBar":
+        return <HorizontalBar data={dataObject} options={barDefaults} />;
+        break;
       default:
-        return <Bar data={ dataObject } options={ barDefaults } />
-        break
+        return <Bar data={dataObject} options={barDefaults} />;
+        break;
     }
   }
+  function renderOptions() {
+    if (props.options) {
+      return ( <ModeSelector
+        function={props.function}
+        current={props.current}
+        options={props.options}
+        storageKey={props.storageKey}
+      />)  
+    } else {
+
+    }
+  }
+
   return (
-    <div className='chartContainer' id={ props.id } >
-      <div className='chartTitle'>{ props.title }</div>
-      <Chartselect type={ props.switches } passdown={ updateType } id={ props.id } />
-      {renderChart(currentType) }
+    <div className="chartContainer" id={props.id}>
+      <div className="chartTitle">{props.title}</div>
+      {renderOptions()}
+      <Chartselect type={props.switches} passdown={updateType} id={props.id} />
+      {renderChart(currentType)}
       {props.children}
     </div>
-  )
-}
+  );
+};
 
-export default Chart
+export default Chart;
