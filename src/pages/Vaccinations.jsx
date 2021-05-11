@@ -403,7 +403,7 @@ const Vaccinations = (props) => {
             data={[ageVaxArray]}
             fill={[[...ageColors]]}
             title={`By Age`}
-            label={["Prople"]}
+            label={["People"]}
             switches={["horizontalBar", "bar", "doughnut"]}>
             <BuildTable
               colName={[
