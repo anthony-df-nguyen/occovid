@@ -67,8 +67,9 @@ const Vaccinations = (props) => {
     whiteFull,
     otherRaceFull,
     unkRaceFull,
-    age017,
-    age1824,
+     age011,
+      age1215,
+      age1624,
     age2534,
     age3544,
     age4554,
@@ -77,8 +78,9 @@ const Vaccinations = (props) => {
     age7584,
     age85,
     ageUnknown,
-    age017full,
-    age1824full,
+    age011full,
+    age1215full,
+    age1624full,
     age2534full,
     age3544full,
     age4554full,
@@ -109,6 +111,8 @@ const Vaccinations = (props) => {
     astraDose1,
   ] = array;
 
+
+
   //Total People Reports
   const totalPPL1Dose = parseInt(totalPeople);
   const totalPPL1Perc = parseFloat((totalPPL1Dose / ocpop) * 100).toFixed(1);
@@ -117,6 +121,7 @@ const Vaccinations = (props) => {
   const totallPPLPerc = parseFloat((totalPPL / ocpop) * 100).toFixed(1);
 
   //Age Vaccine Reports
+  const customAgeLabels = ["0 - 11","12 - 15", "16 - 24", "25 - 34","35 - 44","45 - 54","55 - 64","65 - 74","75 - 84", "85 +"]
   const agePopArray = [
     age0_17_pop,
     age18_24_pop,
@@ -138,8 +143,9 @@ const Vaccinations = (props) => {
     age75_84_pop +
     age85_pop;
   const age1DoseVaxArray = [
-    age017,
-    age1824,
+    age011,
+    age1215,
+    age1624,
     age2534,
     age3544,
     age4554,
@@ -149,10 +155,11 @@ const Vaccinations = (props) => {
     age85,
   ];
   const adultsWith1Dose =
-    age1824 + age2534 + age3544 + age4554 + age5564 + age6574 + age7584 + age85;
+    age1624 + age2534 + age3544 + age4554 + age5564 + age6574 + age7584 + age85;
   const ageFullVaxArray = [
-    age017full,
-    age1824full,
+    age011full,
+    age1215full,
+    age1624full,
     age2534full,
     age3544full,
     age4554full,
@@ -163,7 +170,7 @@ const Vaccinations = (props) => {
   ];
 
   const adultsFullyVax =
-    age1824full +
+    age1624full +
     age2534full +
     age3544full +
     age4554full +
@@ -308,8 +315,8 @@ const Vaccinations = (props) => {
         <div className="widgetGrid">
           <Widget title={"Vaccine Eligibility"} stat={vaxTier} color={color.purple} />
           <Widget
-            title={"Entire Population | 18+ Population"}
-            stat={`${ocpop.toLocaleString()} | ${adultPop.toLocaleString()}`}
+            title={"OC Population"}
+            stat={`${ocpop.toLocaleString()}`}
             color={color.green}
           />
           <Widget
@@ -322,7 +329,7 @@ const Vaccinations = (props) => {
             stat={`${totalPPL1Dose.toLocaleString()} | ${totalPPL1Perc}%`}
             color={color.blue}
           />
-          <Widget
+          {/* <Widget
             title={"Adults (18+)  Fully Vaccinated (All Brands)"}
             stat={`${adultsFullyVax.toLocaleString()} | ${parseFloat(
               (adultsFullyVax / adultPop) * 100
@@ -335,7 +342,7 @@ const Vaccinations = (props) => {
               (adultsWith1Dose / adultPop) * 100
             ).toFixed(1)}% `}
             color={color.green}
-          />
+          /> */}
           <Widget
             title={"Total Doses Administered"}
             stat={parseInt(totalAdmin).toLocaleString()}
@@ -399,29 +406,24 @@ const Vaccinations = (props) => {
             storageKey={["lastAgeVaxMode"]}
             key="1"
             id="vaccine1"
-            date={[...ageLabels.slice(0, -1)]}
+            date={[...customAgeLabels]}
             data={[ageVaxArray]}
             fill={[[...ageColors]]}
             title={`By Age`}
             label={["People"]}
             switches={["horizontalBar", "bar", "doughnut"]}>
-            <BuildTable
+            {/* <BuildTable
               colName={[
                 "Age",
-                "Pop",
-                "% of Pop",
                 "% Fully Vaxed",
-                "% w/ 1 Dose",
               ]}
-              rows={[...ageLabels.slice(0, -1)]}
+              rows={[...customAgeLabels]}
               columns={[
-                ageOCPop,
-                agePercOfPop,
                 agePercentFullyVaxed,
-                agePercent1Dose,
+
               ]}
             />
-            <p className="chartNote">OC Population: {ocpop.toLocaleString()}</p>
+            <p className="chartNote">OC Population: {ocpop.toLocaleString()}</p> */}
           </Chart>
 
           <Chart
@@ -564,7 +566,7 @@ const Vaccinations = (props) => {
             label={["People"]}
             switches={["horizontalBar", "bar", "doughnut"]}
           />
-          <div className="chartContainer">
+          {/* <div className="chartContainer">
             <div className="chartTitle">Top 25 Dose Providers</div>
             <BuildTable
               rows={vendorNames}
@@ -575,7 +577,7 @@ const Vaccinations = (props) => {
               ]}
               columns={[vendorDoses, vendorPerc]}
             />
-          </div>
+          </div> */}
           <div className="chartContainer vaxEffectiveness">
             <div className="chartTitle">Vaccine Info</div>
             <BuildTable

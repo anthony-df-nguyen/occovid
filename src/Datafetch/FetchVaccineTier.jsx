@@ -7,7 +7,7 @@ const FetchVaccineTier = (props) => {
       const getData = async () => {
         try {
           if (mounted) {
-            props.function('Ages 16+');
+            props.function('Ages 12+');
           }
         } catch (err) {
             console.log(err)

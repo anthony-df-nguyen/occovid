@@ -16,6 +16,7 @@ const FetchVaccines = (props) => {
             .then((a) => a.json())
             .then((b) => {
               let results = b.features;
+             
               const findValue = (category, metric) => {
                 try {
                   let resultArray = results.filter(
@@ -63,8 +64,9 @@ const FetchVaccines = (props) => {
               let whiteFull = findValue("White", "num_1st2nd");
               let otherRaceFull = findValue("Other Race", "num_1st2nd");
               let unkRaceFull = findValue("Unknown Race", "num_1st2nd");
-              let age017 = findValue("0-17 yrs", "num_atleast1");
-              let age1824 = findValue("18-24 yrs", "num_atleast1");
+              let age011 = findValue("0-11 yrs", "num_atleast1");
+              let age1215 = findValue("12-15 yrs", "num_atleast1");
+              let age1624 = findValue("16-24 yrs", "num_atleast1");
               let age2534 = findValue("25-34 yrs", "num_atleast1");
               let age3544 = findValue("35-44 yrs", "num_atleast1");
               let age4554 = findValue("45-54 yrs", "num_atleast1");
@@ -73,8 +75,9 @@ const FetchVaccines = (props) => {
               let age7584 = findValue("75-84 yrs", "num_atleast1");
               let age85 = findValue("85+ yrs", "num_atleast1");
               let ageUnknown = null;
-              let age017full = findValue("0-17 yrs", "num_1st2nd");
-              let age1824full = findValue("18-24 yrs", "num_1st2nd");
+              let age011full = findValue("0-11 yrs", "num_1st2nd");
+              let age1215full = findValue("12-15 yrs", "num_1st2nd");
+              let age1624full = findValue("16-24 yrs", "num_1st2nd");
               let age2534full = findValue("25-34 yrs", "num_1st2nd");
               let age3544full = findValue("35-44 yrs", "num_1st2nd");
               let age4554full = findValue("45-54 yrs", "num_1st2nd");
@@ -134,8 +137,9 @@ const FetchVaccines = (props) => {
                 whiteFull,
                 otherRaceFull,
                 unkRaceFull,
-                age017,
-                age1824,
+                age011,
+                age1215,
+                age1624,
                 age2534,
                 age3544,
                 age4554,
@@ -144,8 +148,9 @@ const FetchVaccines = (props) => {
                 age7584,
                 age85,
                 ageUnknown,
-                age017full,
-                age1824full,
+                age011full,
+                age1215full,
+                age1624full,
                 age2534full,
                 age3544full,
                 age4554full,

@@ -53,11 +53,12 @@ const Home = (props) => {
   const [array3, update3Array] = useState([]);
   const [array4, update4Array] = useState([]);
   const [array5, update5Array] = useState([]);
+  console.log(array5)
   const [array6, update6Array] = useState([]);
   const [array7, update7Array] = useState([]);
-    const [vaccineDate, updateVaccineDate] = useState("Getting last update date...");
-  const peopleOneDose = array5[2];
-  const fullVaccinated = array5[60];
+  const [vaccineDate, updateVaccineDate] = useState("Getting last update date...");
+  const peopleOneDose = array5[0];
+  const fullVaccinated = array5[1];
   const [maxCaseRate, updateCaseMax] = useState(14);
   const [maxPosRate, updatePosMax] = useState(10);
   const [maxEqRate, updateEqMax] = useState(10);

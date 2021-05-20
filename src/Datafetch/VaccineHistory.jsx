@@ -18,12 +18,17 @@ const VaccineHistory = (props) => {
             .then((a) => a.json())
             .then((b) => b.features)
             .then((c) => {
+             
               c.forEach((row) => {
                 let col = row.attributes;
-                vaccineArray.push({
+                if (col.vac_date) {
+                  vaccineArray.push({
                   date: moment(new Date(col.vac_date)).format("l"),
                   vax: col.valid_admin,
                 });
+                }
+               
+
               });
             })
             .then(() => {
@@ -31,6 +36,7 @@ const VaccineHistory = (props) => {
                 vaccineArray.map((a) => parseFloat(a.vax))
               );
               vaccineArray.forEach((row, i) => {
+                
                 //let parseDate = moment(new Date(row[0])).format("l");
                 cumuVax += parseFloat(row.vax);
                 transVaxArray.push({
