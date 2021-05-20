@@ -11,12 +11,12 @@ const FetchVaccines = (props) => {
 
         const getData = async () => {
           await fetch(
-            "https://services2.arcgis.com/LORzk2hk9xzHouw9/ArcGIS/rest/services/vacc_totalsummary/FeatureServer/0/query?where=0%3D0&objectIds=&time=&resultType=none&outFields=category%2C+num_1st%2C+num_1st2nd%2C+num_atleast1%2C+num_totalvalid&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&sqlFormat=none&f=pjson&token="
+            "https://services2.arcgis.com/LORzk2hk9xzHouw9/ArcGIS/rest/services/vacc_totalsummary/FeatureServer/0/query?where=0%3D0&objectIds=&time=&resultType=none&outFields=*&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&sqlFormat=none&f=pjson&token="
           )
             .then((a) => a.json())
             .then((b) => {
               let results = b.features;
-             
+
               const findValue = (category, metric) => {
                 try {
                   let resultArray = results.filter(
@@ -48,10 +48,10 @@ const FetchVaccines = (props) => {
               let male = findValue("Male", "num_atleast1");
               let otherSex = findValue("Other Sex", "num_atleast1");
               let unkSex = findValue("Unknown Sex", "num_atleast1");
-               let femaleFull = findValue("Female", "num_1st2nd");
-               let maleFull = findValue("Male", "num_1st2nd");
-               let otherSexFull = findValue("Other Sex", "num_1st2nd");
-               let unkSexFull = findValue("Unknown Sex", "num_1st2nd");
+              let femaleFull = findValue("Female", "num_1st2nd");
+              let maleFull = findValue("Male", "num_1st2nd");
+              let otherSexFull = findValue("Other Sex", "num_1st2nd");
+              let unkSexFull = findValue("Unknown Sex", "num_1st2nd");
               let asianPI = findValue("Asian/PI", "num_atleast1");
               let black = findValue("Black", "num_atleast1");
               let hispanic = findValue("Hispanic", "num_atleast1");
@@ -99,16 +99,23 @@ const FetchVaccines = (props) => {
               let hispanic65down = findValue("Hispanic <65", "num_atleast1");
               let white65down = findValue("White <65", "num_atleast1");
               let otherRace65down = findValue("Other Race <65", "num_atleast1");
-              let unkRace65down = findValue(
-                "Unknown Race <65",
-                "num_atleast1"
-              );
+              let unkRace65down = findValue("Unknown Race <65", "num_atleast1");
               let fullVaccinated = findValue("TotalDoses", "num_1st2nd");
               let janssen = findValue("Janssen", "num_1st2nd");
               let astra = findValue("AstraZeneca", "num_1st2nd");
               let modernaDose1 = findValue("Moderna", "num_1st");
               let pfizerDose1 = findValue("Pfizer", "num_1st");
               let astraDose1 = findValue("AstraZeneca", "num_1st");
+              let age011PopPerc = findValue("0-11 yrs", "var1");
+              let age1215PopPerc = findValue("12-15 yrs", "var1");
+              let age1624PopPerc = findValue("16-24 yrs", "var1");
+              let age2534PopPerc = findValue("25-34 yrs", "var1");
+              let age3544PopPerc = findValue("35-44 yrs", "var1");
+              let age4554PopPerc = findValue("45-54 yrs", "var1");
+              let age5564PopPerc = findValue("55-64 yrs", "var1");
+              let age6574PopPerc = findValue("65-74 yrs", "var1");
+              let age7584PopPerc = findValue("75-84 yrs", "var1");
+              let age85PopPerc = findValue("85+ yrs", "var1");
 
               thisDataArray = [
                 peopleOneDose,
@@ -179,6 +186,17 @@ const FetchVaccines = (props) => {
                 modernaDose1,
                 pfizerDose1,
                 astraDose1,
+                
+                age011PopPerc,
+                age1215PopPerc,
+                age1624PopPerc,
+                age2534PopPerc,
+                age3544PopPerc,
+                age4554PopPerc,
+                age5564PopPerc,
+                age6574PopPerc,
+                age7584PopPerc,
+                age85PopPerc,
               ];
             })
             .then(() => {

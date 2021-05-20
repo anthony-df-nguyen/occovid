@@ -67,9 +67,9 @@ const Vaccinations = (props) => {
     whiteFull,
     otherRaceFull,
     unkRaceFull,
-     age011,
-      age1215,
-      age1624,
+    age011,
+    age1215,
+    age1624,
     age2534,
     age3544,
     age4554,
@@ -109,9 +109,17 @@ const Vaccinations = (props) => {
     modernaDose1,
     pfizerDose1,
     astraDose1,
+    age011PopPerc,
+    age1215PopPerc,
+    age1624PopPerc,
+    age2534PopPerc,
+    age3544PopPerc,
+    age4554PopPerc,
+    age5564PopPerc,
+    age6574PopPerc,
+    age7584PopPerc,
+    age85PopPerc,
   ] = array;
-
-
 
   //Total People Reports
   const totalPPL1Dose = parseInt(totalPeople);
@@ -121,7 +129,18 @@ const Vaccinations = (props) => {
   const totallPPLPerc = parseFloat((totalPPL / ocpop) * 100).toFixed(1);
 
   //Age Vaccine Reports
-  const customAgeLabels = ["0 - 11","12 - 15", "16 - 24", "25 - 34","35 - 44","45 - 54","55 - 64","65 - 74","75 - 84", "85 +"]
+  const customAgeLabels = [
+    "0 - 11",
+    "12 - 15",
+    "16 - 24",
+    "25 - 34",
+    "35 - 44",
+    "45 - 54",
+    "55 - 64",
+    "65 - 74",
+    "75 - 84",
+    "85 +",
+  ];
   const agePopArray = [
     age0_17_pop,
     age18_24_pop,
@@ -133,15 +152,7 @@ const Vaccinations = (props) => {
     age75_84_pop,
     age85_pop,
   ];
-  const adultPop =
-    age18_24_pop +
-    age25_34_pop +
-    age35_44_pop +
-    age45_54_pop +
-    age55_64_pop +
-    age65_74_pop +
-    age75_84_pop +
-    age85_pop;
+
   const age1DoseVaxArray = [
     age011,
     age1215,
@@ -154,8 +165,7 @@ const Vaccinations = (props) => {
     age7584,
     age85,
   ];
-  const adultsWith1Dose =
-    age1624 + age2534 + age3544 + age4554 + age5564 + age6574 + age7584 + age85;
+  
   const ageFullVaxArray = [
     age011full,
     age1215full,
@@ -169,21 +179,23 @@ const Vaccinations = (props) => {
     age85full,
   ];
 
-  const adultsFullyVax =
-    age1624full +
-    age2534full +
-    age3544full +
-    age4554full +
-    age5564full +
-    age6574full +
-    age7584full +
-    age85full;
+  const agePopulationPercArray = [age011PopPerc,age1215PopPerc,age1624PopPerc,age2534PopPerc,age3544PopPerc,age4554PopPerc,age5564PopPerc,age6574PopPerc,age7584PopPerc,age85PopPerc]
+
+  const agePopulationEst = agePopulationPercArray.map(
+    (row, i) => parseInt((row / 100) * ocpop).toLocaleString()
+  );
+
 
   const agePercentFullyVaxed = ageFullVaxArray.map((a, i) => {
-    return parseFloat((a / agePopArray[i]) * 100).toFixed(1) + "%";
+
+    return parseFloat(a / parseInt(agePopulationEst[i].replace(",", ""))*100).toFixed(1) + "%";
   });
-  const agePercent1Dose = age1DoseVaxArray.map((a, i) => {
-    return parseFloat((a / agePopArray[i]) * 100).toFixed(1) + "%";
+  const agePercent1Dose = age1DoseVaxArray.map((row,i)=> {
+    return (
+      parseFloat(
+        (row / parseInt(agePopulationEst[i].replace(",", ""))) * 100
+      ).toFixed(1) + "%"
+    );
   });
   const ageOCPop = agePopArray.map((a) => a.toLocaleString());
   const agePercOfPop = agePopArray.map(
@@ -193,10 +205,10 @@ const Vaccinations = (props) => {
   const [ageVaxMode, updateAgeVaxMode] = useState(() =>
     localStorage.getItem("lastAgeVaxMode")
       ? localStorage.getItem("lastAgeVaxMode")
-      : ()=> {
-        localStorage.setItem("lastAgeVaxMode", "full");
-        return 'full'
-      }
+      : () => {
+          localStorage.setItem("lastAgeVaxMode", "full");
+          return "full";
+        }
   );
   const [ageVaxArray, updateAgeVaxArray] = useState([]);
 
@@ -280,23 +292,23 @@ const Vaccinations = (props) => {
   //Gender
   const sex1DoseArray = [female, male, unkSex];
   const sexFullVaxArray = [femaleFull, maleFull, unkSexFull];
-    const [sexVaxMode, updateSexVaxMode] = useState(() =>
-      localStorage.getItem("lastSexVaxMode")
-        ? localStorage.getItem("lastSexVaxMode")
-        : () => {
-            localStorage.setItem("lastSexVaxMode", "full");
-            return "full";
-          }
-    );
+  const [sexVaxMode, updateSexVaxMode] = useState(() =>
+    localStorage.getItem("lastSexVaxMode")
+      ? localStorage.getItem("lastSexVaxMode")
+      : () => {
+          localStorage.setItem("lastSexVaxMode", "full");
+          return "full";
+        }
+  );
 
-    const [sexVaxArrayState, updateSexVaxArray] = useState([]);
+  const [sexVaxArrayState, updateSexVaxArray] = useState([]);
 
-    useEffect(() => {
-      const newSexMode = localStorage.getItem("lastSexVaxMode");
-      newSexMode === "full"
-        ? updateSexVaxArray(sexFullVaxArray)
-        : updateSexVaxArray(sex1DoseArray);
-    }, [array, sexVaxMode]);
+  useEffect(() => {
+    const newSexMode = localStorage.getItem("lastSexVaxMode");
+    newSexMode === "full"
+      ? updateSexVaxArray(sexFullVaxArray)
+      : updateSexVaxArray(sex1DoseArray);
+  }, [array, sexVaxMode]);
 
   return (
     <div>
@@ -313,7 +325,11 @@ const Vaccinations = (props) => {
         </div>
         <FindAVaccine />
         <div className="widgetGrid">
-          <Widget title={"Vaccine Eligibility"} stat={vaxTier} color={color.purple} />
+          <Widget
+            title={"Vaccine Eligibility"}
+            stat={vaxTier}
+            color={color.purple}
+          />
           <Widget
             title={"OC Population"}
             stat={`${ocpop.toLocaleString()}`}
@@ -412,18 +428,17 @@ const Vaccinations = (props) => {
             title={`By Age`}
             label={["People"]}
             switches={["horizontalBar", "bar", "doughnut"]}>
-            {/* <BuildTable
-              colName={[
-                "Age",
-                "% Fully Vaxed",
-              ]}
+            <BuildTable
+              colName={["Age", "Pop", "% of Pop","% Fully Vaxed","% w/ 1 Dose"]}
               rows={[...customAgeLabels]}
               columns={[
+                agePopulationEst,
+                agePopulationPercArray.map((row) => row + "%"),
                 agePercentFullyVaxed,
-
+                agePercent1Dose,
               ]}
             />
-            <p className="chartNote">OC Population: {ocpop.toLocaleString()}</p> */}
+            <p className="chartNote">OC Population: {ocpop.toLocaleString()}</p>
           </Chart>
 
           <Chart
@@ -521,7 +536,7 @@ const Vaccinations = (props) => {
             id="vaccine3"
             date={["Moderna", "Pfizer", "J&J"]}
             data={[[moderna, pfizer, janssen]]}
-            fill={[[color.green, color.blue,color.red]]}
+            fill={[[color.green, color.blue, color.red]]}
             title={"Fully Vaccinated by Brand"}
             label={["People"]}
             switches={["horizontalBar", "bar", "doughnut"]}>
