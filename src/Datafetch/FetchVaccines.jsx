@@ -42,8 +42,8 @@ const FetchVaccines = (props) => {
               let peopleTwoDose = findValue("TotalDoses", "num_1st2nd");
               let totalPeople = findValue("TotalDoses", "num_atleast1");
               let adminOneDose = findValue("TotalDoses", "num_1st");
-              let adminTwoDose = findValue("ValidDoses", "num_1st2nd");
-              let totalAdmin = findValue("ValidDoses", "num_atleast1");
+              let adminTwoDose = findValue("TotalDoses", "num_1st2nd");
+              let totalAdmin = findValue("TotalDoses", "num_totalvalid");
               let female = findValue("Female", "num_atleast1");
               let male = findValue("Male", "num_atleast1");
               let otherSex = findValue("Other Sex", "num_atleast1");
