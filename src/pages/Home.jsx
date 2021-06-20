@@ -80,6 +80,8 @@ const Home = (props) => {
   }, []);
   const getTierText = () => {
     switch (tier) {
+      case "Fully Open":
+        return "Fully Open";
       case "4":
         return "Widespread (Tier 1)";
       case "3":
@@ -94,6 +96,9 @@ const Home = (props) => {
   };
   useEffect(() => {
     switch (tier) {
+      case "Fully Open":
+        updatetTierColor(color.green);
+        break;
       case "4":
         updatetTierColor(color.purple);
         break;

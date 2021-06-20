@@ -6,16 +6,16 @@ export default function FetchCountyTier(props) {
 
         const getData = async ()=> {
             await fetch("https://occovidtaskmongo.vercel.app/api/countytier").then(a => a.json()).then(b=> b[0])
-            .then(c => {
-                let tier = c["Overall Status"]
-               
-                if (mounted) {
-                    props.function(tier);
-                }
-              
+            .then(()=> {
+            
             })
         }
-        getData();
+        //getData();
+        let tier = "Fully Open";
+        console.log("tier: ", tier);
+        if (mounted) {
+            props.function(tier);
+        }
         return (()=> {
             mounted = false;
         })

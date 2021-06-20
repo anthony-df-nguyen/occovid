@@ -41,30 +41,35 @@ const WhatsOpen = (props) => {
   }, []);
   const getTierText = () => {
     switch (tier) {
-      case '4':
-        return 'Widespread (Tier 1)';
-      case '3':
-        return 'Substantial (Tier 2)';
-      case '2':
-        return 'Moderate (Tier 3)';
-      case '1':
-        return 'Minimal (Tier 4)';
+      case "Fully Open":
+        return "Fully Open";
+      case "4":
+        return "Widespread (Tier 1)";
+      case "3":
+        return "Substantial (Tier 2)";
+      case "2":
+        return "Moderate (Tier 3)";
+      case "1":
+        return "Minimal (Tier 4)";
       default:
         return "Fetching tier...";
     }
   }
   useEffect(() => {
     switch (tier) {
-      case '4':
+      case "Fully Open":
+          updatetTierColor(color.green);
+        break;
+      case "4":
         updatetTierColor(color.purple);
         break;
-      case '3':
+      case "3":
         updatetTierColor(color.red);
         break;
-      case '2':
+      case "2":
         updatetTierColor(color.orange);
         break;
-      case '1':
+      case "1":
         updatetTierColor(color.yellow);
         break;
       default:
