@@ -68,8 +68,8 @@ const Vaccinations = (props) => {
     otherRaceFull,
     unkRaceFull,
     age011,
-    age1215,
-    age1624,
+    age1217,
+    age1824,
     age2534,
     age3544,
     age4554,
@@ -79,8 +79,8 @@ const Vaccinations = (props) => {
     age85,
     ageUnknown,
     age011full,
-    age1215full,
-    age1624full,
+    age1217full,
+    age1824full,
     age2534full,
     age3544full,
     age4554full,
@@ -110,8 +110,8 @@ const Vaccinations = (props) => {
     pfizerDose1,
     astraDose1,
     age011PopPerc,
-    age1215PopPerc,
-    age1624PopPerc,
+    age1217PopPerc,
+    age1824PopPerc,
     age2534PopPerc,
     age3544PopPerc,
     age4554PopPerc,
@@ -131,8 +131,8 @@ const Vaccinations = (props) => {
   //Age Vaccine Reports
   const customAgeLabels = [
     "0 - 11",
-    "12 - 15",
-    "16 - 24",
+    "12 - 17",
+    "18 - 24",
     "25 - 34",
     "35 - 44",
     "45 - 54",
@@ -155,8 +155,8 @@ const Vaccinations = (props) => {
 
   const age1DoseVaxArray = [
     age011,
-    age1215,
-    age1624,
+    age1217,
+    age1824,
     age2534,
     age3544,
     age4554,
@@ -168,8 +168,8 @@ const Vaccinations = (props) => {
   
   const ageFullVaxArray = [
     age011full,
-    age1215full,
-    age1624full,
+    age1217full,
+    age1824full,
     age2534full,
     age3544full,
     age4554full,
@@ -179,7 +179,8 @@ const Vaccinations = (props) => {
     age85full,
   ];
 
-  const agePopulationPercArray = [age011PopPerc,age1215PopPerc,age1624PopPerc,age2534PopPerc,age3544PopPerc,age4554PopPerc,age5564PopPerc,age6574PopPerc,age7584PopPerc,age85PopPerc]
+  const agePopulationPercArray = [age011PopPerc,age1217PopPerc,age1824PopPerc,age2534PopPerc,age3544PopPerc,age4554PopPerc,age5564PopPerc,age6574PopPerc,age7584PopPerc,age85PopPerc]
+
 
   const agePopulationEst = agePopulationPercArray.map(
     (row, i) => parseInt((row / 100) * ocpop).toLocaleString()
@@ -246,7 +247,6 @@ const Vaccinations = (props) => {
   ];
   const raceFullVaxArray = [
     asianPIFull,
-
     blackFull,
     hispanicFull,
     whiteFull,
@@ -429,7 +429,13 @@ const Vaccinations = (props) => {
             label={["People"]}
             switches={["horizontalBar", "bar", "doughnut"]}>
             <BuildTable
-              colName={["Age", "Pop", "% of Pop","% Fully Vaxed","% w/ 1 Dose"]}
+              colName={[
+                "Age",
+                "Pop",
+                "% of Pop",
+                "% Fully Vaxed",
+                "% w/ 1 Dose",
+              ]}
               rows={[...customAgeLabels]}
               columns={[
                 agePopulationEst,

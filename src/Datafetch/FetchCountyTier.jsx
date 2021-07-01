@@ -12,7 +12,7 @@ export default function FetchCountyTier(props) {
         }
         //getData();
         let tier = "Fully Open";
-        console.log("tier: ", tier);
+        // console.log("tier: ", tier);
         if (mounted) {
             props.function(tier);
         }

@@ -53,7 +53,7 @@ const Home = (props) => {
   const [array3, update3Array] = useState([]);
   const [array4, update4Array] = useState([]);
   const [array5, update5Array] = useState([]);
-  console.log(array5)
+
   const [array6, update6Array] = useState([]);
   const [array7, update7Array] = useState([]);
   const [vaccineDate, updateVaccineDate] = useState("Getting last update date...");

@@ -65,8 +65,8 @@ const FetchVaccines = (props) => {
               let otherRaceFull = findValue("Other Race", "num_1st2nd");
               let unkRaceFull = findValue("Unknown Race", "num_1st2nd");
               let age011 = findValue("0-11 yrs", "num_atleast1");
-              let age1215 = findValue("12-15 yrs", "num_atleast1");
-              let age1624 = findValue("16-24 yrs", "num_atleast1");
+              let age1217 = findValue("12-17 yrs", "num_atleast1");
+              let age1824 = findValue("18-24 yrs", "num_atleast1");
               let age2534 = findValue("25-34 yrs", "num_atleast1");
               let age3544 = findValue("35-44 yrs", "num_atleast1");
               let age4554 = findValue("45-54 yrs", "num_atleast1");
@@ -76,8 +76,8 @@ const FetchVaccines = (props) => {
               let age85 = findValue("85+ yrs", "num_atleast1");
               let ageUnknown = null;
               let age011full = findValue("0-11 yrs", "num_1st2nd");
-              let age1215full = findValue("12-15 yrs", "num_1st2nd");
-              let age1624full = findValue("16-24 yrs", "num_1st2nd");
+              let age1217full = findValue("12-17 yrs", "num_1st2nd");
+              let age1824full = findValue("18-24 yrs", "num_1st2nd");
               let age2534full = findValue("25-34 yrs", "num_1st2nd");
               let age3544full = findValue("35-44 yrs", "num_1st2nd");
               let age4554full = findValue("45-54 yrs", "num_1st2nd");
@@ -107,8 +107,8 @@ const FetchVaccines = (props) => {
               let pfizerDose1 = findValue("Pfizer", "num_1st");
               let astraDose1 = findValue("AstraZeneca", "num_1st");
               let age011PopPerc = findValue("0-11 yrs", "var1");
-              let age1215PopPerc = findValue("12-15 yrs", "var1");
-              let age1624PopPerc = findValue("16-24 yrs", "var1");
+              let age1217PopPerc = findValue("12-17 yrs", "var1");
+              let age1824PopPerc = findValue("18-24 yrs", "var1");
               let age2534PopPerc = findValue("25-34 yrs", "var1");
               let age3544PopPerc = findValue("35-44 yrs", "var1");
               let age4554PopPerc = findValue("45-54 yrs", "var1");
@@ -145,8 +145,8 @@ const FetchVaccines = (props) => {
                 otherRaceFull,
                 unkRaceFull,
                 age011,
-                age1215,
-                age1624,
+                age1217,
+                age1824,
                 age2534,
                 age3544,
                 age4554,
@@ -156,8 +156,8 @@ const FetchVaccines = (props) => {
                 age85,
                 ageUnknown,
                 age011full,
-                age1215full,
-                age1624full,
+                age1217full,
+                age1824full,
                 age2534full,
                 age3544full,
                 age4554full,
@@ -186,10 +186,9 @@ const FetchVaccines = (props) => {
                 modernaDose1,
                 pfizerDose1,
                 astraDose1,
-                
                 age011PopPerc,
-                age1215PopPerc,
-                age1624PopPerc,
+                age1217PopPerc,
+                age1824PopPerc,
                 age2534PopPerc,
                 age3544PopPerc,
                 age4554PopPerc,
