@@ -1,17 +1,30 @@
-const today = new Date();
-const tomorrow = new Date(today);
+let today = new Date();
+
+const dayOfWeek = today.getDay()
+
+let lastTuesday = today;
+if (dayOfWeek !== 2) {
+  const delta = dayOfWeek - 2;
+  console.log(`Today is ${today.toLocaleString()} which is the ${dayOfWeek} day of the week or ${delta} day(s) away from Tuesday`);
+  lastTuesday = new Date(today.setDate(today.getDate() - delta))
+  console.log('lastTuesday: ', lastTuesday);
+}
+
+
+const tomorrow = new Date(lastTuesday);
+console.log(today)
 tomorrow.setDate(tomorrow.getDate() + 1);
 let tomorrowday = tomorrow.getDate();
 let tomorrowsmonth = tomorrow.getMonth() + 1;
 let todaysyear = 2021;
-// console.log(
-//   "The query is looking for dates < than " +
-//   tomorrowsmonth +
-//   "/" +
-//   tomorrowday +
-//   "/" +
-//   todaysyear
-// );
+console.log(
+  "The query is looking for dates < than " +
+  tomorrowsmonth +
+  "/" +
+  tomorrowday +
+  "/" +
+  todaysyear
+);
 
 // Cumulative Total, SCF, Jail, Homeless Cases, Deaths by Reported and Specimen Collection
 const CasesURL =
@@ -137,9 +150,11 @@ const lastUpdate =
 const dailyDoses =
   "https://services2.arcgis.com/LORzk2hk9xzHouw9/ArcGIS/rest/services/vacc_dosesbydates/FeatureServer/0/query?where=0%3D0&objectIds=&time=&resultType=none&outFields=valid_admin%2Cvac_date&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&cacheHint=false&orderByFields=vac_date&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&sqlFormat=none&f=pjson&token=";
 
-const zipVaxMap = "https://services2.arcgis.com/LORzk2hk9xzHouw9/ArcGIS/rest/services/VIEWLAYER_C19VaccinationRatesbyZIP/FeatureServer/0/query?where=0%3D0&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&resultType=none&distance=0.0&units=esriSRUnit_Meter&returnGeodetic=false&outFields=*&returnGeometry=true&returnCentroid=false&featureEncoding=esriDefault&multipatchOption=xyFootprint&maxAllowableOffset=&geometryPrecision=&outSR=&datumTransformation=&applyVCSProjection=false&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnExtentOnly=false&returnQueryGeometry=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&returnZ=false&returnM=false&returnExceededLimitFeatures=true&quantizationParameters=&sqlFormat=none&f=pgeojson&token="
+const zipVaxMap =
+  "https://services2.arcgis.com/LORzk2hk9xzHouw9/ArcGIS/rest/services/VIEWLAYER_C19VaccinationRatesbyZIP/FeatureServer/0/query?where=0%3D0&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&resultType=none&distance=0.0&units=esriSRUnit_Meter&returnGeodetic=false&outFields=*&returnGeometry=true&returnCentroid=false&featureEncoding=esriDefault&multipatchOption=xyFootprint&maxAllowableOffset=&geometryPrecision=&outSR=&datumTransformation=&applyVCSProjection=false&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnExtentOnly=false&returnQueryGeometry=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&returnZ=false&returnM=false&returnExceededLimitFeatures=true&quantizationParameters=&sqlFormat=none&f=pgeojson&token=";
 
-const vaccineVendor = "https://services2.arcgis.com/LORzk2hk9xzHouw9/ArcGIS/rest/services/vacc_totalsummary/FeatureServer/0//query?where=ObjectId+%3E+43+AND+category+%3C%3E+%27colvar1%27+AND+category+%3C%3E+%27colvar2%27+AND+category+%3C%3E+%27colvar3%27+AND+category+%3C%3E+%27colvar4%27+AND+category+%3C%3E+%27colvar5%27&objectIds=&time=&resultType=none&outFields=category%2C+num_totalvalid&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&sqlFormat=none&f=pjson&token="
+const vaccineVendor =
+  "https://services2.arcgis.com/LORzk2hk9xzHouw9/ArcGIS/rest/services/vacc_totalsummary/FeatureServer/0//query?where=ObjectId+%3E+43+AND+category+%3C%3E+%27colvar1%27+AND+category+%3C%3E+%27colvar2%27+AND+category+%3C%3E+%27colvar3%27+AND+category+%3C%3E+%27colvar4%27+AND+category+%3C%3E+%27colvar5%27&objectIds=&time=&resultType=none&outFields=category%2C+num_totalvalid&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&sqlFormat=none&f=pjson&token=";
 
 export {
   CasesURL,
@@ -159,7 +174,7 @@ export {
   ZipDataWithGeo,
   ZipData,
   lastUpdate,
-    dailyDoses,
+  dailyDoses,
   zipVaxMap,
-  vaccineVendor
+  vaccineVendor,
 };
