@@ -3,27 +3,50 @@ let today = new Date();
 const dayOfWeek = today.getDay()
 
 let lastTuesday = today;
-if (dayOfWeek !== 2) {
+
+//If it isnt Sunday or Monday
+if (dayOfWeek !== 2 && dayOfWeek !== 0 && dayOfWeek !== 1) {
+  console.log(
+    "%cToday is Not a Sunday, Monday, or Tuesday",
+    "color: #fff; background: #009ddb;font-size:20px"
+  );
   const delta = dayOfWeek - 2;
-  console.log(`Today is ${today.toLocaleString()} which is the ${dayOfWeek} day of the week or ${delta} day(s) away from Tuesday`);
-  lastTuesday = new Date(today.setDate(today.getDate() - delta))
-  console.log('lastTuesday: ', lastTuesday);
+  console.log(
+    `Today is ${today.toLocaleString()} which is the ${dayOfWeek} day of the week or ${delta} day(s) away from Tuesday`
+  );
+  lastTuesday = new Date(today.setDate(today.getDate() - delta));
+  console.log("The date of the last Tuesday is: ", lastTuesday);
+}
+//If a Sunday
+else if (dayOfWeek === 0) {
+  console.log("%cToday is Sunday", "color: #fff; background: #009ddb;font-size:20px");
+  lastTuesday = new Date(today.setDate(today.getDate() - 5));
+  console.log("The date of the last Tuesday is ", lastTuesday);
+} 
+//If Monday
+else if (dayOfWeek === 1) {
+  console.log(
+    "%cToday is Monday",
+    "color: #fff; background: #009ddb;font-size:20px"
+  );
+  lastTuesday = new Date(today.setDate(today.getDate() - 6));
+  console.log("The date of the last Tuesday is: ", lastTuesday);
 }
 
 
 const tomorrow = new Date(lastTuesday);
-console.log(today)
+
 tomorrow.setDate(tomorrow.getDate() + 1);
 let tomorrowday = tomorrow.getDate();
 let tomorrowsmonth = tomorrow.getMonth() + 1;
 let todaysyear = 2021;
 console.log(
-  "The query is looking for dates < than " +
+  "%cFetching county data with dates < than " +
   tomorrowsmonth +
   "/" +
   tomorrowday +
   "/" +
-  todaysyear
+  todaysyear,  "color: #009ddb; background: #f3f3f3;font-size:16px"
 );
 
 // Cumulative Total, SCF, Jail, Homeless Cases, Deaths by Reported and Specimen Collection

@@ -1,6 +1,5 @@
 import TimeFilterForCounties from 'components/TimeFilterForCounties.js'
 import { useEffect } from 'react'
-import average7 from 'components/Average7'
 import moment from "moment";
 
 const GetCountyVax = props => {
