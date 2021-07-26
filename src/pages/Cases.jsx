@@ -53,10 +53,10 @@ const Cases = (props) => {
             id="case1"
             switches={["bar", "line"]}
             date={array.map((a) => a.date)}
-            data={[array.map((b) => b.dailyCasesReported), array.map((b) => b.dailyCasesReported7DayAvg)]}
-            fill={[color.red, color.blue]}
+            data={[array.map((b) => b.dailyCasesReported)]}
+            fill={[color.red]}
             title={"Daily Cases Reported"}
-            label={["Daily Cases Reported", "7 Day Avg"]}
+            label={["Daily Cases Reported"]}
           />
           <Chart
             key="4"

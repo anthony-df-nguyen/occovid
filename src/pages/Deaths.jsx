@@ -82,10 +82,10 @@ const Deaths = props => {
             key='3'
             id='death3'
             date={array.map(a => a.date)}
-            data={[array.map(b => b.daily_death_repo),array.map(b => b.dailyDeath7DayAvg)]}
-            fill={[color.yellow,color.blue]}
+            data={[array.map(b => b.daily_death_repo)]}
+            fill={[color.yellow]}
             title={'Daily Deaths Reported'}
-            label={['Deaths','7 Day Avg']}
+            label={['Deaths']}
             switches={['bar', 'line']}
           />
 
