@@ -1,6 +1,6 @@
 let today = new Date();
 
-const dayOfWeek = today.getDay()
+const dayOfWeek = today.getDay();
 
 let lastTuesday = today;
 
@@ -22,7 +22,7 @@ let lastTuesday = today;
 //   console.log("%cToday is Sunday", "color: #fff; background: #009ddb;font-size:20px");
 //   lastTuesday = new Date(today.setDate(today.getDate() - 5));
 //   console.log("The date of the last Tuesday is ", lastTuesday);
-// } 
+// }
 // //If Monday
 // else if (dayOfWeek === 1) {
 //   console.log(
@@ -33,7 +33,6 @@ let lastTuesday = today;
 //   console.log("The date of the last Tuesday is: ", lastTuesday);
 // }
 
-
 const tomorrow = new Date(lastTuesday);
 
 tomorrow.setDate(tomorrow.getDate() + 1);
@@ -42,11 +41,12 @@ let tomorrowsmonth = tomorrow.getMonth() + 1;
 let todaysyear = 2021;
 console.log(
   "%cFetching county data with dates < than " +
-  tomorrowsmonth +
-  "/" +
-  tomorrowday +
-  "/" +
-  todaysyear,  "color: #009ddb; background: #f3f3f3;font-size:16px"
+    tomorrowsmonth +
+    "/" +
+    tomorrowday +
+    "/" +
+    todaysyear,
+  "color: #009ddb; background: #f3f3f3;font-size:16px"
 );
 
 // Cumulative Total, SCF, Jail, Homeless Cases, Deaths by Reported and Specimen Collection
@@ -179,6 +179,17 @@ const zipVaxMap =
 const vaccineVendor =
   "https://services2.arcgis.com/LORzk2hk9xzHouw9/ArcGIS/rest/services/vacc_totalsummary/FeatureServer/0//query?where=ObjectId+%3E+43+AND+category+%3C%3E+%27colvar1%27+AND+category+%3C%3E+%27colvar2%27+AND+category+%3C%3E+%27colvar3%27+AND+category+%3C%3E+%27colvar4%27+AND+category+%3C%3E+%27colvar5%27&objectIds=&time=&resultType=none&outFields=category%2C+num_totalvalid&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&sqlFormat=none&f=pjson&token=";
 
+const casebyVaxStatus =
+  "https://services2.arcgis.com/LORzk2hk9xzHouw9/ArcGIS/rest/services/occovid_incidencebyvaxstatus/FeatureServer/0//query?where=Date%3Etimestamp+%273%2F3%2F2020%27+AND+Date%3Ctimestamp+%27" +
+  tomorrowsmonth +
+  "%2F" +
+  tomorrowday +
+  "%2F" +
+  todaysyear +
+  "%27&objectIds=&time=&resultType=none&outFields=*&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&cacheHint=false&orderByFields=date&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&sqlFormat=none&f=pjson&token=";
+
+  
+
 export {
   CasesURL,
   AntigenURL,
@@ -200,4 +211,5 @@ export {
   dailyDoses,
   zipVaxMap,
   vaccineVendor,
+  casebyVaxStatus,
 };
