@@ -10,6 +10,7 @@ import VaccineHistory from "Datafetch/VaccineHistory.jsx";
 import FetchVaccineDate from "Datafetch/FetchVaccineDate";
 import Chart from "components/Chart";
 import Widget from "components/Widget";
+import MultiWidget from "components/MultiWidget";
 import { ageLabels, ageColors } from "globalVars/chartJSconfig";
 import {
   ocpop,
@@ -179,12 +180,38 @@ const Vaccinations = (props) => {
     age85full,
   ];
 
+  const age1Dose12_plus = [
+    age1217 +
+      age1824 +
+      age2534 +
+      age3544 +
+      age4554 +
+      age5564 +
+      age6574 +
+      age7584 +
+      age85
+  ];
+
+  const fullVax12_plus = [
+    age1217full +
+      age1824full +
+      age2534full +
+      age3544full +
+      age4554full +
+      age5564full +
+      age6574full +
+      age7584full +
+      age85full
+  ];
+
   const agePopulationPercArray = [age011PopPerc,age1217PopPerc,age1824PopPerc,age2534PopPerc,age3544PopPerc,age4554PopPerc,age5564PopPerc,age6574PopPerc,age7584PopPerc,age85PopPerc]
 
 
   const agePopulationEst = agePopulationPercArray.map(
     (row, i) => parseInt((row / 100) * ocpop).toLocaleString()
   );
+
+  
 
 
   const agePercentFullyVaxed = ageFullVaxArray.map((a, i) => {
@@ -198,10 +225,9 @@ const Vaccinations = (props) => {
       ).toFixed(1) + "%"
     );
   });
-  const ageOCPop = agePopArray.map((a) => a.toLocaleString());
-  const agePercOfPop = agePopArray.map(
-    (a) => parseFloat(((a / ocpop) * 100).toFixed(1)) + "%"
-  );
+
+  const estAdultPop = ocpop - parseInt(agePopulationEst[0].replace(",", ""));
+  console.log('estAdultPop: ', estAdultPop);
 
   const [ageVaxMode, updateAgeVaxMode] = useState(() =>
     localStorage.getItem("lastAgeVaxMode")
@@ -325,55 +351,42 @@ const Vaccinations = (props) => {
         </div>
         <FindAVaccine />
         <div className="widgetGrid">
-          <Widget
-            title={"Vaccine Eligibility"}
-            stat={vaxTier}
-            color={color.purple}
+
+          <MultiWidget
+            title={"All Ages"}
+            subtitle={["Est. Population", "Fully Vaxed", "At Least 1 Dose"]}
+            stat={[
+              `${ocpop.toLocaleString()}`,
+              `${totalPPL.toLocaleString()} | ${totallPPLPerc}%`,
+              `${totalPPL1Dose.toLocaleString()} | ${totalPPL1Perc}%`,
+            ]}
+            color={[color.orange, color.blue, color.green]}
           />
-          <Widget
-            title={"OC Population"}
-            stat={`${ocpop.toLocaleString()}`}
-            color={color.green}
+          <MultiWidget
+            title={"Ages 12+"}
+            subtitle={["Est. Population", "Fully Vaxed", "At Least 1 Dose"]}
+            stat={[
+              `${estAdultPop.toLocaleString()}`,
+              `${fullVax12_plus.toLocaleString()} | ${parseFloat(
+                (fullVax12_plus / estAdultPop) * 100
+              ).toFixed(1)}%`,
+              `${age1Dose12_plus.toLocaleString()} | ${parseFloat(
+                (age1Dose12_plus / estAdultPop) * 100
+              ).toFixed(1)}%`,
+            ]}
+            color={[color.orange, color.blue, color.green]}
           />
-          <Widget
-            title={"Fully Vaccinated (All Brands)"}
-            stat={`${totalPPL.toLocaleString()} | ${totallPPLPerc}%`}
-            color={color.blue}
+          <MultiWidget
+            title={"Doses Administered"}
+            subtitle={["Total Doses", "People w/ 1st Dose Only"]}
+            stat={[
+              `${parseInt(totalAdmin).toLocaleString()}`,
+              `${parseInt(adminOneDose).toLocaleString()}`,
+            ]}
+            color={[color.blue, color.orange]}
           />
-          <Widget
-            title={"People w/ at Least 1 Dose (All Brands)"}
-            stat={`${totalPPL1Dose.toLocaleString()} | ${totalPPL1Perc}%`}
-            color={color.blue}
-          />
-          {/* <Widget
-            title={"Adults (18+)  Fully Vaccinated (All Brands)"}
-            stat={`${adultsFullyVax.toLocaleString()} | ${parseFloat(
-              (adultsFullyVax / adultPop) * 100
-            ).toFixed(1)}% `}
-            color={color.green}
-          />
-          <Widget
-            title={"Adults (18+)  w/ at Least 1 Dose (All Brands)"}
-            stat={`${adultsWith1Dose.toLocaleString()} | ${parseFloat(
-              (adultsWith1Dose / adultPop) * 100
-            ).toFixed(1)}% `}
-            color={color.green}
-          /> */}
-          <Widget
-            title={"Total Doses Administered"}
-            stat={parseInt(totalAdmin).toLocaleString()}
-            color={color.pink}
-          />
-          <Widget
-            title={"People w/ 1st Dose (2-Dose Brands)"}
-            stat={parseInt(adminOneDose).toLocaleString()}
-            color={color.pink}
-          />
-          {/* <Widget
-            title={"1st+2nd Dose Administered"}
-            stat={parseInt(adminTwoDose).toLocaleString()}
-            color={color.pink}
-          /> */}
+
+        
         </div>
 
         <Timeselect />

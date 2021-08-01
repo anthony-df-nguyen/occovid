@@ -1577,3 +1577,8 @@ form textarea {
   font-size: 12px;
   color: var(--primary-text);
 }
+.grid2force {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+}
