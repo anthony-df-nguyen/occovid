@@ -83,7 +83,7 @@ const Reportbug = (props) => {
 
       <ExpandCollapse nogear={true} title="🪳 Click here to report a bug or make a suggestion" buttontext="Close">
         <div id="googleForm">
-          <p>Please note, I can only show more data if it's publicly available. If you have a data source, please refer me to it.</p>
+          <p style={{textAlign:'center'}}>Please note, I can only show more data if it's publicly available. If you have a data source, please refer me to it.</p>
           <form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLScOtQjpnqcxaXju6gnSghVyLi4BRIj74u-5Un3_H3vki5y_Cw/formResponse" method="POST">
             <label></label>
             <textarea name="entry.655858757" placeholder="Report a bug(s). Please include which browser you are using and platform (iOS/Android/Windows/Mac)"></textarea>

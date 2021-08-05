@@ -13,7 +13,7 @@ const FetchCityHistory = (props) => {
         const getData = async (cityName, i) => {
           let cityData = [];
           let fetchURL = `https://services2.arcgis.com/LORzk2hk9xzHouw9/arcgis/rest/services/Public_OC_COVID_Cases_by_City_by_Day/FeatureServer/0/query?where=0%3D0&objectIds=&time=&resultType=none&outFields=DateSpecCollect%2C${cityName}&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&sqlFormat=none&f=pjson&token=`;
-          //console.log(fetchURL)
+          console.log(fetchURL)
           await fetch(fetchURL)
             .then((a) => a.json())
             .then((b) => b.features.map((c) => c.attributes))
