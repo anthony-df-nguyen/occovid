@@ -346,7 +346,6 @@ const Vaccinations = (props) => {
       <FetchVaccineVendor function={updateVendorArray} />
       <Page title="Vaccinations">
         <div id="lastUpdateDate">
-          <p style={{ fontWeight: "500" }}>New data on Thursdays</p>
           <p>{asof}</p>
         </div>
         <FindAVaccine />
