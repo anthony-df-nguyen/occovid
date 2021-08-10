@@ -198,6 +198,21 @@ const Sources = () => {
               </td>
             </tr>
             <tr>
+              <td>Case Rate by Vaccination status</td>
+              <td>
+                Used on 'Cases' page to show case rate between vaccinated and
+                unvaccinated individuals
+              </td>
+              <td>
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  href="https://services2.arcgis.com/LORzk2hk9xzHouw9/ArcGIS/rest/services/occovid_incidencebyvaxstatus/FeatureServer/0">
+                  Link: OC Health Care Agency ArcGIS Database - Incidence by Vax Status
+                </a>
+              </td>
+            </tr>
+            <tr>
               <td>School data</td>
               <td>Schools page</td>
               <td>
@@ -285,6 +300,30 @@ const Sources = () => {
                   rel="noreferrer"
                   href="https://www.dof.ca.gov/Forecasting/Demographics/Estimates/e-1/">
                   Link: CA Dept of Finance Population Estimates (2019/2020)
+                </a>
+              </td>
+            </tr>
+
+            <tr>
+              <td>Variant data for weeks and age groups</td>
+              <td>
+                Used on Variants page for weekly variant results and per age
+                group
+              </td>
+              <td>
+                {" "}
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  href="https://services2.arcgis.com/LORzk2hk9xzHouw9/ArcGIS/rest/services/occovid_varage_csv/FeatureServer/0">
+                  Link: OC Health Care Agency ArcGIS Database - Variant Ages
+                </a>
+                <br></br>
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  href="https://services2.arcgis.com/LORzk2hk9xzHouw9/ArcGIS/rest/services/occovid_varweek_csv/FeatureServer/0">
+                  Link: OC Health Care Agency ArcGIS Database - Variant Weekly
                 </a>
               </td>
             </tr>
