@@ -188,6 +188,9 @@ const casebyVaxStatus =
   todaysyear +
   "%27&objectIds=&time=&resultType=none&outFields=*&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&cacheHint=false&orderByFields=date&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&sqlFormat=none&f=pjson&token=";
 
+  const variantWeek =
+    "https://services2.arcgis.com/LORzk2hk9xzHouw9/ArcGIS/rest/services/occovid_varweek_csv/FeatureServer/0/query?where=0%3D0&objectIds=&time=&resultType=none&outFields=*&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&sqlFormat=none&f=pjson&token=";
+
   
 
 export {
@@ -212,4 +215,5 @@ export {
   zipVaxMap,
   vaccineVendor,
   casebyVaxStatus,
+  variantWeek,
 };

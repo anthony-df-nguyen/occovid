@@ -41,6 +41,14 @@ const Navigation = (props) => {
           Cases
         </NavLink>
         <NavLink
+          to="/variant"
+          onClick={() => {
+            closeTheNav("/variant");
+          }}
+          activeClassName="selectedLink">
+          Variants
+        </NavLink>
+        <NavLink
           to="/deaths"
           onClick={() => {
             closeTheNav("/deaths");
