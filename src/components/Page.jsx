@@ -17,7 +17,8 @@ const Page = (props) => {
       x !== "City History" &&
       x !== "Updates" &&
       x !== "Vaccination Map" &&
-      x !== "CADPH Metrics"
+      x !== "CADPH Metrics" &&
+      x !== "Variant Detail"
     ) {
       return <Lastupdate />;
     }

@@ -11,6 +11,9 @@
 * button {
   outline: none;
 }
+.primaryText {
+  color: var(--primary-text);
+}
 select {
   display: block;
   font-size: 12px;
