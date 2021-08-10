@@ -41,9 +41,9 @@ const Navigation = (props) => {
           Cases
         </NavLink>
         <NavLink
-          to="/variant"
+          to="/variants"
           onClick={() => {
-            closeTheNav("/variant");
+            closeTheNav("/variants");
           }}
           activeClassName="selectedLink">
           Variants

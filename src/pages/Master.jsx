@@ -19,7 +19,7 @@ import Sources from 'pages/Sources'
 import Donate from 'pages/Donate'
 import NoPage from 'pages/NoPage'
 import Query from 'pages/Query'
-import Variant from 'pages/Variant'
+import Variants from 'pages/Variants'
 
 
 
@@ -46,5 +46,5 @@ export {
   Compare,
   Sources,
   Query,
-  Variant,
+  Variants,
 };
