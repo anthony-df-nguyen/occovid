@@ -30,15 +30,15 @@ const WhatsOpen = (props) => {
   useEffect(() => {
     let a = lastCaseRate > 14 ? lastCaseRate + 2 : 14;
     updateCaseMax(a);
-  }, []);
+  }, [lastCaseRate]);
   useEffect(() => {
     let a = lastPositiveRate > 10 ? lastPositiveRate + 2 : 10;
     updatePosMax(a);
-  }, []);
+  }, [lastPositiveRate]);
   useEffect(() => {
     let a = lastHealthEquity > 10 ? lastHealthEquity + 2 : 10;
     updateEqMax(a);
-  }, []);
+  }, [lastHealthEquity]);
   const getTierText = () => {
     switch (tier) {
       case "Fully Open":
