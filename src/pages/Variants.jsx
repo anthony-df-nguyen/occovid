@@ -39,15 +39,15 @@ const Variant = (props) => {
   //Variant by Ages
   const [ageArray, updateAgeArray] = useState([]);
   let age011 = [
-    ageArray.alpha0_11,
-    ageArray.beta0_11,
-    ageArray.delta0_11,
-    ageArray.epsilon0_11,
-    ageArray.gamma0_11,
-    ageArray.iota0_11,
-    ageArray.theta0_11,
-    ageArray.lambda0_11,
-    ageArray.other0_11,
+    ageArray.alphaa0_11,
+    ageArray.betaa0_11,
+    ageArray.deltaa0_11,
+    ageArray.epsilona0_11,
+    ageArray.gammaa0_11,
+    ageArray.iotaa0_11,
+    ageArray.thetaa0_11,
+    ageArray.lambdaa0_11,
+    ageArray.othera0_11,
   ];
   let age1217 = [
     ageArray.alpha12_17,
@@ -159,7 +159,7 @@ const Variant = (props) => {
           />
         </div>
         <br></br>
-        <div className="pageTitle">Cumulative Variant Results by Age Group</div>
+        {/* <div className="pageTitle">Cumulative Variant Results by Age Group</div>
         <div id="chartGrid">
           <Chart
             key="2"
@@ -234,7 +234,7 @@ const Variant = (props) => {
             label={["Cases"]}
             switches={["horizontalBar", "bar", "doughnut"]}></Chart>
         </div>
-        <br></br>
+        <br></br> */}
         <div className="primaryText">
           <p>
             Multiple variants of the virus that causes COVID-19 have been
