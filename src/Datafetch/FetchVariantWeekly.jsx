@@ -19,15 +19,17 @@ const FetchVariantWeekly = (props) => {
             .then(data => {
                 data.forEach(row => {
                     thisDataArray.push({
-                      date: row.attributes.diseaseweek.split('-')[0],
-                      alpha: row.attributes.alpha,
-                      beta: row.attributes.beta,
-                      delta: row.attributes.delta,
-                      epsilon: row.attributes.epsilon,
-                      gamma: row.attributes.gamma,
-                      iota: row.attributes.iota,
-                      theta: row.attributes.theta,
-                      lambda: row.attributes.lambda,
+                      date: row.attributes.diseaseweek.split("-")[0],
+                      alpha: row.attributes.Alpha,
+                      beta: row.attributes.Beta,
+                      delta: row.attributes.Delta,
+                      deltaay: row.attributes.Delta__AY_,
+                      epsilon: row.attributes.Epsilon,
+                      gamma: row.attributes.Gamma,
+                      iota: row.attributes.Iota,
+                      theta: row.attributes.Theta,
+                      lambda: row.attributes.Lambda,
+                      mu: row.attributes.Mu,
                     });
                 })
             })
