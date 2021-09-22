@@ -107,6 +107,15 @@ const HosURL =
   todaysyear +
   "%27&objectIds=&time=&resultType=none&outFields=*&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&cacheHint=false&orderByFields=date&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&sqlFormat=none&f=pjson&token=";
 
+  const HosVaxStatus =
+    "https://services2.arcgis.com/LORzk2hk9xzHouw9/arcgis/rest/services/occovid_hospicubyvaxstatus_csv/FeatureServer/0//query?where=date+%3C+timestamp+%27" +
+    tomorrowsmonth +
+    "%2F" +
+    tomorrowday +
+    "%2F" +
+    todaysyear +
+    "%27&objectIds=&time=&resultType=none&outFields=*&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&cacheHint=false&orderByFields=date&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&sqlFormat=none&f=pjson&token=";
+
 //CA Open Data Orange County Beds
 const OCBedsURL = `https://data.ca.gov/api/3/action/datastore_search?resource_id=42d33765-20fd-44b8-a978-b083b7542225&q=orange&limit=1000`;
 
@@ -218,4 +227,5 @@ export {
   casebyVaxStatus,
   variantWeek,
   variantAges,
+  HosVaxStatus,
 };
