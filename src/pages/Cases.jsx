@@ -75,7 +75,7 @@ const Cases = (props) => {
               caseVaxArray.map((b) => b.vaccinated),
               caseVaxArray.map((b) => b.unvaccinated),
             ]}
-            fill={[color.orange, color.blue]}
+            fill={[color.yellow, color.red]}
             title={"7-Day Case Rate per 100K by Vax Status - Weekly"}
             label={["Vaccinated", "Not-Vaccinated"]}></Chart>
 
