@@ -135,7 +135,7 @@ const Home = (props) => {
         <FetchCountyTier function={updateTier} />
         <FetchCAMetrics time={time} function={update7Array} />
         <FetchVaccineDate function={updateVaccineDate} />
-        <FindAVaccine />
+      
         <FetchVaccineTier function={updateVaxTier} />
         <div className="homeWidgetGrid">
           <Link to="/cases">
