@@ -11,7 +11,7 @@ const FetchVaccines = (props) => {
 
         const getData = async () => {
           await fetch(
-            "https://services2.arcgis.com/LORzk2hk9xzHouw9/ArcGIS/rest/services/vacc_totalsummary/FeatureServer/0/query?where=0%3D0&objectIds=&time=&resultType=none&outFields=*&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&sqlFormat=none&f=pjson&token="
+            "https://services2.arcgis.com/LORzk2hk9xzHouw9/ArcGIS/rest/services/vacc_totalsummaryv2/FeatureServer/0/query?where=0%3D0&objectIds=&time=&resultType=none&outFields=*&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&sqlFormat=none&f=pjson&token="
           )
             .then((a) => a.json())
             .then((b) => {
@@ -64,7 +64,8 @@ const FetchVaccines = (props) => {
               let whiteFull = findValue("White", "num_1st2nd");
               let otherRaceFull = findValue("Other Race", "num_1st2nd");
               let unkRaceFull = findValue("Unknown Race", "num_1st2nd");
-              let age011 = findValue("0-11 yrs", "num_atleast1");
+              let age04 = findValue("0-4 yrs", "num_atleast1");
+              let age511 = findValue("5-11 yrs", "num_atleast1");
               let age1217 = findValue("12-17 yrs", "num_atleast1");
               let age1824 = findValue("18-24 yrs", "num_atleast1");
               let age2534 = findValue("25-34 yrs", "num_atleast1");
@@ -75,7 +76,8 @@ const FetchVaccines = (props) => {
               let age7584 = findValue("75-84 yrs", "num_atleast1");
               let age85 = findValue("85+ yrs", "num_atleast1");
               let ageUnknown = null;
-              let age011full = findValue("0-11 yrs", "num_1st2nd");
+              let age04full = findValue("0-4 yrs", "num_1st2nd");
+              let age511full = findValue("5-11 yrs", "num_1st2nd");
               let age1217full = findValue("12-17 yrs", "num_1st2nd");
               let age1824full = findValue("18-24 yrs", "num_1st2nd");
               let age2534full = findValue("25-34 yrs", "num_1st2nd");
@@ -106,16 +108,17 @@ const FetchVaccines = (props) => {
               let modernaDose1 = findValue("Moderna", "num_1st");
               let pfizerDose1 = findValue("Pfizer", "num_1st");
               let astraDose1 = findValue("AstraZeneca", "num_1st");
-              let age011PopPerc = findValue("0-11 yrs", "var1");
-              let age1217PopPerc = findValue("12-17 yrs", "var1");
-              let age1824PopPerc = findValue("18-24 yrs", "var1");
-              let age2534PopPerc = findValue("25-34 yrs", "var1");
-              let age3544PopPerc = findValue("35-44 yrs", "var1");
-              let age4554PopPerc = findValue("45-54 yrs", "var1");
-              let age5564PopPerc = findValue("55-64 yrs", "var1");
-              let age6574PopPerc = findValue("65-74 yrs", "var1");
-              let age7584PopPerc = findValue("75-84 yrs", "var1");
-              let age85PopPerc = findValue("85+ yrs", "var1");
+              let age04PopPerc = findValue("0-4 yrs", "perc_pop");
+              let age511PopPerc = findValue("5-11 yrs", "perc_pop");
+              let age1217PopPerc = findValue("12-17 yrs", "perc_pop");
+              let age1824PopPerc = findValue("18-24 yrs", "perc_pop");
+              let age2534PopPerc = findValue("25-34 yrs", "perc_pop");
+              let age3544PopPerc = findValue("35-44 yrs", "perc_pop");
+              let age4554PopPerc = findValue("45-54 yrs", "perc_pop");
+              let age5564PopPerc = findValue("55-64 yrs", "perc_pop");
+              let age6574PopPerc = findValue("65-74 yrs", "perc_pop");
+              let age7584PopPerc = findValue("75-84 yrs", "perc_pop");
+              let age85PopPerc = findValue("85+ yrs", "perc_pop");
 
               thisDataArray = [
                 peopleOneDose,
@@ -144,7 +147,8 @@ const FetchVaccines = (props) => {
                 whiteFull,
                 otherRaceFull,
                 unkRaceFull,
-                age011,
+                age04,
+                age511,
                 age1217,
                 age1824,
                 age2534,
@@ -155,7 +159,8 @@ const FetchVaccines = (props) => {
                 age7584,
                 age85,
                 ageUnknown,
-                age011full,
+                age04full,
+                age511full,
                 age1217full,
                 age1824full,
                 age2534full,
@@ -186,7 +191,8 @@ const FetchVaccines = (props) => {
                 modernaDose1,
                 pfizerDose1,
                 astraDose1,
-                age011PopPerc,
+                age04PopPerc,
+                age511PopPerc,
                 age1217PopPerc,
                 age1824PopPerc,
                 age2534PopPerc,

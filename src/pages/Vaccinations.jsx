@@ -68,7 +68,8 @@ const Vaccinations = (props) => {
     whiteFull,
     otherRaceFull,
     unkRaceFull,
-    age011,
+    age04,
+    age511,
     age1217,
     age1824,
     age2534,
@@ -79,7 +80,8 @@ const Vaccinations = (props) => {
     age7584,
     age85,
     ageUnknown,
-    age011full,
+    age04full,
+    age511full,
     age1217full,
     age1824full,
     age2534full,
@@ -110,7 +112,8 @@ const Vaccinations = (props) => {
     modernaDose1,
     pfizerDose1,
     astraDose1,
-    age011PopPerc,
+    age04PopPerc,
+    age511PopPerc,
     age1217PopPerc,
     age1824PopPerc,
     age2534PopPerc,
@@ -131,7 +134,8 @@ const Vaccinations = (props) => {
 
   //Age Vaccine Reports
   const customAgeLabels = [
-    "0 - 11",
+    "0 - 4",
+    "5 - 11",
     "12 - 17",
     "18 - 24",
     "25 - 34",
@@ -155,7 +159,8 @@ const Vaccinations = (props) => {
   ];
 
   const age1DoseVaxArray = [
-    age011,
+    age04,
+    age511,
     age1217,
     age1824,
     age2534,
@@ -168,7 +173,8 @@ const Vaccinations = (props) => {
   ];
   
   const ageFullVaxArray = [
-    age011full,
+    age04full,
+    age511full,
     age1217full,
     age1824full,
     age2534full,
@@ -181,7 +187,7 @@ const Vaccinations = (props) => {
   ];
 
   const age1Dose12_plus = [
-    age1217 +
+      age1217 +
       age1824 +
       age2534 +
       age3544 +
@@ -204,7 +210,19 @@ const Vaccinations = (props) => {
       age85full
   ];
 
-  const agePopulationPercArray = [age011PopPerc,age1217PopPerc,age1824PopPerc,age2534PopPerc,age3544PopPerc,age4554PopPerc,age5564PopPerc,age6574PopPerc,age7584PopPerc,age85PopPerc]
+  const agePopulationPercArray = [
+    age04PopPerc,
+    age511PopPerc,
+    age1217PopPerc,
+    age1824PopPerc,
+    age2534PopPerc,
+    age3544PopPerc,
+    age4554PopPerc,
+    age5564PopPerc,
+    age6574PopPerc,
+    age7584PopPerc,
+    age85PopPerc,
+  ];
 
 
   const agePopulationEst = agePopulationPercArray.map(
@@ -227,7 +245,6 @@ const Vaccinations = (props) => {
   });
 
   const estAdultPop = ocpop - parseInt(agePopulationEst[0].replace(",", ""));
-  console.log('estAdultPop: ', estAdultPop);
 
   const [ageVaxMode, updateAgeVaxMode] = useState(() =>
     localStorage.getItem("lastAgeVaxMode")

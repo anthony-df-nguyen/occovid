@@ -18,7 +18,6 @@ const FindAVaccine = () => {
         updateRadius(newRadius)
     }
     useEffect(()=> {
-
         updateQuery(`https://vaccinefinder.org/results/?zipcode=${zip}&medications=779bfe52-0dd8-4023-a183-457eb100fccc,a84fb9ed-deb4-461c-b785-e17c782ef88b,784db609-dc1f-45a5-bad6-8db02e79d44f&radius=${radius}`)
     },[radius,zip])
 
