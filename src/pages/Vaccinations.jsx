@@ -379,7 +379,7 @@ const Vaccinations = (props) => {
             color={[color.orange, color.blue, color.green]}
           />
           <MultiWidget
-            title={"Ages 12+"}
+            title={"Ages 5+"}
             subtitle={["Est. Population", "Fully Vaxed", "At Least 1 Dose"]}
             stat={[
               `${estAdultPop.toLocaleString()}`,
