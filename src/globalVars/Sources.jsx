@@ -108,7 +108,7 @@ const HosURL =
   "%27&objectIds=&time=&resultType=none&outFields=*&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&cacheHint=false&orderByFields=date&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&sqlFormat=none&f=pjson&token=";
 
   const HosVaxStatus =
-    "https://services2.arcgis.com/LORzk2hk9xzHouw9/arcgis/rest/services/occovid_hospicubyvaxstatus_csv/FeatureServer/0//query?where=date+%3C+timestamp+%27" +
+    "https://services2.arcgis.com/LORzk2hk9xzHouw9/arcgis/rest/services/occovid_hospicubyvaxstatus3_csv/FeatureServer/0/query?where=date+%3C+timestamp+%27" +
     tomorrowsmonth +
     "%2F" +
     tomorrowday +

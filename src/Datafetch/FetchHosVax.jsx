@@ -19,8 +19,8 @@ const FetchHospitalVax = (props) => {
               temp.forEach((row, i) => {
               thisDataArray.push({
                 date: new Date(row.attributes.Date).toLocaleDateString(),
-                vax: row.attributes.Fully_Vaccinated,
-                unvax: row.attributes.Unvaccinated,
+                vax: row.attributes.fullvax_alladmit,
+                unvax: row.attributes.unvax_alladmit,
               });
               });
             })
