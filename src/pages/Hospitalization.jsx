@@ -86,7 +86,7 @@ const Hospitalization = props => {
               This data set contains recent hospitalization reports from a
               subset of hospitals in Orange County. Data is preliminary and
               subject to change due to delays in reporting. Updated weekly.
-              Fully vaccinated is defined as positive specimen >14 days after
+              Fully vaccinated is defined as positive specimen &gt; 14 days after
               final dose of vaccine series. Specimen collection date is used
               when admit date is unknown.
             </p>

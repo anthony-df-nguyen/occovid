@@ -119,6 +119,7 @@ const FetchVaccines = (props) => {
               let age6574PopPerc = findValue("65-74 yrs", "perc_pop");
               let age7584PopPerc = findValue("75-84 yrs", "perc_pop");
               let age85PopPerc = findValue("85+ yrs", "perc_pop");
+              let totalBoosters = findValue("Total Persons","num_boosters")
 
               thisDataArray = [
                 peopleOneDose,
@@ -202,6 +203,7 @@ const FetchVaccines = (props) => {
                 age6574PopPerc,
                 age7584PopPerc,
                 age85PopPerc,
+                totalBoosters,
               ];
             })
             .then(() => {

@@ -123,6 +123,7 @@ const Vaccinations = (props) => {
     age6574PopPerc,
     age7584PopPerc,
     age85PopPerc,
+    totalBoosters,
   ] = array;
 
   //Total People Reports
@@ -367,16 +368,21 @@ const Vaccinations = (props) => {
         </div>
         <FindAVaccine />
         <div className="widgetGrid">
-
           <MultiWidget
             title={"All Ages"}
-            subtitle={["Est. Population", "Fully Vaxed", "At Least 1 Dose"]}
+            subtitle={[
+              "Est. Population",
+              "Fully Vaxed",
+              "At Least 1 Dose",
+              "Boosters",
+            ]}
             stat={[
               `${ocpop.toLocaleString()}`,
               `${totalPPL.toLocaleString()} | ${totallPPLPerc}%`,
               `${totalPPL1Dose.toLocaleString()} | ${totalPPL1Perc}%`,
+              `${totalBoosters}`,
             ]}
-            color={[color.orange, color.blue, color.green]}
+            color={[color.orange, color.blue, color.green,color.purple]}
           />
           <MultiWidget
             title={"Ages 5+"}
@@ -401,8 +407,6 @@ const Vaccinations = (props) => {
             ]}
             color={[color.blue, color.orange]}
           />
-
-        
         </div>
 
         <Timeselect />
