@@ -64,6 +64,12 @@ const FetchVaccines = (props) => {
               let whiteFull = findValue("White", "num_1st2nd");
               let otherRaceFull = findValue("Other Race", "num_1st2nd");
               let unkRaceFull = findValue("Unknown Race", "num_1st2nd");
+              let asianPIBooster = findValue("Asian/PI", "num_boosters");
+              let blackBooster = findValue("Black", "num_boosters");
+              let hispanicBooster = findValue("Hispanic", "num_boosters");
+              let whiteBooster = findValue("White", "num_boosters");
+              let otherRaceBooster = findValue("Other Race", "num_boosters");
+              let unkRaceBooster = findValue("Unknown Race", "num_boosters");
               let age04 = findValue("0-4 yrs", "num_atleast1");
               let age511 = findValue("5-11 yrs", "num_atleast1");
               let age1217 = findValue("12-17 yrs", "num_atleast1");
@@ -159,6 +165,12 @@ const FetchVaccines = (props) => {
                 whiteFull,
                 otherRaceFull,
                 unkRaceFull,
+                asianPIBooster,
+                blackBooster,
+                hispanicBooster,
+                whiteBooster,
+                otherRaceBooster,
+                unkRaceBooster,
                 age04,
                 age511,
                 age1217,

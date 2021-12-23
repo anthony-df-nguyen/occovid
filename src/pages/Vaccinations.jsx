@@ -68,6 +68,12 @@ const Vaccinations = (props) => {
     whiteFull,
     otherRaceFull,
     unkRaceFull,
+    asianPIBooster,
+    blackBooster,
+    hispanicBooster,
+    whiteBooster,
+    otherRaceBooster,
+    unkRaceBooster,
     age04,
     age511,
     age1217,
@@ -324,6 +330,16 @@ const Vaccinations = (props) => {
     otherRaceFull,
     unkRaceFull,
   ];
+
+  const raceBoosterArray = [
+    asianPIBooster,
+    blackBooster,
+    hispanicBooster,
+    whiteBooster,
+    otherRaceBooster,
+    unkRaceBooster,
+  ];
+
   const racePercent1Dose = raceVaxArray.map((a, i) => {
     return parseFloat((a / racePopArray[i]) * 100).toFixed(1) + "%";
   });
@@ -344,9 +360,10 @@ const Vaccinations = (props) => {
 
   useEffect(() => {
     const newRaceMode = localStorage.getItem("lastRaceVaxMode");
-    newRaceMode === "full"
-      ? updateRaceVaxArray(raceFullVaxArray)
-      : updateRaceVaxArray(race1DoseVaxArray);
+    newRaceMode === "full" && updateRaceVaxArray(raceFullVaxArray)
+    newRaceMode === "1dose" && updateRaceVaxArray(race1DoseVaxArray);
+    newRaceMode === "booster" && updateRaceVaxArray(raceBoosterArray)
+ 
   }, [array, raceVaxMode]);
 
   const vendorNames = vendorArray.map((a) => a.vendor);
@@ -521,6 +538,10 @@ const Vaccinations = (props) => {
               {
                 display: "at Least 1 Dose",
                 value: "1dose",
+              },
+              {
+                display: "Boosters",
+                value: "booster",
               },
             ]}
             current={raceVaxMode}
