@@ -56,6 +56,10 @@ const Vaccinations = (props) => {
     maleFull,
     otherSexFull,
     unkSexFull,
+    femaleBooster,
+    maleBooster,
+    otherSexBooster,
+    unkSexBooster,
     asianPI,
     black,
     hispanic,
@@ -380,6 +384,12 @@ const Vaccinations = (props) => {
   //Gender
   const sex1DoseArray = [female, male, unkSex];
   const sexFullVaxArray = [femaleFull, maleFull, unkSexFull];
+  const sexBooster = [
+    femaleBooster,
+    maleBooster,
+    otherSexBooster,
+    unkSexBooster,
+  ];
   const [sexVaxMode, updateSexVaxMode] = useState(() =>
     localStorage.getItem("lastSexVaxMode")
       ? localStorage.getItem("lastSexVaxMode")
@@ -393,9 +403,9 @@ const Vaccinations = (props) => {
 
   useEffect(() => {
     const newSexMode = localStorage.getItem("lastSexVaxMode");
-    newSexMode === "full"
-      ? updateSexVaxArray(sexFullVaxArray)
-      : updateSexVaxArray(sex1DoseArray);
+    newSexMode === "full" && updateSexVaxArray(sexFullVaxArray);
+    newSexMode === "1dose" && updateSexVaxArray(sex1DoseArray);
+    newSexMode === "booster" && updateSexVaxArray(sexBooster);
   }, [array, sexVaxMode]);
 
   return (
@@ -659,6 +669,10 @@ const Vaccinations = (props) => {
               {
                 display: "at Least 1 Dose",
                 value: "1dose",
+              },
+              {
+                display: "Boosters",
+                value: "booster",
               },
             ]}
             current={sexVaxMode}

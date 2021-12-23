@@ -52,6 +52,10 @@ const FetchVaccines = (props) => {
               let maleFull = findValue("Male", "num_1st2nd");
               let otherSexFull = findValue("Other Sex", "num_1st2nd");
               let unkSexFull = findValue("Unknown Sex", "num_1st2nd");
+              let femaleBooster = findValue("Female", "num_boosters");
+              let maleBooster = findValue("Male", "num_boosters");
+              let otherSexBooster = findValue("Other Sex", "num_boosters");
+              let unkSexBooster = findValue("Unknown Sex", "num_boosters");
               let asianPI = findValue("Asian/PI", "num_atleast1");
               let black = findValue("Black", "num_atleast1");
               let hispanic = findValue("Hispanic", "num_atleast1");
@@ -153,6 +157,10 @@ const FetchVaccines = (props) => {
                 maleFull,
                 otherSexFull,
                 unkSexFull,
+                femaleBooster,
+                maleBooster,
+                otherSexBooster,
+                unkSexBooster,
                 asianPI,
                 black,
                 hispanic,
