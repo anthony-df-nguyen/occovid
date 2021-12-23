@@ -87,6 +87,17 @@ const FetchVaccines = (props) => {
               let age6574full = findValue("65-74 yrs", "num_1st2nd");
               let age7584full = findValue("75-84 yrs", "num_1st2nd");
               let age85full = findValue("85+ yrs", "num_1st2nd");
+              let age04boosters = findValue("0-4 yrs", "num_boosters");
+              let age511boosters = findValue("5-11 yrs", "num_boosters");
+              let age1217boosters = findValue("12-17 yrs", "num_boosters");
+              let age1824boosters = findValue("18-24 yrs", "num_boosters");
+              let age2534boosters = findValue("25-34 yrs", "num_boosters");
+              let age3544boosters = findValue("35-44 yrs", "num_boosters");
+              let age4554boosters = findValue("45-54 yrs", "num_boosters");
+              let age5564boosters = findValue("55-64 yrs", "num_boosters");
+              let age6574boosters = findValue("65-74 yrs", "num_boosters");
+              let age7584boosters = findValue("75-84 yrs", "num_boosters");
+              let age85boosters = findValue("85+ yrs", "num_boosters");
               let moderna = findValue("Moderna", "num_1st2nd");
               let pfizer = findValue("Pfizer", "num_1st2nd");
               let unknownTrade = findValue("Unknown Trade", "num_totalvalid");
@@ -119,7 +130,7 @@ const FetchVaccines = (props) => {
               let age6574PopPerc = findValue("65-74 yrs", "perc_pop");
               let age7584PopPerc = findValue("75-84 yrs", "perc_pop");
               let age85PopPerc = findValue("85+ yrs", "perc_pop");
-              let totalBoosters = findValue("Total Persons","num_boosters")
+              let totalBoosters = findValue("Total Persons", "num_boosters");
 
               thisDataArray = [
                 peopleOneDose,
@@ -171,6 +182,17 @@ const FetchVaccines = (props) => {
                 age6574full,
                 age7584full,
                 age85full,
+                age04boosters,
+                age511boosters,
+                age1217boosters,
+                age1824boosters,
+                age2534boosters,
+                age3544boosters,
+                age4554boosters,
+                age5564boosters,
+                age6574boosters,
+                age7584boosters,
+                age85boosters,
                 moderna,
                 pfizer,
                 unknownTrade,

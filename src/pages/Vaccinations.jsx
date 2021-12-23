@@ -91,6 +91,17 @@ const Vaccinations = (props) => {
     age6574full,
     age7584full,
     age85full,
+    age04boosters,
+    age511boosters,
+    age1217boosters,
+    age1824boosters,
+    age2534boosters,
+    age3544boosters,
+    age4554boosters,
+    age5564boosters,
+    age6574boosters,
+    age7584boosters,
+    age85boosters,
     moderna,
     pfizer,
     unknownTrade,
@@ -132,6 +143,8 @@ const Vaccinations = (props) => {
 
   const totalPPL = parseInt(fullVaccinated);
   const totallPPLPerc = parseFloat((totalPPL / ocpop) * 100).toFixed(1);
+
+  const totalBoosterInt = parseInt(totalBoosters)
 
   //Age Vaccine Reports
   const customAgeLabels = [
@@ -185,6 +198,20 @@ const Vaccinations = (props) => {
     age6574full,
     age7584full,
     age85full,
+  ];
+
+  const ageBoosterArray = [
+    age04boosters,
+    age511boosters,
+    age1217boosters,
+    age1824boosters,
+    age2534boosters,
+    age3544boosters,
+    age4554boosters,
+    age5564boosters,
+    age6574boosters,
+    age7584boosters,
+    age85boosters,
   ];
 
   const age1Dose12_plus = [
@@ -259,9 +286,9 @@ const Vaccinations = (props) => {
 
   useEffect(() => {
     const newAgeMode = localStorage.getItem("lastAgeVaxMode");
-    newAgeMode === "full"
-      ? updateAgeVaxArray(ageFullVaxArray)
-      : updateAgeVaxArray(age1DoseVaxArray);
+    newAgeMode === "full" && updateAgeVaxArray(ageFullVaxArray)
+    newAgeMode === "1dose" && updateAgeVaxArray(age1DoseVaxArray);
+    newAgeMode === "booster" && updateAgeVaxArray(ageBoosterArray);
   }, [array, ageVaxMode]);
 
   //Race Vaccine Reports
@@ -380,9 +407,9 @@ const Vaccinations = (props) => {
               `${ocpop.toLocaleString()}`,
               `${totalPPL.toLocaleString()} | ${totallPPLPerc}%`,
               `${totalPPL1Dose.toLocaleString()} | ${totalPPL1Perc}%`,
-              `${totalBoosters}`,
+              `${totalBoosterInt.toLocaleString()}`,
             ]}
-            color={[color.orange, color.blue, color.green,color.purple]}
+            color={[color.orange, color.blue, color.green, color.purple]}
           />
           <MultiWidget
             title={"Ages 5+"}
@@ -449,6 +476,10 @@ const Vaccinations = (props) => {
               {
                 display: "at Least 1 Dose",
                 value: "1dose",
+              },
+              {
+                display: "Boosters",
+                value: "booster",
               },
             ]}
             current={ageVaxMode}
