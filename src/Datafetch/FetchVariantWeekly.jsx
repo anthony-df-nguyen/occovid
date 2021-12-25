@@ -23,6 +23,7 @@ const FetchVariantWeekly = (props) => {
                       alpha: row.attributes.Alpha,
                       beta: row.attributes.Beta,
                       delta: row.attributes.Delta,
+                      omicron: row.attributes.Omicron,
                       deltaay: row.attributes.Delta__AY_,
                       epsilon: row.attributes.Epsilon,
                       gamma: row.attributes.Gamma,

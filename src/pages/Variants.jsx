@@ -20,10 +20,10 @@ const Variant = (props) => {
   let alpha = array.map((row) => row.alpha);
   let beta = array.map((row) => row.beta);
   let delta = array.map((row) => row.delta);
-  let deltaAY = array.map((row) => row.deltaay);
   let epsilon = array.map((row) => row.epsilon);
   let gamma = array.map((row) => row.gamma);
   let iota = array.map((row) => row.iota);
+  let omicron = array.map((row) => row.omicron);
   let theta = array.map((row) => row.theta);
   let lambda = array.map((row) => row.lambda);
   let mu = array.map((row) => row.mu);
@@ -31,10 +31,10 @@ const Variant = (props) => {
     "Alpha",
     "Beta",
     "Delta",
-    "DeltaAY",
     "Epsilon",
     "Gamma",
     "Iota",
+    "Omicron",
     "Theta",
     "Lambda",
     "Mu",
@@ -75,10 +75,10 @@ const Variant = (props) => {
               alpha,
               beta,
               delta,
-              deltaAY,
               epsilon,
               gamma,
               iota,
+              omicron,
               theta,
               lambda,
               mu,
@@ -168,27 +168,11 @@ const Variant = (props) => {
         <br></br>
         <div className="primaryText">
           <p>
-            Multiple variants of the virus that causes COVID-19 have been
-            identified globally during the COVID-19 pandemic. Variants are
-            determined by their genetic sequences. It's important to understand
-            that genetic mutations of the virus that causes COVID-19,
-            SARS-CoV-2, are expected, and that there are many strains of the
-            virus. Community clinical laboratories and HCA’s Public Health
-            Laboratory are sequencing a sample of cases to better track and
-            respond to the pandemic. These cases do not represent the total
-            number of infections due to the strains that may be circulating
-            around Orange County. As of September 1st, 135,885 samples have been
-            sequenced in California. In August 2021, 5% of cases in California
-            were sequenced, and this percent is expected to increase in coming
-            weeks as more data becomes available. In July 2021, 13% of cases in
-            California were sequenced. This is the number of sequences submitted
-            to the data repository GISAID and is not a complete list of
-            sequences completed to date. Figures shown in this tab will be
-            updated on Thursdays.
-          </p>
-          <br></br>
-          <p>
-            *"Delta" variant = B.1.617.2.
+            Delta variant includes all AY sublineages. Community clinical
+            laboratories and HCA’s Public Health Laboratory are sequencing a
+            sample of cases to better track and respond to the pandemic. These
+            cases do not represent the total number of infections due to the
+            strains that may be circulating around Orange County.
           </p>
         </div>
       </Page>
