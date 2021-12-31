@@ -38,7 +38,7 @@ const tomorrow = new Date(lastTuesday);
 tomorrow.setDate(tomorrow.getDate() + 1);
 let tomorrowday = tomorrow.getDate();
 let tomorrowsmonth = tomorrow.getMonth() + 1;
-let todaysyear = 2021;
+let todaysyear = 2022;
 console.log(
   "%cFetching county data with dates < than " +
     tomorrowsmonth +
