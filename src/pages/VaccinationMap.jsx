@@ -3,7 +3,11 @@
 import React, { useEffect, useState, useContext } from "react";
 import Page from "components/Page";
 import { MapContainer, TileLayer, Popup, GeoJSON } from "react-leaflet";
-import { zipVaxMap } from "globalVars/Sources";
+import {
+  zipVaxMapYouth,
+  zipVaxMapSrs,
+  zipMapAllAges,
+} from "globalVars/Sources";
 import FetchVaccineDate from "Datafetch/FetchVaccineDate";
 import {
   ContextColors,
@@ -19,7 +23,7 @@ import { ThemeContext } from "components/context/ThemeContext";
 import ExpandCollapse from "components/ExpandCollapse";
 
 const VaccinationMap = () => {
-    const [asof, updateDate] = useState("Getting last update date...");
+  const [asof, updateDate] = useState("Getting last update date...");
   // eslint-disable-next-line no-unused-vars
   const [theme, updateTheme] = useContext(ThemeContext);
   const [leaflet, updateleafLet] = useState();
@@ -39,12 +43,12 @@ const VaccinationMap = () => {
   //Set state for which age group All vs over 65 vs under 65
   const [ageDisplay, updateAgeDisplay] = useState();
   const [age, updateAge] = useState(() => {
-    if (!localStorage.getItem("vaxMapLastAge")) {
-      updateAgeDisplay("All Ages");
-      return "all";
+    if (!localStorage.getItem("vaxMapLastAgev2")) {
+      updateAgeDisplay("Ages < 65");
+      return "under65";
     } else {
-      updateAgeDisplay(localStorage.getItem("vaxMapLastAgeText"));
-      return localStorage.getItem("vaxMapLastAge");
+      updateAgeDisplay(localStorage.getItem("vaxMapLastAgev2Text"));
+      return localStorage.getItem("vaxMapLastAgev2");
     }
   });
 
@@ -62,153 +66,53 @@ const VaccinationMap = () => {
 
   //Set state for what the final querymode is. This is used to generate the legend range and figure out which vars to use later
   const createAgeRaceMode = () => {
-    //All Ages
-    if (age === "all") {
-      if (mode === "total") {
-        switch (race) {
-          case "all":
-            return "nv_Tot";
+    if (mode === "total") {
+      switch (race) {
+        case "all":
+          return "Tot_fullv";
 
-          case "asian":
-            return "nv_AsiPI";
+        case "asian":
+          return "AsiPI_fullv";
 
-          case "black":
-            return "nv_Black";
+        case "black":
+          return "Black_fullv";
 
-          case "hispanic":
-            return "nv_Hisp";
+        case "hispanic":
+          return "Hisp_fullv";
 
-          case "white":
-            return "nv_White";
+        case "white":
+          return "White_fullv";
 
-          case "other":
-            return "nv_Oth";
-          default:
-            return "nv_Tot";
-        }
-      } else if (mode === "rate") {
-        switch (race) {
-          case "all":
-            return "Total_VRate";
-
-          case "asian":
-            return "AsiPI_VRate";
-
-          case "black":
-            return "Black_VRate";
-
-          case "hispanic":
-            return "Hisp_VRate";
-
-          case "white":
-            return "White_VRate";
-
-          case "other":
-            return "Oth_VRate";
-          default:
-            return "Total_VRate";
-        }
+        case "other":
+          return "Oth_fullv";
+        default:
+          return "Tot_fullv";
       }
-    }
-    //For Under 65
-    if (age === "under65") {
-      if (mode === "total") {
-        switch (race) {
-          case "all":
-            return "nv_Totbel65";
+    } else if (mode === "rate") {
+      switch (race) {
+        case "all":
+          return "perTot_fullv";
 
-          case "asian":
-            return "nv_AsiPIbel65";
+        case "asian":
+          return "perAsiPI_fullv";
 
-          case "black":
-            return "nv_Blackbel65";
+        case "black":
+          return "perBlack_fullv";
 
-          case "hispanic":
-            return "nv_Hispbel65";
+        case "hispanic":
+          return "perHisp_fullv";
 
-          case "white":
-            return "nv_Whitebel65";
+        case "white":
+          return "perWhite_fullv";
 
-          case "other":
-            return "nv_Othbel65";
-          default:
-            return "nv_Totbel65";
-        }
-      } else if (mode === "rate") {
-        switch (race) {
-          case "all":
-            return "Total_bel65VRate";
-
-          case "asian":
-            return "AsiPI_bel65pPop";
-
-          case "black":
-            return "Black_bel65VRate";
-
-          case "hispanic":
-            return "Hisp_bel65VRate";
-
-          case "white":
-            return "White_bel65VRate";
-
-          case "other":
-            return "Oth_bel65VRate";
-          default:
-            return "Total_bel65VRate";
-        }
-      }
-    }
-    //For Over 65
-    if (age === "over65") {
-      if (mode === "total") {
-        switch (race) {
-          case "all":
-            return "nv_Tot65up";
-
-          case "asian":
-            return "nv_AsiPI65up";
-
-          case "black":
-            return "nv_Black65up";
-
-          case "hispanic":
-            return "nv_Hisp65up";
-
-          case "white":
-            return "nv_White65up";
-
-          case "other":
-            return "nv_Oth65up";
-          default:
-            return "nv_Tot65up";
-        }
-      } else if (mode === "rate") {
-        switch (race) {
-          case "all":
-            return "Total_65upVRate";
-
-          case "asian":
-            return "AsiPI_65upVRate";
-
-          case "black":
-            return "Black_65upVRate";
-
-          case "hispanic":
-            return "Hisp_65upVRate";
-
-          case "white":
-            return "White_65upVRate";
-
-          case "other":
-            return "Oth_65upVRate";
-          default:
-            return "Total_65upVRate";
-        }
+        case "other":
+          return "perOth_fullv";
+        default:
+          return "perTot_fullv";
       }
     }
   };
   const [queryMode, updateQueryMode] = useState(createAgeRaceMode);
-
 
   //Set a starting state for theme or city/zip mode so later we only reload page if theme or city/zip mode changes
   const [startingTheme, updateStartingTheme] = useState(theme);
@@ -225,7 +129,18 @@ const VaccinationMap = () => {
 
   //Fetch and build the GEOJSON components
   async function getGEO() {
-    await fetch(zipVaxMap)
+    let url;
+    if (age === "under65") {
+      url = zipVaxMapYouth;
+    }
+    if (age === "over65") {
+      url = zipVaxMapSrs;
+    }
+    if (age === "all") {
+      url = zipMapAllAges;
+    }
+
+    await fetch(url)
       .then((a) => a.json())
       .then((b) => b.features)
       .then((c) => {
@@ -246,7 +161,7 @@ const VaccinationMap = () => {
         //console.log('The minmax array is ',valueArray)
         const maxValue = Math.max(...valueArray);
         const minValue = Math.min(...valueArray);
-        //console.log(`With a min of ${minValue} and a max of ${maxValue}`);
+        ///console.log(`With a min of ${minValue} and a max of ${maxValue}`);
         if (mounted) {
           updateleafLet(() => {
             return (
@@ -280,105 +195,33 @@ const VaccinationMap = () => {
                     totalVax,
                     totalRate;
 
-                  //All Ages
-                  if (age === "all") {
+                  if (age) {
                     blackPop = a.Black_pop;
                     hisPop = a.Hisp_pop;
                     whitePop = a.White_Pop;
                     asianPop = a.AsiPI_Pop;
                     othPop = a.Oth_Pop;
-                    totalPop = a.Total_Pop;
+                    totalPop = a.Tot_pop;
+                    blackVax = a.Black_fullv;
+                    hisVax = a.Hisp_fullv;
+                    whiteVax = a.White_fullv;
+                    asianVax = a.AsiPI_fullv;
+                    othVax = a.Oth_fullv;
+                    totalVax = a.Tot_fullv;
                     blackRate = parseFloat(
-                      ((a.nv_Black / a.Black_pop) * 100).toFixed(1)
+                      ((blackVax / blackPop) * 100).toFixed(1)
                     );
-                    hisRate = parseFloat(
-                      ((a.nv_Hisp / a.Hisp_pop) * 100).toFixed(1)
-                    );
+                    hisRate = parseFloat(((hisVax / hisPop) * 100).toFixed(1));
                     whiteRate = parseFloat(
-                      ((a.nv_White / a.White_Pop) * 100).toFixed(1)
+                      ((whiteVax / whitePop) * 100).toFixed(1)
                     );
                     asianRate = parseFloat(
-                      ((a.nv_AsiPI / a.AsiPI_Pop) * 100).toFixed(1)
+                      ((asianVax / asianPop) * 100).toFixed(1)
                     );
-                    othRate = parseFloat(
-                      ((a.nv_Oth / a.Oth_Pop) * 100).toFixed(1)
-                    );
+                    othRate = parseFloat(((othVax / othPop) * 100).toFixed(1));
                     totalRate = parseFloat(
-                      ((a.nv_Tot / a.Total_Pop) * 100).toFixed(1)
+                      ((totalVax / totalPop) * 100).toFixed(1)
                     );
-                    blackVax = a.nv_Black;
-                    hisVax = a.nv_Hisp;
-                    whiteVax = a.nv_White;
-                    asianVax = a.nv_AsiPI;
-                    othVax = a.nv_Oth;
-                    totalVax = a.nv_Tot;
-                  }
-                  //Ages < 65
-                  if (age === "under65") {
-                    blackPop = a.Black_bel65Pop;
-                    hisPop = a.Hisp_bel65Pop;
-                    whitePop = a.White_bel65Pop;
-                    asianPop = a.AsiPI_bel65pPop;
-                    othPop = a.Oth_bel65Pop;
-                    totalPop = a.Total_bel65Pop;
-                    blackRate = parseFloat(
-                      ((a.nv_Blackbel65 / a.Black_bel65Pop) * 100).toFixed(1)
-                    );
-                    hisRate = parseFloat(
-                      ((a.nv_Hispbel65 / a.Hisp_bel65Pop) * 100).toFixed(1)
-                    );
-                    whiteRate = parseFloat(
-                      ((a.nv_Whitebel65 / a.White_bel65Pop) * 100).toFixed(1)
-                    );
-                    asianRate = parseFloat(
-                      ((a.nv_AsiPIbel65 / a.AsiPI_bel65pPop) * 100).toFixed(1)
-                    );
-                    othRate = parseFloat(
-                      ((a.nv_Othbel65 / a.Oth_bel65Pop) * 100).toFixed(1)
-                    );
-                    totalRate = parseFloat(
-                      ((a.nv_Totbel65 / a.Total_bel65Pop) * 100).toFixed(1)
-                    );
-                    blackVax = a.nv_Blackbel65;
-                    hisVax = a.nv_Hispbel65;
-                    whiteVax = a.nv_Whitebel65;
-                    asianVax = a.nv_AsiPIbel65;
-                    othVax = a.nv_Othbel65;
-                    totalVax = a.nv_Totbel65;
-                  }
-
-                  //Ages 65+ Only
-                  if (age === "over65") {
-                    blackPop = a.Black_65upPop;
-                    hisPop = a.Hisp_65upPop;
-                    whitePop = a.White_65upPop;
-                    asianPop = a.AsiPI_65upPop;
-                    othPop = a.Oth_65upPop;
-                    totalPop = a.Total_65upPop;
-                    totalRate = parseFloat(
-                      ((a.nv_Tot65up / a.Total_65upPop) * 100).toFixed(1)
-                    );
-                    asianRate = parseFloat(
-                      ((a.nv_AsiPI65up / a.AsiPI_65upPop) * 100).toFixed(1)
-                    );
-                    blackRate = parseFloat(
-                      ((a.nv_Black65up / a.Black_65upPop) * 100).toFixed(1)
-                    );
-                    hisRate = parseFloat(
-                      ((a.nv_Hisp65up / a.Hisp_65upPop) * 100).toFixed(1)
-                    );
-                    whiteRate = parseFloat(
-                      ((a.nv_White65up / a.White_65upPop) * 100).toFixed(1)
-                    );
-                    othRate = parseFloat(
-                      ((a.nv_Oth65up / a.Oth_65upPop) * 100).toFixed(1)
-                    );
-                    blackVax = a.nv_Black65up;
-                    hisVax = a.nv_Hisp65up;
-                    whiteVax = a.nv_White65up;
-                    asianVax = a.nv_AsiPI65up;
-                    othVax = a.nv_Oth65up;
-                    totalVax = a.nv_Tot65up;
                   }
 
                   //Figure out which var to pass to the color legend component
@@ -442,20 +285,27 @@ const VaccinationMap = () => {
                       minValue
                     );
                   } else if (mode === "rate") {
-                    color = PercentColors(checkColor, "highisgood",15,30,45,60,75);
+                    color = PercentColors(
+                      checkColor,
+                      "highisgood",
+                      15,
+                      30,
+                      45,
+                      60,
+                      75
+                    );
                   }
 
                   return (
                     <GeoJSON
                       key={i}
-                      data={row}
+                      data={row.geometry}
                       pathOptions={{
                         color: "#333",
                         weight: 0.2,
                         fillColor: color,
                         fillOpacity: ".35",
-                      }}
-                    >
+                      }}>
                       <Popup key={i}>
                         <div className="cityName"> {CityOrZipName} </div>
                         <h3>for {ageDisplay}</h3>
@@ -540,12 +390,13 @@ const VaccinationMap = () => {
 
   useEffect(() => {
     if (mounted) {
+      //console.log(`The mode is ${mode}, the race is ${race}, the age is ${age}`)
       updateQueryMode(createAgeRaceMode);
     }
     return () => {
       mounted = false;
     };
-  }, [mode, race, age]);
+  }, [mode, race]);
 
   useEffect(() => {
     if (mounted) {
@@ -554,7 +405,7 @@ const VaccinationMap = () => {
     return () => {
       mounted = false;
     };
-  }, [queryMode]);
+  }, [queryMode, age]);
 
   //Only reload the page if the starting theme is diffrent than the change
   useEffect(() => {
@@ -665,20 +516,21 @@ const VaccinationMap = () => {
             function={[updateAge, updateAgeDisplay]}
             current={age}
             options={[
+              // {
+              //   display: "All Ages",
+              //   value: "all",
+              // },
+
               {
-                display: "All Ages",
-                value: "all",
+                display: "Ages < 65",
+                value: "under65",
               },
               {
                 display: "Ages >= 65",
                 value: "over65",
               },
-              {
-                display: "Ages < 65",
-                value: "under65",
-              },
             ]}
-            storageKey={["vaxMapLastAge", "vaxMapLastAgeText"]}
+            storageKey={["vaxMapLastAgev2", "vaxMapLastAgev2Text"]}
           />
 
           <ModeSelector

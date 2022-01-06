@@ -35,7 +35,7 @@ export default function Query() {
         return "Cases";
       case "occovid_death_csv":
         return "Deaths";
-      case "vacc_totalsummary":
+      case "vacc_totalsummaryv2":
         return "Total Vaccine Data";
       case "occovid_demodths_csv":
         return "Deaths by Demographic";
@@ -55,8 +55,14 @@ export default function Query() {
         return "City Data";
       case "occovid_hospicu_csv":
         return "Hospitalization";
+      case "ZipFulParVaxwRace_fivetosixtyfour":
+        return "Zip Map Ages 5 - 64";
+      case "ZipFulParVaxwRace_65plus":
+        return "Zip Map Ages 65+";
+      case "vacc_dosesbydates":
+        return "Doses by Date";
       default:
-          return "No Source"
+        return "No Source";
     }
   };
 
