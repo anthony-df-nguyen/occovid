@@ -78,16 +78,38 @@ const Reportbug = (props) => {
   return (
     <Page title="Updates">
       <div className="formTitle">
-        Have questions? <a href="mailto: anthonydfnguyen@gmail.com"> Email me</a>
+        Have questions?{" "}
+        <a href="mailto: anthonydfnguyen@gmail.com"> Email me</a>
       </div>
 
-      <ExpandCollapse nogear={true} title="🪳 Click here to report a bug or make a suggestion" buttontext="Close">
+      <ExpandCollapse
+        nogear={true}
+        title="🪳 Click here to report a bug or make a suggestion"
+        buttontext="Close">
         <div id="googleForm">
-          <p style={{textAlign:'center'}}>Please note, I can only show more data if it's publicly available. If you have a data source, please refer me to it.</p>
-          <form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLScOtQjpnqcxaXju6gnSghVyLi4BRIj74u-5Un3_H3vki5y_Cw/formResponse" method="POST">
+          <p className="primaryText" style={{ textAlign: "center" }}>
+            Alternatively, report a bug on my{" "}
+            <a
+              className="blue"
+              href="https://github.com/skifreetony/occovid/issues">
+              Github
+            </a>
+          </p>
+          <br></br>
+          <p className="primaryText" style={{ textAlign: "center" }}>
+            Please note, I can only show more data if it's publicly available.
+            If you have a data source, please refer me to it.
+          </p>
+          <form
+            action="https://docs.google.com/forms/u/0/d/e/1FAIpQLScOtQjpnqcxaXju6gnSghVyLi4BRIj74u-5Un3_H3vki5y_Cw/formResponse"
+            method="POST">
             <label></label>
-            <textarea name="entry.655858757" placeholder="Report a bug(s). Please include which browser you are using and platform (iOS/Android/Windows/Mac)"></textarea>
-            <textarea name="entry.520929852" placeholder="Any suggestions or ideas?"></textarea>
+            <textarea
+              name="entry.655858757"
+              placeholder="Report a bug(s). Please include which browser you are using and platform (iOS/Android/Windows/Mac)"></textarea>
+            <textarea
+              name="entry.520929852"
+              placeholder="Any suggestions or ideas?"></textarea>
             <button className="globButton" type="submit">
               Submit
             </button>
@@ -96,21 +118,39 @@ const Reportbug = (props) => {
       </ExpandCollapse>
 
       <div style={{ display: showGIF }} className="loading">
-        <img className="loadingGIF" src="https://media.tenor.com/images/e9666fa015f403a882f069b9234995cc/tenor.gif" alt="" />
+        <img
+          className="loadingGIF"
+          src="https://media.tenor.com/images/e9666fa015f403a882f069b9234995cc/tenor.gif"
+          alt=""
+        />
         <p>Loading Updates</p>
       </div>
-      <div style={{ textAlign: "center", marginBottom: "1rem", fontWeight: 300 }}>Click a card in any category to view more detail</div>
+      <div
+        style={{ textAlign: "center", marginBottom: "1rem", fontWeight: 300 }}>
+        Click a card in any category to view more detail
+      </div>
       <div id="updateGrid" style={{ visibility: showUpdates }}>
-        <ExpandCollapse nogear={true} title="Recently Completed" bg="bluebg" buttontext="Close">
+        <ExpandCollapse
+          nogear={true}
+          title="Recently Completed"
+          bg="bluebg"
+          buttontext="Close">
           <div className="updateFlex" id="completedList">
             {array.map((row, i) => {
               if (row.status === "Completed") {
                 let convertDate = row.completed.slice(0, -1) + "-08:00";
                 return (
-                  <div className="card" key={i} value={row._id} onClick={toggleOpen}>
+                  <div
+                    className="card"
+                    key={i}
+                    value={row._id}
+                    onClick={toggleOpen}>
                     <div className="title">{row.title}</div>
                     <div className="bottom">
-                      <div className="type"> {moment(new Date(convertDate)).calendar()}</div>
+                      <div className="type">
+                        {" "}
+                        {moment(new Date(convertDate)).calendar()}
+                      </div>
                     </div>
                   </div>
                 );
@@ -118,12 +158,20 @@ const Reportbug = (props) => {
             })}
           </div>
         </ExpandCollapse>
-        <ExpandCollapse bg="greenbg" nogear={true} title="In Progress" buttontext="Close">
+        <ExpandCollapse
+          bg="greenbg"
+          nogear={true}
+          title="In Progress"
+          buttontext="Close">
           <div className="updateFlex">
             {array.map((row, i) => {
               if (row.status === "In Progress") {
                 return (
-                  <div key={i} className="card" value={row._id} onClick={toggleOpen}>
+                  <div
+                    key={i}
+                    className="card"
+                    value={row._id}
+                    onClick={toggleOpen}>
                     <div className="title">{row.title}</div>
                     <div className="bottom">
                       <div className="type">{row.type}</div>
@@ -134,12 +182,24 @@ const Reportbug = (props) => {
             })}
           </div>
         </ExpandCollapse>
-        <ExpandCollapse bg="purplebg" nogear={true} title="To-Do or Ideas" buttontext="Close">
+        <ExpandCollapse
+          bg="purplebg"
+          nogear={true}
+          title="To-Do or Ideas"
+          buttontext="Close">
           <div className="updateFlex">
             {array.map((row, i) => {
-              if (row.status === "Not Started" && row.type !== "Bug" && row.type !== "Suggestion") {
+              if (
+                row.status === "Not Started" &&
+                row.type !== "Bug" &&
+                row.type !== "Suggestion"
+              ) {
                 return (
-                  <div key={i} className="card" value={row._id} onClick={toggleOpen}>
+                  <div
+                    key={i}
+                    className="card"
+                    value={row._id}
+                    onClick={toggleOpen}>
                     <div className="title">{row.title}</div>
                     <div className="bottom">
                       <div className="type">{row.priority} Priority</div>
@@ -150,12 +210,20 @@ const Reportbug = (props) => {
             })}
           </div>
         </ExpandCollapse>
-        <ExpandCollapse bg="redbg" nogear={true} title="Known Bugs/Issues" buttontext="Close">
+        <ExpandCollapse
+          bg="redbg"
+          nogear={true}
+          title="Known Bugs/Issues"
+          buttontext="Close">
           <div className="updateFlex">
             {array.map((row, i) => {
               if (row.type === "Bug" && row.status === "Not Started") {
                 return (
-                  <div key={i} className="card" value={row._id} onClick={toggleOpen}>
+                  <div
+                    key={i}
+                    className="card"
+                    value={row._id}
+                    onClick={toggleOpen}>
                     <div className="title">{row.title}</div>
                     <div className="bottom">
                       <div className="type">{row.priority} Priority</div>
@@ -166,16 +234,27 @@ const Reportbug = (props) => {
             })}
           </div>
         </ExpandCollapse>
-         <ExpandCollapse bg="graybluebg" nogear={true} title="Responding to Suggestions" buttontext="Close">
+        <ExpandCollapse
+          bg="graybluebg"
+          nogear={true}
+          title="Responding to Suggestions"
+          buttontext="Close">
           <div className="updateFlex">
-                {array.map((row, i) => {
+            {array.map((row, i) => {
               if (row.type === "Suggestion") {
                 let convertDate = row.completed.slice(0, -1) + "-08:00";
                 return (
-                  <div className="card" key={i} value={row._id} onClick={toggleOpen}>
+                  <div
+                    className="card"
+                    key={i}
+                    value={row._id}
+                    onClick={toggleOpen}>
                     <div className="title">{row.title}</div>
                     <div className="bottom">
-                      <div className="type"> Received {moment(new Date(convertDate)).calendar()}</div>
+                      <div className="type">
+                        {" "}
+                        Received {moment(new Date(convertDate)).calendar()}
+                      </div>
                     </div>
                   </div>
                 );
@@ -231,7 +310,9 @@ const Reportbug = (props) => {
               <div className="text">{fullCard.parseComplete}</div>
             </div>
           </div>
-          <button className="globButton" onClick={() => updateShowFullCard("none")}>
+          <button
+            className="globButton"
+            onClick={() => updateShowFullCard("none")}>
             Close
           </button>
         </div>
