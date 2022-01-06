@@ -17,7 +17,11 @@ const Footer = () => {
           </Link>
         </p>
       </div>
-      <h1> Site by Anthony Nguyen</h1>
+      <h1>
+        {" "}
+        Site by Anthony Nguyen | &nbsp;
+        <a href="https://github.com/skifreetony/occovid">Github</a>
+      </h1>
       <p>No affiliation with OC Health Care Agency or any government agency</p>
     </div>
   );

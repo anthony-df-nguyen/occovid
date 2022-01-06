@@ -33,7 +33,7 @@ import {
 } from "pages/Master";
 
 function App() {
-  const trackingId = "UA-164595635-1";
+  const trackingId = process.env.REACT_APP_GA_KEY;
   ReactGA.initialize(trackingId);
   ReactGA.pageview(window.location.pathname + window.location.search);
 
