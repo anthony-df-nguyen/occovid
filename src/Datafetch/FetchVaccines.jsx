@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import {vaccineVendor} from '../globalVars/Sources'
 
 let thisDataArray = [];
 let vaccineDataTable;
@@ -10,9 +11,7 @@ const FetchVaccines = (props) => {
         let mounted = true;
 
         const getData = async () => {
-          await fetch(
-            "https://services2.arcgis.com/LORzk2hk9xzHouw9/ArcGIS/rest/services/vacc_totalsummaryv2/FeatureServer/0/query?where=0%3D0&objectIds=&time=&resultType=none&outFields=*&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&sqlFormat=none&f=pjson&token="
-          )
+          await fetch(vaccineVendor)
             .then((a) => a.json())
             .then((b) => {
               let results = b.features;

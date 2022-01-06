@@ -12,7 +12,11 @@ export default function Query() {
     const fetchDates = async () => {
       await fetch("https://occovidtaskmongo.vercel.app/api/checklastupdate")
         .then((a) => a.json())
-        .then(b => b.sort((x,y) => new Date (x.lastUpdate) < new Date(y.lastUpdate) ? 1 : -1))
+        .then((b) =>
+          b.sort((x, y) =>
+            returnNormalName(x.name) > returnNormalName(y.name) ? 1 : -1
+          )
+        )
         .then((c) => updateArray(c));
     };
     fetchDates();
@@ -36,7 +40,7 @@ export default function Query() {
       case "occovid_death_csv":
         return "Deaths";
       case "vacc_totalsummaryv2":
-        return "Total Vaccine Data";
+        return "Vaccination Data";
       case "occovid_demodths_csv":
         return "Deaths by Demographic";
       case "vacc_dosebydate":
@@ -62,7 +66,13 @@ export default function Query() {
       case "ZipFulParVaxwRace_total":
         return "Zip Map All Ages";
       case "vacc_dosesbydates":
-        return "Doses by Date";
+        return "Vaccination Doses by Date";
+      case "occovid_incidencebyvaxstatus":
+        return "Cases by Vaccination Status";
+      case "occovid_varagegrp_csv":
+        return "Variants by Age Group"
+      case "occovid_varweek5_csv_Copy":
+        return "Variants Weekly Basis"
       default:
         return "No Source";
     }
@@ -91,10 +101,12 @@ export default function Query() {
               <tr key={i}>
                 <td>{name}</td>
                 <td>
-                  <a href={row.link} target="_blank">{row.name}</a>
+                  <a href={row.link} target="_blank">
+                    {row.name}
+                  </a>
                 </td>
                 <td>{parseDate}</td>
-                <td>{delta}</td>
+                <td style={{ color: delta > 7 && "red" }}>{delta}</td>
               </tr>
             );
           })}

@@ -5,7 +5,6 @@ import Timeselect from "components/Timeselect";
 import FindAVaccine from "components/FindAVaccine";
 import ChartNonStacked from "components/ChartNonStacked";
 import { FetchVaccines } from "Datafetch/FetchVaccines";
-import FetchVaccineVendor from "Datafetch/FetchVaccineVendor";
 import VaccineHistory from "Datafetch/VaccineHistory.jsx";
 import FetchVaccineDate from "Datafetch/FetchVaccineDate";
 import Chart from "components/Chart";
@@ -36,7 +35,6 @@ const Vaccinations = (props) => {
   // eslint-disable-next-line no-unused-vars
   const [time, setTime] = useContext(TimeContext);
   const [array, updateArray] = useState([]);
-  const [vendorArray, updateVendorArray] = useState([]);
   const [vaccineHisArray, updateVaxArray] = useState([]);
   const [vaxTier, updateVaxTier] = useState();
   const [asof, updateDate] = useState("Getting last update date...");
@@ -370,13 +368,7 @@ const Vaccinations = (props) => {
  
   }, [array, raceVaxMode]);
 
-  const vendorNames = vendorArray.map((a) => a.vendor);
-  const vendorDoses = vendorArray.map((a) =>
-    a.doses ? parseInt(a.doses).toLocaleString() : ""
-  );
-  const vendorPerc = vendorArray.map(
-    (a) => (parseFloat(a.doses / totalAdmin) * 100).toFixed(1) + "%"
-  );
+
 
   const brand1Dose = [pfizerDose1, modernaDose1, "N/A"];
   const brand2Dose = [pfizer, moderna, janssen];
@@ -414,8 +406,6 @@ const Vaccinations = (props) => {
       <FetchVaccineDate function={updateDate} />
       <VaccineHistory function={updateVaxArray} time={time} />
       <FetchVaccines function={updateArray} time={time} />
-
-      <FetchVaccineVendor function={updateVendorArray} />
       <Page title="Vaccinations">
         <div id="lastUpdateDate">
           <p>{asof}</p>
@@ -686,67 +676,8 @@ const Vaccinations = (props) => {
             label={["People"]}
             switches={["horizontalBar", "bar", "doughnut"]}
           />
-          {/* <div className="chartContainer">
-            <div className="chartTitle">Top 25 Dose Providers</div>
-            <BuildTable
-              rows={vendorNames}
-              colName={[
-                "Vendor",
-                "Doses Administered",
-                "% of All Doses Administered",
-              ]}
-              columns={[vendorDoses, vendorPerc]}
-            />
-          </div> */}
-          <div className="chartContainer vaxEffectiveness">
-            <div className="chartTitle">Vaccine Info</div>
-            <BuildTable
-              rows={[
-                "Doses",
-                "Protection Against Any Symptoms",
-                "Protection Against Severe Symptoms",
-                "Protection Against Death or Hospitalization",
-                "Efficacy by Age",
-              ]}
-              colName={[
-                "Info",
-                "Pfizer/BioNTech",
-                "Moderna",
-                "Johnson & Johnson",
-              ]}
-              columns={[
-                [
-                  2,
-                  "95%",
-                  "89%",
-                  "100%",
-                  '<span class="bold">Age 16-55</span>: 96%<br><span class="bold">Over 55</span>: 94%',
-                ],
-                [
-                  2,
-                  "94.1%",
-                  "100%",
-                  "100%",
-                  '<span class="bold">Age 16-55</span>: 96%<br><span class="bold">Over 55</span>: 86%',
-                ],
-                [
-                  1,
-                  "66% | 72% (US)",
-                  "85%",
-                  "100%",
-                  '<span class="bold">Age 18-64</span>: 66.1%<br><span class="bold">Over 65</span>: 66.2%',
-                ],
-              ]}
-            />
-            <p className="chartNote">
-              <a
-                className="blue"
-                href="https://coronavirus.egovoc.com/vaccine-effectiveness"
-                target="_blank">
-                More vaccine information here
-              </a>
-            </p>
-          </div>
+
+    
         </div>
       </Page>
     </div>
