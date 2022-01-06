@@ -59,6 +59,8 @@ export default function Query() {
         return "Zip Map Ages 5 - 64";
       case "ZipFulParVaxwRace_65plus":
         return "Zip Map Ages 65+";
+      case "ZipFulParVaxwRace_total":
+        return "Zip Map All Ages";
       case "vacc_dosesbydates":
         return "Doses by Date";
       default:
@@ -88,7 +90,9 @@ export default function Query() {
             return (
               <tr key={i}>
                 <td>{name}</td>
-                <td>{row.name}</td>
+                <td>
+                  <a href={row.link} target="_blank">{row.name}</a>
+                </td>
                 <td>{parseDate}</td>
                 <td>{delta}</td>
               </tr>
