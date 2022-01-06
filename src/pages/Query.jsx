@@ -70,9 +70,11 @@ export default function Query() {
       case "occovid_incidencebyvaxstatus":
         return "Cases by Vaccination Status";
       case "occovid_varagegrp_csv":
-        return "Variants by Age Group"
+        return "Variants by Age Group";
       case "occovid_varweek5_csv_Copy":
-        return "Variants Weekly Basis"
+        return "Variants Weekly Basis";
+      case "occovid_hospicubyvaxstatus3_csv":
+        return "Hospitalized by Vax Status";
       default:
         return "No Source";
     }
