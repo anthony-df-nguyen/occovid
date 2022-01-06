@@ -38,7 +38,7 @@ const FetchSchool = (props) => {
                         .then(()=> filtertime(thisDataArray,props.time))
                         .then((final) => {
                             if (mounted) {
-
+                                final.sort((a,b)=> new Date(a.date) > new Date(b.date) ? 1 : -1)
                                 props.function[0](final);
                             }
                         })
