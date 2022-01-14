@@ -26,10 +26,15 @@ const Hospitalization = props => {
   const [array, updateArray] = useState([])
   const [triggerArray, updateTrigger] = useState([])
   const [hosVax,updateHosVax] = useState([])
+  const [icuStat,updateICUStat] = useState([])
 
   return (
     <div>
-      <FetchHospitalVax function={updateHosVax} time={time} />
+      <FetchHospitalVax
+        function={updateHosVax}
+        function2={updateICUStat}
+        time={time}
+      />
       <FetchHosTriggers function={updateTrigger} time={time} />
       <FetchHospitals function={updateArray} time={time} />
       <Page title="Hospitalizations">
@@ -42,20 +47,31 @@ const Hospitalization = props => {
             color={color.purple}
           />
           <Widget
+            title="% Hospitalized Unvaccinated"
+            stat={icuStat[0]}
+            color={color.orange}
+          />
+          <Widget
+            title="% of ICU Admits Unvaccinated"
+            stat={icuStat[1]}
+            color={color.red}
+          />
+          <Widget
             title={"Vents Available"}
             stat={lastVentsAvailable + "%"}
             color={color.blue}
           />
           <Widget
-            title={"Bed Avail. Adjusted"}
+            title={"Adult Beds Available"}
             stat={lastBedsAdj + "%"}
             color={color.red}
           />
-          <Widget
+
+          {/* <Widget
             title={"Beds Avail. Unadjusted"}
             stat={lastBedsUnadj + "%"}
             color={color.red}
-          />
+          /> */}
         </div>
         <Timeselect />
         <div id="chartGrid">
@@ -86,9 +102,9 @@ const Hospitalization = props => {
               This data set contains recent hospitalization reports from a
               subset of hospitals in Orange County. Data is preliminary and
               subject to change due to delays in reporting. Updated weekly.
-              Fully vaccinated is defined as positive specimen &gt; 14 days after
-              final dose of vaccine series. Specimen collection date is used
-              when admit date is unknown.
+              Fully vaccinated is defined as positive specimen &gt; 14 days
+              after final dose of vaccine series. Specimen collection date is
+              used when admit date is unknown.
             </p>
           </Chart>
           <Chart

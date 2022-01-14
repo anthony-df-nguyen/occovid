@@ -14,21 +14,26 @@ const FetchHospitalVax = (props) => {
             .then((response) => response.json())
             .then((grab) => grab.features)
             .then((a) => {
-              let temp = [...a]
-
+              let temp = [...a];
               temp.forEach((row, i) => {
-              thisDataArray.push({
-                date: new Date(row.attributes.Date).toLocaleDateString(),
-                vax: row.attributes.fullvax_alladmit,
-                unvax: row.attributes.unvax_alladmit,
+                thisDataArray.push({
+                  date: new Date(row.attributes.Date).toLocaleDateString(),
+                  vax: row.attributes.fullvax_alladmit,
+                  unvax: row.attributes.unvax_alladmit,
+                });
               });
-              });
+              console.log(temp[0])
+              let hosData = [
+                temp[0].attributes.perc_unvax_alladmit + "%",
+                temp[0].attributes.perc_unvax_icu + "%",
+              ];
+              console.log(hosData);
+              props.function2(hosData);
             })
             .then(() => filtertime(thisDataArray, props.time))
             .then((final) => {
               if (mounted) {
                 //console.log('Updating the state')
-
                 props.function(final);
               }
             });
@@ -50,4 +55,4 @@ const FetchHospitalVax = (props) => {
   );
 };
 
-export { FetchHospitalVax};
+export { FetchHospitalVax };

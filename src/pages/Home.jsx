@@ -19,6 +19,7 @@ import {
   lastDailyReportedDeath,
 } from "Datafetch/FetchDeaths";
 import { FetchHospitals, lastHos, lastICU } from "Datafetch/FetchHospitals";
+import { FetchHospitalVax } from "Datafetch/FetchHosVax";
 import {
   FetchHosTriggers,
   lastHosRateChange,
@@ -56,6 +57,8 @@ const Home = (props) => {
 
   const [array6, update6Array] = useState([]);
   const [array7, update7Array] = useState([]);
+    const [hosVax, updateHosVax] = useState([]);
+    const [icuStat, updateICUStat] = useState([]);
   const [vaccineDate, updateVaccineDate] = useState("Getting last update date...");
   const peopleOneDose = array5[0];
   const fullVaccinated = array5[1];
@@ -130,12 +133,17 @@ const Home = (props) => {
         <FetchDeaths function={update2Array} time={time} />
         <FetchHosTriggers function={update3Array} time={time} />
         <FetchHospitals function={update4Array} time={time} />
+        <FetchHospitalVax
+          function={updateHosVax}
+          function2={updateICUStat}
+          time={time}
+        />
         <FetchVaccines function={update5Array} time={time} />
         <FetchTesting function={update6Array} time={time} />
         <FetchCountyTier function={updateTier} />
         <FetchCAMetrics time={time} function={update7Array} />
         <FetchVaccineDate function={updateVaccineDate} />
-      
+
         <FetchVaccineTier function={updateVaxTier} />
         <div className="homeWidgetGrid">
           <Link to="/cases">
@@ -200,20 +208,30 @@ const Home = (props) => {
                       color={color.pink}
                     />
                     <Widget
+                      title="% Hospitalized Unvaccinated"
+                      stat={icuStat[0]}
+                      color={color.orange}
+                    />
+                    <Widget
+                      title="% of ICU Admits Unvaccinated"
+                      stat={icuStat[1]}
+                      color={color.red}
+                    />
+                    <Widget
                       title={"Vents Available"}
                       stat={lastVentsAvailable + "%"}
                       color={color.blue}
                     />
                     <Widget
-                      title={"Bed Avail. Adjusted"}
+                      title={"Adult Beds Available"}
                       stat={lastBedsAdj + "%"}
                       color={color.red}
                     />
-                    <Widget
+                    {/* <Widget
                       title={"Beds Avail. Unadjusted"}
                       stat={lastBedsUnadj + "%"}
                       color={color.red}
-                    />
+                    /> */}
                   </div>
                 </div>
               </div>
