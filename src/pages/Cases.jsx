@@ -17,6 +17,7 @@ import {FetchCasesByVax} from "Datafetch/FetchCasesbyVax"
 import Chart from "components/Chart";
 import Widget from "components/Widget";
 import Page from "components/Page";
+import CityCompareChart from "components/CityCompare/CityCompareChart";
 
 const Cases = (props) => {
   const [time, setTime] = useContext(TimeContext);
@@ -66,18 +67,22 @@ const Cases = (props) => {
             label={["Cases", "Estimated Recovered"]}
           />
 
-          <Chart
-            key="casebyvaccine"
-            id="casebyvaccine"
-            switches={["bar", "line"]}
+          <CityCompareChart
             date={caseVaxArray.map((a) => a.date)}
             data={[
-              caseVaxArray.map((b) => b.vaccinated),
+              caseVaxArray.map((b) => b.vaccinated_boosted),
+              caseVaxArray.map((b) => b.vaccinated_nobooster),
               caseVaxArray.map((b) => b.unvaccinated),
             ]}
-            fill={[color.yellow, color.red]}
-            title={"7-Day Case Rate per 100K by Vax Status - Weekly"}
-            label={["Vaccinated", "Not-Vaccinated"]}></Chart>
+            fill={[color.blue, color.yellow, color.red]}
+            title={"Weekly 7-Day Case Rate/100K by Vaccination"}
+            label={[
+              "Vaccinated w/ Booster",
+              "Vaccinated w/o Booster",
+              "Not Vaccinated",
+            ]}
+          />
+      
 
           <Chart
             key="3"

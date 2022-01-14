@@ -268,7 +268,7 @@ const Home = (props) => {
                       color={color.blue}
                     />
                     <Widget
-                      title={"Daily Tests Received"}
+                      title={"Weekly Tests Received"}
                       stat={lastDailyTests}
                       color={color.green}
                     />

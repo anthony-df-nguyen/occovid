@@ -21,12 +21,16 @@ const FetchCasesByVax = (props) => {
           thisDataArray = [];
           await fetch(casebyVaxStatus)
             .then((response) => response.json())
-            .then((grab) => grab.features)
+            .then((grab) => {
+              console.log(grab)
+              return grab.features;
+            })
             .then((a) => {
               a.forEach((row) => {
                 thisDataArray.push({
                   date: new Date(row.attributes.Date).toLocaleDateString(),
-                  vaccinated: row.attributes.VxInc,
+                  vaccinated_nobooster: row.attributes.Fully_Vx__No_Booster_Inc,
+                  vaccinated_boosted: row.attributes.Boosted_Inc,
                   unvaccinated: row.attributes.UnvxInc,
                 });
               });

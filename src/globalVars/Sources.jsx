@@ -199,7 +199,7 @@ const vaccineVendor =
   "https://services2.arcgis.com/LORzk2hk9xzHouw9/ArcGIS/rest/services/vacc_totalsummaryv2/FeatureServer/0/query?where=0%3D0&objectIds=&time=&resultType=none&outFields=*&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&sqlFormat=none&f=pjson&token=";
 
 const casebyVaxStatus =
-  "https://services2.arcgis.com/LORzk2hk9xzHouw9/ArcGIS/rest/services/occovid_incidencebyvaxstatus/FeatureServer/0//query?where=Date%3Etimestamp+%273%2F3%2F2020%27+AND+Date%3Ctimestamp+%27" +
+  "https://services2.arcgis.com/LORzk2hk9xzHouw9/ArcGIS/rest/services/occovid_incidencebyvaxstatus2/FeatureServer/0//query?where=Date%3Etimestamp+%273%2F3%2F2020%27+AND+Date%3Ctimestamp+%27" +
   tomorrowsmonth +
   "%2F" +
   tomorrowday +

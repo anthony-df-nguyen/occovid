@@ -40,7 +40,7 @@ const Testing = (props) => {
             color={color.blue}
           />
           <Widget
-            title={"Daily PCR Tests Received"}
+            title={"Weekly PCR Tests Received"}
             stat={lastDailyTests}
             color={color.green}
           />
@@ -57,11 +57,11 @@ const Testing = (props) => {
             stat={lastTotalSero}
             color={color.blue}
           />
-          <Widget
+          {/* <Widget
             title={"Daily Serology Tests Received"}
             stat={lastDailySero}
             color={color.green}
-          />
+          /> */}
           <Widget
             title={"Serology Test Positivity %"}
             stat={lastPosSero + "%"}
