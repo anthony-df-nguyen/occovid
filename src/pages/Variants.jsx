@@ -84,7 +84,7 @@ const Variant = (props) => {
               mu,
             ]}
             fill={variantColors}
-            title={"Variant Results by Disease Weak"}
+            title={"Variant Results by Disease Week"}
             label={labels}
             switches={["line"]}
           />
