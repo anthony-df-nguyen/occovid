@@ -91,7 +91,7 @@ const Reportbug = (props) => {
             Alternatively, report a bug on my{" "}
             <a
               className="blue"
-              href="https://github.com/skifreetony/occovid/issues">
+              href="https://github.com/anthony-df-nguyen/occovid/issues">
               Github
             </a>
           </p>
