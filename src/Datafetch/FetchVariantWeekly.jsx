@@ -17,20 +17,22 @@ const FetchVariantWeekly = (props) => {
             .then((response) => response.json())
             .then((grab) => grab.features)
             .then(data => {
+              console.log("data: ", data)
                 data.forEach(row => {
+                    
                     thisDataArray.push({
                       date: row.attributes.diseaseweek.split("-")[0],
                       alpha: row.attributes.Alpha,
                       beta: row.attributes.Beta,
                       delta: row.attributes.Delta,
-                      omicron: row.attributes.Omicron,
-                      deltaay: row.attributes.Delta__AY_,
                       epsilon: row.attributes.Epsilon,
                       gamma: row.attributes.Gamma,
                       iota: row.attributes.Iota,
-                      theta: row.attributes.Theta,
                       lambda: row.attributes.Lambda,
                       mu: row.attributes.Mu,
+                      omicron_BA1: row.attributes.Omicron_BA1,
+                      omicron_BA2: row.attributes.Omicron_BA2,
+                      theta: row.attributes.Theta,
                     });
                 })
             })

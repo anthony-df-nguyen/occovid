@@ -23,10 +23,12 @@ const Variant = (props) => {
   let epsilon = array.map((row) => row.epsilon);
   let gamma = array.map((row) => row.gamma);
   let iota = array.map((row) => row.iota);
-  let omicron = array.map((row) => row.omicron);
-  let theta = array.map((row) => row.theta);
   let lambda = array.map((row) => row.lambda);
   let mu = array.map((row) => row.mu);
+  let omicron = array.map((row) => row.omicron_BA1);
+  let omicron_ba2 = array.map((row) => row.omicron_BA2);
+  let theta = array.map((row) => row.theta);
+  
   let labels = [
     "Alpha",
     "Beta",
@@ -34,17 +36,17 @@ const Variant = (props) => {
     "Epsilon",
     "Gamma",
     "Iota",
-    "Omicron",
-    "Theta",
     "Lambda",
     "Mu",
+    "Omicron",
+    "Omicron BA.2",
+    "Theta",
     "Other",
   ];
+    
 
   //Variant by Ages
   const [ageArray, updateAgeArray] = useState([]);
-     console.log(ageArray);
-
 
   const variantColors = [
     color.blue,
@@ -78,10 +80,11 @@ const Variant = (props) => {
               epsilon,
               gamma,
               iota,
-              omicron,
-              theta,
               lambda,
               mu,
+              omicron,
+              omicron_ba2,
+              theta,
             ]}
             fill={variantColors}
             title={"Variant Results by Disease Week"}

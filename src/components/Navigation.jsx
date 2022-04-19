@@ -40,14 +40,14 @@ const Navigation = (props) => {
           activeClassName="selectedLink">
           Cases
         </NavLink>
-        <NavLink
+        {/* <NavLink
           to="/variants"
           onClick={() => {
             closeTheNav("/variants");
           }}
           activeClassName="selectedLink">
           Variants
-        </NavLink>
+        </NavLink> */}
         <NavLink
           to="/deaths"
           onClick={() => {
