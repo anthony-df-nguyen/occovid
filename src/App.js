@@ -1,5 +1,5 @@
 import logo from "./logo.svg";
-import ReactGA from "react-ga";
+// import ReactGA from "react-ga";
 import React, { useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import TimeStore from "components/context/TimeContext";
@@ -33,9 +33,9 @@ import {
 } from "pages/Master";
 
 function App() {
-  const trackingId = process.env.REACT_APP_GA_KEY;
-  ReactGA.initialize(trackingId);
-  ReactGA.pageview(window.location.pathname + window.location.search);
+  // const trackingId = process.env.REACT_APP_GA_KEY;
+  // ReactGA.initialize(trackingId);
+  // ReactGA.pageview(window.location.pathname + window.location.search);
 
   return (
     <ThemeStore>

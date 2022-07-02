@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.7.0",
+    "async": "^3.2.3",
     "axios": "^0.21.1",
     "chart.js": "^2.9.4",
     "chartjs-plugin-datalabels": "^0.7.0",
@@ -21,7 +22,7 @@
     "react-ga": "^3.3.0",
     "react-leaflet": "^3.1.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.2",
+    "react-scripts": "^5.0.1",
     "web-vitals": "^1.1.0"
   },
   "scripts": {
