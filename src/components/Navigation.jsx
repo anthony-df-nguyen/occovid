@@ -88,14 +88,14 @@ const Navigation = (props) => {
           activeClassName="selectedLink">
           PCR/Serology Tests
         </NavLink>
-        <NavLink
+        {/* <NavLink
           to="/schools"
           onClick={() => {
             closeTheNav("/schools");
           }}
           activeClassName="selectedLink">
           School Cases{" "}
-        </NavLink>
+        </NavLink> */}
         <div>
           <div className="subSection">by Location</div>
         </div>
